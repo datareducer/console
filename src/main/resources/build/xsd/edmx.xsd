@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+     <xs:documentation>
+         Описание метаданных 1С
+     </xs:documentation>
+  </xs:annotation>
+  <xs:import namespace="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" schemaLocation="metadata.xsd"/>
+  <xs:import namespace="http://schemas.microsoft.com/ado/2009/11/edm" schemaLocation="edm.xsd"/>
+  <xs:element name="Edmx" type="edmx:EdmxType" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"/>
+  <xs:complexType name="DataServicesType">
+    <xs:sequence>
+      <xs:element ref="edm:Schema" xmlns:edm="http://schemas.microsoft.com/ado/2009/11/edm"/>
+    </xs:sequence>
+    <xs:attribute ref="met:DataServiceVersion" xmlns:met="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"/>
+    <xs:attribute ref="met:MaxDataServiceVersion" xmlns:met="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"/>
+  </xs:complexType>
+  <xs:complexType name="EdmxType">
+    <xs:sequence>
+      <xs:element type="edmx:DataServicesType" name="DataServices" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="Version"/>
+  </xs:complexType>
+</xs:schema>

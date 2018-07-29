@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Copyright (c) 2017,2018 Kirill Mikhaylov <admin@datareducer.ru>-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.VBox?>
+<fx:root type="VBox" xmlns="http://javafx.com/javafx/8.0.102-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <fx:define>
+        <ContextMenu fx:id="ctxMenu">
+            <items>
+                <MenuItem fx:id="editItem" mnemonicParsing="false" text="Изменить"/>
+                <MenuItem fx:id="deleteItem" mnemonicParsing="false" text="Удалить"/>
+                <SeparatorMenuItem/>
+                <MenuItem fx:id="loadMetadataItem" mnemonicParsing="false" text="Загрузить метаданные"/>
+            </items>
+        </ContextMenu>
+    </fx:define>
+    <padding>
+        <Insets left="5.0" />
+    </padding>
+    <ToolBar>
+        <Button fx:id="addBtn">
+            <graphic>
+                <ImageView>
+                    <Image url="@/image/database_add.png"/>
+                </ImageView>
+            </graphic>
+            <tooltip>
+                <Tooltip text="Добавить подключение"/>
+            </tooltip>
+        </Button>
+        <Button fx:id="deleteBtn">
+            <graphic>
+                <ImageView>
+                    <Image url="@/image/database_delete.png"/>
+                </ImageView>
+            </graphic>
+            <tooltip>
+                <Tooltip text="Удалить подключение"/>
+            </tooltip>
+        </Button>
+        <Button fx:id="editBtn">
+            <graphic>
+                <ImageView>
+                    <Image url="@/image/database_edit.png"/>
+                </ImageView>
+            </graphic>
+            <tooltip>
+                <Tooltip text="Редактировать подключение"/>
+            </tooltip>
+        </Button>
+    </ToolBar>
+    <TableView fx:id="basesList" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="idCol" minWidth="35" maxWidth="70" text="Id"/>
+            <TableColumn fx:id="nameCol" text="Наименование"/>
+            <TableColumn fx:id="hostCol" text="Сервер" visible="false"/>
+            <TableColumn fx:id="baseCol" text="База" visible="false"/>
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
+        <placeholder>
+            <Label textFill="darkgray">Информационные базы</Label>
+        </placeholder>
+    </TableView>
+</fx:root>

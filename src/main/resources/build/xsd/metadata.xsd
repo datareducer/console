@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+           elementFormDefault="qualified" attributeFormDefault="unqualified"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:annotation>
+        <xs:documentation>
+            Реквизиты объектов информационной базы 1С в формате Atom
+        </xs:documentation>
+    </xs:annotation>
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+    <xs:attribute name="MaxDataServiceVersion" type="xs:string"/>
+    <xs:attribute name="DataServiceVersion" type="xs:string"/>
+    <xs:element name="properties" type="m:propertiesType" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"/>
+    <xs:complexType name="propertiesType">
+        <xs:sequence>
+            <xs:any minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

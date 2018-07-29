@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           targetNamespace="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:annotation>
+        <xs:documentation>
+            Описание метаданных 1С
+        </xs:documentation>
+    </xs:annotation>
+    <xs:element name="Schema" type="edm:SchemaType" xmlns:edm="http://schemas.microsoft.com/ado/2009/11/edm"/>
+    <xs:complexType name="SchemaType">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element type="edm:EntityTypeType" name="EntityType" maxOccurs="unbounded" minOccurs="0"
+                        xmlns:edm="http://schemas.microsoft.com/ado/2009/11/edm"/>
+            <xs:element type="edm:ComplexTypeType" name="ComplexType" maxOccurs="unbounded" minOccurs="0"
+                        xmlns:edm="http://schemas.microsoft.com/ado/2009/11/edm"/>
+            <xs:element type="edm:AssociationType" name="Association"
+                        xmlns:edm="http://schemas.microsoft.com/ado/2009/11/edm"/>
+        </xs:choice>
+        <xs:attribute type="xs:string" name="Namespace"/>
+    </xs:complexType>
+    <xs:complexType name="EntityTypeType">
+        <xs:sequence>
+            <xs:element type="edm:KeyType" name="Key" xmlns:edm="http://schemas.microsoft.com/ado/2009/11/edm"/>
+            <xs:element type="edm:PropertyType" name="Property" maxOccurs="unbounded" minOccurs="0"
+                        xmlns:edm="http://schemas.microsoft.com/ado/2009/11/edm"/>
+            <xs:element type="edm:NavigationPropertyType" name="NavigationProperty" maxOccurs="unbounded" minOccurs="0"
+                        xmlns:edm="http://schemas.microsoft.com/ado/2009/11/edm"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="Name" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="ComplexTypeType">
+        <xs:sequence>
+            <xs:element type="edm:PropertyType" name="Property" maxOccurs="unbounded" minOccurs="0"
+                        xmlns:edm="http://schemas.microsoft.com/ado/2009/11/edm"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="Name" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="KeyType">
+        <xs:sequence>
+            <xs:element type="edm:PropertyRefType" name="PropertyRef" maxOccurs="unbounded" minOccurs="0"
+                        xmlns:edm="http://schemas.microsoft.com/ado/2009/11/edm"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PropertyRefType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="Name" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="PropertyType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="Name" use="required"/>
+                <xs:attribute type="xs:string" name="Type" use="required"/>
+                <xs:attribute type="xs:string" name="Nullable" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="NavigationPropertyType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="Name" use="required"/>
+                <xs:attribute type="xs:string" name="Relationship" use="required"/>
+                <xs:attribute type="xs:string" name="FromRole" use="required"/>
+                <xs:attribute type="xs:string" name="ToRole" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="AssociationType">
+        <xs:sequence>
+            <xs:element type="edm:EndType" name="End" maxOccurs="unbounded" minOccurs="0"
+                        xmlns:edm="http://schemas.microsoft.com/ado/2009/11/edm"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="Name" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="EndType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="Role" use="required"/>
+                <xs:attribute type="xs:string" name="Type" use="required"/>
+                <xs:attribute type="xs:string" name="Multiplicity" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+</xs:schema>

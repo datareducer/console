@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Copyright (c) 2017,2018 Kirill Mikhaylov <admin@datareducer.ru>-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<fx:root type="VBox" xmlns="http://javafx.com/javafx/8.0.102-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <TabPane fx:id="outputTabPane" side="LEFT" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <VBox.margin>
+            <Insets />
+        </VBox.margin>
+        <Tab fx:id="logAreaTab">
+            <graphic>
+                <ImageView>
+                    <Image url="@/image/error_log.png" />
+                </ImageView>
+            </graphic>
+            <VBox>
+                <padding>
+                    <Insets left="5.0" right="4.0"/>
+                </padding>
+                <TextArea fx:id="logArea" editable="false" VBox.vgrow="ALWAYS" />
+            </VBox>
+        </Tab>
+        <Tab fx:id="outputAreaTab">
+            <graphic>
+                <ImageView>
+                    <Image url="@/image/printer.png" />
+                </ImageView>
+            </graphic>
+            <VBox>
+                <padding>
+                    <Insets left="5.0" right="4.0"/>
+                </padding>
+                <TextArea fx:id="outputArea" editable="false" VBox.vgrow="ALWAYS" />
+            </VBox>
+        </Tab>
+    </TabPane>
+</fx:root>

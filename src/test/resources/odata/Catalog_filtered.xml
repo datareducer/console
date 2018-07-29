@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+      xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+      xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+      xml:base="http://192.168.17.4:8080/DemoEnterprise20/odata/standard.odata/">
+    <entry>
+        <id>http://192.168.17.4:8080/DemoEnterprise20/odata/standard.odata/Catalog_БанковскиеСчетаОрганизаций(guid'8ce32335-8726-11e3-8054-0015e9b8c48d')</id>
+        <category term="StandardODATA.Catalog_БанковскиеСчетаОрганизаций"
+                  scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme"/>
+        <title type="text"/>
+        <updated>2016-09-06T21:55:52</updated>
+        <author/>
+        <summary/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Owner"
+              href="Catalog_БанковскиеСчетаОрганизаций(guid'8ce32335-8726-11e3-8054-0015e9b8c48d')/Owner"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="Owner"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ВалютаДенежныхСредств"
+              href="Catalog_БанковскиеСчетаОрганизаций(guid'8ce32335-8726-11e3-8054-0015e9b8c48d')/ВалютаДенежныхСредств"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="ВалютаДенежныхСредств"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Банк"
+              href="Catalog_БанковскиеСчетаОрганизаций(guid'8ce32335-8726-11e3-8054-0015e9b8c48d')/Банк"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="Банк"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Подразделение"
+              href="Catalog_БанковскиеСчетаОрганизаций(guid'8ce32335-8726-11e3-8054-0015e9b8c48d')/Подразделение"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="Подразделение"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ГруппаФинансовогоУчета"
+              href="Catalog_БанковскиеСчетаОрганизаций(guid'8ce32335-8726-11e3-8054-0015e9b8c48d')/ГруппаФинансовогоУчета"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="ГруппаФинансовогоУчета"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/СчетУчета"
+              href="Catalog_БанковскиеСчетаОрганизаций(guid'8ce32335-8726-11e3-8054-0015e9b8c48d')/СчетУчета"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="СчетУчета"/>
+        <link rel="edit"
+              href="Catalog_БанковскиеСчетаОрганизаций(guid'8ce32335-8726-11e3-8054-0015e9b8c48d')"
+              title="edit-link"/>
+        <content type="application/xml"><m:properties xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+            <d:Ref_Key>8ce32335-8726-11e3-8054-0015e9b8c48d</d:Ref_Key>
+            <d:DataVersion>AAAAAQAAAAA=</d:DataVersion>
+            <d:DeletionMark>false</d:DeletionMark>
+            <d:Owner_Key>51ed67a3-7220-11df-b336-0011955cba6b</d:Owner_Key>
+            <d:Description>КОНГРЕСС-БАНК ОАО, Торговый дом "Комплексный" (EUR)</d:Description>
+            <d:ВалютаДенежныхСредств_Key>51ed67a6-7220-11df-b336-0011955cba6b</d:ВалютаДенежныхСредств_Key>
+            <d:НомерСчета>40702810838110014563</d:НомерСчета>
+            <d:Банк_Key>51ed67ab-7220-11df-b336-0011955cba6b</d:Банк_Key>
+            <d:БанкДляРасчетов_Key>00000000-0000-0000-0000-000000000000</d:БанкДляРасчетов_Key>
+            <d:ТекстКорреспондента/>
+            <d:ТекстНазначения/>
+            <d:ВариантВыводаМесяца>Числом</d:ВариантВыводаМесяца>
+            <d:ВыводитьСуммуБезКопеек>false</d:ВыводитьСуммуБезКопеек>
+            <d:СрокИсполненияПлатежа>1</d:СрокИсполненияПлатежа>
+            <d:ИспользоватьОбменСБанком>true</d:ИспользоватьОбменСБанком>
+            <d:Программа/>
+            <d:Кодировка>Windows</d:Кодировка>
+            <d:ФайлЗагрузки/>
+            <d:ФайлВыгрузки/>
+            <d:РазрешитьПлатежиБезУказанияЗаявок>false</d:РазрешитьПлатежиБезУказанияЗаявок>
+            <d:Подразделение_Key>6f87e821-722c-11df-b336-0011955cba6b</d:Подразделение_Key>
+            <d:БИКБанка/>
+            <d:РучноеИзменениеРеквизитовБанка>false</d:РучноеИзменениеРеквизитовБанка>
+            <d:НаименованиеБанка/>
+            <d:КоррСчетБанка/>
+            <d:ГородБанка/>
+            <d:АдресБанка/>
+            <d:ТелефоныБанка/>
+            <d:БИКБанкаДляРасчетов/>
+            <d:РучноеИзменениеРеквизитовБанкаДляРасчетов>false</d:РучноеИзменениеРеквизитовБанкаДляРасчетов>
+            <d:НаименованиеБанкаДляРасчетов/>
+            <d:КоррСчетБанкаДляРасчетов/>
+            <d:ГородБанкаДляРасчетов/>
+            <d:АдресБанкаДляРасчетов/>
+            <d:ТелефоныБанкаДляРасчетов/>
+            <d:ГруппаФинансовогоУчета_Key>d84bd314-3d17-11e2-948a-000c294a878f</d:ГруппаФинансовогоУчета_Key>
+            <d:ИспользоватьПрямойОбменСБанком>false</d:ИспользоватьПрямойОбменСБанком>
+            <d:ОбменСБанкомВключен>false</d:ОбменСБанкомВключен>
+            <d:СчетУчета_Key>1774fc48-c180-11e4-a7a9-000d884fd00d</d:СчетУчета_Key>
+            <d:СВИФТБанка/>
+            <d:СВИФТБанкаДляРасчетов/>
+            <d:ИностранныйБанк>false</d:ИностранныйБанк>
+            <d:СчетВБанкеДляРасчетов/>
+            <d:Закрыт>false</d:Закрыт>
+            <d:ОтдельныйСчетГОЗ>false</d:ОтдельныйСчетГОЗ>
+            <d:ГосударственныйКонтракт_Key>00000000-0000-0000-0000-000000000000</d:ГосударственныйКонтракт_Key>
+            <d:НаправлениеДеятельности_Key>00000000-0000-0000-0000-000000000000</d:НаправлениеДеятельности_Key>
+            <d:ДополнительныеРеквизиты m:type="Collection(StandardODATA.Catalog_БанковскиеСчетаОрганизаций_ДополнительныеРеквизиты_RowType)"/>
+        </m:properties>
+        </content>
+    </entry>
+</feed>

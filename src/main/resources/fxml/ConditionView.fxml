@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Copyright (c) 2017,2018 Kirill Mikhaylov <admin@datareducer.ru>-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<fx:root type="VBox" xmlns="http://javafx.com/javafx/8.0.102-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <ToolBar VBox.vgrow="ALWAYS">
+        <Button fx:id="addFilterBtn" text="Добавить фильтр">
+            <graphic>
+                <ImageView>
+                    <Image url="@/image/filter_add.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Separator/>
+        <Button fx:id="groupFiltersBtn" text="Сгруппировать" disable="true"/>
+        <Button fx:id="invertFilterBtn" text="Инвертировать" disable="true"/>
+        <Separator/>
+        <Button fx:id="filterUpBtn" disable="true">
+            <graphic>
+                <ImageView>
+                    <Image url="@/image/arrow_up.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="filterDownBtn" disable="true">
+            <graphic>
+                <ImageView>
+                    <Image url="@/image/arrow_down.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Separator/>
+        <Button fx:id="deleteFilterBtn" disable="true">
+            <graphic>
+                <ImageView>
+                    <Image url="@/image/cross.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+    </ToolBar>
+    <TreeTableView fx:id="filterTreeTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TreeTableColumn fx:id="fltLgcOpCol" maxWidth="200.0" minWidth="100.0" prefWidth="200.0"/>
+            <TreeTableColumn fx:id="fltFieldCol" prefWidth="400.0" text="Поле"/>
+            <TreeTableColumn fx:id="fltRelOpCol" maxWidth="300.0" minWidth="100.0" prefWidth="300.0" text="Оператор"/>
+            <TreeTableColumn fx:id="flrValueCol" prefWidth="400.0" text="Значение"/>
+            <TreeTableColumn fx:id="flrCommentCol" prefWidth="400.0" text="Комментарий"/>
+        </columns>
+        <columnResizePolicy>
+            <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
+        <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0"/>
+        </VBox.margin>
+        <placeholder>
+            <Label textFill="darkgray">Условия отбора</Label>
+        </placeholder>
+    </TreeTableView>
+    <padding>
+        <Insets/>
+    </padding>
+</fx:root>

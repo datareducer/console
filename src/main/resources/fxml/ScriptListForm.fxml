@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Copyright (c) 2017,2018 Kirill Mikhaylov <admin@datareducer.ru>-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.VBox?>
+<fx:root type="VBox" xmlns="http://javafx.com/javafx/8.0.102-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <fx:define>
+        <ContextMenu fx:id="ctxMenu">
+            <items>
+                <MenuItem fx:id="openItem" mnemonicParsing="false" text="Открыть"/>
+                <MenuItem fx:id="deleteItem" mnemonicParsing="false" text="Удалить"/>
+            </items>
+        </ContextMenu>
+    </fx:define>
+    <padding>
+        <Insets left="5.0"/>
+    </padding>
+    <ToolBar>
+        <Button fx:id="addBtn">
+            <graphic>
+                <ImageView>
+                    <Image url="@/image/script_add.png"/>
+                </ImageView>
+            </graphic>
+            <tooltip>
+                <Tooltip text="Добавить скрипт"/>
+            </tooltip>
+        </Button>
+        <Button fx:id="deleteBtn">
+            <graphic>
+                <ImageView>
+                    <Image url="@/image/script_delete.png"/>
+                </ImageView>
+            </graphic>
+            <tooltip>
+                <Tooltip text="Удалить скрипт"/>
+            </tooltip>
+        </Button>
+        <Button fx:id="openBtn">
+            <graphic>
+                <ImageView>
+                    <Image url="@/image/script_edit.png"/>
+                </ImageView>
+            </graphic>
+            <tooltip>
+                <Tooltip text="Открыть скрипт"/>
+            </tooltip>
+        </Button>
+    </ToolBar>
+    <TableView fx:id="scriptTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="idCol" minWidth="35" maxWidth="70" text="Id"/>
+            <TableColumn fx:id="nameCol" text="Наименование"/>
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+        </columnResizePolicy>
+        <placeholder>
+            <Label fx:id="placeholderLbl" textFill="darkgray">Скрипты R</Label>
+        </placeholder>
+    </TableView>
+</fx:root>

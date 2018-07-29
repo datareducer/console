@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Copyright (c) 2017,2018 Kirill Mikhaylov <admin@datareducer.ru>-->
+
+<?import javafx.scene.control.*?>
+<fx:root type="MenuBar" xmlns="http://javafx.com/javafx/8.0.102-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <Menu fx:id="fileMenu" mnemonicParsing="false" text="Файл">
+        <MenuItem fx:id="newConfItem" mnemonicParsing="false" text="Новая модель"/>
+        <SeparatorMenuItem mnemonicParsing="false"/>
+        <MenuItem fx:id="openConfItem" mnemonicParsing="false" text="Открыть..."/>
+        <MenuItem fx:id="saveConfItem" mnemonicParsing="false" text="Сохранить как..."/>
+        <SeparatorMenuItem mnemonicParsing="false"/>
+        <MenuItem fx:id="webGetConfItem" mnemonicParsing="false" text="Получить модель с сервера"/>
+        <MenuItem fx:id="webPutConfItem" mnemonicParsing="false" text="Загрузить модель на сервер"/>
+        <SeparatorMenuItem mnemonicParsing="false"/>
+        <MenuItem fx:id="exitItem" mnemonicParsing="false" text="Выход"/>
+    </Menu>
+    <Menu fx:id="editMenu" mnemonicParsing="false" text="Правка">
+        <MenuItem fx:id="addInfoBaseItem" mnemonicParsing="false" text="Добавить базу 1С"/>
+        <MenuItem fx:id="addScriptItem" mnemonicParsing="false" text="Добавить скрипт R"/>
+        <SeparatorMenuItem mnemonicParsing="false"/>
+        <MenuItem fx:id="optionsItem" mnemonicParsing="false" text="Настройки"/>
+    </Menu>
+    <Menu fx:id="toolsMenu" mnemonicParsing="false" text="Инструменты">
+        <MenuItem fx:id="checkRserveItem" mnemonicParsing="false" text="Проверить подключение к Rserve"/>
+        <MenuItem fx:id="clipboardCodeItem" mnemonicParsing="false" text="Код в буфер обмена ('highlight')"/>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Справка">
+        <MenuItem fx:id="eulaItem" mnemonicParsing="false" text="Лицензионное соглашение"/>
+        <MenuItem fx:id="docsItem" mnemonicParsing="false" text="Руководство (онлайн)"/>
+        <SeparatorMenuItem mnemonicParsing="false"/>
+        <MenuItem fx:id="aboutItem" mnemonicParsing="false" text="О программе"/>
+    </Menu>
+</fx:root>

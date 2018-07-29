@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Copyright (c) 2017,2018 Kirill Mikhaylov <admin@datareducer.ru>-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<fx:root type="VBox" xmlns="http://javafx.com/javafx/8.0.102-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <ToolBar VBox.vgrow="ALWAYS">
+        <Button fx:id="addBtn" text="Добавить">
+            <graphic>
+                <ImageView>
+                    <Image url="@/image/plus.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+        <Separator />
+        <Button fx:id="upBtn">
+            <graphic>
+                <ImageView>
+                    <Image url="@/image/arrow_up.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="downBtn">
+            <graphic>
+                <ImageView>
+                    <Image url="@/image/arrow_down.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Separator/>
+        <Button fx:id="delBtn">
+            <graphic>
+                <ImageView>
+                    <Image url="@/image/cross.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+    </ToolBar>
+    <ListView fx:id="itemsList" VBox.vgrow="ALWAYS" styleClass="hidden-header">
+        <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0"/>
+        </VBox.margin>
+        <placeholder>
+            <Label/>
+        </placeholder>
+    </ListView>
+</fx:root>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.w3.org/2005/Atom" elementFormDefault="qualified"
+           attributeFormDefault="unqualified" xmlns:atom="http://www.w3.org/2005/Atom"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:annotation>
+        <xs:documentation>
+            Объекты информационной базы 1С в формате Atom
+        </xs:documentation>
+    </xs:annotation>
+    <xs:import namespace="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" schemaLocation="metadata.xsd"/>
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+    <xs:element name="feed" type="atom:feed"/>
+    <xs:element name="entry" type="atom:entry"/>
+    <xs:element name="content" type="atom:content"/>
+    <xs:element name="category" type="atom:category"/>
+    <xs:complexType name="textType" mixed="true">
+        <xs:sequence>
+            <xs:any namespace="http://www.w3.org/1999/xhtml" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="type">
+            <xs:simpleType>
+                <xs:restriction base="xs:token">
+                    <xs:enumeration value="text"/>
+                    <xs:enumeration value="html"/>
+                    <xs:enumeration value="xhtml"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attributeGroup ref="atom:commonAttributes"/>
+    </xs:complexType>
+    <xs:complexType name="feed">
+        <xs:sequence>
+            <xs:element name="entry" type="atom:entry" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="atom:commonAttributes"/>
+    </xs:complexType>
+    <xs:complexType name="entry">
+        <xs:choice maxOccurs="unbounded">
+            <xs:element name="category" type="atom:category" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="content" type="atom:content" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="id" type="atom:idType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="link" type="atom:linkType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="summary" type="atom:textType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="title" type="atom:textType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="updated" type="atom:dateTimeType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="author" type="atom:personType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:choice>
+        <xs:attributeGroup ref="atom:commonAttributes"/>
+    </xs:complexType>
+    <xs:complexType name="content">
+        <xs:sequence>
+            <xs:element ref="m:properties" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="type" type="xs:string"/>
+        <xs:attribute name="src" type="xs:anyURI"/>
+        <xs:attributeGroup ref="atom:commonAttributes"/>
+    </xs:complexType>
+    <xs:complexType name="category">
+        <xs:attribute name="term" type="xs:string" use="required"/>
+        <xs:attribute name="scheme" type="xs:anyURI" use="optional"/>
+        <xs:attribute name="label" type="xs:string" use="optional"/>
+        <xs:attributeGroup ref="atom:commonAttributes"/>
+    </xs:complexType>
+    <xs:complexType name="idType">
+        <xs:simpleContent>
+            <xs:extension base="xs:anyURI">
+                <xs:attributeGroup ref="atom:commonAttributes"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="linkType" mixed="true">
+        <xs:attribute name="href" use="required" type="xs:anyURI"/>
+        <xs:attribute name="rel" type="xs:string" use="optional"/>
+        <xs:attribute name="type" use="optional" type="xs:string"/>
+        <xs:attribute name="hreflang" use="optional" type="xs:NMTOKEN"/>
+        <xs:attribute name="title" use="optional" type="xs:string"/>
+        <xs:attribute name="length" use="optional" type="xs:positiveInteger"/>
+        <xs:attributeGroup ref="atom:commonAttributes"/>
+    </xs:complexType>
+    <xs:complexType name="dateTimeType">
+        <xs:simpleContent>
+            <xs:extension base="xs:dateTime">
+                <xs:attributeGroup ref="atom:commonAttributes"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="personType">
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="uri" type="atom:uriType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="email" type="atom:emailType" minOccurs="0" maxOccurs="1"/>
+            <xs:any namespace="##other"/>
+        </xs:choice>
+        <xs:attributeGroup ref="atom:commonAttributes"/>
+    </xs:complexType>
+    <xs:simpleType name="emailType">
+        <xs:restriction base="xs:normalizedString">
+            <xs:pattern value="\w+@(\w+\.)+\w+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="uriType">
+        <xs:simpleContent>
+            <xs:extension base="xs:anyURI">
+                <xs:attributeGroup ref="atom:commonAttributes"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:attributeGroup name="commonAttributes">
+        <xs:attribute ref="xml:base"/>
+        <xs:attribute ref="xml:lang"/>
+        <xs:anyAttribute namespace="##other"/>
+    </xs:attributeGroup>
+</xs:schema>

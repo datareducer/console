@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Copyright (c) 2017,2018 Kirill Mikhaylov <admin@datareducer.ru>-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.WebView?>
+<fx:root type="SplitPane" dividerPositions="0.7" xmlns="http://javafx.com/javafx/8.0.102-ea"
+         xmlns:fx="http://javafx.com/fxml/1">
+    <VBox>
+        <ToolBar prefHeight="40.0">
+            <CheckBox fx:id="defaultTemplateCkBx" text="Шаблон по умолчанию"/>
+        </ToolBar>
+        <WebView fx:id="templateEditor" VBox.vgrow="ALWAYS"/>
+    </VBox>
+    <GridPane hgap="7.0" vgap="6.0">
+        <Label text="Веб-доступ:" minWidth="100" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <CheckBox fx:id="webAccessCkBx" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        <Label text="Имя ресурса:" minWidth="100" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="resourceNameFld" prefWidth="500" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <VBox GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2" GridPane.vgrow="ALWAYS">
+            <ToolBar prefHeight="40.0" >
+                <opaqueInsets>
+                    <Insets top="1.0"/>
+                </opaqueInsets>
+                <Button fx:id="addRoleBtn">
+                    <graphic>
+                        <ImageView>
+                            <Image url="@/image/user_add.png"/>
+                        </ImageView>
+                    </graphic>
+                    <tooltip>
+                        <Tooltip text="Добавить роль доступа"/>
+                    </tooltip>
+                </Button>
+                <Button fx:id="removeRoleBtn">
+                    <graphic>
+                        <ImageView>
+                            <Image url="@/image/user_delete.png"/>
+                        </ImageView>
+                    </graphic>
+                    <tooltip>
+                        <Tooltip text="Удалить роль доступа"/>
+                    </tooltip>
+                </Button>
+            </ToolBar>
+            <ListView fx:id="rolesList" VBox.vgrow="ALWAYS" styleClass="hidden-header">
+                <placeholder>
+                    <Label textFill="darkgray">Роли доступа</Label>
+                </placeholder>
+            </ListView>
+        </VBox>
+        <padding>
+            <Insets right="5.0" top="15.0" />
+        </padding>
+    </GridPane>
+</fx:root>

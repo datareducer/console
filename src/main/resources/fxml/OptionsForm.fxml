@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Copyright (c) 2017,2018 Kirill Mikhaylov <admin@datareducer.ru>-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<fx:root hgap="7.0" type="GridPane" vgap="4.0" xmlns="http://javafx.com/javafx/8.0.102-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <Label text="Сервер Rserve:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <Label text="Пользователь Rserve:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <Label text="Пароль пользователя Rserve:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <Label text="Сервер Rapport:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <Label text="Администратор Rapport:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <Label text="Пароль администратора Rapport:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+
+    <TextField fx:id="rserveHostFld" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+    <TextField fx:id="rserveUserFld" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+    <PasswordField fx:id="rservePasswordFld" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+    <TextField fx:id="rapportHostFld" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+    <TextField fx:id="rapportUserFld" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+    <PasswordField fx:id="rapportPasswordFld" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+
+    <Button fx:id="cancelBtn" cancelButton="true" maxWidth="1.7976931348623157E308" text="Отмена" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    <Button fx:id="saveBtn" defaultButton="true" maxWidth="1.7976931348623157E308" text="Сохранить" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+    <columnConstraints>
+        <ColumnConstraints />
+        <ColumnConstraints minWidth="100.0" />
+        <ColumnConstraints minWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints minHeight="33.0" valignment="BOTTOM" />
+    </rowConstraints>
+    <padding>
+        <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
+    </padding>
+</fx:root>

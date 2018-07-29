@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+      xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+      xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+      xml:base="http://192.168.17.4:8080/DemoEnterprise20/odata/standard.odata/">
+    <entry>
+        <id>http://192.168.17.4:8080/DemoEnterprise20/odata/standard.odata/Catalog_Организации_КонтактнаяИнформация(Ref_Key=guid'c58c98ad-c3e6-11e4-946e-bcaec56cc144', LineNumber=1)</id>
+        <category term="StandardODATA.Catalog_Организации_КонтактнаяИнформация"
+                  scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme"/>
+        <title type="text"/>
+        <updated>2016-09-06T22:37:46</updated>
+        <author/>
+        <summary/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Вид"
+              href="Catalog_Организации_КонтактнаяИнформация(Ref_Key=guid'c58c98ad-c3e6-11e4-946e-bcaec56cc144', LineNumber=1)/Вид"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="Вид"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ВидДляСписка"
+              href="Catalog_Организации_КонтактнаяИнформация(Ref_Key=guid'c58c98ad-c3e6-11e4-946e-bcaec56cc144', LineNumber=1)/ВидДляСписка"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="ВидДляСписка"/>
+        <link rel="edit"
+              href="Catalog_Организации_КонтактнаяИнформация(Ref_Key=guid'c58c98ad-c3e6-11e4-946e-bcaec56cc144', LineNumber=1)"
+              title="edit-link"/>
+        <content type="application/xml"><m:properties xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+            <d:Ref_Key>c58c98ad-c3e6-11e4-946e-bcaec56cc144</d:Ref_Key>
+            <d:LineNumber>1</d:LineNumber>
+            <d:Тип>Адрес</d:Тип>
+            <d:Вид_Key>1d78f39b-c180-11e4-a7a9-000d884fd00d</d:Вид_Key>
+            <d:Представление>Москва г, Вавилова , дом № 97</d:Представление>
+            <d:ЗначенияПолей>&lt;КонтактнаяИнформация xmlns="http://www.v8.1c.ru/ssl/contactinfo" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Представление="Москва г, Вавилова , дом № 65"&gt;&lt;Комментарий/&gt;&lt;Состав xsi:type="Адрес" Страна="РОССИЯ"&gt;&lt;Состав xsi:type="АдресРФ"&gt;&lt;СубъектРФ&gt;Москва г&lt;/СубъектРФ&gt;&lt;Округ/&gt;&lt;СвРайМО&gt;&lt;Район/&gt;&lt;/СвРайМО&gt;&lt;Город/&gt;&lt;НаселПункт/&gt;&lt;Улица&gt;Вавилова &lt;/Улица&gt;&lt;ДопАдрЭл&gt;&lt;Номер Тип="1010" Значение="65"/&gt;&lt;/ДопАдрЭл&gt;&lt;ДопАдрЭл ТипАдрЭл="10100000" Значение=""/&gt;&lt;/Состав&gt;&lt;/Состав&gt;&lt;/КонтактнаяИнформация&gt;</d:ЗначенияПолей>
+            <d:Страна>РОССИЯ</d:Страна>
+            <d:Регион>Москва г</d:Регион>
+            <d:Город/>
+            <d:АдресЭП/>
+            <d:ДоменноеИмяСервера/>
+            <d:НомерТелефона/>
+            <d:НомерТелефонаБезКодов/>
+            <d:ВидДляСписка_Key>1d78f39b-c180-11e4-a7a9-000d884fd00d</d:ВидДляСписка_Key>
+            <d:ДействуетС>0001-01-01T00:00:00</d:ДействуетС>
+        </m:properties>
+        </content>
+    </entry>
+    <entry>
+        <id>http://192.168.17.4:8080/DemoEnterprise20/odata/standard.odata/Catalog_Организации_КонтактнаяИнформация(Ref_Key=guid'c58c98af-c3e6-11e4-946e-bcaec56cc144', LineNumber=1)</id>
+        <category term="StandardODATA.Catalog_Организации_КонтактнаяИнформация"
+                  scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme"/>
+        <title type="text"/>
+        <updated>2016-09-06T22:37:46</updated>
+        <author/>
+        <summary/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Вид"
+              href="Catalog_Организации_КонтактнаяИнформация(Ref_Key=guid'c58c98af-c3e6-11e4-946e-bcaec56cc144', LineNumber=1)/Вид"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="Вид"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ВидДляСписка"
+              href="Catalog_Организации_КонтактнаяИнформация(Ref_Key=guid'c58c98af-c3e6-11e4-946e-bcaec56cc144', LineNumber=1)/ВидДляСписка"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="ВидДляСписка"/>
+        <link rel="edit"
+              href="Catalog_Организации_КонтактнаяИнформация(Ref_Key=guid'c58c98af-c3e6-11e4-946e-bcaec56cc144', LineNumber=1)"
+              title="edit-link"/>
+        <content type="application/xml"><m:properties xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+            <d:Ref_Key>c58c98af-c3e6-11e4-946e-bcaec56cc144</d:Ref_Key>
+            <d:LineNumber>1</d:LineNumber>
+            <d:Тип>Адрес</d:Тип>
+            <d:Вид_Key>1d78f39b-c180-11e4-a7a9-000d884fd00d</d:Вид_Key>
+            <d:Представление>Москва г, Миллионная , дом № 1, корпус 2</d:Представление>
+            <d:ЗначенияПолей>&lt;КонтактнаяИнформация xmlns="http://www.v8.1c.ru/ssl/contactinfo" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Представление="Москва г, Миллионная , дом № 1, корпус 2"&gt;&lt;Комментарий/&gt;&lt;Состав xsi:type="Адрес" Страна="РОССИЯ"&gt;&lt;Состав xsi:type="АдресРФ"&gt;&lt;СубъектРФ&gt;Москва г&lt;/СубъектРФ&gt;&lt;Округ/&gt;&lt;СвРайМО&gt;&lt;Район/&gt;&lt;/СвРайМО&gt;&lt;Город/&gt;&lt;НаселПункт/&gt;&lt;Улица&gt;Миллионная &lt;/Улица&gt;&lt;ДопАдрЭл&gt;&lt;Номер Тип="1050" Значение="2"/&gt;&lt;/ДопАдрЭл&gt;&lt;ДопАдрЭл&gt;&lt;Номер Тип="1010" Значение="1"/&gt;&lt;/ДопАдрЭл&gt;&lt;ДопАдрЭл ТипАдрЭл="10100000" Значение=""/&gt;&lt;/Состав&gt;&lt;/Состав&gt;&lt;/КонтактнаяИнформация&gt;</d:ЗначенияПолей>
+            <d:Страна>РОССИЯ</d:Страна>
+            <d:Регион>Москва г</d:Регион>
+            <d:Город/>
+            <d:АдресЭП/>
+            <d:ДоменноеИмяСервера/>
+            <d:НомерТелефона/>
+            <d:НомерТелефонаБезКодов/>
+            <d:ВидДляСписка_Key>1d78f39b-c180-11e4-a7a9-000d884fd00d</d:ВидДляСписка_Key>
+            <d:ДействуетС>0001-01-01T00:00:00</d:ДействуетС>
+        </m:properties>
+        </content>
+    </entry>
+</feed>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+      xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+      xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+      xml:base="http://192.168.0.102:8080/DemoEnterprise20/odata/standard.odata/">
+    <entry>
+        <id>http://192.168.0.102:8080/DemoEnterprise20/odata/standard.odata/AccountingRegister_Хозрасчетный_RecordType(Recorder='48fa5315-fa43-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_ПоступлениеБезналичныхДенежныхСредств', LineNumber=1)</id>
+        <category term="StandardODATA.AccountingRegister_Хозрасчетный_RecordType"
+                  scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme"/>
+        <title type="text"/>
+        <updated>2017-01-05T20:53:49</updated>
+        <author/>
+        <summary/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/AccountDr"
+              href="AccountingRegister_Хозрасчетный_RecordType(Recorder='48fa5315-fa43-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_ПоступлениеБезналичныхДенежныхСредств', LineNumber=1)/AccountDr"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="AccountDr"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/AccountCr"
+              href="AccountingRegister_Хозрасчетный_RecordType(Recorder='48fa5315-fa43-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_ПоступлениеБезналичныхДенежныхСредств', LineNumber=1)/AccountCr"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="AccountCr"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Организация"
+              href="AccountingRegister_Хозрасчетный_RecordType(Recorder='48fa5315-fa43-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_ПоступлениеБезналичныхДенежныхСредств', LineNumber=1)/Организация"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="Организация"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ПодразделениеDr"
+              href="AccountingRegister_Хозрасчетный_RecordType(Recorder='48fa5315-fa43-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_ПоступлениеБезналичныхДенежныхСредств', LineNumber=1)/ПодразделениеDr"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="ПодразделениеDr"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ПодразделениеCr"
+              href="AccountingRegister_Хозрасчетный_RecordType(Recorder='48fa5315-fa43-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_ПоступлениеБезналичныхДенежныхСредств', LineNumber=1)/ПодразделениеCr"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="ПодразделениеCr"/>
+        <link rel="edit"
+              href="AccountingRegister_Хозрасчетный_RecordType(Recorder='48fa5315-fa43-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_ПоступлениеБезналичныхДенежныхСредств', LineNumber=1)"
+              title="edit-link"/>
+        <content type="application/xml"><m:properties xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+            <d:Period>2015-01-30T12:00:01</d:Period>
+            <d:Recorder>48fa5315-fa43-11e4-92f1-0050568b35ac</d:Recorder>
+            <d:Recorder_Type>StandardODATA.Document_ПоступлениеБезналичныхДенежныхСредств</d:Recorder_Type>
+            <d:LineNumber>1</d:LineNumber>
+            <d:Active>true</d:Active>
+            <d:AccountDr_Key>1774fc47-c180-11e4-a7a9-000d884fd00d</d:AccountDr_Key>
+            <d:AccountCr_Key>1774fc69-c180-11e4-a7a9-000d884fd00d</d:AccountCr_Key>
+            <d:Организация_Key>c58c98af-c3e6-11e4-946e-bcaec56cc144</d:Организация_Key>
+            <d:ВалютаDr_Key m:null="true"/>
+            <d:ВалютаCr_Key m:null="true"/>
+            <d:ПодразделениеDr_Key>c58c98b6-c3e6-11e4-946e-bcaec56cc144</d:ПодразделениеDr_Key>
+            <d:ПодразделениеCr_Key>c58c98b8-c3e6-11e4-946e-bcaec56cc144</d:ПодразделениеCr_Key>
+            <d:НаправлениеДеятельностиDr_Key>00000000-0000-0000-0000-000000000000</d:НаправлениеДеятельностиDr_Key>
+            <d:НаправлениеДеятельностиCr_Key>00000000-0000-0000-0000-000000000000</d:НаправлениеДеятельностиCr_Key>
+            <d:Сумма>13600000</d:Сумма>
+            <d:ВалютнаяСуммаDr m:null="true"/>
+            <d:ВалютнаяСуммаCr m:null="true"/>
+            <d:КоличествоDr m:null="true"/>
+            <d:КоличествоCr m:null="true"/>
+            <d:СуммаНУDr m:null="true"/>
+            <d:СуммаНУCr>13600000</d:СуммаНУCr>
+            <d:СуммаПРDr m:null="true"/>
+            <d:СуммаПРCr>0</d:СуммаПРCr>
+            <d:СуммаВРDr m:null="true"/>
+            <d:СуммаВРCr>0</d:СуммаВРCr>
+            <d:Содержание>Поступление оплаты от клиента</d:Содержание>
+            <d:НеКорректироватьСтоимостьАвтоматически>false</d:НеКорректироватьСтоимостьАвтоматически>
+        </m:properties>
+        </content>
+    </entry>
+    <entry>
+        <id>http://192.168.0.102:8080/DemoEnterprise20/odata/standard.odata/AccountingRegister_Хозрасчетный_RecordType(Recorder='6fad5ad5-fa43-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_ПоступлениеБезналичныхДенежныхСредств', LineNumber=1)</id>
+        <category term="StandardODATA.AccountingRegister_Хозрасчетный_RecordType"
+                  scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme"/>
+        <title type="text"/>
+        <updated>2017-01-05T20:53:49</updated>
+        <author/>
+        <summary/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/AccountDr"
+              href="AccountingRegister_Хозрасчетный_RecordType(Recorder='6fad5ad5-fa43-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_ПоступлениеБезналичныхДенежныхСредств', LineNumber=1)/AccountDr"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="AccountDr"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/AccountCr"
+              href="AccountingRegister_Хозрасчетный_RecordType(Recorder='6fad5ad5-fa43-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_ПоступлениеБезналичныхДенежныхСредств', LineNumber=1)/AccountCr"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="AccountCr"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Организация"
+              href="AccountingRegister_Хозрасчетный_RecordType(Recorder='6fad5ad5-fa43-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_ПоступлениеБезналичныхДенежныхСредств', LineNumber=1)/Организация"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="Организация"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ПодразделениеDr"
+              href="AccountingRegister_Хозрасчетный_RecordType(Recorder='6fad5ad5-fa43-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_ПоступлениеБезналичныхДенежныхСредств', LineNumber=1)/ПодразделениеDr"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="ПодразделениеDr"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ПодразделениеCr"
+              href="AccountingRegister_Хозрасчетный_RecordType(Recorder='6fad5ad5-fa43-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_ПоступлениеБезналичныхДенежныхСредств', LineNumber=1)/ПодразделениеCr"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="ПодразделениеCr"/>
+        <link rel="edit"
+              href="AccountingRegister_Хозрасчетный_RecordType(Recorder='6fad5ad5-fa43-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_ПоступлениеБезналичныхДенежныхСредств', LineNumber=1)"
+              title="edit-link"/>
+        <content type="application/xml"><m:properties xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+            <d:Period>2015-02-27T12:00:05</d:Period>
+            <d:Recorder>6fad5ad5-fa43-11e4-92f1-0050568b35ac</d:Recorder>
+            <d:Recorder_Type>StandardODATA.Document_ПоступлениеБезналичныхДенежныхСредств</d:Recorder_Type>
+            <d:LineNumber>1</d:LineNumber>
+            <d:Active>true</d:Active>
+            <d:AccountDr_Key>1774fc47-c180-11e4-a7a9-000d884fd00d</d:AccountDr_Key>
+            <d:AccountCr_Key>1774fc6a-c180-11e4-a7a9-000d884fd00d</d:AccountCr_Key>
+            <d:Организация_Key>c58c98af-c3e6-11e4-946e-bcaec56cc144</d:Организация_Key>
+            <d:ВалютаDr_Key m:null="true"/>
+            <d:ВалютаCr_Key m:null="true"/>
+            <d:ПодразделениеDr_Key>c58c98b6-c3e6-11e4-946e-bcaec56cc144</d:ПодразделениеDr_Key>
+            <d:ПодразделениеCr_Key>c58c98b8-c3e6-11e4-946e-bcaec56cc144</d:ПодразделениеCr_Key>
+            <d:НаправлениеДеятельностиDr_Key>00000000-0000-0000-0000-000000000000</d:НаправлениеДеятельностиDr_Key>
+            <d:НаправлениеДеятельностиCr_Key>00000000-0000-0000-0000-000000000000</d:НаправлениеДеятельностиCr_Key>
+            <d:Сумма>17000000</d:Сумма>
+            <d:ВалютнаяСуммаDr m:null="true"/>
+            <d:ВалютнаяСуммаCr m:null="true"/>
+            <d:КоличествоDr m:null="true"/>
+            <d:КоличествоCr m:null="true"/>
+            <d:СуммаНУDr m:null="true"/>
+            <d:СуммаНУCr>17000000</d:СуммаНУCr>
+            <d:СуммаПРDr m:null="true"/>
+            <d:СуммаПРCr>0</d:СуммаПРCr>
+            <d:СуммаВРDr m:null="true"/>
+            <d:СуммаВРCr>0</d:СуммаВРCr>
+            <d:Содержание>Поступление аванса от клиента</d:Содержание>
+            <d:НеКорректироватьСтоимостьАвтоматически>false</d:НеКорректироватьСтоимостьАвтоматически>
+        </m:properties>
+        </content>
+    </entry>
+    <entry>
+        <id>http://192.168.0.102:8080/DemoEnterprise20/odata/standard.odata/AccountingRegister_Хозрасчетный_RecordType(Recorder='f2ecb6b4-fa42-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_РеализацияТоваровУслуг', LineNumber=1)</id>
+        <category term="StandardODATA.AccountingRegister_Хозрасчетный_RecordType"
+                  scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme"/>
+        <title type="text"/>
+        <updated>2017-01-05T20:53:49</updated>
+        <author/>
+        <summary/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/AccountDr"
+              href="AccountingRegister_Хозрасчетный_RecordType(Recorder='f2ecb6b4-fa42-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_РеализацияТоваровУслуг', LineNumber=1)/AccountDr"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="AccountDr"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/AccountCr"
+              href="AccountingRegister_Хозрасчетный_RecordType(Recorder='f2ecb6b4-fa42-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_РеализацияТоваровУслуг', LineNumber=1)/AccountCr"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="AccountCr"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Организация"
+              href="AccountingRegister_Хозрасчетный_RecordType(Recorder='f2ecb6b4-fa42-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_РеализацияТоваровУслуг', LineNumber=1)/Организация"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="Организация"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ПодразделениеDr"
+              href="AccountingRegister_Хозрасчетный_RecordType(Recorder='f2ecb6b4-fa42-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_РеализацияТоваровУслуг', LineNumber=1)/ПодразделениеDr"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="ПодразделениеDr"/>
+        <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ПодразделениеCr"
+              href="AccountingRegister_Хозрасчетный_RecordType(Recorder='f2ecb6b4-fa42-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_РеализацияТоваровУслуг', LineNumber=1)/ПодразделениеCr"
+              type="application/atom+xml;type=entry;charset=utf-8"
+              title="ПодразделениеCr"/>
+        <link rel="edit"
+              href="AccountingRegister_Хозрасчетный_RecordType(Recorder='f2ecb6b4-fa42-11e4-92f1-0050568b35ac', Recorder_Type='StandardODATA.Document_РеализацияТоваровУслуг', LineNumber=1)"
+              title="edit-link"/>
+        <content type="application/xml"><m:properties xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+            <d:Period>2015-02-28T23:59:59</d:Period>
+            <d:Recorder>f2ecb6b4-fa42-11e4-92f1-0050568b35ac</d:Recorder>
+            <d:Recorder_Type>StandardODATA.Document_РеализацияТоваровУслуг</d:Recorder_Type>
+            <d:LineNumber>1</d:LineNumber>
+            <d:Active>true</d:Active>
+            <d:AccountDr_Key>1774fc6a-c180-11e4-a7a9-000d884fd00d</d:AccountDr_Key>
+            <d:AccountCr_Key>1774fc69-c180-11e4-a7a9-000d884fd00d</d:AccountCr_Key>
+            <d:Организация_Key>c58c98af-c3e6-11e4-946e-bcaec56cc144</d:Организация_Key>
+            <d:ВалютаDr_Key m:null="true"/>
+            <d:ВалютаCr_Key m:null="true"/>
+            <d:ПодразделениеDr_Key>c58c98b8-c3e6-11e4-946e-bcaec56cc144</d:ПодразделениеDr_Key>
+            <d:ПодразделениеCr_Key>c58c98b8-c3e6-11e4-946e-bcaec56cc144</d:ПодразделениеCr_Key>
+            <d:НаправлениеДеятельностиDr_Key>00000000-0000-0000-0000-000000000000</d:НаправлениеДеятельностиDr_Key>
+            <d:НаправлениеДеятельностиCr_Key>00000000-0000-0000-0000-000000000000</d:НаправлениеДеятельностиCr_Key>
+            <d:Сумма>17000000</d:Сумма>
+            <d:ВалютнаяСуммаDr m:null="true"/>
+            <d:ВалютнаяСуммаCr m:null="true"/>
+            <d:КоличествоDr m:null="true"/>
+            <d:КоличествоCr m:null="true"/>
+            <d:СуммаНУDr>17000000</d:СуммаНУDr>
+            <d:СуммаНУCr>17000000</d:СуммаНУCr>
+            <d:СуммаПРDr>0</d:СуммаПРDr>
+            <d:СуммаПРCr>0</d:СуммаПРCr>
+            <d:СуммаВРDr>0</d:СуммаВРDr>
+            <d:СуммаВРCr>0</d:СуммаВРCr>
+            <d:Содержание>Зачет авансов клиентов</d:Содержание>
+            <d:НеКорректироватьСтоимостьАвтоматически>false</d:НеКорректироватьСтоимостьАвтоматически>
+        </m:properties>
+        </content>
+    </entry>
+</feed>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Copyright (c) 2017,2018 Kirill Mikhaylov <admin@datareducer.ru>-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<fx:root type="VBox" xmlns="http://javafx.com/javafx/8.0.102-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <fx:define>
+        <ContextMenu fx:id="resourceDataTableCtxMenu">
+            <items>
+                <MenuItem fx:id="resourceDataTableCtxMenuCopyItem" text="Копировать"/>
+            </items>
+        </ContextMenu>
+    </fx:define>
+    <ButtonBar minHeight="40.0">
+        <buttons>
+            <Button fx:id="loadBtn" text="Загрузить" />
+        </buttons>
+    </ButtonBar>
+    <SplitPane fx:id="splitPane" dividerPositions="0.4" orientation="VERTICAL" VBox.vgrow="ALWAYS">
+        <Accordion fx:id="accordion" style="-fx-border-color: rgba(0, 0, 0, 0.2);" SplitPane.resizableWithParent="false">
+            <panes>
+                <TitledPane fx:id="settingsPane" animated="false" text="Настройки и параметры">
+                    <GridPane hgap="7.0" vgap="4.0" >
+                        <Label fx:id="mnemonicNameLbl" style="-fx-font-weight: bold; -fx-text-fill: darkgray" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="4" />
+                        <Label text="Информационная база:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <Label text="Наименование набора данных:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <Label text="Время кэширования (минут):" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <Label text="Учитывать ограничения доступа:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                        <Label fx:id="infoBaseLbl" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="nameFld" prefWidth="300" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="cacheFld" maxWidth="80" minWidth="80" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <CheckBox fx:id="allowedOnlyCkBx" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Separator orientation="VERTICAL" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="4"/>
+
+                        <Label fx:id="slicePeriodLbl" text="Период получения среза:" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <com.datareducer.ui.DateTimePicker fx:id="slicePeriodDtPkr" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+
+                        <Label fx:id="balancePeriodLbl" text="Период расчета остатков:" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <com.datareducer.ui.DateTimePicker fx:id="balancePeriodDtPkr" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+
+                        <Label fx:id="turnoversStartPeriodLbl" text="Начало периода оборотов:" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <com.datareducer.ui.DateTimePicker fx:id="turnoversStartPeriodDtPkr" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+
+                        <Label fx:id="turnoversEndPeriodLbl" text="Конец периода оборотов:" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <com.datareducer.ui.DateTimePicker fx:id="turnoversEndPeriodDtPkr" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+
+                        <Label fx:id="topLbl" text="Количество записей:" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <TextField fx:id="topFld" maxWidth="80" minWidth="80" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+
+                        <rowConstraints>
+                            <RowConstraints minHeight="25.0" />
+                            <RowConstraints minHeight="25.0" />
+                            <RowConstraints />
+                            <RowConstraints />
+                            <RowConstraints minHeight="25.0" />
+                        </rowConstraints>
+                    </GridPane>
+                </TitledPane>
+                <TitledPane fx:id="fieldsPane" animated="false" text="Выбор полей ресурса">
+                    <HBox>
+                        <TableView fx:id="presentedFieldsTable" HBox.hgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="prdFldNameCol" text="Имя"/>
+                                <TableColumn fx:id="prdFldTypeCol" text="Тип"/>
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                            <placeholder>
+                                <Label />
+                            </placeholder>
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" top="5.0" />
+                            </HBox.margin>
+                        </TableView>
+                        <ToolBar orientation="VERTICAL" HBox.hgrow="ALWAYS">
+                            <Button fx:id="selectBtn">
+                                <graphic>
+                                    <ImageView>
+                                        <Image url="@/image/bullet_arrow_right.png" />
+                                    </ImageView>
+                                </graphic>
+                            </Button>
+                            <Button fx:id="selectAllBtn">
+                                <graphic>
+                                    <ImageView>
+                                        <Image url="@/image/bullet_arrow_right_2.png" />
+                                    </ImageView>
+                                </graphic>
+                            </Button>
+                            <Separator />
+                            <Button fx:id="returnBtn">
+                                <graphic>
+                                    <ImageView>
+                                        <Image url="@/image/bullet_arrow_left.png" />
+                                    </ImageView>
+                                </graphic>
+                            </Button>
+                            <Button fx:id="returnAllBtn">
+                                <graphic>
+                                    <ImageView>
+                                        <Image url="@/image/bullet_arrow_left_2.png" />
+                                    </ImageView>
+                                </graphic>
+                            </Button>
+                        </ToolBar>
+                        <TableView fx:id="requestedFieldsTable" HBox.hgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="reqFldNameCol" text="Имя"/>
+                                <TableColumn fx:id="reqFldTypeCol" text="Тип"/>
+                                <TableColumn fx:id="reqFldPresCol" text="Представление"/>
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                            <placeholder>
+                                <Label />
+                            </placeholder>
+                            <HBox.margin>
+                                <Insets bottom="5.0" right="5.0" top="5.0" />
+                            </HBox.margin>
+                        </TableView>
+                        <padding>
+                            <Insets />
+                        </padding>
+                    </HBox>
+                </TitledPane>
+                <TitledPane fx:id="conditionPane" animated="false" text="Отбор записей">
+                    <com.datareducer.ui.ConditionView fx:id="conditionView"/>
+                </TitledPane>
+            </panes>
+        </Accordion>
+        <StackPane>
+            <TableView fx:id="resourceDataTable">
+                <placeholder>
+                    <Label />
+                </placeholder>
+            </TableView>
+            <Region fx:id="veil" styleClass="veil" />
+            <ProgressIndicator fx:id="progressIndicator" maxHeight="80" minWidth="80" />
+        </StackPane>
+    </SplitPane>
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" />
+    </padding>
+</fx:root>

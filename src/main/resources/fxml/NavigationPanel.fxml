@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Copyright (c) 2017,2018 Kirill Mikhaylov <admin@datareducer.ru>-->
+
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<fx:root type="VBox" xmlns="http://javafx.com/javafx/8.0.102-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <TabPane side="LEFT" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <Tab text="Базы 1С">
+            <graphic>
+                <ImageView>
+                    <Image url="@/image/database_yellow.png" />
+                </ImageView>
+            </graphic>
+            <SplitPane dividerPositions="0.3" orientation="VERTICAL">
+                <com.datareducer.ui.InfoBaseListForm fx:id="infoBaseListForm" />
+                <com.datareducer.ui.MetadataForm fx:id="metadataForm" />
+            </SplitPane>
+        </Tab>
+        <Tab text="Скрипты R">
+            <graphic>
+                <ImageView>
+                    <Image url="@/image/script_text.png"/>
+                </ImageView>
+            </graphic>
+            <com.datareducer.ui.ScriptListForm fx:id="scriptListForm"/>
+        </Tab>
+    </TabPane>
+</fx:root>

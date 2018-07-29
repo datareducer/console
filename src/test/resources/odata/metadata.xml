@@ -1,0 +1,2156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+           Version="1.0">
+    <edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+                       m:DataServiceVersion="3.0"
+                       m:MaxDataServiceVersion="3.0">
+        <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm"
+                Namespace="StandardODATA">
+            <EntityType Name="Catalog_Организации">
+                <Key>
+                    <PropertyRef Name="Ref_Key"/>
+                </Key>
+                <Property Name="Ref_Key"
+                          Type="Edm.Guid"
+                          Nullable="false"/>
+                <Property Name="DataVersion"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Description"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="DeletionMark"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="ВидОбменаСКонтролирующимиОрганами"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Военкомат_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ГоловнаяОрганизация_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ГрафикРаботы_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ИНН"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ИндивидуальныйПредприниматель_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ДополнительныйКодФСС"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="УдалитьДопускаютсяВзаиморасчетыСКлиентамиЧерезГоловнуюОрганизацию"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="УдалитьДопускаютсяВзаиморасчетыСПоставщикамиЧерезГоловнуюОрганизацию"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="ЕстьОбособленныеПодразделения"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="КодНалоговогоОргана"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ДатаРегистрации"
+                          Type="Edm.DateTime"
+                          Nullable="true"/>
+                <Property Name="ИностраннаяОрганизация"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="ИПКодПодчиненностиФСС"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ИПРегистрационныйНомерПФР"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ИПРегистрационныйНомерТФОМС"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ИПРегистрационныйНомерФСС"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="КодВСтранеРегистрации"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="КодНалоговогоОрганаПолучателя"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="КодОрганаПФР"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="КодОрганаФСГС"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="КодОКОНХ"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="КодПоОКАТО"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="КодПоОКПО"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="КодПодчиненностиФСС"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="КрупнейшийНалогоплательщик"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="НаименованиеПолное"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="НаименованиеСокращенное"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="НаименованиеТерриториальногоОрганаПФР"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="НаименованиеТерриториальногоОрганаФСС"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="НаименованиеИнострОрганизации"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="НаименованиеНалоговогоОргана"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ОбменКаталогОтправкиДанныхОтчетности"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ОбменКаталогПрограммыЭлектроннойПочты"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ОбменКодАбонента"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ОбособленноеПодразделение"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="ОГРН"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="КПП"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ПрименятьРайонныйКоэффициент"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="ПрименятьСевернуюНадбавку"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="РайонныйКоэффициент"
+                          Type="Edm.Double"
+                          Nullable="true"/>
+                <Property Name="Префикс"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="РегистрационныйНомерФСС"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="РегистрацияВНалоговомОргане_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="УдалитьТерриториальныеУсловияПФР_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="РегистрационныйНомерПФР"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="СвидетельствоДатаВыдачи"
+                          Type="Edm.DateTime"
+                          Nullable="true"/>
+                <Property Name="УчетнаяЗаписьОбмена_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="КодОКВЭД"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="НаименованиеОКВЭД"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="КодОКОПФ"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="РегистрационныйНомерТФОМС"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="НаименованиеОКОПФ"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="КодОКФС"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="РайонныйКоэффициентРФ"
+                          Type="Edm.Double"
+                          Nullable="true"/>
+                <Property Name="СвидетельствоСерияНомер"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="СтранаПостоянногоМестонахождения_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="СтранаРегистрации_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ГрафикРаботыСотрудников_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="НаименованиеОКФС"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ЦифровойИндексОбособленногоПодразделения"
+                          Type="Edm.Int64"
+                          Nullable="true"/>
+                <Property Name="ПроцентСевернойНадбавки"
+                          Type="Edm.Double"
+                          Nullable="true"/>
+                <Property Name="ЮрФизЛицо"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ЮридическоеФизическоеЛицо"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ФайлЛоготип_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ФайлФаксимильнаяПечать_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ДопускаютсяВзаиморасчетыЧерезГоловнуюОрганизацию"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="ЗарегистрированВОЭЗ"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="GLN"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="GCP"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="КодОКВЭД2"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="НаименованиеОКВЭД2"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="КонтактнаяИнформация"
+                          Type="Collection(StandardODATA.Catalog_Организации_КонтактнаяИнформация_RowType)"
+                          Nullable="true"/>
+                <Property Name="ДополнительныеРеквизиты"
+                          Type="Collection(StandardODATA.Catalog_Организации_ДополнительныеРеквизиты_RowType)"
+                          Nullable="true"/>
+                <NavigationProperty Name="ГоловнаяОрганизация"
+                                    Relationship="StandardODATA.Catalog_Организации_ГоловнаяОрганизация"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ГрафикРаботы"
+                                    Relationship="StandardODATA.Catalog_Организации_ГрафикРаботы"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ИндивидуальныйПредприниматель"
+                                    Relationship="StandardODATA.Catalog_Организации_ИндивидуальныйПредприниматель"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="РегистрацияВНалоговомОргане"
+                                    Relationship="StandardODATA.Catalog_Организации_РегистрацияВНалоговомОргане"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="УдалитьТерриториальныеУсловияПФР"
+                                    Relationship="StandardODATA.Catalog_Организации_УдалитьТерриториальныеУсловияПФР"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="УчетнаяЗаписьОбмена"
+                                    Relationship="StandardODATA.Catalog_Организации_УчетнаяЗаписьОбмена"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="СтранаПостоянногоМестонахождения"
+                                    Relationship="StandardODATA.Catalog_Организации_СтранаПостоянногоМестонахождения"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="СтранаРегистрации"
+                                    Relationship="StandardODATA.Catalog_Организации_СтранаРегистрации"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ГрафикРаботыСотрудников"
+                                    Relationship="StandardODATA.Catalog_Организации_ГрафикРаботыСотрудников"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ФайлЛоготип"
+                                    Relationship="StandardODATA.Catalog_Организации_ФайлЛоготип"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ФайлФаксимильнаяПечать"
+                                    Relationship="StandardODATA.Catalog_Организации_ФайлФаксимильнаяПечать"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+            </EntityType>
+            <EntityType Name="Catalog_БанковскиеСчетаОрганизаций">
+                <Key>
+                    <PropertyRef Name="Ref_Key"/>
+                </Key>
+                <Property Name="Ref_Key"
+                          Type="Edm.Guid"
+                          Nullable="false"/>
+                <Property Name="DataVersion"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Description"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Owner_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="DeletionMark"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="ВалютаДенежныхСредств_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="НомерСчета"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Банк_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="БанкДляРасчетов_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ТекстКорреспондента"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ТекстНазначения"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ВариантВыводаМесяца"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ВыводитьСуммуБезКопеек"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="СрокИсполненияПлатежа"
+                          Type="Edm.Int16"
+                          Nullable="true"/>
+                <Property Name="ИспользоватьОбменСБанком"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="Программа"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Кодировка"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ФайлЗагрузки"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ФайлВыгрузки"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="РазрешитьПлатежиБезУказанияЗаявок"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="Подразделение_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="БИКБанка"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="РучноеИзменениеРеквизитовБанка"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="НаименованиеБанка"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="КоррСчетБанка"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ГородБанка"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="АдресБанка"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ТелефоныБанка"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="БИКБанкаДляРасчетов"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="РучноеИзменениеРеквизитовБанкаДляРасчетов"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="НаименованиеБанкаДляРасчетов"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="КоррСчетБанкаДляРасчетов"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ГородБанкаДляРасчетов"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="АдресБанкаДляРасчетов"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ТелефоныБанкаДляРасчетов"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ГруппаФинансовогоУчета_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ИспользоватьПрямойОбменСБанком"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="ОбменСБанкомВключен"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="СчетУчета_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="СВИФТБанка"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="СВИФТБанкаДляРасчетов"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ИностранныйБанк"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="СчетВБанкеДляРасчетов"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Закрыт"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="ОтдельныйСчетГОЗ"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="ГосударственныйКонтракт_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="НаправлениеДеятельности_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ДополнительныеРеквизиты"
+                          Type="Collection(StandardODATA.Catalog_БанковскиеСчетаОрганизаций_ДополнительныеРеквизиты_RowType)"
+                          Nullable="true"/>
+                <NavigationProperty Name="Owner"
+                                    Relationship="StandardODATA.Catalog_БанковскиеСчетаОрганизаций_Owner"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ВалютаДенежныхСредств"
+                                    Relationship="StandardODATA.Catalog_БанковскиеСчетаОрганизаций_ВалютаДенежныхСредств"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="Банк"
+                                    Relationship="StandardODATA.Catalog_БанковскиеСчетаОрганизаций_Банк"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="БанкДляРасчетов"
+                                    Relationship="StandardODATA.Catalog_БанковскиеСчетаОрганизаций_БанкДляРасчетов"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="Подразделение"
+                                    Relationship="StandardODATA.Catalog_БанковскиеСчетаОрганизаций_Подразделение"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ГруппаФинансовогоУчета"
+                                    Relationship="StandardODATA.Catalog_БанковскиеСчетаОрганизаций_ГруппаФинансовогоУчета"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="СчетУчета"
+                                    Relationship="StandardODATA.Catalog_БанковскиеСчетаОрганизаций_СчетУчета"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ГосударственныйКонтракт"
+                                    Relationship="StandardODATA.Catalog_БанковскиеСчетаОрганизаций_ГосударственныйКонтракт"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="НаправлениеДеятельности"
+                                    Relationship="StandardODATA.Catalog_БанковскиеСчетаОрганизаций_НаправлениеДеятельности"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+            </EntityType>
+            <EntityType Name="Catalog_ЦенныеБумаги">
+                <Key>
+                    <PropertyRef Name="Ref_Key"/>
+                </Key>
+                <Property Name="Ref_Key"
+                          Type="Edm.Guid"
+                          Nullable="false"/>
+                <Property Name="DataVersion"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Description"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Code"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Parent_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="IsFolder"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="DeletionMark"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <NavigationProperty Name="Parent"
+                                    Relationship="StandardODATA.Catalog_ЦенныеБумаги_Parent"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+            </EntityType>
+            <EntityType Name="Document_ВнутреннееПотреблениеТоваров">
+                <Key>
+                    <PropertyRef Name="Ref_Key"/>
+                </Key>
+                <Property Name="Ref_Key"
+                          Type="Edm.Guid"
+                          Nullable="false"/>
+                <Property Name="DataVersion"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Number"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Date"
+                          Type="Edm.DateTime"
+                          Nullable="true"/>
+                <Property Name="DeletionMark"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="Posted"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="Организация_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="Склад_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ЗаказНаВнутреннееПотребление"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Подразделение_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="Ответственный_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="Комментарий"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ДатаРаспоряжения"
+                          Type="Edm.DateTime"
+                          Nullable="true"/>
+                <Property Name="ВидЦены_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="Сделка_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ПотреблениеПоЗаказам"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="ХозяйственнаяОперация"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ПотреблениеДляДеятельности"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="СостояниеЗаполненияМногооборотнойТары"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ВидыЗапасовУказаныВручную"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="НаправлениеДеятельности_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ЕстьКиЗГИСМ"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="ЕстьМаркируемаяПродукцияГИСМ"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="ЕстьАлкогольнаяПродукцияДляСписанияЕГАИС"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="Товары"
+                          Type="Collection(StandardODATA.Document_ВнутреннееПотреблениеТоваров_Товары_RowType)"
+                          Nullable="true"/>
+                <Property Name="ВидыЗапасов"
+                          Type="Collection(StandardODATA.Document_ВнутреннееПотреблениеТоваров_ВидыЗапасов_RowType)"
+                          Nullable="true"/>
+                <Property Name="Серии"
+                          Type="Collection(StandardODATA.Document_ВнутреннееПотреблениеТоваров_Серии_RowType)"
+                          Nullable="true"/>
+                <Property Name="ЗаказНаВнутреннееПотребление_Type"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <NavigationProperty Name="Организация"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Организация"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="Склад"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Склад"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="Подразделение"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Подразделение"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="Ответственный"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Ответственный"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ВидЦены"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_ВидЦены"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="Сделка"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Сделка"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="НаправлениеДеятельности"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_НаправлениеДеятельности"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+            </EntityType>
+            <EntityType Name="Document_ВнутреннееПотреблениеТоваров_Товары">
+                <Key>
+                    <PropertyRef Name="Ref_Key"/>
+                    <PropertyRef Name="LineNumber"/>
+                </Key>
+                <Property Name="Ref_Key"
+                          Type="Edm.Guid"
+                          Nullable="false"/>
+                <Property Name="LineNumber"
+                          Type="Edm.Int64"
+                          Nullable="false"/>
+                <Property Name="Номенклатура_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="Характеристика_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="Упаковка_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="КоличествоУпаковок"
+                          Type="Edm.Double"
+                          Nullable="true"/>
+                <Property Name="Количество"
+                          Type="Edm.Double"
+                          Nullable="true"/>
+                <Property Name="КодСтроки"
+                          Type="Edm.Int64"
+                          Nullable="true"/>
+                <Property Name="СтатусУказанияСерий"
+                          Type="Edm.Int16"
+                          Nullable="true"/>
+                <Property Name="СтатьяРасходов"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="АналитикаРасходов"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ЗаказНаВнутреннееПотребление"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ФизическоеЛицо_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ИдентификаторСтроки"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="КатегорияЭксплуатации_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ПартияТМЦВЭксплуатации_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ИнвентарныйНомер"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Серия_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="АналитикаУчетаНоменклатуры_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ГруппаПродукции_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="Назначение_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="АналитикаАктивовПассивов"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="СчетУчета_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="Субконто1"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Субконто2"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Субконто3"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="СтатьяРасходов_Type"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="АналитикаРасходов_Type"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ЗаказНаВнутреннееПотребление_Type"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="АналитикаАктивовПассивов_Type"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Субконто1_Type"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Субконто2_Type"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Субконто3_Type"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <NavigationProperty Name="Номенклатура"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Товары_Номенклатура"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="Характеристика"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Товары_Характеристика"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="Упаковка"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Товары_Упаковка"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ФизическоеЛицо"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Товары_ФизическоеЛицо"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="КатегорияЭксплуатации"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Товары_КатегорияЭксплуатации"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ПартияТМЦВЭксплуатации"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Товары_ПартияТМЦВЭксплуатации"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="Серия"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Товары_Серия"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="АналитикаУчетаНоменклатуры"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Товары_АналитикаУчетаНоменклатуры"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ГруппаПродукции"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Товары_ГруппаПродукции"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="Назначение"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Товары_Назначение"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="СчетУчета"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Товары_СчетУчета"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+            </EntityType>
+            <EntityType Name="Document_ВнутреннееПотреблениеТоваров_ВидыЗапасов">
+                <Key>
+                    <PropertyRef Name="Ref_Key"/>
+                    <PropertyRef Name="LineNumber"/>
+                </Key>
+                <Property Name="Ref_Key"
+                          Type="Edm.Guid"
+                          Nullable="false"/>
+                <Property Name="LineNumber"
+                          Type="Edm.Int64"
+                          Nullable="false"/>
+                <Property Name="АналитикаУчетаНоменклатуры"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ВидЗапасов_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="НомерГТД_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="Количество"
+                          Type="Edm.Double"
+                          Nullable="true"/>
+                <Property Name="СтатьяРасходов"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="АналитикаРасходов"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ИдентификаторСтроки"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ФизическоеЛицо_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ОбъектЭксплуатации_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ВидЗапасовПолучателя_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="Серия_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ГруппаПродукции_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="Назначение_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="АналитикаАктивовПассивов"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="АналитикаУчетаНоменклатуры_Type"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="СтатьяРасходов_Type"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="АналитикаРасходов_Type"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="АналитикаАктивовПассивов_Type"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <NavigationProperty Name="ВидЗапасов"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_ВидыЗапасов_ВидЗапасов"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="НомерГТД"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_ВидыЗапасов_НомерГТД"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ФизическоеЛицо"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_ВидыЗапасов_ФизическоеЛицо"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ОбъектЭксплуатации"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_ВидыЗапасов_ОбъектЭксплуатации"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ВидЗапасовПолучателя"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_ВидыЗапасов_ВидЗапасовПолучателя"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="Серия"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_ВидыЗапасов_Серия"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ГруппаПродукции"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_ВидыЗапасов_ГруппаПродукции"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="Назначение"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_ВидыЗапасов_Назначение"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+            </EntityType>
+            <EntityType Name="Document_ВнутреннееПотреблениеТоваров_Серии">
+                <Key>
+                    <PropertyRef Name="Ref_Key"/>
+                    <PropertyRef Name="LineNumber"/>
+                </Key>
+                <Property Name="Ref_Key"
+                          Type="Edm.Guid"
+                          Nullable="false"/>
+                <Property Name="LineNumber"
+                          Type="Edm.Int64"
+                          Nullable="false"/>
+                <Property Name="Серия_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="Количество"
+                          Type="Edm.Double"
+                          Nullable="true"/>
+                <Property Name="Номенклатура_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="Характеристика_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="Назначение_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <NavigationProperty Name="Серия"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Серии_Серия"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="Номенклатура"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Серии_Номенклатура"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="Характеристика"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Серии_Характеристика"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="Назначение"
+                                    Relationship="StandardODATA.Document_ВнутреннееПотреблениеТоваров_Серии_Назначение"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+            </EntityType>
+            <EntityType Name="Catalog_Сотрудники">
+                <Key>
+                    <PropertyRef Name="Ref_Key"/>
+                </Key>
+                <Property Name="Ref_Key"
+                          Type="Edm.Guid"
+                          Nullable="false"/>
+                <Property Name="DataVersion"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Description"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Code"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="DeletionMark"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="ФизическоеЛицо_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ГоловнаяОрганизация_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="УдалитьВидЗанятости"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ТекущийПроцентСевернойНадбавки"
+                          Type="Edm.Double"
+                          Nullable="true"/>
+                <Property Name="ВАрхиве"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="УточнениеНаименования"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ГоловнойСотрудник_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ДополнительныеРеквизиты"
+                          Type="Collection(StandardODATA.Catalog_Сотрудники_ДополнительныеРеквизиты_RowType)"
+                          Nullable="true"/>
+                <Property Name="НаборыЗначенийДоступа"
+                          Type="Collection(StandardODATA.Catalog_Сотрудники_НаборыЗначенийДоступа_RowType)"
+                          Nullable="true"/>
+                <NavigationProperty Name="ФизическоеЛицо"
+                                    Relationship="StandardODATA.Catalog_Сотрудники_ФизическоеЛицо"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ГоловнаяОрганизация"
+                                    Relationship="StandardODATA.Catalog_Сотрудники_ГоловнаяОрганизация"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ГоловнойСотрудник"
+                                    Relationship="StandardODATA.Catalog_Сотрудники_ГоловнойСотрудник"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+            </EntityType>
+            <EntityType Name="Catalog_Сотрудники_ДополнительныеРеквизиты">
+                <Key>
+                    <PropertyRef Name="Ref_Key"/>
+                    <PropertyRef Name="LineNumber"/>
+                </Key>
+                <Property Name="Ref_Key"
+                          Type="Edm.Guid"
+                          Nullable="false"/>
+                <Property Name="LineNumber"
+                          Type="Edm.Int64"
+                          Nullable="false"/>
+                <Property Name="Свойство_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="Значение"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ТекстоваяСтрока"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Значение_Type"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <NavigationProperty Name="Свойство"
+                                    Relationship="StandardODATA.Catalog_Сотрудники_ДополнительныеРеквизиты_Свойство"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+            </EntityType>
+            <EntityType Name="Catalog_Сотрудники_НаборыЗначенийДоступа">
+                <Key>
+                    <PropertyRef Name="Ref_Key"/>
+                    <PropertyRef Name="LineNumber"/>
+                </Key>
+                <Property Name="Ref_Key"
+                          Type="Edm.Guid"
+                          Nullable="false"/>
+                <Property Name="LineNumber"
+                          Type="Edm.Int64"
+                          Nullable="false"/>
+                <Property Name="НомерНабора"
+                          Type="Edm.Int64"
+                          Nullable="true"/>
+                <Property Name="ЗначениеДоступа"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Чтение"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="Изменение"
+                          Type="Edm.Boolean"
+                          Nullable="true"/>
+                <Property Name="Уточнение_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ЗначениеДоступа_Type"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <NavigationProperty Name="Уточнение"
+                                    Relationship="StandardODATA.Catalog_Сотрудники_НаборыЗначенийДоступа_Уточнение"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+            </EntityType>
+            <EntityType Name="ChartOfCharacteristicTypes_ДополнительныеРеквизитыИСведения">
+                <Key>
+                    <PropertyRef Name="Ref_Key"/>
+                </Key>
+                <Property Name="Ref_Key" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="Predefined" Type="Edm.Boolean" Nullable="true"/>
+                <Property Name="PredefinedDataName" Type="Edm.String" Nullable="true"/>
+                <Property Name="DataVersion" Type="Edm.String" Nullable="true"/>
+                <Property Name="Description" Type="Edm.String" Nullable="true"/>
+                <Property Name="DeletionMark" Type="Edm.Boolean" Nullable="true"/>
+                <Property Name="ValueType" Type="StandardODATA.TypeDescription" Nullable="true"/>
+                <Property Name="Виден" Type="Edm.Boolean" Nullable="true"/>
+                <Property Name="ВладелецДополнительныхЗначений_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ДополнительныеЗначенияИспользуются" Type="Edm.Boolean" Nullable="true"/>
+                <Property Name="ДополнительныеЗначенияСВесом" Type="Edm.Boolean" Nullable="true"/>
+                <Property Name="Доступен" Type="Edm.Boolean" Nullable="true"/>
+                <Property Name="Заголовок" Type="Edm.String" Nullable="true"/>
+                <Property Name="ЗаголовокФормыВыбораЗначения" Type="Edm.String" Nullable="true"/>
+                <Property Name="ЗаголовокФормыЗначения" Type="Edm.String" Nullable="true"/>
+                <Property Name="ЗаполнятьОбязательно" Type="Edm.Boolean" Nullable="true"/>
+                <Property Name="Комментарий" Type="Edm.String" Nullable="true"/>
+                <Property Name="МногострочноеПолеВвода" Type="Edm.Int16" Nullable="true"/>
+                <Property Name="НаборСвойств_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Подсказка" Type="Edm.String" Nullable="true"/>
+                <Property Name="УдалитьСклоненияПредмета" Type="Edm.String" Nullable="true"/>
+                <Property Name="ФорматСвойства" Type="Edm.String" Nullable="true"/>
+                <Property Name="ЭтоДополнительноеСведение" Type="Edm.Boolean" Nullable="true"/>
+                <Property Name="ЗависимостиДополнительныхРеквизитов"
+                          Type="Collection(StandardODATA.ChartOfCharacteristicTypes_ДополнительныеРеквизитыИСведения_ЗависимостиДополнительныхРеквизитов_RowType)"
+                          Nullable="true"/>
+                <NavigationProperty Name="ВладелецДополнительныхЗначений"
+                                    Relationship="StandardODATA.ChartOfCharacteristicTypes_ДополнительныеРеквизитыИСведения_ВладелецДополнительныхЗначений"
+                                    FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="НаборСвойств"
+                                    Relationship="StandardODATA.ChartOfCharacteristicTypes_ДополнительныеРеквизитыИСведения_НаборСвойств"
+                                    FromRole="Begin" ToRole="End"/>
+            </EntityType>
+            <EntityType Name="Catalog_Организации_КонтактнаяИнформация">
+                <Key>
+                    <PropertyRef Name="Ref_Key"/>
+                    <PropertyRef Name="LineNumber"/>
+                </Key>
+                <Property Name="Ref_Key"
+                          Type="Edm.Guid"
+                          Nullable="false"/>
+                <Property Name="LineNumber"
+                          Type="Edm.Int64"
+                          Nullable="false"/>
+                <Property Name="Тип"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Вид_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="Представление"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ЗначенияПолей"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Страна"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Регион"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="Город"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="АдресЭП"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ДоменноеИмяСервера"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="НомерТелефона"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="НомерТелефонаБезКодов"
+                          Type="Edm.String"
+                          Nullable="true"/>
+                <Property Name="ВидДляСписка_Key"
+                          Type="Edm.Guid"
+                          Nullable="true"/>
+                <Property Name="ДействуетС"
+                          Type="Edm.DateTime"
+                          Nullable="true"/>
+                <NavigationProperty Name="Вид"
+                                    Relationship="StandardODATA.Catalog_Организации_КонтактнаяИнформация_Вид"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+                <NavigationProperty Name="ВидДляСписка"
+                                    Relationship="StandardODATA.Catalog_Организации_КонтактнаяИнформация_ВидДляСписка"
+                                    FromRole="Begin"
+                                    ToRole="End"/>
+            </EntityType>
+            <EntityType Name="AccumulationRegister_ПартииТоваровПереданныеНаКомиссию">
+                <Key>
+                    <PropertyRef Name="Recorder"/>
+                    <PropertyRef Name="Recorder_Type"/>
+                </Key>
+                <Property Name="Recorder" Type="Edm.String" Nullable="false"/>
+                <Property Name="RecordSet"
+                          Type="Collection(StandardODATA.AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RowType)"
+                          Nullable="false"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType">
+                <Key>
+                    <PropertyRef Name="Recorder"/>
+                    <PropertyRef Name="LineNumber"/>
+                    <PropertyRef Name="Recorder_Type"/>
+                </Key>
+                <Property Name="Recorder" Type="Edm.String" Nullable="false"/>
+                <Property Name="Period" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="LineNumber" Type="Edm.Int64" Nullable="false"/>
+                <Property Name="Active" Type="Edm.Boolean" Nullable="true"/>
+                <Property Name="RecordType" Type="Edm.String" Nullable="true"/>
+                <Property Name="Организация_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="АналитикаУчетаНоменклатуры_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ДокументПоступления" Type="Edm.String" Nullable="true"/>
+                <Property Name="ВидЗапасов_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="АналитикаУчетаПартий_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ДокументПередачиНаКомиссию" Type="Edm.String" Nullable="true"/>
+                <Property Name="Количество" Type="Edm.Double" Nullable="true"/>
+                <Property Name="Стоимость" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьБезНДС" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьРегл" Type="Edm.Double" Nullable="true"/>
+                <Property Name="НДСРегл" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ПостояннаяРазница" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВременнаяРазница" Type="Edm.Double" Nullable="true"/>
+                <Property Name="Номенклатура_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Характеристика_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="НалогообложениеНДС" Type="Edm.String" Nullable="true"/>
+                <Property Name="ХозяйственнаяОперация" Type="Edm.String" Nullable="true"/>
+                <Property Name="КорАналитикаУчетаНоменклатуры_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="false"/>
+                <Property Name="ДокументПоступления_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ДокументПередачиНаКомиссию_Type" Type="Edm.String" Nullable="true"/>
+                <NavigationProperty Name="Организация"
+                                    Relationship="StandardODATA.AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType_Организация"
+                                    FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="АналитикаУчетаНоменклатуры"
+                                    Relationship="StandardODATA.AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType_АналитикаУчетаНоменклатуры"
+                                    FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="ВидЗапасов"
+                                    Relationship="StandardODATA.AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType_ВидЗапасов"
+                                    FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="АналитикаУчетаПартий"
+                                    Relationship="StandardODATA.AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType_АналитикаУчетаПартий"
+                                    FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="Номенклатура"
+                                    Relationship="StandardODATA.AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType_Номенклатура"
+                                    FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="Характеристика"
+                                    Relationship="StandardODATA.AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType_Характеристика"
+                                    FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="КорАналитикаУчетаНоменклатуры"
+                                    Relationship="StandardODATA.AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType_КорАналитикаУчетаНоменклатуры"
+                                    FromRole="Begin" ToRole="End"/>
+            </EntityType>
+            <EntityType Name="AccumulationRegister_ТоварыКОтгрузке">
+                <Key>
+                    <PropertyRef Name="Recorder"/>
+                    <PropertyRef Name="Recorder_Type"/>
+                </Key>
+                <Property Name="Recorder" Type="Edm.String" Nullable="false"/>
+                <Property Name="RecordSet" Type="Collection(StandardODATA.AccumulationRegister_ТоварыКОтгрузке_RowType)"
+                          Nullable="false"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="AccumulationRegister_ТоварыКОтгрузке_RecordType">
+                <Key>
+                    <PropertyRef Name="Recorder"/>
+                    <PropertyRef Name="LineNumber"/>
+                    <PropertyRef Name="Recorder_Type"/>
+                </Key>
+                <Property Name="Recorder" Type="Edm.String" Nullable="false"/>
+                <Property Name="Period" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="LineNumber" Type="Edm.Int64" Nullable="false"/>
+                <Property Name="Active" Type="Edm.Boolean" Nullable="true"/>
+                <Property Name="RecordType" Type="Edm.String" Nullable="true"/>
+                <Property Name="ДокументОтгрузки" Type="Edm.String" Nullable="true"/>
+                <Property Name="Номенклатура_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Характеристика_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Назначение_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Склад_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Серия_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Получатель" Type="Edm.String" Nullable="true"/>
+                <Property Name="ВРезерве" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОтгрузке" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОформлению" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КСборке" Type="Edm.Double" Nullable="true"/>
+                <Property Name="Собирается" Type="Edm.Double" Nullable="true"/>
+                <Property Name="Собрано" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ЗаданиеНаПеревозку_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="false"/>
+                <Property Name="ДокументОтгрузки_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="Получатель_Type" Type="Edm.String" Nullable="true"/>
+                <NavigationProperty Name="Номенклатура"
+                                    Relationship="StandardODATA.AccumulationRegister_ТоварыКОтгрузке_RecordType_Номенклатура"
+                                    FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="Характеристика"
+                                    Relationship="StandardODATA.AccumulationRegister_ТоварыКОтгрузке_RecordType_Характеристика"
+                                    FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="Назначение"
+                                    Relationship="StandardODATA.AccumulationRegister_ТоварыКОтгрузке_RecordType_Назначение"
+                                    FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="Склад"
+                                    Relationship="StandardODATA.AccumulationRegister_ТоварыКОтгрузке_RecordType_Склад"
+                                    FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="Серия"
+                                    Relationship="StandardODATA.AccumulationRegister_ТоварыКОтгрузке_RecordType_Серия"
+                                    FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="ЗаданиеНаПеревозку"
+                                    Relationship="StandardODATA.AccumulationRegister_ТоварыКОтгрузке_RecordType_ЗаданиеНаПеревозку"
+                                    FromRole="Begin" ToRole="End"/>
+            </EntityType>
+            <EntityType Name="AccumulationRegister_ДенежныеСредстваБезналичные_RecordType" OpenType="true">
+                <Key>
+                    <PropertyRef Name="Recorder"/>
+                    <PropertyRef Name="LineNumber"/>
+                    <PropertyRef Name="Recorder_Type"/>
+                </Key>
+                <Property Name="Recorder" Type="Edm.String" Nullable="false"/>
+                <Property Name="Period" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="LineNumber" Type="Edm.Int64" Nullable="false"/>
+                <Property Name="Active" Type="Edm.Boolean" Nullable="true"/>
+                <Property Name="RecordType" Type="Edm.String" Nullable="true"/>
+                <Property Name="Организация_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="БанковскийСчет_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Сумма" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаУпр" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаРегл" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КЗачислению" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КСписанию" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ХозяйственнаяОперация" Type="Edm.String" Nullable="true"/>
+                <Property Name="СтатьяДвиженияДенежныхСредств_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ТипПлатежаФЗ275_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="АналитикаУчетаПоПартнерам_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Заказ" Type="Edm.String" Nullable="true"/>
+                <Property Name="ПлатежныйДокумент" Type="Edm.String" Nullable="true"/>
+                <Property Name="СтатьяКалькуляции_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="false"/>
+                <Property Name="Заказ_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ПлатежныйДокумент_Type" Type="Edm.String" Nullable="true"/>
+                <NavigationProperty Name="Организация" Relationship="StandardODATA.AccumulationRegister_ДенежныеСредстваБезналичные_RecordType_Организация" FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="БанковскийСчет" Relationship="StandardODATA.AccumulationRegister_ДенежныеСредстваБезналичные_RecordType_БанковскийСчет" FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="СтатьяДвиженияДенежныхСредств" Relationship="StandardODATA.AccumulationRegister_ДенежныеСредстваБезналичные_RecordType_СтатьяДвиженияДенежныхСредств" FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="ТипПлатежаФЗ275" Relationship="StandardODATA.AccumulationRegister_ДенежныеСредстваБезналичные_RecordType_ТипПлатежаФЗ275" FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="АналитикаУчетаПоПартнерам" Relationship="StandardODATA.AccumulationRegister_ДенежныеСредстваБезналичные_RecordType_АналитикаУчетаПоПартнерам" FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="СтатьяКалькуляции" Relationship="StandardODATA.AccumulationRegister_ДенежныеСредстваБезналичные_RecordType_СтатьяКалькуляции" FromRole="Begin" ToRole="End"/>
+            </EntityType>
+            <EntityType Name="AccountingRegister_Хозрасчетный" OpenType="true">
+                <Key>
+                    <PropertyRef Name="Recorder"/>
+                    <PropertyRef Name="Recorder_Type"/>
+                </Key>
+                <Property Name="Recorder" Type="Edm.String" Nullable="false"/>
+                <Property Name="RecordSet" Type="Collection(StandardODATA.AccountingRegister_Хозрасчетный_RowType)" Nullable="false"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="AccountingRegister_Хозрасчетный_RecordType" OpenType="true">
+                <Key>
+                    <PropertyRef Name="Recorder"/>
+                    <PropertyRef Name="LineNumber"/>
+                    <PropertyRef Name="Recorder_Type"/>
+                </Key>
+                <Property Name="Recorder" Type="Edm.String" Nullable="false"/>
+                <Property Name="Period" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="LineNumber" Type="Edm.Int64" Nullable="false"/>
+                <Property Name="Active" Type="Edm.Boolean" Nullable="true"/>
+                <Property Name="AccountDr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="AccountCr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Организация_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ВалютаDr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ВалютаCr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ПодразделениеDr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ПодразделениеCr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="НаправлениеДеятельностиDr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="НаправлениеДеятельностиCr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Сумма" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="Содержание" Type="Edm.String" Nullable="true"/>
+                <Property Name="НеКорректироватьСтоимостьАвтоматически" Type="Edm.Boolean" Nullable="true"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="false"/>
+                <NavigationProperty Name="AccountDr" Relationship="StandardODATA.AccountingRegister_Хозрасчетный_RecordType_AccountDr" FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="AccountCr" Relationship="StandardODATA.AccountingRegister_Хозрасчетный_RecordType_AccountCr" FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="Организация" Relationship="StandardODATA.AccountingRegister_Хозрасчетный_RecordType_Организация" FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="ВалютаDr" Relationship="StandardODATA.AccountingRegister_Хозрасчетный_RecordType_ВалютаDr" FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="ВалютаCr" Relationship="StandardODATA.AccountingRegister_Хозрасчетный_RecordType_ВалютаCr" FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="ПодразделениеDr" Relationship="StandardODATA.AccountingRegister_Хозрасчетный_RecordType_ПодразделениеDr" FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="ПодразделениеCr" Relationship="StandardODATA.AccountingRegister_Хозрасчетный_RecordType_ПодразделениеCr" FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="НаправлениеДеятельностиDr" Relationship="StandardODATA.AccountingRegister_Хозрасчетный_RecordType_НаправлениеДеятельностиDr" FromRole="Begin" ToRole="End"/>
+                <NavigationProperty Name="НаправлениеДеятельностиCr" Relationship="StandardODATA.AccountingRegister_Хозрасчетный_RecordType_НаправлениеДеятельностиCr" FromRole="Begin" ToRole="End"/>
+            </EntityType>
+            <ComplexType Name="AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RowType">
+                <Property Name="Recorder" Type="Edm.String" Nullable="false"/>
+                <Property Name="Period" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="LineNumber" Type="Edm.Int64" Nullable="false"/>
+                <Property Name="Active" Type="Edm.Boolean" Nullable="true"/>
+                <Property Name="RecordType" Type="Edm.String" Nullable="true"/>
+                <Property Name="Организация_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="АналитикаУчетаНоменклатуры_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ДокументПоступления" Type="Edm.String" Nullable="true"/>
+                <Property Name="ВидЗапасов_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="АналитикаУчетаПартий_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ДокументПередачиНаКомиссию" Type="Edm.String" Nullable="true"/>
+                <Property Name="Количество" Type="Edm.Double" Nullable="true"/>
+                <Property Name="Стоимость" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьБезНДС" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьРегл" Type="Edm.Double" Nullable="true"/>
+                <Property Name="НДСРегл" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ПостояннаяРазница" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВременнаяРазница" Type="Edm.Double" Nullable="true"/>
+                <Property Name="Номенклатура_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Характеристика_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="НалогообложениеНДС" Type="Edm.String" Nullable="true"/>
+                <Property Name="ХозяйственнаяОперация" Type="Edm.String" Nullable="true"/>
+                <Property Name="КорАналитикаУчетаНоменклатуры_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="false"/>
+                <Property Name="ДокументПоступления_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ДокументПередачиНаКомиссию_Type" Type="Edm.String" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_Balance">
+                <Property Name="Организация_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="АналитикаУчетаНоменклатуры_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ДокументПоступления" Type="Edm.String" Nullable="true"/>
+                <Property Name="ВидЗапасов_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="АналитикаУчетаПартий_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ДокументПередачиНаКомиссию" Type="Edm.String" Nullable="true"/>
+                <Property Name="КоличествоBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьБезНДСBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьРеглBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="НДСРеглBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ПостояннаяРазницаBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВременнаяРазницаBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ДокументПоступления_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ДокументПередачиНаКомиссию_Type" Type="Edm.String" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_Turnover">
+                <Property Name="Организация_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="АналитикаУчетаНоменклатуры_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ДокументПоступления" Type="Edm.String" Nullable="true"/>
+                <Property Name="ВидЗапасов_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="АналитикаУчетаПартий_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ДокументПередачиНаКомиссию" Type="Edm.String" Nullable="true"/>
+                <Property Name="Period" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="SecondPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="MinutePeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="HourPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="DayPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="WeekPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="TenDaysPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="MonthPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="QuarterPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="HalfYearPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="YearPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="Recorder" Type="Edm.String" Nullable="true"/>
+                <Property Name="LineNumber" Type="Edm.Int64" Nullable="true"/>
+                <Property Name="КоличествоTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьБезНДСTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьБезНДСReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьБезНДСExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьРеглTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьРеглReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьРеглExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="НДСРеглTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="НДСРеглReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="НДСРеглExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ПостояннаяРазницаTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ПостояннаяРазницаReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ПостояннаяРазницаExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВременнаяРазницаTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВременнаяРазницаReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВременнаяРазницаExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ДокументПоступления_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ДокументПередачиНаКомиссию_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_BalanceAndTurnover">
+                <Property Name="Организация_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="АналитикаУчетаНоменклатуры_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ДокументПоступления" Type="Edm.String" Nullable="true"/>
+                <Property Name="ВидЗапасов_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="АналитикаУчетаПартий_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ДокументПередачиНаКомиссию" Type="Edm.String" Nullable="true"/>
+                <Property Name="Period" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="SecondPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="MinutePeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="HourPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="DayPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="WeekPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="TenDaysPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="MonthPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="QuarterPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="HalfYearPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="YearPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="Recorder" Type="Edm.String" Nullable="true"/>
+                <Property Name="LineNumber" Type="Edm.Int64" Nullable="true"/>
+                <Property Name="КоличествоOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьБезНДСOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьБезНДСTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьБезНДСReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьБезНДСExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьБезНДСClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьРеглOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьРеглTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьРеглReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьРеглExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СтоимостьРеглClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="НДСРеглOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="НДСРеглTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="НДСРеглReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="НДСРеглExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="НДСРеглClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ПостояннаяРазницаOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ПостояннаяРазницаTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ПостояннаяРазницаReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ПостояннаяРазницаExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ПостояннаяРазницаClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВременнаяРазницаOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВременнаяРазницаTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВременнаяРазницаReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВременнаяРазницаExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВременнаяРазницаClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ДокументПоступления_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ДокументПередачиНаКомиссию_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="AccumulationRegister_ТоварыКОтгрузке_Balance">
+                <Property Name="ДокументОтгрузки" Type="Edm.String" Nullable="true"/>
+                <Property Name="Номенклатура_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Характеристика_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Назначение_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Склад_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Серия_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Получатель" Type="Edm.String" Nullable="true"/>
+                <Property Name="ВРезервеBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОтгрузкеBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОформлениюBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КСборкеBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СобираетсяBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СобраноBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ДокументОтгрузки_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="Получатель_Type" Type="Edm.String" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="AccumulationRegister_ТоварыКОтгрузке_Turnover">
+                <Property Name="ДокументОтгрузки" Type="Edm.String" Nullable="true"/>
+                <Property Name="Номенклатура_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Характеристика_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Назначение_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Склад_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Серия_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Получатель" Type="Edm.String" Nullable="true"/>
+                <Property Name="Period" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="SecondPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="MinutePeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="HourPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="DayPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="WeekPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="TenDaysPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="MonthPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="QuarterPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="HalfYearPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="YearPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="Recorder" Type="Edm.String" Nullable="true"/>
+                <Property Name="LineNumber" Type="Edm.Int64" Nullable="true"/>
+                <Property Name="ВРезервеTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВРезервеReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВРезервеExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОтгрузкеTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОтгрузкеReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОтгрузкеExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОформлениюTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОформлениюReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОформлениюExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КСборкеTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КСборкеReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КСборкеExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СобираетсяTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СобираетсяReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СобираетсяExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СобраноTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СобраноReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СобраноExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ДокументОтгрузки_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="Получатель_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="AccumulationRegister_ТоварыКОтгрузке_BalanceAndTurnover">
+                <Property Name="ДокументОтгрузки" Type="Edm.String" Nullable="true"/>
+                <Property Name="Номенклатура_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Характеристика_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Назначение_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Склад_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Серия_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Получатель" Type="Edm.String" Nullable="true"/>
+                <Property Name="Period" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="SecondPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="MinutePeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="HourPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="DayPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="WeekPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="TenDaysPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="MonthPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="QuarterPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="HalfYearPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="YearPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="Recorder" Type="Edm.String" Nullable="true"/>
+                <Property Name="LineNumber" Type="Edm.Int64" Nullable="true"/>
+                <Property Name="ВРезервеOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВРезервеTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВРезервеReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВРезервеExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВРезервеClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОтгрузкеOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОтгрузкеTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОтгрузкеReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОтгрузкеExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОтгрузкеClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОформлениюOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОформлениюTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОформлениюReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОформлениюExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КОформлениюClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КСборкеOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КСборкеTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КСборкеReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КСборкеExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КСборкеClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СобираетсяOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СобираетсяTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СобираетсяReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СобираетсяExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СобираетсяClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СобраноOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СобраноTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СобраноReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СобраноExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СобраноClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ДокументОтгрузки_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="Получатель_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="AccumulationRegister_ДенежныеСредстваБезналичные_Turnover">
+                <Property Name="Организация_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="БанковскийСчет_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Period" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="SecondPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="MinutePeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="HourPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="DayPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="WeekPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="TenDaysPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="MonthPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="QuarterPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="HalfYearPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="YearPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="Recorder" Type="Edm.String" Nullable="true"/>
+                <Property Name="LineNumber" Type="Edm.Int64" Nullable="true"/>
+                <Property Name="СуммаTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаУпрTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаУпрReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаУпрExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаРеглTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаРеглReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаРеглExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КЗачислениюTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КЗачислениюReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КЗачислениюExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КСписаниюTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КСписаниюReceipt" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КСписаниюExpense" Type="Edm.Double" Nullable="true"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="AccountingRegister_Хозрасчетный_RowType">
+                <Property Name="Recorder" Type="Edm.String" Nullable="false"/>
+                <Property Name="Period" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="LineNumber" Type="Edm.Int64" Nullable="false"/>
+                <Property Name="Active" Type="Edm.Boolean" Nullable="true"/>
+                <Property Name="AccountDr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="AccountCr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Организация_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ВалютаDr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ВалютаCr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ПодразделениеDr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ПодразделениеCr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="НаправлениеДеятельностиDr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="НаправлениеДеятельностиCr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Сумма" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="Содержание" Type="Edm.String" Nullable="true"/>
+                <Property Name="НеКорректироватьСтоимостьАвтоматически" Type="Edm.Boolean" Nullable="true"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="AccountingRegister_Хозрасчетный_Balance">
+                <Property Name="Account_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ExtDimension1" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimension2" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimension3" Type="Edm.String" Nullable="true"/>
+                <Property Name="Организация_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Валюта_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Подразделение_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="НаправлениеДеятельности_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="СуммаBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаSplittedBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаSplittedBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаSplittedBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаSplittedBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоSplittedBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоSplittedBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУSplittedBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУSplittedBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРSplittedBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРSplittedBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРSplittedBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРSplittedBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ExtDimension1_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimension2_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimension3_Type" Type="Edm.String" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="AccountingRegister_Хозрасчетный_Turnover">
+                <Property Name="Period" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="SecondPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="MinutePeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="HourPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="DayPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="WeekPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="TenDaysPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="MonthPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="QuarterPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="HalfYearPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="YearPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="Recorder" Type="Edm.String" Nullable="true"/>
+                <Property Name="LineNumber" Type="Edm.Int64" Nullable="true"/>
+                <Property Name="Account_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ExtDimension1" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimension2" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimension3" Type="Edm.String" Nullable="true"/>
+                <Property Name="Организация_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Валюта_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Подразделение_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="НаправлениеДеятельности_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="BalancedAccount_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="BalancedExtDimension1" Type="Edm.String" Nullable="true"/>
+                <Property Name="BalancedExtDimension2" Type="Edm.String" Nullable="true"/>
+                <Property Name="BalancedExtDimension3" Type="Edm.String" Nullable="true"/>
+                <Property Name="ВалютаBalanced_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ПодразделениеBalanced_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="НаправлениеДеятельностиBalanced_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="СуммаTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаBalancedTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаBalancedTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаBalancedTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоBalancedTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоBalancedTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоBalancedTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУBalancedTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУBalancedTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУBalancedTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРBalancedTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРBalancedTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРBalancedTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРBalancedTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРBalancedTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРBalancedTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimension1_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimension2_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimension3_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="BalancedExtDimension1_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="BalancedExtDimension2_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="BalancedExtDimension3_Type" Type="Edm.String" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="AccountingRegister_Хозрасчетный_BalanceAndTurnover">
+                <Property Name="Period" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="SecondPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="MinutePeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="HourPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="DayPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="WeekPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="TenDaysPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="MonthPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="QuarterPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="HalfYearPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="YearPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="Recorder" Type="Edm.String" Nullable="true"/>
+                <Property Name="LineNumber" Type="Edm.Int64" Nullable="true"/>
+                <Property Name="Account_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ExtDimension1" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimension2" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimension3" Type="Edm.String" Nullable="true"/>
+                <Property Name="Организация_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Валюта_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Подразделение_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="НаправлениеДеятельности_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="СуммаOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаOpeningBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаOpeningBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаOpeningSplittedBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаOpeningSplittedBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаClosingBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаClosingBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаClosingSplittedBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаClosingSplittedBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаOpeningBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаOpeningBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаOpeningSplittedBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаOpeningSplittedBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаClosingBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаClosingBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаClosingSplittedBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаClosingSplittedBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоOpeningBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоOpeningBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоOpeningSplittedBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоOpeningSplittedBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоClosingBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоClosingBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоClosingSplittedBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоClosingSplittedBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУOpeningBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУOpeningBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУOpeningSplittedBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУOpeningSplittedBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУClosingBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУClosingBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУClosingSplittedBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУClosingSplittedBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРOpeningBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРOpeningBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРOpeningSplittedBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРOpeningSplittedBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРClosingBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРClosingBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРClosingSplittedBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРClosingSplittedBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРOpeningBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРOpeningBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРOpeningBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРOpeningSplittedBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРOpeningSplittedBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРClosingBalance" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРClosingBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРClosingBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРClosingSplittedBalanceDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРClosingSplittedBalanceCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimension1_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimension2_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimension3_Type" Type="Edm.String" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="AccountingRegister_Хозрасчетный_ExtDimensions">
+                <Property Name="Period" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="Recorder" Type="Edm.String" Nullable="true"/>
+                <Property Name="PointInTime" Type="StandardODATA.PointInTime" Nullable="true"/>
+                <Property Name="LineNumber" Type="Edm.Int64" Nullable="true"/>
+                <Property Name="RecordType" Type="Edm.String" Nullable="true"/>
+                <Property Name="Type_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Value" Type="Edm.String" Nullable="true"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="Value_Type" Type="Edm.String" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="AccountingRegister_Хозрасчетный_RecordsWithExtDimensions">
+                <Property Name="Period" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="Recorder" Type="Edm.String" Nullable="true"/>
+                <Property Name="LineNumber" Type="Edm.Int64" Nullable="true"/>
+                <Property Name="Active" Type="Edm.Boolean" Nullable="true"/>
+                <Property Name="AccountDr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ExtDimensionDr1" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionTypeDr1_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ExtDimensionDr2" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionTypeDr2_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ExtDimensionDr3" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionTypeDr3_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="AccountCr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ExtDimensionCr1" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionTypeCr1_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ExtDimensionCr2" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionTypeCr2_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ExtDimensionCr3" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionTypeCr3_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Организация_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ВалютаDr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ВалютаCr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ПодразделениеDr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ПодразделениеCr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="НаправлениеДеятельностиDr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="НаправлениеДеятельностиCr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="Сумма" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="Содержание" Type="Edm.String" Nullable="true"/>
+                <Property Name="НеКорректироватьСтоимостьАвтоматически" Type="Edm.Boolean" Nullable="true"/>
+                <Property Name="PointInTime" Type="StandardODATA.PointInTime" Nullable="true"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionDr1_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionDr2_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionDr3_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionCr1_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionCr2_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionCr3_Type" Type="Edm.String" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="AccountingRegister_Хозрасчетный_DrCrTurnover">
+                <Property Name="Period" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="SecondPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="MinutePeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="HourPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="DayPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="WeekPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="TenDaysPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="MonthPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="QuarterPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="HalfYearPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="YearPeriod" Type="Edm.DateTime" Nullable="true"/>
+                <Property Name="Recorder" Type="Edm.String" Nullable="true"/>
+                <Property Name="LineNumber" Type="Edm.Int64" Nullable="true"/>
+                <Property Name="AccountDr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ExtDimensionDr1" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionDr2" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionDr3" Type="Edm.String" Nullable="true"/>
+                <Property Name="AccountCr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ExtDimensionCr1" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionCr2" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionCr3" Type="Edm.String" Nullable="true"/>
+                <Property Name="Организация_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ВалютаDr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ВалютаCr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ПодразделениеDr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="ПодразделениеCr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="НаправлениеДеятельностиDr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="НаправлениеДеятельностиCr_Key" Type="Edm.Guid" Nullable="true"/>
+                <Property Name="СуммаTurnover" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="ВалютнаяСуммаTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="КоличествоTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаНУTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаПРTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРTurnoverDr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="СуммаВРTurnoverCr" Type="Edm.Double" Nullable="true"/>
+                <Property Name="Recorder_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionDr1_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionDr2_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionDr3_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionCr1_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionCr2_Type" Type="Edm.String" Nullable="true"/>
+                <Property Name="ExtDimensionCr3_Type" Type="Edm.String" Nullable="true"/>
+            </ComplexType>
+            <Association Name="AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType_Организация">
+                <End Role="Begin" Type="StandardODATA.AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType"
+                     Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_Организации" Multiplicity="0..1"/>
+            </Association>
+            <Association
+                    Name="AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType_АналитикаУчетаНоменклатуры">
+                <End Role="Begin" Type="StandardODATA.AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType"
+                     Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_КлючиАналитикиУчетаНоменклатуры" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType_ВидЗапасов">
+                <End Role="Begin" Type="StandardODATA.AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType"
+                     Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_ВидыЗапасов" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType_АналитикаУчетаПартий">
+                <End Role="Begin" Type="StandardODATA.AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType"
+                     Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_КлючиАналитикиУчетаПартий" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType_Номенклатура">
+                <End Role="Begin" Type="StandardODATA.AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType"
+                     Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_Номенклатура" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType_Характеристика">
+                <End Role="Begin" Type="StandardODATA.AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType"
+                     Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_ХарактеристикиНоменклатуры" Multiplicity="0..1"/>
+            </Association>
+            <Association
+                    Name="AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType_КорАналитикаУчетаНоменклатуры">
+                <End Role="Begin" Type="StandardODATA.AccumulationRegister_ПартииТоваровПереданныеНаКомиссию_RecordType"
+                     Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_КлючиАналитикиУчетаНоменклатуры" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="Catalog_Сотрудники_НаборыЗначенийДоступа_Уточнение">
+                <End Role="Begin" Type="StandardODATA.Catalog_Сотрудники_НаборыЗначенийДоступа" Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_ИдентификаторыОбъектовМетаданных" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="Catalog_Организации_ГоловнаяОрганизация">
+                <End Role="Begin" Type="StandardODATA.Catalog_Организации" Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_Организации" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="Catalog_Организации_ГрафикРаботы">
+                <End Role="Begin" Type="StandardODATA.Catalog_Организации" Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_Календари" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccumulationRegister_ТоварыКОтгрузке_RecordType_Номенклатура">
+                <End Role="Begin" Type="StandardODATA.AccumulationRegister_ТоварыКОтгрузке_RecordType"
+                     Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_Номенклатура" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccumulationRegister_ТоварыКОтгрузке_RecordType_Характеристика">
+                <End Role="Begin" Type="StandardODATA.AccumulationRegister_ТоварыКОтгрузке_RecordType"
+                     Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_ХарактеристикиНоменклатуры" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccumulationRegister_ТоварыКОтгрузке_RecordType_Назначение">
+                <End Role="Begin" Type="StandardODATA.AccumulationRegister_ТоварыКОтгрузке_RecordType"
+                     Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_Назначения" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccumulationRegister_ТоварыКОтгрузке_RecordType_Склад">
+                <End Role="Begin" Type="StandardODATA.AccumulationRegister_ТоварыКОтгрузке_RecordType"
+                     Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_Склады" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccumulationRegister_ТоварыКОтгрузке_RecordType_Серия">
+                <End Role="Begin" Type="StandardODATA.AccumulationRegister_ТоварыКОтгрузке_RecordType"
+                     Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_СерииНоменклатуры" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccumulationRegister_ТоварыКОтгрузке_RecordType_ЗаданиеНаПеревозку">
+                <End Role="Begin" Type="StandardODATA.AccumulationRegister_ТоварыКОтгрузке_RecordType"
+                     Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Document_ЗаданиеНаПеревозку" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccountingRegister_Хозрасчетный_RecordType_AccountDr">
+                <End Role="Begin" Type="StandardODATA.AccountingRegister_Хозрасчетный_RecordType" Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.ChartOfAccounts_Хозрасчетный" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccountingRegister_Хозрасчетный_RecordType_AccountCr">
+                <End Role="Begin" Type="StandardODATA.AccountingRegister_Хозрасчетный_RecordType" Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.ChartOfAccounts_Хозрасчетный" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccountingRegister_Хозрасчетный_RecordType_Организация">
+                <End Role="Begin" Type="StandardODATA.AccountingRegister_Хозрасчетный_RecordType" Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_Организации" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccountingRegister_Хозрасчетный_RecordType_ВалютаDr">
+                <End Role="Begin" Type="StandardODATA.AccountingRegister_Хозрасчетный_RecordType" Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_Валюты" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccountingRegister_Хозрасчетный_RecordType_ВалютаCr">
+                <End Role="Begin" Type="StandardODATA.AccountingRegister_Хозрасчетный_RecordType" Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_Валюты" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccountingRegister_Хозрасчетный_RecordType_ПодразделениеDr">
+                <End Role="Begin" Type="StandardODATA.AccountingRegister_Хозрасчетный_RecordType" Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_СтруктураПредприятия" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccountingRegister_Хозрасчетный_RecordType_ПодразделениеCr">
+                <End Role="Begin" Type="StandardODATA.AccountingRegister_Хозрасчетный_RecordType" Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_СтруктураПредприятия" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccountingRegister_Хозрасчетный_RecordType_НаправлениеДеятельностиDr">
+                <End Role="Begin" Type="StandardODATA.AccountingRegister_Хозрасчетный_RecordType" Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_НаправленияДеятельности" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="AccountingRegister_Хозрасчетный_RecordType_НаправлениеДеятельностиCr">
+                <End Role="Begin" Type="StandardODATA.AccountingRegister_Хозрасчетный_RecordType" Multiplicity="*"/>
+                <End Role="End" Type="StandardODATA.Catalog_НаправленияДеятельности" Multiplicity="0..1"/>
+            </Association>
+            <FunctionImport Name="Balance" IsBindable="true" IsSideEffecting="false" ReturnType="Collection(StandardODATA.AccountingRegister_Хозрасчетный_Balance)">
+                <Parameter Name="bindingParameter" Type="StandardODATA.AccountingRegister_Хозрасчетный"/>
+                <Parameter Name="AccountCondition" Type="Edm.String"/>
+                <Parameter Name="Condition" Type="Edm.String"/>
+                <Parameter Name="Dimensions" Type="Edm.String"/>
+                <Parameter Name="ExtraDimensions" Type="Edm.String"/>
+                <Parameter Name="Period" Type="Edm.DateTime"/>
+            </FunctionImport>
+            <FunctionImport Name="Turnovers" IsBindable="true" IsSideEffecting="false" ReturnType="Collection(StandardODATA.AccountingRegister_Хозрасчетный_Turnover)">
+                <Parameter Name="bindingParameter" Type="StandardODATA.AccountingRegister_Хозрасчетный"/>
+                <Parameter Name="AccountCondition" Type="Edm.String"/>
+                <Parameter Name="BalancedAccountCondition" Type="Edm.String"/>
+                <Parameter Name="BalancedExtraDimensions" Type="Edm.String"/>
+                <Parameter Name="Condition" Type="Edm.String"/>
+                <Parameter Name="Dimensions" Type="Edm.String"/>
+                <Parameter Name="EndPeriod" Type="Edm.DateTime"/>
+                <Parameter Name="ExtraDimensions" Type="Edm.String"/>
+                <Parameter Name="StartPeriod" Type="Edm.DateTime"/>
+            </FunctionImport>
+            <FunctionImport Name="BalanceAndTurnovers" IsBindable="true" IsSideEffecting="false" ReturnType="Collection(StandardODATA.AccountingRegister_Хозрасчетный_BalanceAndTurnover)">
+                <Parameter Name="bindingParameter" Type="StandardODATA.AccountingRegister_Хозрасчетный"/>
+                <Parameter Name="Condition" Type="Edm.String"/>
+                <Parameter Name="Dimensions" Type="Edm.String"/>
+                <Parameter Name="EndPeriod" Type="Edm.DateTime"/>
+                <Parameter Name="StartPeriod" Type="Edm.DateTime"/>
+            </FunctionImport>
+            <FunctionImport Name="ExtDimensions" IsBindable="true" IsSideEffecting="false" ReturnType="Collection(StandardODATA.AccountingRegister_Хозрасчетный_ExtDimensions)">
+                <Parameter Name="bindingParameter" Type="StandardODATA.AccountingRegister_Хозрасчетный"/>
+            </FunctionImport>
+            <FunctionImport Name="RecordsWithExtDimensions" IsBindable="true" IsSideEffecting="false" ReturnType="Collection(StandardODATA.AccountingRegister_Хозрасчетный_RecordsWithExtDimensions)">
+                <Parameter Name="bindingParameter" Type="StandardODATA.AccountingRegister_Хозрасчетный"/>
+                <Parameter Name="Condition" Type="Edm.String"/>
+                <Parameter Name="EndPeriod" Type="Edm.DateTime"/>
+                <Parameter Name="Order" Type="Edm.String"/>
+                <Parameter Name="StartPeriod" Type="Edm.DateTime"/>
+                <Parameter Name="Top" Type="Edm.Int64"/>
+            </FunctionImport>
+            <FunctionImport Name="DrCrTurnovers" IsBindable="true" IsSideEffecting="false" ReturnType="Collection(StandardODATA.AccountingRegister_Хозрасчетный_DrCrTurnover)">
+                <Parameter Name="bindingParameter" Type="StandardODATA.AccountingRegister_Хозрасчетный"/>
+                <Parameter Name="AccountCondition" Type="Edm.String"/>
+                <Parameter Name="BalancedAccountCondition" Type="Edm.String"/>
+                <Parameter Name="BalancedExtraDimensions" Type="Edm.String"/>
+                <Parameter Name="Condition" Type="Edm.String"/>
+                <Parameter Name="Dimensions" Type="Edm.String"/>
+                <Parameter Name="EndPeriod" Type="Edm.DateTime"/>
+                <Parameter Name="ExtraDimensions" Type="Edm.String"/>
+                <Parameter Name="StartPeriod" Type="Edm.DateTime"/>
+            </FunctionImport>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

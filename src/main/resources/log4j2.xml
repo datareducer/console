@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" packages="com.datareducer">
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+        </Console>
+        <LogAreaAppender name="LOG_AREA">
+            <PatternLayout pattern="%d{HH:mm:ss} %-5level %msg%throwable{short.message}%n" />
+        </LogAreaAppender>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="STDOUT" />
+        </Root>
+        <Root level="info">
+            <AppenderRef ref="LOG_AREA" />
+        </Root>
+    </Loggers>
+</Configuration>
