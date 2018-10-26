@@ -148,37 +148,37 @@ public class DataServiceResource {
      *
      * @return Набор имён параметров.
      */
-    Set<String> getParameterSet() {
+    Set<String> getParameterNamesSet() {
         Set<String> result = new HashSet<>();
         if (slicePeriod != null && PARAM_PATTERN.matcher(slicePeriod).matches()) {
-            result.add(slicePeriod);
+            result.add(ScriptParameter.removeBraces(slicePeriod));
         }
         if (balancePeriod != null && PARAM_PATTERN.matcher(balancePeriod).matches()) {
-            result.add(balancePeriod);
+            result.add(ScriptParameter.removeBraces(balancePeriod));
         }
         if (turnoversStartPeriod != null && PARAM_PATTERN.matcher(turnoversStartPeriod).matches()) {
-            result.add(turnoversStartPeriod);
+            result.add(ScriptParameter.removeBraces(turnoversStartPeriod));
         }
         if (turnoversEndPeriod != null && PARAM_PATTERN.matcher(turnoversEndPeriod).matches()) {
-            result.add(turnoversEndPeriod);
+            result.add(ScriptParameter.removeBraces(turnoversEndPeriod));
         }
-        getConditionParameterSet(condition, result);
-        getConditionParameterSet(accountCondition, result);
-        getConditionParameterSet(balanceAccountCondition, result);
+        getConditionParameterNamesSet(condition, result);
+        getConditionParameterNamesSet(accountCondition, result);
+        getConditionParameterNamesSet(balanceAccountCondition, result);
         return result;
     }
 
-    private Set<String> getConditionParameterSet(Condition condition, Set<String> parameterSet) {
+    private Set<String> getConditionParameterNamesSet(Condition condition, Set<String> parameterSet) {
         for (FilterElement element : condition.getElements()) {
             if (element instanceof RelationalExpression) {
                 if (((RelationalExpression) element).getValue() instanceof String) {
                     String value = (String) ((RelationalExpression) element).getValue();
                     if (PARAM_PATTERN.matcher(value).matches()) {
-                        parameterSet.add(value);
+                        parameterSet.add(ScriptParameter.removeBraces(value));
                     }
                 }
             } else if (element instanceof Condition) {
-                getConditionParameterSet((Condition) element, parameterSet);
+                getConditionParameterNamesSet((Condition) element, parameterSet);
             }
         }
         return parameterSet;

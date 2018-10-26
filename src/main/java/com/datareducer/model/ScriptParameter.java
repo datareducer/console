@@ -44,9 +44,9 @@ import java.util.regex.Pattern;
 @XmlRootElement(name = "ScriptParameter")
 @XmlType(name = "ScriptParameter")
 public class ScriptParameter {
-    public final static String PARAM_PREFIX = "&";
+    public final static Pattern PARAM_NAME_PATTERN = Pattern.compile("[a-zA-Z0-9_]+");
 
-    public final static Pattern PARAM_PATTERN = Pattern.compile(PARAM_PREFIX + "[a-zA-Z0-9_]*");
+    public final static Pattern PARAM_PATTERN = Pattern.compile("\\$\\{[a-zA-Z0-9_]+}");
 
     // Имена предопределённых параметров
     // Наименование скрипта
@@ -60,7 +60,7 @@ public class ScriptParameter {
 
     private final StringProperty name = new SimpleStringProperty("");
     private final StringProperty value = new SimpleStringProperty("");
-    // Включать параметр в доступные пераметры http-запроса
+    // Включать параметр в доступные параметры http-запроса
     private final BooleanProperty httpParameter = new SimpleBooleanProperty();
 
     public ScriptParameter() {
@@ -72,6 +72,9 @@ public class ScriptParameter {
         }
         if (value == null) {
             throw new IllegalArgumentException("Значение параметра 'value': null");
+        }
+        if (!PARAM_NAME_PATTERN.matcher(name).matches()) {
+            throw new IllegalArgumentException("Недопустимое имя параметра: " + name);
         }
         setName(name);
         setValue(value);
@@ -88,6 +91,9 @@ public class ScriptParameter {
     }
 
     public void setName(String name) {
+        if (!PARAM_NAME_PATTERN.matcher(name).matches()) {
+            throw new IllegalArgumentException("Недопустимое имя параметра: " + name);
+        }
         nameProperty().set(name);
     }
 
@@ -118,14 +124,21 @@ public class ScriptParameter {
     }
 
     public static boolean isPredefinedParam(String paramName) {
-        String name = removePrefix(paramName);
+        String name = removeBraces(paramName);
         return name.equals(NAME_PARAM) || name.equals(DESCRIPTION_PARAM)
                 || name.equals(RESOURCE_NAME_PARAM) || name.equals(REQUEST_ID_PARAM);
     }
 
-    public static String removePrefix(String paramName) {
-        if (paramName.startsWith(PARAM_PREFIX)) {
-            return paramName.substring(PARAM_PREFIX.length(), paramName.length());
+    public static String removeBraces(String paramName) {
+        if (PARAM_PATTERN.matcher(paramName).matches()) {
+            return paramName.substring(2, paramName.length()-1);
+        }
+        return paramName;
+    }
+
+    public static String addBraces(String paramName) {
+        if (!PARAM_PATTERN.matcher(paramName).matches()) {
+            return "${" + paramName + "}";
         }
         return paramName;
     }

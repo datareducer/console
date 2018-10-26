@@ -75,7 +75,7 @@ public final class Script {
     private final StringProperty resourceName = new SimpleStringProperty("");
     // Описание скрипта
     private final StringProperty description = new SimpleStringProperty("");
-    // Текст скрипта (с HTML-разметкой)
+    // Текст скрипта
     private final StringProperty scriptBody = new SimpleStringProperty("");
     // Наборы данных скрипта
     private final ObservableList<DataServiceResource> dataServiceResources = FXCollections.observableArrayList();
@@ -121,7 +121,7 @@ public final class Script {
     public ScriptResult execute(ExecutorService executor) throws UndefinedParameterException {
         refillParameterList();
         for (ScriptParameter param : defaultParams) {
-            if (param.getValue() == null) {
+            if (param.getValue() == null || param.getValue().isEmpty()) {
                 UndefinedParameterException ex = new UndefinedParameterException(param.getName());
                 log.error(ex);
                 throw ex;
@@ -150,15 +150,12 @@ public final class Script {
 
         Map<String, ScriptParameter> clientParamsMap = new HashMap<>();
         for (ScriptParameter param : clientParams) {
-            assert !param.getName().startsWith(PARAM_PREFIX);
-            clientParamsMap.put(PARAM_PREFIX + param.getName(), param);
+            clientParamsMap.put(param.getName(), param);
         }
 
         Map<String, ScriptParameter> defaultParamsMap = new HashMap<>();
         for (ScriptParameter param : defaultParams) {
-            assert param.getName().startsWith(PARAM_PREFIX);
-            defaultParamsMap.put(param.getName(),
-                    new ScriptParameter(ScriptParameter.removePrefix(param.getName()), param.getValue(), param.isHttpParameter()));
+            defaultParamsMap.put(param.getName(), new ScriptParameter(param.getName(), param.getValue(), param.isHttpParameter()));
         }
 
         // Проверяем, что клиент не задал "лишних" параметров
@@ -170,22 +167,21 @@ public final class Script {
         }
 
         Map<String, ScriptParameter> paramsLookup = new HashMap<>();
-        paramsLookup.putAll(defaultParamsMap);
-        paramsLookup.putAll(clientParamsMap);
-        paramsLookup.put(PARAM_PREFIX+REQUEST_ID_PARAM, new ScriptParameter(REQUEST_ID_PARAM, requestId, false));
-        paramsLookup.put(PARAM_PREFIX+NAME_PARAM, new ScriptParameter(NAME_PARAM, getName(), false));
-        paramsLookup.put(PARAM_PREFIX+DESCRIPTION_PARAM, new ScriptParameter(DESCRIPTION_PARAM, getDescription(), false));
-        paramsLookup.put(PARAM_PREFIX+RESOURCE_NAME_PARAM, new ScriptParameter(RESOURCE_NAME_PARAM, getResourceName(), false));
+        paramsLookup.putAll(defaultParamsMap); // Последовательность важна
+        paramsLookup.putAll(clientParamsMap); // Последовательность важна
+        paramsLookup.put(REQUEST_ID_PARAM, new ScriptParameter(REQUEST_ID_PARAM, requestId, false));
+        paramsLookup.put(NAME_PARAM, new ScriptParameter(NAME_PARAM, getName(), false));
+        paramsLookup.put(DESCRIPTION_PARAM, new ScriptParameter(DESCRIPTION_PARAM, getDescription(), false));
+        paramsLookup.put(RESOURCE_NAME_PARAM, new ScriptParameter(RESOURCE_NAME_PARAM, getResourceName(), false));
 
         List<ScriptParameter> paramsList = new ArrayList<>();
         for (Map.Entry<String, ScriptParameter> entry : paramsLookup.entrySet()) {
             ScriptParameter param = entry.getValue();
-            if (param.getValue() == null) {
+            if (param.getValue() == null || (param.getValue().isEmpty() && !ScriptParameter.isPredefinedParam(param.getName()))) {
                throw new UndefinedParameterException(param.getName());
             }
             paramsList.add(entry.getValue());
         }
-
 
         // Последовательно создаем базы данных для кэширования ресурсов.
         // (параллельные операции приводят к ошибкам OrientDB).
@@ -240,7 +236,8 @@ public final class Script {
             // Устанавливаем параметры тела скрипта
             String scriptBody = getScriptBody();
             for (Map.Entry<String, ScriptParameter> entry : paramsLookup.entrySet()) {
-                scriptBody = scriptBody.replaceAll(entry.getKey(), entry.getValue().getValue());
+                String param = java.util.regex.Pattern.quote(ScriptParameter.addBraces(entry.getKey()));
+                scriptBody = scriptBody.replaceAll(param, entry.getValue().getValue());
             }
 
             // Определяем, требуется ли выводить графику
@@ -323,13 +320,13 @@ public final class Script {
     public void refillParameterList() {
         Set<String> paramsNames = new HashSet<>();
         for (DataServiceResource resource : dataServiceResources) {
-            paramsNames.addAll(resource.getParameterSet());
+            paramsNames.addAll(resource.getParameterNamesSet());
         }
         Matcher paramMatcher = PARAM_PATTERN.matcher(getScriptBody());
         while (paramMatcher.find()) {
             String name = paramMatcher.group();
             if (!ScriptParameter.isPredefinedParam(name)) {
-                paramsNames.add(name);
+                paramsNames.add(ScriptParameter.removeBraces(name));
             }
         }
         Map<String, ScriptParameter> paramsLookup = getDefaultParamsLookup();
