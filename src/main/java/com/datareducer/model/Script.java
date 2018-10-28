@@ -306,7 +306,7 @@ public final class Script {
                     msg = msg.substring(0, msg.length() - 1); // Удаление перевода строки
                 }
             } catch (REngineException | REXPMismatchException e1) {
-                log.error("[%s] При получении описания ошибки от R:", hashCode(), e);
+                log.error("[%s] При получении описания ошибки от R:", hashCode(), e1);
             }
             log.error("[%s] %s:", hashCode(), msg, e);
             throw new ReducerRuntimeException(e);

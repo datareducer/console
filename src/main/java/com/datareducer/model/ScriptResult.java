@@ -82,6 +82,17 @@ public final class ScriptResult {
                 if (dataRexp instanceof REXPGenericVector) {
                     REXP names = dataRexp.getAttribute("names");
                     if (names != null) {
+                        int max = 0; // Столбцы могут быть разной длины. Определяем наибольшую.
+                        RList rList = dataRexp.asList();
+                        for (int s = 0; s < rList.size(); s++) {
+                            if (rList.at(s) instanceof REXPUnknown) {
+                                return dataFrame;
+                            }
+                            if (!(rList.at(s) instanceof REXPNull)) {
+                                int l = rList.at(s).length();
+                                max = l > max ? l : max;
+                            }
+                        }
                         String[] colNames = names.asStrings();
                         Map<String, Object> blankRow = new LinkedHashMap<>();
                         for (String colName : colNames) {
@@ -89,14 +100,6 @@ public final class ScriptResult {
                                 throw new DuplicateColumnException(colName);
                             }
                             blankRow.put(colName, null);
-                        }
-                        // Столбцы могут быть разной длины. Определяем наибольшую.
-                        int max = 0;
-                        for (int s = 0; s < dataRexp.asList().size(); s++) {
-                            if (!(dataRexp.asList().at(s) instanceof REXPNull)) {
-                                int l = dataRexp.asList().at(s).length();
-                                max = l > max ? l : max;
-                            }
                         }
                         for (int i = 0; i < max; i++) {
                             dataFrame.add(new LinkedHashMap<>(blankRow));
