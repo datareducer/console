@@ -363,7 +363,7 @@ public final class Script {
         UriBuilder builder = UriBuilder.fromPath("/").path("{name}");
         for (ScriptParameter param : defaultParams) {
             if (param.isHttpParameter()) {
-                builder = builder.queryParam(param.getName().substring(1), param.getValue());
+                builder = builder.queryParam(param.getName(), param.getValue());
             }
         }
         URI uri = builder.build(getResourceName());
