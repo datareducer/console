@@ -741,10 +741,10 @@ public class ReducerPresenter implements ModelReplacedListener {
         s.setApplicationParams(reducer.getApplicationParams());
         s.setScriptBody("library('highlight'); tf <- tempfile(); body <- as.symbol('" + text + "'); write(body, file = tf ); " +
                 "highlight( file = tf, renderer = renderer_html(document = TRUE), show_line_numbers = TRUE);");
-        // Передаём пустой список параметров, чтобы они не заменялись в теле скрипта.
+        s.setDefaultParams(script.getDefaultParams());
         ScriptResult sr = null;
         try {
-            sr = s.execute(reducer.getExecutor(), "", new ArrayList<>());
+            sr = s.execute(reducer.getExecutor());
         } catch (UndefinedParameterException e) {
             // Недостижимо
             e.printStackTrace();

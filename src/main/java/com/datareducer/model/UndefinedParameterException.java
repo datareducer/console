@@ -40,7 +40,7 @@ public class UndefinedParameterException extends ReducerException {
      * @param parameter Имя неустановленного параметра
      */
     UndefinedParameterException(String parameter) {
-        super("Не установлено значение парамета '" + parameter + "'");
+        super("Не установлено значение параметра '" + parameter + "'");
     }
 
 }

@@ -446,6 +446,10 @@ public final class Script {
         return defaultParams;
     }
 
+    public void setDefaultParams(List<ScriptParameter> params) {
+        this.defaultParams.setAll(params);
+    }
+
     public IntegerProperty plotWidthProperty() {
         return plotWidth;
     }
