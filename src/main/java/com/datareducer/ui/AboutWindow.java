@@ -112,7 +112,7 @@ class AboutWindow {
             TextArea aboutArea = new TextArea();
             aboutArea.setEditable(false);
 
-            aboutArea.appendText("Версия: 1.1.0");
+            aboutArea.appendText("Версия: 1.1.6");
             aboutArea.appendText("\n\nCopyright © Кирилл Михайлов, 2017-2018");
             aboutArea.appendText("\n<admin@datareducer.ru>");
 
