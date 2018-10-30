@@ -30,7 +30,12 @@
             <#list dataFrame as record>
                 <tr>
                     <#list record?keys as column>
-                    <td>${record[column]}</td> 
+                    <#assign fld = record[column]>
+                    <#if fld?is_boolean>
+                    <td>${fld?string("Да","Нет")}</td>
+                    <#else>
+                    <td>${fld}</td>
+                    </#if>
                     </#list>
                 </tr>
             </#list>
