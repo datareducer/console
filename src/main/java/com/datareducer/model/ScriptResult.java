@@ -64,7 +64,16 @@ public final class ScriptResult {
     ScriptResult(REXP dataRexp, ArrayList<REXP> imageRexp, List<ScriptParameter> parameters) {
         this.dataRexp = dataRexp;
         this.imageRexp = imageRexp;
-        this.parameters = parameters;
+
+        // Список параметров возвращается в http-ответе.
+        // Включаем в него только доступные и предопределенные параметры.
+        List<ScriptParameter> params = new ArrayList<>();
+        for (ScriptParameter p : parameters) {
+            if (p.isHttpParameter() || p.isPredefined()) {
+                params.add(p);
+            }
+        }
+        this.parameters = params;
     }
 
     @XmlElementWrapper(name = "Parameters")

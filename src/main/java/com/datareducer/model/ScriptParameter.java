@@ -123,6 +123,10 @@ public class ScriptParameter {
         httpParameterProperty().set(isHttpParameter);
     }
 
+    public boolean isPredefined() {
+        return isPredefinedParam(getName());
+    }
+
     public static boolean isPredefinedParam(String paramName) {
         String name = removeBraces(paramName);
         return name.equals(NAME_PARAM) || name.equals(DESCRIPTION_PARAM)

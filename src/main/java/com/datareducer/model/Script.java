@@ -177,7 +177,7 @@ public final class Script {
         List<ScriptParameter> paramsList = new ArrayList<>();
         for (Map.Entry<String, ScriptParameter> entry : paramsLookup.entrySet()) {
             ScriptParameter param = entry.getValue();
-            if (param.getValue() == null || (param.getValue().isEmpty() && !ScriptParameter.isPredefinedParam(param.getName()))) {
+            if (param.getValue() == null || (param.getValue().isEmpty() && !param.isPredefined())) {
                throw new UndefinedParameterException(param.getName());
             }
             paramsList.add(entry.getValue());
