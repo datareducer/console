@@ -42,7 +42,7 @@ import java.util.regex.Pattern;
  * @author Kirill Mikhaylov
  */
 @XmlRootElement(name = "ScriptParameter")
-@XmlType(name = "ScriptParameter")
+@XmlType(name = "ScriptParameter", propOrder = {"name", "value", "httpParameter"})
 public class ScriptParameter {
     public final static Pattern PARAM_NAME_PATTERN = Pattern.compile("[a-zA-Z0-9_]+");
 
