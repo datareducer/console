@@ -39,7 +39,7 @@ public class AdaptedDataFrame {
         records = new ArrayList<>();
     }
 
-    @XmlElement(name="Record")
+    @XmlElement(name="Record", namespace="http://datareducer.ru/result")
     public List<AdaptedDataFrameRecord> getRecords() {
         return records;
     }

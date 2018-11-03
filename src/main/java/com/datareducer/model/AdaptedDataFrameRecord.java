@@ -39,7 +39,7 @@ public class AdaptedDataFrameRecord {
         fields = new ArrayList<>();
     }
 
-    @XmlElement(name="Field")
+    @XmlElement(name="Field", namespace="http://datareducer.ru/result")
     public List<AdaptedDataFrameField> getFields() {
         return fields;
     }

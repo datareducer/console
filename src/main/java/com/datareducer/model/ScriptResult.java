@@ -44,7 +44,7 @@ import java.util.*;
  *
  * @author Kirill Mikhaylov
  */
-@XmlRootElement(name = "Result")
+@XmlRootElement(name = "Result", namespace="http://datareducer.ru/result")
 @XmlType(propOrder = {"parameters", "dataFrame", "output"})
 public final class ScriptResult {
     private REXP dataRexp;
@@ -76,13 +76,13 @@ public final class ScriptResult {
         this.parameters = params;
     }
 
-    @XmlElementWrapper(name = "Parameters")
-    @XmlElement(name = "Parameter")
+    @XmlElementWrapper(name = "Parameters", namespace="http://datareducer.ru/result")
+    @XmlElement(name = "Parameter", namespace="http://datareducer.ru/result")
     public List<ScriptParameter> getParameters() {
         return parameters;
     }
 
-    @XmlElement(name = "DataFrame")
+    @XmlElement(name = "DataFrame", namespace="http://datareducer.ru/result")
     @XmlJavaTypeAdapter(DataFrameMarshaller.class)
     public List<Map<String, Object>> getDataFrame() {
         if (dataFrame == null) {
@@ -181,7 +181,7 @@ public final class ScriptResult {
         return dataFrame;
     }
 
-    @XmlElement(name = "Output")
+    @XmlElement(name = "Output", namespace="http://datareducer.ru/result")
     public String getOutput() {
         if (output == null && dataRexp instanceof REXPString) {
             StringBuilder sb = new StringBuilder();
