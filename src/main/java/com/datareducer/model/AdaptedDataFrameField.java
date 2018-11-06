@@ -28,11 +28,14 @@ package com.datareducer.model;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
+@XmlType(propOrder = {"name", "value", "type"})
 public class AdaptedDataFrameField {
     private String name;
     private String value;
+    private String type;
 
     @XmlAttribute(name="name")
     public String getName() {
@@ -50,5 +53,14 @@ public class AdaptedDataFrameField {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    @XmlAttribute(name="type")
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String value) {
+        this.type = value;
     }
 }
