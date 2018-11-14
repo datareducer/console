@@ -745,7 +745,7 @@ public class ReducerPresenter implements ModelReplacedListener {
         ScriptResult sr = null;
         try {
             sr = s.execute(reducer.getExecutor());
-        } catch (UndefinedParameterException e) {
+        } catch (UndefinedParameterException | ScriptException e) {
             // Недостижимо
             e.printStackTrace();
         }
@@ -762,7 +762,7 @@ public class ReducerPresenter implements ModelReplacedListener {
         try {
             ScriptResult sr = s.execute(reducer.getExecutor());
             Platform.runLater(() -> view.getOutputPane().getOutputArea().appendText(sr.getOutput().concat("\n")));
-        } catch (UndefinedParameterException e) {
+        } catch (UndefinedParameterException | ScriptException e) {
             e.printStackTrace();
         }
     }

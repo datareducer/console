@@ -118,7 +118,7 @@ public final class Script {
      * @param executor Сервис-исполнитель
      * @return Результат выполнения скрипта
      */
-    public ScriptResult execute(ExecutorService executor) throws UndefinedParameterException {
+    public ScriptResult execute(ExecutorService executor) throws UndefinedParameterException, ScriptException {
         refillParameterList();
         for (ScriptParameter param : defaultParams) {
             if (param.getValue() == null || param.getValue().isEmpty()) {
@@ -140,7 +140,7 @@ public final class Script {
      * @return Результат выполнения скрипта
      */
     public ScriptResult execute(ExecutorService executor, String requestId, List<ScriptParameter> clientParams)
-            throws UndefinedParameterException {
+            throws UndefinedParameterException, ScriptException {
 
         final long executionStart = System.currentTimeMillis();
 
@@ -298,18 +298,23 @@ public final class Script {
             log.error("[%s] При установке соединения с Rserve (%s:%s):", hashCode(), host, RSERVE_DEFAULT_PORT, e);
             throw new ReducerRuntimeException(e);
         } catch (REngineException | REXPMismatchException e) {
-            String msg = "";
+            String errMsg = "";
             try {
                 // Получаем описание ошибки от R
-                msg = conn.parseAndEval("geterrmessage()").asString();
-                if (!msg.isEmpty()) {
-                    msg = msg.substring(0, msg.length() - 1); // Удаление перевода строки
+                errMsg = conn.parseAndEval("geterrmessage()").asString();
+                if (!errMsg.isEmpty()) {
+                    errMsg = errMsg.substring(0, errMsg.length() - 1); // Удаление перевода строки
                 }
             } catch (REngineException | REXPMismatchException e1) {
-                log.error("[%s] При получении описания ошибки от R:", hashCode(), e1);
+                String msg = String.format("[%s] При получении описания ошибки от R: %s", hashCode(), errMsg);
+                ScriptException se = new ScriptException(msg, e1);
+                log.error(msg, e1);
+                throw se;
             }
-            log.error("[%s] %s:", hashCode(), msg, e);
-            throw new ReducerRuntimeException(e);
+            String msg = String.format("[%s] При выполнении скрипта R: %s", hashCode(), errMsg);
+            ScriptException se = new ScriptException(msg, e);
+            log.error(msg, e);
+            throw se;
         } finally {
             if (conn != null) {
                 conn.close();
