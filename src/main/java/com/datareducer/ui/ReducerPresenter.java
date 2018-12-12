@@ -664,7 +664,11 @@ public class ReducerPresenter implements ModelReplacedListener {
             Client client = ClientBuilder.newClient()
                     .register(ReducerConfiguration.getConfigBodyReader())
                     .register(HttpAuthenticationFeature.basicBuilder().build());
-            WebTarget wt = client.target("http://" + host).path(name).path("configuration");
+
+            if (!host.startsWith("http")) {
+                host = "http://" + host;
+            }
+            WebTarget wt = client.target(host).path(name).path("configuration");
             Invocation.Builder ib = wt.request(MediaType.APPLICATION_XML)
                     .property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_USERNAME, user)
                     .property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_PASSWORD, pswd);
@@ -705,7 +709,11 @@ public class ReducerPresenter implements ModelReplacedListener {
             Client client = ClientBuilder.newClient()
                     .register(ReducerConfiguration.getConfigBodyWriter())
                     .register(HttpAuthenticationFeature.basicBuilder().build());
-            WebTarget wt = client.target("http://" + host).path(name).path("configuration");
+
+            if (!host.startsWith("http")) {
+                host = "http://" + host;
+            }
+            WebTarget wt = client.target(host).path(name).path("configuration");
             Invocation.Builder ib = wt.request(MediaType.APPLICATION_XML)
                     .property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_USERNAME, user)
                     .property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_PASSWORD, pswd);
