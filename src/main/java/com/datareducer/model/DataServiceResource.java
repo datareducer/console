@@ -327,7 +327,7 @@ public class DataServiceResource {
         Instant result = null;
         if (value != null) {
             if (PARAM_PATTERN.matcher(value).matches()) {
-                ScriptParameter par = parametersLookup.get(value);
+                ScriptParameter par = parametersLookup.get(ScriptParameter.removeBraces(value));
                 if (par != null && par.getValue() != null) {
                     value = par.getValue();
                 } else {
@@ -348,7 +348,7 @@ public class DataServiceResource {
                 if (el.getValue() instanceof String) {
                     String val = (String) (el).getValue();
                     if (PARAM_PATTERN.matcher(val).matches()) {
-                        ScriptParameter par = parametersLookup.get(val);
+                        ScriptParameter par = parametersLookup.get(ScriptParameter.removeBraces(val));
                         if (par != null && par.getValue() != null) {
                             val = par.getValue();
                             Object v = el.getField().getFieldType().parseValue(val);

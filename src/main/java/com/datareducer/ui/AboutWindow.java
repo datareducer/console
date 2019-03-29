@@ -106,14 +106,14 @@ class AboutWindow {
             lbl2.setFont(Font.font(13));
 
             Hyperlink link = new Hyperlink();
-            link.setText("http://datareducer.ru");
+            link.setText("https://datareducer.ru");
             link.setOnAction(e -> reducer.getHostServices().showDocument(link.getText()));
 
             TextArea aboutArea = new TextArea();
             aboutArea.setEditable(false);
 
-            aboutArea.appendText("Версия: 1.1.11");
-            aboutArea.appendText("\n\nCopyright © Кирилл Михайлов, 2017-2018");
+            aboutArea.appendText("Версия: 1.1.12");
+            aboutArea.appendText("\n\nCopyright © Кирилл Михайлов, 2017-2019");
             aboutArea.appendText("\n<admin@datareducer.ru>");
 
             aboutArea.appendText("\n\nПрограмма DataReducer Console является свободным \n" +
