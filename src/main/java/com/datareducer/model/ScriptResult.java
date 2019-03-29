@@ -50,7 +50,8 @@ public final class ScriptResult {
     private REXP dataRexp;
     private ArrayList<REXP> imageRexp;
 
-    private List<ScriptParameter> parameters;
+    private List<ScriptParameter> allParameters; // Все параметры скрипта
+    private List<ScriptParameter> parameters; // Параметры скрипта, доступные клиенту
 
     private List<Map<String, Object>> dataFrame;
     private String output;
@@ -65,6 +66,8 @@ public final class ScriptResult {
         this.dataRexp = dataRexp;
         this.imageRexp = imageRexp;
 
+        this.allParameters = parameters;
+
         // Список параметров возвращается в http-ответе.
         // Включаем в него только доступные и предопределенные параметры.
         List<ScriptParameter> params = new ArrayList<>();
@@ -76,6 +79,20 @@ public final class ScriptResult {
         this.parameters = params;
     }
 
+    /**
+     * Получить все параметры скрипта, в том числе те, к которым не установлен веб-доступ
+     *
+     * @return Все параметры скрипта
+     */
+    public List<ScriptParameter> getAllParameters() {
+        return allParameters;
+    }
+
+    /**
+     * Получить предопределенные параметры скрипта и те, к которым установлен веб-доступ
+     *
+     * @return Предопределенные параметры скрипта и те, к которым установлен веб-доступ
+     */
     @XmlElementWrapper(name = "Parameters", namespace="http://datareducer.ru/result")
     @XmlElement(name = "Parameter", namespace="http://datareducer.ru/result")
     public List<ScriptParameter> getParameters() {
