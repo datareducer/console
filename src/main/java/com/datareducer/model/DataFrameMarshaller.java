@@ -39,8 +39,14 @@ public class DataFrameMarshaller extends XmlAdapter<AdaptedDataFrame, List<Map<S
             for (Map.Entry<String, Object> entry : map.entrySet()) {
                 AdaptedDataFrameField field = new AdaptedDataFrameField();
                 field.setName(entry.getKey());
-                field.setValue(entry.getValue().toString());
-                field.setType(entry.getValue().getClass().getSimpleName());
+                Object value = entry.getValue();
+                if (value == null) {
+                    field.setValue("NA");
+                    field.setType("NA");
+                } else {
+                    field.setValue(value.toString());
+                    field.setType(value.getClass().getSimpleName());
+                }
                 record.getFields().add(field);
             }
             result.getRecords().add(record);

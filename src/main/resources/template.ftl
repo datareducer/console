@@ -30,11 +30,15 @@
             <#list dataFrame as record>
                 <tr>
                     <#list record?keys as column>
+                    <#if record[column]??>
                     <#assign fld = record[column]>
                     <#if fld?is_boolean>
                     <td>${fld?string("Да","Нет")}</td>
                     <#else>
                     <td>${fld}</td>
+                    </#if>
+                    <#else>
+                    <td><i>NA</i></td>
                     </#if>
                     </#list>
                 </tr>
@@ -46,6 +50,6 @@
     <!--script src="/rapport/js/jquery-3.3.1.min.js"></script-->
     <!--script src="/rapport/js/popper.min.js"></script-->
     <!--script src="/rapport/js/bootstrap.min.js"></script-->
-    
+
   </body>
 </html>
