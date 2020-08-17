@@ -224,6 +224,7 @@ public final class Script {
             }
 
             try {
+                conn.setStringEncoding("utf8");
                 for (Map.Entry<String, Future<REXP>> future : futures.entrySet()) {
                     // Передаём наборы данных RServe
                     conn.assign(future.getKey(), future.getValue().get());
