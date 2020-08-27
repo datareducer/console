@@ -1,28 +1,20 @@
 /*
- * Этот файл — часть программы DataReducer Console.
+ * Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
  *
- * DataReducer Console — R-консоль для "1С:Предприятия"
- * <http://datareducer.ru>
+ * Этот файл — часть программы DataReducer <http://datareducer.ru>.
  *
- * Copyright (c) 2017,2018 Kirill Mikhaylov
- * <admin@datareducer.ru>
- *
- * Программа DataReducer Console является свободным
- * программным обеспечением. Вы вправе распространять ее
- * и/или модифицировать в соответствии с условиями версии 2
+ * Программа DataReducer является свободным программным обеспечением.
+ * Вы вправе распространять ее и/или модифицировать в соответствии с условиями версии 2
  * либо, по вашему выбору, с условиями более поздней версии
- * Стандартной Общественной Лицензии GNU, опубликованной
- * Free Software Foundation.
+ * Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
  *
- * Программа DataReducer Console распространяется в надежде,
- * что она будет полезной, но БЕЗО ВСЯКИХ ГАРАНТИЙ,
- * в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
+ * Программа DataReducer распространяется в надежде, что она будет полезной,
+ * но БЕЗО ВСЯКИХ ГАРАНТИЙ, в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
  * и ПРИГОДНОСТИ ДЛЯ ИСПОЛЬЗОВАНИЯ В КОНКРЕТНЫХ ЦЕЛЯХ.
  * Подробнее см. в Стандартной Общественной Лицензии GNU.
  *
- * Вы должны были получить копию Стандартной Общественной
- * Лицензии GNU вместе с этой программой. Если это не так, см.
- * <https://www.gnu.org/licenses/>.
+ * Вы должны были получить копию Стандартной Общественной Лицензии GNU
+ * вместе с этой программой. Если это не так, см. <https://www.gnu.org/licenses/>.
  */
 package com.datareducer.ui;
 
@@ -40,12 +32,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WindowsPane extends FlowPane {
+public class WindowsNavigationPane extends FlowPane {
     private final Map<DataServiceResourceWindow, HBox> windowIcons = new HashMap<>();
 
-    public WindowsPane() {
+    public WindowsNavigationPane() {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getClassLoader().getResource("fxml/WindowsPane.fxml"));
+        loader.setLocation(getClass().getClassLoader().getResource("fxml/WindowsNavigationPane.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         try {
@@ -57,9 +49,10 @@ public class WindowsPane extends FlowPane {
 
     void addWindowIcon(DataServiceResourceWindow window) {
         HBox icon = createWindowIcon(window);
+        FlowPane.setMargin(icon, new Insets(3, 0, 3, 5));
+        getChildren().add(icon);
         window.showingProperty().addListener((obs, oldVal, showing) -> {
             if (showing) {
-                FlowPane.setMargin(icon, new Insets(3, 0, 3, 5));
                 getChildren().add(icon);
             } else {
                 getChildren().remove(icon);
