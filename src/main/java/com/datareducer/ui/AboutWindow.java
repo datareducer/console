@@ -1,28 +1,20 @@
 /*
- * Этот файл — часть программы DataReducer Console.
+ * Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
  *
- * DataReducer Console — R-консоль для "1С:Предприятия"
- * <http://datareducer.ru>
+ * Этот файл — часть программы DataReducer <http://datareducer.ru>.
  *
- * Copyright (c) 2017,2018 Kirill Mikhaylov
- * <admin@datareducer.ru>
- *
- * Программа DataReducer Console является свободным
- * программным обеспечением. Вы вправе распространять ее
- * и/или модифицировать в соответствии с условиями версии 2
+ * Программа DataReducer является свободным программным обеспечением.
+ * Вы вправе распространять ее и/или модифицировать в соответствии с условиями версии 2
  * либо, по вашему выбору, с условиями более поздней версии
- * Стандартной Общественной Лицензии GNU, опубликованной
- * Free Software Foundation.
+ * Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
  *
- * Программа DataReducer Console распространяется в надежде,
- * что она будет полезной, но БЕЗО ВСЯКИХ ГАРАНТИЙ,
- * в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
+ * Программа DataReducer распространяется в надежде, что она будет полезной,
+ * но БЕЗО ВСЯКИХ ГАРАНТИЙ, в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
  * и ПРИГОДНОСТИ ДЛЯ ИСПОЛЬЗОВАНИЯ В КОНКРЕТНЫХ ЦЕЛЯХ.
  * Подробнее см. в Стандартной Общественной Лицензии GNU.
  *
- * Вы должны были получить копию Стандартной Общественной
- * Лицензии GNU вместе с этой программой. Если это не так, см.
- * <https://www.gnu.org/licenses/>.
+ * Вы должны были получить копию Стандартной Общественной Лицензии GNU
+ * вместе с этой программой. Если это не так, см. <https://www.gnu.org/licenses/>.
  */
 package com.datareducer.ui;
 
@@ -31,6 +23,8 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -69,7 +63,7 @@ class AboutWindow {
     }
 
     private void initialize() {
-        stage.setScene(new Scene(form, 550, 400));
+        stage.setScene(new Scene(form, 550, 450));
         stage.initOwner(reducer.getPrimaryStage());
         stage.setResizable(false);
         stage.setTitle("О программе");
@@ -110,40 +104,43 @@ class AboutWindow {
             link.setOnAction(e -> reducer.getHostServices().showDocument(link.getText()));
 
             TextArea aboutArea = new TextArea();
+            aboutArea.setWrapText(true);
             aboutArea.setEditable(false);
 
-            aboutArea.appendText("Версия: 1.1.14");
-            aboutArea.appendText("\n\nCopyright © Кирилл Михайлов, 2017-2019");
-            aboutArea.appendText("\n<admin@datareducer.ru>");
+            aboutArea.setText("Версия: 1.1.16" +
+                    "\n\nCopyright © Кирилл Михайлов, 2017-2020" +
+                    "\nadmin@datareducer.ru" +
+                    "\n\nПрограмма DataReducer Console является свободным " +
+                    "программным обеспечением. Вы вправе распространять ее " +
+                    "и/или модифицировать в соответствии с условиями версии 2 " +
+                    "либо, по вашему выбору, с условиями более поздней версии " +
+                    "Стандартной Общественной Лицензии GNU, опубликованной " +
+                    "Free Software Foundation. " +
+                    "\n\n" +
+                    "Программа DataReducer Console распространяется в надежде, " +
+                    "что она будет полезной, но БЕЗО ВСЯКИХ ГАРАНТИЙ, " +
+                    "в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ " +
+                    "и ПРИГОДНОСТИ ДЛЯ ИСПОЛЬЗОВАНИЯ В КОНКРЕТНЫХ ЦЕЛЯХ. " +
+                    "Подробнее см. в Стандартной Общественной Лицензии GNU. " +
+                    "\n\n" +
+                    "Вы должны были получить копию Стандартной Общественной " +
+                    "Лицензии GNU вместе с этой программой. Если это не так, см. " +
+                    "<https://www.gnu.org/licenses/>." +
+                    "\n\nИсходный код программы: https://github.com/datareducer/console" +
+                    "\n\nВ этот продукт включено следующее программное обеспечение:" +
+                    "\nRserve by Simon Urbanek / LGPL v.2.1" +
+                    "\nJersey by Oracle Corporation / CDDL v.1.1" +
+                    "\nOrientDB by OrientDB LTD / Apache License 2.0" +
+                    "\nLog4j by Apache Software Foundation / Apache License 2.0" +
+                    "\nAce by Ajax.org / BSD License 2.0" +
+                    "\n\nИконки: <http://www.fatcow.com/free-icons> / CC BY 3.0"
+            );
 
-            aboutArea.appendText("\n\nПрограмма DataReducer Console является свободным \n" +
-                    "программным обеспечением. Вы вправе распространять ее\n" +
-                    "и/или модифицировать в соответствии с условиями версии 2\n" +
-                    "либо, по вашему выбору, с условиями более поздней версии \n" +
-                    "Стандартной Общественной Лицензии GNU, опубликованной \n" +
-                    "Free Software Foundation. \n" +
-                    "\n" +
-                    "Программа DataReducer Console распространяется в надежде, \n" +
-                    "что она будет полезной, но БЕЗО ВСЯКИХ ГАРАНТИЙ, \n" +
-                    "в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ\n" +
-                    "и ПРИГОДНОСТИ ДЛЯ ИСПОЛЬЗОВАНИЯ В КОНКРЕТНЫХ ЦЕЛЯХ.\n" +
-                    "Подробнее см. в Стандартной Общественной Лицензии GNU.\n" +
-                    "\n" +
-                    "Вы должны были получить копию Стандартной Общественной \n" +
-                    "Лицензии GNU вместе с этой программой. Если это не так, см.\n" +
-                    "<https://www.gnu.org/licenses/>.");
-
-            aboutArea.appendText("\n\nИсходный код программы: https://github.com/datareducer/console");
-
-            aboutArea.appendText("\n\nВ этот продукт включено следующее программное обеспечение:");
-
-            aboutArea.appendText("\n\nRserve by Simon Urbanek / LGPL v.2.1");
-            aboutArea.appendText("\nJersey by Oracle Corporation / CDDL v.1.1");
-            aboutArea.appendText("\nOrientDB by OrientDB LTD / Apache License 2.0");
-            aboutArea.appendText("\nLog4j by Apache Software Foundation / Apache License 2.0");
-            aboutArea.appendText("\nAce by Ajax.org / BSD License 2.0");
-
-            aboutArea.appendText("\n\nИконки: <http://www.fatcow.com/free-icons> / CC BY 3.0");
+            ButtonBar buttonBar = new ButtonBar();
+            Button okButton = new Button("Закрыть");
+            okButton.setDefaultButton(true);
+            okButton.setOnAction(e -> close());
+            buttonBar.getButtons().add(okButton);
 
             setVgrow(aboutArea, Priority.ALWAYS);
 
@@ -153,24 +150,27 @@ class AboutWindow {
             setHgrow(link, Priority.ALWAYS);
             setHgrow(logoImgView, Priority.ALWAYS);
 
-            getChildren().addAll(lbl1, lbl2, link, logoImgView, aboutArea);
+            getChildren().addAll(lbl1, lbl2, link, logoImgView, aboutArea, buttonBar);
 
             GridPane.setConstraints(lbl1, 0, 0);  // (c0, r0)
             GridPane.setConstraints(lbl2, 0, 1);
             GridPane.setConstraints(link, 0, 2);
             GridPane.setConstraints(logoImgView, 1, 0);
             GridPane.setConstraints(aboutArea, 0, 3);
+            GridPane.setConstraints(buttonBar, 0, 4);
 
             GridPane.setRowSpan(logoImgView, 3);
             GridPane.setColumnSpan(aboutArea, 2);
+            GridPane.setColumnSpan(buttonBar, 2);
 
             GridPane.setHalignment(logoImgView, HPos.RIGHT);
 
-            GridPane.setMargin(aboutArea, new Insets(10, 10, 10, 10));
+            GridPane.setMargin(aboutArea, new Insets(10, 10, 6, 10));
             GridPane.setMargin(logoImgView, new Insets(10, 10, 0, 10));
             GridPane.setMargin(lbl1, new Insets(10, 0, 0, 10));
             GridPane.setMargin(lbl2, new Insets(0, 0, 0, 11));
             GridPane.setMargin(link, new Insets(0, 0, 0, 8));
+            GridPane.setMargin(buttonBar, new Insets(0, 10, 7, 0));
 
             setStyle("-fx-background-color:WHITE");
         }
