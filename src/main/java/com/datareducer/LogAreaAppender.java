@@ -1,28 +1,20 @@
 /*
- * Этот файл — часть программы DataReducer Console.
+ * Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
  *
- * DataReducer Console — R-консоль для "1С:Предприятия"
- * <http://datareducer.ru>
+ * Этот файл — часть программы DataReducer <http://datareducer.ru>.
  *
- * Copyright (c) 2017,2018 Kirill Mikhaylov
- * <admin@datareducer.ru>
- *
- * Программа DataReducer Console является свободным
- * программным обеспечением. Вы вправе распространять ее
- * и/или модифицировать в соответствии с условиями версии 2
+ * Программа DataReducer является свободным программным обеспечением.
+ * Вы вправе распространять ее и/или модифицировать в соответствии с условиями версии 2
  * либо, по вашему выбору, с условиями более поздней версии
- * Стандартной Общественной Лицензии GNU, опубликованной
- * Free Software Foundation.
+ * Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
  *
- * Программа DataReducer Console распространяется в надежде,
- * что она будет полезной, но БЕЗО ВСЯКИХ ГАРАНТИЙ,
- * в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
+ * Программа DataReducer распространяется в надежде, что она будет полезной,
+ * но БЕЗО ВСЯКИХ ГАРАНТИЙ, в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
  * и ПРИГОДНОСТИ ДЛЯ ИСПОЛЬЗОВАНИЯ В КОНКРЕТНЫХ ЦЕЛЯХ.
  * Подробнее см. в Стандартной Общественной Лицензии GNU.
  *
- * Вы должны были получить копию Стандартной Общественной
- * Лицензии GNU вместе с этой программой. Если это не так, см.
- * <https://www.gnu.org/licenses/>.
+ * Вы должны были получить копию Стандартной Общественной Лицензии GNU
+ * вместе с этой программой. Если это не так, см. <https://www.gnu.org/licenses/>.
  */
 package com.datareducer;
 
@@ -33,6 +25,7 @@ import org.apache.logging.log4j.core.Layout;
 import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.appender.AbstractAppender;
 import org.apache.logging.log4j.core.appender.AppenderLoggingException;
+import org.apache.logging.log4j.core.config.Property;
 import org.apache.logging.log4j.core.config.plugins.Plugin;
 import org.apache.logging.log4j.core.config.plugins.PluginAttribute;
 import org.apache.logging.log4j.core.config.plugins.PluginElement;
@@ -49,8 +42,27 @@ public class LogAreaAppender extends AbstractAppender {
 
     private final Lock readLock = new ReentrantReadWriteLock().readLock();
 
-    private LogAreaAppender(String name, Filter filter, Layout<? extends Serializable> layout, boolean ignoreExceptions) {
-        super(name, filter, layout, ignoreExceptions);
+    private LogAreaAppender(String name, Filter filter, Layout<? extends Serializable> layout, boolean ignoreExceptions, Property[] properties) {
+        super(name, filter, layout, ignoreExceptions, properties);
+    }
+
+    @PluginFactory
+    public static LogAreaAppender createAppender(@PluginAttribute("name") String name,
+                                                 @PluginAttribute("ignoreExceptions") boolean ignoreExceptions,
+                                                 @PluginElement("Layout") Layout<? extends Serializable> layout,
+                                                 @PluginElement("Filters") Filter filter) {
+        if (name == null) {
+            LOGGER.error("Не указано имя для LogAreaAppender");
+            return null;
+        }
+        if (layout == null) {
+            layout = PatternLayout.createDefaultLayout();
+        }
+        return new LogAreaAppender(name, filter, layout, ignoreExceptions, null);
+    }
+
+    public static void setLogArea(TextArea logArea) {
+        LogAreaAppender.logArea = logArea;
     }
 
     @Override
@@ -73,22 +85,4 @@ public class LogAreaAppender extends AbstractAppender {
         }
     }
 
-    @PluginFactory
-    public static LogAreaAppender createAppender(@PluginAttribute("name") String name,
-                                                 @PluginAttribute("ignoreExceptions") boolean ignoreExceptions,
-                                                 @PluginElement("Layout") Layout<? extends Serializable> layout,
-                                                 @PluginElement("Filters") Filter filter) {
-        if (name == null) {
-            LOGGER.error("Не указано имя для LogAreaAppender");
-            return null;
-        }
-        if (layout == null) {
-            layout = PatternLayout.createDefaultLayout();
-        }
-        return new LogAreaAppender(name, filter, layout, ignoreExceptions);
-    }
-
-    public static void setLogArea(TextArea logArea) {
-        LogAreaAppender.logArea = logArea;
-    }
 }
