@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ReducerConfiguration>
+    <InfoBaseSequenceValue>2</InfoBaseSequenceValue>
+    <ScriptSequenceValue>2</ScriptSequenceValue>
+    <DataServiceResourceSequenceValue>3</DataServiceResourceSequenceValue>
+    <InfoBase id="1" name="ООО &quot;УноФарма&quot;">
+        <Host>localhost:8080</Host>
+        <Base>datareducer_uno</Base>
+        <User>odata.user1</User>
+        <Password>00</Password>
+    </InfoBase>
+    <InfoBase id="2" name="ООО &quot;ПортоФарма&quot;">
+        <Host>localhost:8080</Host>
+        <Base>datareducer_porto</Base>
+        <User>odata.user1</User>
+        <Password>00</Password>
+    </InfoBase>
+    <Script id="1" name="Анализ поступлений" resourceName="analysis1">
+        <DataServiceResource id="1" name="AccountingRegister_Хозрасчетный_Turnover1">
+            <InfoBase>1</InfoBase>
+            <AccountingRegisterTurnovers name="Хозрасчетный">
+                <Dimensions>
+                    <Field name="Account_Key" type="GUID" order="14" composite="false" presentation="false"/>
+                    <Field name="ExtDimension1" type="STRING" order="15" composite="true" presentation="false"/>
+                    <Field name="ExtDimension2" type="STRING" order="16" composite="true" presentation="false"/>
+                    <Field name="ExtDimension3" type="STRING" order="17" composite="true" presentation="false"/>
+                    <Field name="Организация_Key" type="GUID" order="18" composite="false" presentation="false"/>
+                    <Field name="Валюта_Key" type="GUID" order="19" composite="false" presentation="false"/>
+                    <Field name="Подразделение_Key" type="GUID" order="20" composite="false" presentation="false"/>
+                    <Field name="BalancedAccount_Key" type="GUID" order="21" composite="false" presentation="false"/>
+                    <Field name="BalancedExtDimension1" type="STRING" order="22" composite="true" presentation="false"/>
+                    <Field name="BalancedExtDimension2" type="STRING" order="23" composite="true" presentation="false"/>
+                    <Field name="BalancedExtDimension3" type="STRING" order="24" composite="true" presentation="false"/>
+                    <Field name="ВалютаBalanced_Key" type="GUID" order="25" composite="false" presentation="false"/>
+                    <Field name="ПодразделениеBalanced_Key" type="GUID" order="26" composite="false" presentation="false"/>
+                    <Field name="ExtDimension1_Type" type="STRING" order="61" composite="false" presentation="false"/>
+                    <Field name="ExtDimension2_Type" type="STRING" order="62" composite="false" presentation="false"/>
+                    <Field name="ExtDimension3_Type" type="STRING" order="63" composite="false" presentation="false"/>
+                    <Field name="BalancedExtDimension1_Type" type="STRING" order="64" composite="false" presentation="false"/>
+                    <Field name="BalancedExtDimension2_Type" type="STRING" order="65" composite="false" presentation="false"/>
+                    <Field name="BalancedExtDimension3_Type" type="STRING" order="66" composite="false" presentation="false"/>
+                </Dimensions>
+                <Resources>
+                    <Field name="СуммаTurnover" type="DOUBLE" order="27" composite="false" presentation="false"/>
+                    <Field name="СуммаTurnoverDr" type="DOUBLE" order="28" composite="false" presentation="false"/>
+                    <Field name="СуммаTurnoverCr" type="DOUBLE" order="29" composite="false" presentation="false"/>
+                    <Field name="ВалютнаяСуммаTurnover" type="DOUBLE" order="30" composite="false" presentation="false"/>
+                    <Field name="ВалютнаяСуммаTurnoverDr" type="DOUBLE" order="31" composite="false" presentation="false"/>
+                    <Field name="ВалютнаяСуммаTurnoverCr" type="DOUBLE" order="32" composite="false" presentation="false"/>
+                    <Field name="ВалютнаяСуммаBalancedTurnover" type="DOUBLE" order="33" composite="false" presentation="false"/>
+                    <Field name="ВалютнаяСуммаBalancedTurnoverDr" type="DOUBLE" order="34" composite="false" presentation="false"/>
+                    <Field name="ВалютнаяСуммаBalancedTurnoverCr" type="DOUBLE" order="35" composite="false" presentation="false"/>
+                    <Field name="КоличествоTurnover" type="DOUBLE" order="36" composite="false" presentation="false"/>
+                    <Field name="КоличествоTurnoverDr" type="DOUBLE" order="37" composite="false" presentation="false"/>
+                    <Field name="КоличествоTurnoverCr" type="DOUBLE" order="38" composite="false" presentation="false"/>
+                    <Field name="КоличествоBalancedTurnover" type="DOUBLE" order="39" composite="false" presentation="false"/>
+                    <Field name="КоличествоBalancedTurnoverDr" type="DOUBLE" order="40" composite="false" presentation="false"/>
+                    <Field name="КоличествоBalancedTurnoverCr" type="DOUBLE" order="41" composite="false" presentation="false"/>
+                    <Field name="СуммаНУTurnover" type="DOUBLE" order="42" composite="false" presentation="false"/>
+                    <Field name="СуммаНУTurnoverDr" type="DOUBLE" order="43" composite="false" presentation="false"/>
+                    <Field name="СуммаНУTurnoverCr" type="DOUBLE" order="44" composite="false" presentation="false"/>
+                    <Field name="СуммаНУBalancedTurnover" type="DOUBLE" order="45" composite="false" presentation="false"/>
+                    <Field name="СуммаНУBalancedTurnoverDr" type="DOUBLE" order="46" composite="false" presentation="false"/>
+                    <Field name="СуммаНУBalancedTurnoverCr" type="DOUBLE" order="47" composite="false" presentation="false"/>
+                    <Field name="СуммаПРTurnover" type="DOUBLE" order="48" composite="false" presentation="false"/>
+                    <Field name="СуммаПРTurnoverDr" type="DOUBLE" order="49" composite="false" presentation="false"/>
+                    <Field name="СуммаПРTurnoverCr" type="DOUBLE" order="50" composite="false" presentation="false"/>
+                    <Field name="СуммаПРBalancedTurnover" type="DOUBLE" order="51" composite="false" presentation="false"/>
+                    <Field name="СуммаПРBalancedTurnoverDr" type="DOUBLE" order="52" composite="false" presentation="false"/>
+                    <Field name="СуммаПРBalancedTurnoverCr" type="DOUBLE" order="53" composite="false" presentation="false"/>
+                    <Field name="СуммаВРTurnover" type="DOUBLE" order="54" composite="false" presentation="false"/>
+                    <Field name="СуммаВРTurnoverDr" type="DOUBLE" order="55" composite="false" presentation="false"/>
+                    <Field name="СуммаВРTurnoverCr" type="DOUBLE" order="56" composite="false" presentation="false"/>
+                    <Field name="СуммаВРBalancedTurnover" type="DOUBLE" order="57" composite="false" presentation="false"/>
+                    <Field name="СуммаВРBalancedTurnoverDr" type="DOUBLE" order="58" composite="false" presentation="false"/>
+                    <Field name="СуммаВРBalancedTurnoverCr" type="DOUBLE" order="59" composite="false" presentation="false"/>
+                </Resources>
+            </AccountingRegisterTurnovers>
+            <PresentedFields>
+                <Field name="Валюта_Key" type="GUID" order="19" composite="false" presentation="false"/>
+                <Field name="Подразделение_Key" type="GUID" order="20" composite="false" presentation="false"/>
+                <Field name="ВалютаBalanced_Key" type="GUID" order="25" composite="false" presentation="false"/>
+                <Field name="ПодразделениеBalanced_Key" type="GUID" order="26" composite="false" presentation="false"/>
+            </PresentedFields>
+            <RequestedFields>
+                <Field name="Организация_Key" type="GUID" order="18" composite="false" presentation="true"/>
+            </RequestedFields>
+            <Condition>
+                <RelationalExpression>
+                    <Field name="Организация_Key" type="GUID" order="18" composite="false" presentation="false"/>
+                    <Operator>EQUAL</Operator>
+                    <Value>be76843d-b3b1-11dc-a100-0011d85708ff</Value>
+                    <Comment>УноФарма</Comment>
+                </RelationalExpression>
+                <LogicalOperator>AND</LogicalOperator>
+                <Condition>
+                    <RelationalExpression>
+                        <Field name="ExtDimension1" type="STRING" order="15" composite="true" presentation="false"/>
+                        <Operator>EQUAL</Operator>
+                        <Value>cast(guid'd341d2be-b3b1-11dc-a100-0011d85708ff', 'Catalog_СтатьиДвиженияДенежныхСредств')</Value>
+                        <Comment>Приход денежных средств розничная выручка</Comment>
+                    </RelationalExpression>
+                    <LogicalOperator>OR</LogicalOperator>
+                    <RelationalExpression>
+                        <Field name="ExtDimension1" type="STRING" order="15" composite="true" presentation="false"/>
+                        <Operator>EQUAL</Operator>
+                        <Value>cast(guid'd341d2b5-b3b1-11dc-a100-0011d85708ff', 'Catalog_СтатьиДвиженияДенежныхСредств')</Value>
+                        <Comment>Розничная выручка от НТТ</Comment>
+                    </RelationalExpression>
+                    <LogicalOperator>OR</LogicalOperator>
+                    <RelationalExpression>
+                        <Field name="ExtDimension2" type="STRING" order="16" composite="true" presentation="false"/>
+                        <Operator>EQUAL</Operator>
+                        <Value>cast(guid'ab593cec-8adc-11e2-abcc-14dae9b19a48', 'Catalog_СтатьиДвиженияДенежныхСредств')</Value>
+                        <Comment>Поступления денежных вкладов собственников (участников)</Comment>
+                    </RelationalExpression>
+                </Condition>
+            </Condition>
+            <AccountCondition>
+                <RelationalExpression>
+                    <Field name="Account_Key" type="GUID" order="14" composite="false" presentation="false"/>
+                    <Operator>EQUAL</Operator>
+                    <Value>785206a2-9650-44d4-9655-ea3a65d2f7e5</Value>
+                    <Comment>50.01</Comment>
+                </RelationalExpression>
+                <LogicalOperator>OR</LogicalOperator>
+                <RelationalExpression>
+                    <Field name="Account_Key" type="GUID" order="14" composite="false" presentation="false"/>
+                    <Operator>EQUAL</Operator>
+                    <Value>720e525d-1a5e-4857-b82b-610d225f372a</Value>
+                    <Comment>51</Comment>
+                </RelationalExpression>
+            </AccountCondition>
+            <BalanceAccountCondition>
+                <RelationalExpression>
+                    <Field name="BalancedAccount_Key" type="GUID" order="21" composite="false" presentation="false"/>
+                    <Operator>NOT_EQUAL</Operator>
+                    <Value>785206a2-9650-44d4-9655-ea3a65d2f7e5</Value>
+                    <Comment>50.01</Comment>
+                </RelationalExpression>
+                <LogicalOperator>AND</LogicalOperator>
+                <RelationalExpression>
+                    <Field name="BalancedAccount_Key" type="GUID" order="21" composite="false" presentation="false"/>
+                    <Operator>NOT_EQUAL</Operator>
+                    <Value>720e525d-1a5e-4857-b82b-610d225f372a</Value>
+                    <Comment>51</Comment>
+                </RelationalExpression>
+                <LogicalOperator>AND</LogicalOperator>
+                <RelationalExpression>
+                    <Field name="BalancedAccount_Key" type="GUID" order="21" composite="false" presentation="false"/>
+                    <Operator>NOT_EQUAL</Operator>
+                    <Value>2f91458c-e44b-4e1d-805d-33bc049644dc</Value>
+                    <Comment>57.01</Comment>
+                </RelationalExpression>
+            </BalanceAccountCondition>
+            <ExtraDimensions/>
+            <BalancedExtraDimensions/>
+            <OrderByList/>
+            <Top>0</Top>
+            <MainRegisterDimensionsList/>
+            <BaseRegisterDimensionsList/>
+            <ViewPointsList/>
+            <StartPeriod>${periodBegin}</StartPeriod>
+            <EndPeriod>${periodEnd}</EndPeriod>
+            <AllowedOnly>false</AllowedOnly>
+            <CacheMaxAge>3600000</CacheMaxAge>
+        </DataServiceResource>
+        <DataServiceResource id="3" name="AccountingRegister_Хозрасчетный_Turnover2">
+            <InfoBase>2</InfoBase>
+            <AccountingRegisterTurnovers name="Хозрасчетный">
+                <Dimensions>
+                    <Field name="Account_Key" type="GUID" order="14" composite="false" presentation="false"/>
+                    <Field name="ExtDimension1" type="STRING" order="15" composite="true" presentation="false"/>
+                    <Field name="ExtDimension2" type="STRING" order="16" composite="true" presentation="false"/>
+                    <Field name="ExtDimension3" type="STRING" order="17" composite="true" presentation="false"/>
+                    <Field name="Организация_Key" type="GUID" order="18" composite="false" presentation="true"/>
+                    <Field name="Валюта_Key" type="GUID" order="19" composite="false" presentation="false"/>
+                    <Field name="Подразделение_Key" type="GUID" order="20" composite="false" presentation="false"/>
+                    <Field name="BalancedAccount_Key" type="GUID" order="21" composite="false" presentation="false"/>
+                    <Field name="BalancedExtDimension1" type="STRING" order="22" composite="true" presentation="false"/>
+                    <Field name="BalancedExtDimension2" type="STRING" order="23" composite="true" presentation="false"/>
+                    <Field name="BalancedExtDimension3" type="STRING" order="24" composite="true" presentation="false"/>
+                    <Field name="ВалютаBalanced_Key" type="GUID" order="25" composite="false" presentation="false"/>
+                    <Field name="ПодразделениеBalanced_Key" type="GUID" order="26" composite="false" presentation="false"/>
+                    <Field name="ExtDimension1_Type" type="STRING" order="61" composite="false" presentation="false"/>
+                    <Field name="ExtDimension2_Type" type="STRING" order="62" composite="false" presentation="false"/>
+                    <Field name="ExtDimension3_Type" type="STRING" order="63" composite="false" presentation="false"/>
+                    <Field name="BalancedExtDimension1_Type" type="STRING" order="64" composite="false" presentation="false"/>
+                    <Field name="BalancedExtDimension2_Type" type="STRING" order="65" composite="false" presentation="false"/>
+                    <Field name="BalancedExtDimension3_Type" type="STRING" order="66" composite="false" presentation="false"/>
+                </Dimensions>
+                <Resources>
+                    <Field name="СуммаTurnover" type="DOUBLE" order="27" composite="false" presentation="false"/>
+                    <Field name="СуммаTurnoverDr" type="DOUBLE" order="28" composite="false" presentation="false"/>
+                    <Field name="СуммаTurnoverCr" type="DOUBLE" order="29" composite="false" presentation="false"/>
+                    <Field name="ВалютнаяСуммаTurnover" type="DOUBLE" order="30" composite="false" presentation="false"/>
+                    <Field name="ВалютнаяСуммаTurnoverDr" type="DOUBLE" order="31" composite="false" presentation="false"/>
+                    <Field name="ВалютнаяСуммаTurnoverCr" type="DOUBLE" order="32" composite="false" presentation="false"/>
+                    <Field name="ВалютнаяСуммаBalancedTurnover" type="DOUBLE" order="33" composite="false" presentation="false"/>
+                    <Field name="ВалютнаяСуммаBalancedTurnoverDr" type="DOUBLE" order="34" composite="false" presentation="false"/>
+                    <Field name="ВалютнаяСуммаBalancedTurnoverCr" type="DOUBLE" order="35" composite="false" presentation="false"/>
+                    <Field name="КоличествоTurnover" type="DOUBLE" order="36" composite="false" presentation="false"/>
+                    <Field name="КоличествоTurnoverDr" type="DOUBLE" order="37" composite="false" presentation="false"/>
+                    <Field name="КоличествоTurnoverCr" type="DOUBLE" order="38" composite="false" presentation="false"/>
+                    <Field name="КоличествоBalancedTurnover" type="DOUBLE" order="39" composite="false" presentation="false"/>
+                    <Field name="КоличествоBalancedTurnoverDr" type="DOUBLE" order="40" composite="false" presentation="false"/>
+                    <Field name="КоличествоBalancedTurnoverCr" type="DOUBLE" order="41" composite="false" presentation="false"/>
+                    <Field name="СуммаНУTurnover" type="DOUBLE" order="42" composite="false" presentation="false"/>
+                    <Field name="СуммаНУTurnoverDr" type="DOUBLE" order="43" composite="false" presentation="false"/>
+                    <Field name="СуммаНУTurnoverCr" type="DOUBLE" order="44" composite="false" presentation="false"/>
+                    <Field name="СуммаНУBalancedTurnover" type="DOUBLE" order="45" composite="false" presentation="false"/>
+                    <Field name="СуммаНУBalancedTurnoverDr" type="DOUBLE" order="46" composite="false" presentation="false"/>
+                    <Field name="СуммаНУBalancedTurnoverCr" type="DOUBLE" order="47" composite="false" presentation="false"/>
+                    <Field name="СуммаПРTurnover" type="DOUBLE" order="48" composite="false" presentation="false"/>
+                    <Field name="СуммаПРTurnoverDr" type="DOUBLE" order="49" composite="false" presentation="false"/>
+                    <Field name="СуммаПРTurnoverCr" type="DOUBLE" order="50" composite="false" presentation="false"/>
+                    <Field name="СуммаПРBalancedTurnover" type="DOUBLE" order="51" composite="false" presentation="false"/>
+                    <Field name="СуммаПРBalancedTurnoverDr" type="DOUBLE" order="52" composite="false" presentation="false"/>
+                    <Field name="СуммаПРBalancedTurnoverCr" type="DOUBLE" order="53" composite="false" presentation="false"/>
+                    <Field name="СуммаВРTurnover" type="DOUBLE" order="54" composite="false" presentation="false"/>
+                    <Field name="СуммаВРTurnoverDr" type="DOUBLE" order="55" composite="false" presentation="false"/>
+                    <Field name="СуммаВРTurnoverCr" type="DOUBLE" order="56" composite="false" presentation="false"/>
+                    <Field name="СуммаВРBalancedTurnover" type="DOUBLE" order="57" composite="false" presentation="false"/>
+                    <Field name="СуммаВРBalancedTurnoverDr" type="DOUBLE" order="58" composite="false" presentation="false"/>
+                    <Field name="СуммаВРBalancedTurnoverCr" type="DOUBLE" order="59" composite="false" presentation="false"/>
+                </Resources>
+            </AccountingRegisterTurnovers>
+            <PresentedFields>
+                <Field name="Валюта_Key" type="GUID" order="19" composite="false" presentation="false"/>
+                <Field name="Подразделение_Key" type="GUID" order="20" composite="false" presentation="false"/>
+                <Field name="ВалютаBalanced_Key" type="GUID" order="25" composite="false" presentation="false"/>
+                <Field name="ПодразделениеBalanced_Key" type="GUID" order="26" composite="false" presentation="false"/>
+            </PresentedFields>
+            <RequestedFields>
+                <Field name="Организация_Key" type="GUID" order="18" composite="false" presentation="true"/>
+            </RequestedFields>
+            <Condition>
+                <RelationalExpression>
+                    <Field name="Организация_Key" type="GUID" order="18" composite="false" presentation="true"/>
+                    <Operator>EQUAL</Operator>
+                    <Value>de80b7c8-aa22-11dc-a0f4-0011d85708ff</Value>
+                    <Comment>ПортоФарма</Comment>
+                </RelationalExpression>
+                <LogicalOperator>AND</LogicalOperator>
+                <Condition>
+                    <RelationalExpression>
+                        <Field name="ExtDimension2" type="STRING" order="16" composite="true" presentation="false"/>
+                        <Operator>EQUAL</Operator>
+                        <Value>cast(guid'be7684b0-b3b1-11dc-a100-0011d85708ff', 'Catalog_СтатьиДвиженияДенежныхСредств')</Value>
+                        <Comment>Оплата от покупателя</Comment>
+                    </RelationalExpression>
+                    <LogicalOperator>OR</LogicalOperator>
+                    <RelationalExpression>
+                        <Field name="ExtDimension2" type="STRING" order="16" composite="true" presentation="false"/>
+                        <Operator>EQUAL</Operator>
+                        <Value>cast(guid'be7684af-b3b1-11dc-a100-0011d85708ff', 'Catalog_СтатьиДвиженияДенежныхСредств')</Value>
+                        <Comment>Получение кредита</Comment>
+                    </RelationalExpression>
+                </Condition>
+            </Condition>
+            <AccountCondition>
+                <RelationalExpression>
+                    <Field name="Account_Key" type="GUID" order="14" composite="false" presentation="false"/>
+                    <Operator>EQUAL</Operator>
+                    <Value>785206a2-9650-44d4-9655-ea3a65d2f7e5</Value>
+                    <Comment>50.01</Comment>
+                </RelationalExpression>
+                <LogicalOperator>OR</LogicalOperator>
+                <RelationalExpression>
+                    <Field name="Account_Key" type="GUID" order="14" composite="false" presentation="false"/>
+                    <Operator>EQUAL</Operator>
+                    <Value>720e525d-1a5e-4857-b82b-610d225f372a</Value>
+                    <Comment>51</Comment>
+                </RelationalExpression>
+            </AccountCondition>
+            <BalanceAccountCondition>
+                <RelationalExpression>
+                    <Field name="BalancedAccount_Key" type="GUID" order="21" composite="false" presentation="false"/>
+                    <Operator>NOT_EQUAL</Operator>
+                    <Value>785206a2-9650-44d4-9655-ea3a65d2f7e5</Value>
+                    <Comment>50.01</Comment>
+                </RelationalExpression>
+                <LogicalOperator>AND</LogicalOperator>
+                <RelationalExpression>
+                    <Field name="BalancedAccount_Key" type="GUID" order="21" composite="false" presentation="false"/>
+                    <Operator>NOT_EQUAL</Operator>
+                    <Value>720e525d-1a5e-4857-b82b-610d225f372a</Value>
+                    <Comment>51</Comment>
+                </RelationalExpression>
+            </BalanceAccountCondition>
+            <ExtraDimensions/>
+            <BalancedExtraDimensions/>
+            <OrderByList/>
+            <Top>0</Top>
+            <MainRegisterDimensionsList/>
+            <BaseRegisterDimensionsList/>
+            <ViewPointsList/>
+            <StartPeriod>${periodBegin}</StartPeriod>
+            <EndPeriod>${periodEnd}</EndPeriod>
+            <AllowedOnly>false</AllowedOnly>
+            <CacheMaxAge>3600000</CacheMaxAge>
+        </DataServiceResource>
+        <DefaultParameters>
+            <Parameter paramName="periodBegin" paramValue="2013-01-01T00:00:00" isHttpParameter="false"/>
+            <Parameter paramName="periodEnd" paramValue="2013-03-31T23:59:59" isHttpParameter="false"/>
+        </DefaultParameters>
+        <Description>План-фактный анализ поступлений
+денежных средств компании.</Description>
+        <PlotHeight>360</PlotHeight>
+        <PlotWidth>520</PlotWidth>
+        <ScriptBody># Обрабатываем данные информационной базы ООО &quot;УноФарма&quot;.
+
+# Создаём таблицу данных, выбирая нужные нам поля набора данных &quot;AccountingRegister_Хозрасчетный_Turnover1&quot; 
+# (соответствующего виртуальной таблице оборотов регистра бухгалтерии &quot;Хозрасчетный&quot;).
+
+ib1 &lt;- AccountingRegister_Хозрасчетный_Turnover1[c('ExtDimension1____Presentation',
+	 'ExtDimension1_Type', 'ExtDimension2____Presentation', 'ExtDimension2_Type', 'СуммаTurnoverDr')]
+
+# Статья движения д/с может быть записана в разные реквизиты - Субконто1 или Субконто2.
+# Разбиваем данные на два набора, соответствующих первому и второму случаю.
+# Затем, объединяя эти наборы, получаем таблицу данных с отдельным столбцом статей движения д/с.
+
+ib1_1 &lt;- subset(ib1, ib1$ExtDimension1_Type == 'StandardODATA.Catalog_СтатьиДвиженияДенежныхСредств',
+	 select=c(ExtDimension1____Presentation, СуммаTurnoverDr))
+
+ib1_2 &lt;- subset(ib1, ib1$ExtDimension2_Type == 'StandardODATA.Catalog_СтатьиДвиженияДенежныхСредств',
+	 select=c(ExtDimension2____Presentation, СуммаTurnoverDr))
+
+fact1 &lt;- merge(ib1_1, ib1_2, by.x=c('ExtDimension1____Presentation', 'СуммаTurnoverDr'),
+	 by.y=c('ExtDimension2____Presentation', 'СуммаTurnoverDr'), all = TRUE)
+
+# Выполняем те же операции для информационной базы ООО &quot;ПортоФарма&quot;.
+
+ib2 &lt;- AccountingRegister_Хозрасчетный_Turnover2[c('ExtDimension1____Presentation',
+	 'ExtDimension1_Type', 'ExtDimension2____Presentation', 'ExtDimension2_Type', 'СуммаTurnoverDr')]
+
+ib2_1 &lt;- subset(ib2, ib2$ExtDimension1_Type == 'StandardODATA.Catalog_СтатьиДвиженияДенежныхСредств',
+	 select=c(ExtDimension1____Presentation, СуммаTurnoverDr))
+
+ib2_2 &lt;- subset(ib2, ib2$ExtDimension2_Type == 'StandardODATA.Catalog_СтатьиДвиженияДенежныхСредств',
+	 select=c(ExtDimension2____Presentation, СуммаTurnoverDr))
+
+fact2 &lt;- merge(ib2_1, ib2_2, by.x=c('ExtDimension1____Presentation', 'СуммаTurnoverDr'),
+	 by.y=c('ExtDimension2____Presentation', 'СуммаTurnoverDr'), all = TRUE)
+
+# Объединяем данные двух информационных баз и суммируем значения поступлений по статьям.
+
+fact &lt;- merge(fact1, fact2, , all=TRUE)
+
+if (nrow(fact) &gt; 0) fact &lt;- aggregate(fact[, 2], by=list(fact[, 1]), sum)
+
+# Переименовываем столбцы.
+
+names(fact)[1] &lt;- 'СтатьяДДС'
+names(fact)[2] &lt;- 'Факт'
+
+# Считываем фактические данные поступлений д/с из файла Excel.
+# Файл расположен в каталоге, примонтированном к Docker-контейнеру сервиса Rserve в точке /mnt/host.
+
+library(xlsx)
+plan &lt;- read.xlsx('/mnt/host/План_1кв.xlsx', 1)
+
+# Объединяем таблицы плановых и фактических данных.
+
+pf &lt;- merge(plan, fact, by=1, all=TRUE)
+
+# Рассчитываем абсолютные и относительные отклонения фактических значений от плановых
+# и помещаем результаты в новые колонки.
+
+pf$ОтклонениеАбс &lt;-  pf$Факт - pf$План
+pf$ОтклонениеОтн &lt;-  round((pf$Факт - pf$План) / pf$Факт, digits = 2)
+
+# Подготавливаем данные для построения диаграммы.
+
+# Приводим таблицу данных к нужному формату 
+# (функция melt() преобразует данные в такой формат, что переменные &quot;План&quot; и &quot;Факт&quot;
+# располагаются в собственных строках вместе с переменными &quot;СтатьяДДС&quot;, их идентифицирующими.
+
+library(reshape2)
+names(pf)[1] &lt;- 'СтатьяДДС'
+pf.m &lt;- melt(pf[,1:3], id.var='СтатьяДДС')
+
+# Для экономии места на диаграмме разбиваем названия статей по словам.
+
+pf.m$СтатьяДДС &lt;- gsub(&quot;\\s&quot;,&quot;\n&quot;, pf.m$СтатьяДДС)
+
+# Стоим столбчатую диаграмму. Указываем вид диаграммы - с группировкой, 
+# горизонтальное расположение и размер шрифта.
+
+library(ggplot2)
+chart &lt;- ggplot(pf.m, aes(x = СтатьяДДС, y = value, fill = variable)) + geom_bar(stat='identity', position = 'dodge') +
+	coord_flip() + theme(text = element_text(size=13))
+
+# Устанавливаем шрифт, используемый в диаграмме.
+# Шрифт должен быть установлен в системе (в Docker-контейнере сервиса Rserve)
+
+CairoFonts(regular='Free Helvetian:style=Regular')
+
+# Выводим диаграмму на экран.
+
+print(chart)
+dev.off()
+
+# Создаем каталог для хранения файлов в точке монтирования /mnt/webapp-files,
+# соответствующей каталогу файлов веб-приложения.
+
+requestDir &lt;- '/mnt/webapp-files/${resourceName}/${requestId}'
+dir.create(requestDir, recursive=TRUE)
+
+# Записываем диаграмму в файл.
+
+chartFile &lt;- paste(requestDir, 'chart.png', sep='/')
+CairoPNG(chartFile, width =520, height=360)
+print(chart)
+dev.off()
+
+# Записываем таблицу данных в файл Excel.
+
+xlsxFile &lt;- paste(requestDir, 'ПланФакт.xlsx', sep='/')
+write.xlsx(pf, xlsxFile, row.names = FALSE)
+
+# Выводим таблицу данных.
+pf
+</ScriptBody>
+        <SecurityRoles>
+            <Role>UserRole</Role>
+        </SecurityRoles>
+        <Template>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ru&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;&gt;
+
+    &lt;title&gt;${name}&lt;/title&gt;
+
+    &lt;link rel=&quot;shortcut icon&quot; href=&quot;/rapport/img/favicon.ico&quot; /&gt;
+    &lt;link href=&quot;/rapport/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+  
+    &lt;main role=&quot;main&quot; class=&quot;container&quot;&gt;
+        &lt;h3&gt;${name}&lt;/h3&gt;
+
+        &lt;p&gt;&lt;i&gt;${description}&lt;/i&gt;&lt;/p&gt;
+        
+        &lt;p&gt;&lt;i&gt;Период: с ${periodBegin?keep_before('T')} по ${periodEnd?keep_before('T')}&lt;/i&gt;&lt;/p&gt;
+
+        &lt;#if dataFrame?size != 0&gt;
+        
+        &lt;p&gt;&lt;a href=&quot;/rapport/files/${resourceName}/${requestId}/ПланФакт.xlsx&quot;&gt;Сохранить в Excel&lt;/a&gt;&lt;/p&gt;
+        
+        &lt;table class=&quot;table table-sm mt-2&quot;&gt;
+            &lt;thead&gt;
+                &lt;tr&gt;
+                    &lt;#list dataFrame[0]?keys as column&gt;
+                    &lt;th&gt;${column}&lt;/th&gt;
+                    &lt;/#list&gt;
+                &lt;/tr&gt;
+            &lt;thead&gt;
+            &lt;#list dataFrame as record&gt;
+                &lt;tr&gt;
+                    &lt;#list record?keys as column&gt;
+                    &lt;td&gt;${record[column]}&lt;/td&gt; 
+                    &lt;/#list&gt;
+                &lt;/tr&gt;
+            &lt;/#list&gt;
+        &lt;/table&gt;
+        
+        &lt;p&gt;&lt;img src=&quot;/rapport/files/${resourceName}/${requestId}/chart.png&quot; class=&quot;img-responsive&quot;&gt;&lt;/p&gt;
+        &lt;hr&gt;
+        
+        &lt;/#if&gt;
+    &lt;/main&gt;
+
+    &lt;!--script src=&quot;/rapport/js/jquery-3.3.1.min.js&quot;&gt;&lt;/script--&gt;
+    &lt;!--script src=&quot;/rapport/js/popper.min.js&quot;&gt;&lt;/script--&gt;
+    &lt;!--script src=&quot;/rapport/js/bootstrap.min.js&quot;&gt;&lt;/script--&gt;
+    
+  &lt;/body&gt;
+&lt;/html&gt;
+</Template>
+        <UseDefaultTemplate>false</UseDefaultTemplate>
+        <WebAccess>true</WebAccess>
+    </Script>
+</ReducerConfiguration>
