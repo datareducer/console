@@ -79,7 +79,7 @@ public class ReducerPresenter implements ModelReplacedListener {
         optionsWindow = new OptionsWindow(reducer.getPrimaryStage());
 
         addModelReplacedListeners();
-        attachEventHandlers();
+        registerEventHandlers();
     }
 
     // Регистрируем слушателей замены модели.
@@ -91,13 +91,13 @@ public class ReducerPresenter implements ModelReplacedListener {
         reducer.addModelReplacedListeners(infoBaseWindowsManager, dataServiceResourceWindowsManager, scriptWindowsManager);
     }
 
-    private void attachEventHandlers() {
-        attachMainMenuEventHandlers();
-        attachInfoBaseListFormEventHandlers();
-        attachScriptListFormEventHandlers();
-        attachMetadataFormEventHandlers();
-        attachWindowsPaneEventHandlers();
-        attachOptionsFormEventHandlers();
+    private void registerEventHandlers() {
+        registerMainMenuEventHandlers();
+        registerInfoBaseListFormEventHandlers();
+        registerScriptListFormEventHandlers();
+        registerMetadataFormEventHandlers();
+        registerWindowsPaneEventHandlers();
+        registerOptionsFormEventHandlers();
     }
 
     @Override
@@ -120,7 +120,7 @@ public class ReducerPresenter implements ModelReplacedListener {
         });
     }
 
-    private void attachMainMenuEventHandlers() {
+    private void registerMainMenuEventHandlers() {
         MainMenu menu = reducer.getMainMenu();
         /* Меню "Файл" */
         // Новая модель
@@ -160,7 +160,7 @@ public class ReducerPresenter implements ModelReplacedListener {
         menu.getAboutItem().setOnAction(e -> AboutWindow.getInstance(reducer).show());
     }
 
-    private void attachInfoBaseListFormEventHandlers() {
+    private void registerInfoBaseListFormEventHandlers() {
         InfoBaseListForm listForm = view.getNavigationPanel().getInfoBaseListForm();
         MetadataForm metadataForm = view.getNavigationPanel().getMetadataForm();
 
@@ -186,12 +186,12 @@ public class ReducerPresenter implements ModelReplacedListener {
 
         listForm.getBasesList().setRowFactory(p -> {
             TableRow<InfoBase> row = new TableRow<>();
-            attachInfoBaseListRowEventHandlers(row);
+            registerInfoBaseListRowEventHandlers(row);
             return row;
         });
     }
 
-    private void attachInfoBaseListRowEventHandlers(TableRow<InfoBase> row) {
+    private void registerInfoBaseListRowEventHandlers(TableRow<InfoBase> row) {
         row.setOnMouseClicked(e -> {
             // Двойной клик по строке
             if (e.getClickCount() == 2 && !row.isEmpty()) {
@@ -204,7 +204,7 @@ public class ReducerPresenter implements ModelReplacedListener {
         });
     }
 
-    private void attachScriptListFormEventHandlers() {
+    private void registerScriptListFormEventHandlers() {
         ScriptListForm listForm = view.getNavigationPanel().getScriptListForm();
         TabPane tabPane = view.getCentralPane();
         TextArea outputArea = view.getOutputPane().getOutputArea();
@@ -222,12 +222,12 @@ public class ReducerPresenter implements ModelReplacedListener {
 
         listForm.getScriptTable().setRowFactory(p -> {
             TableRow<Script> row = new TableRow<>();
-            attachScriptListRowEventHandlers(row, tabPane, outputArea);
+            registerScriptListRowEventHandlers(row, tabPane, outputArea);
             return row;
         });
     }
 
-    private void attachScriptListRowEventHandlers(TableRow<Script> row, TabPane tabPane, TextArea outputArea) {
+    private void registerScriptListRowEventHandlers(TableRow<Script> row, TabPane tabPane, TextArea outputArea) {
         row.setOnMouseClicked(e -> {
             // Двойной клик по строке
             if (e.getClickCount() == 2 && !row.isEmpty()) {
@@ -240,7 +240,7 @@ public class ReducerPresenter implements ModelReplacedListener {
         });
     }
 
-    private void attachMetadataFormEventHandlers() {
+    private void registerMetadataFormEventHandlers() {
         MetadataForm metadataForm = view.getNavigationPanel().getMetadataForm();
         TreeTableView<DataServiceEntity> metadataTreeTable = metadataForm.getMetadataTreeTable();
 
@@ -286,12 +286,12 @@ public class ReducerPresenter implements ModelReplacedListener {
 
         metadataTreeTable.setRowFactory(p -> {
             TreeTableRow<DataServiceEntity> row = new TreeTableRow<>();
-            attachMetadataTreeRowEventHandlers(row);
+            registerMetadataTreeRowEventHandlers(row);
             return row;
         });
     }
 
-    private void attachMetadataTreeRowEventHandlers(TreeTableRow<DataServiceEntity> row) {
+    private void registerMetadataTreeRowEventHandlers(TreeTableRow<DataServiceEntity> row) {
         row.setOnMouseClicked(e -> {
             DataServiceEntity entity = row.getItem();
             // Вызов контекстного меню правой клавишей мыши
@@ -312,7 +312,7 @@ public class ReducerPresenter implements ModelReplacedListener {
      *
      * @param tab Вкладка скрипта
      */
-    private void attachScriptTabEventHandlers(ScriptTab tab) {
+    private void registerScriptTabEventHandlers(ScriptTab tab) {
         Script script = tab.getEntity();
 
         Clipboard clipboard = Clipboard.getSystemClipboard();
@@ -335,7 +335,7 @@ public class ReducerPresenter implements ModelReplacedListener {
         });
         tab.getDataSetsTable().setRowFactory(p -> {
             TableRow<DataServiceResource> row = new TableRow<>();
-            attachDataSetsTableRowEventHandlers(row, tab.getDataSetsTableContextMenu(), script);
+            registerDataSetsTableRowEventHandlers(row, tab.getDataSetsTableContextMenu(), script);
             return row;
         });
 
@@ -346,7 +346,7 @@ public class ReducerPresenter implements ModelReplacedListener {
         });
         tab.getParametersTable().setRowFactory(p -> {
             TableRow<ScriptParameter> row = new TableRow<>();
-            attachScriptParametersTableRowEventHandlers(row, tab.getParametersContextMenu());
+            registerScriptParametersTableRowEventHandlers(row, tab.getParametersContextMenu());
             return row;
         });
 
@@ -394,7 +394,7 @@ public class ReducerPresenter implements ModelReplacedListener {
      *
      * @param window Окно набора данных
      */
-    private void attachDataServiceResourceWindowEventHandlers(DataServiceResourceWindow window, Script script) {
+    private void registerDataServiceResourceWindowEventHandlers(DataServiceResourceWindow window, Script script) {
         DataServiceResource resource = window.getEntity();
 
         if (window.isDataSetWindow()) {
@@ -448,7 +448,7 @@ public class ReducerPresenter implements ModelReplacedListener {
         }
     }
 
-    private void attachDataSetsTableRowEventHandlers(TableRow<DataServiceResource> row, ContextMenu ctxMenu, Script script) {
+    private void registerDataSetsTableRowEventHandlers(TableRow<DataServiceResource> row, ContextMenu ctxMenu, Script script) {
         row.setOnMouseClicked(e -> {
             // Двойной клик по строке
             if (e.getClickCount() == 2 && !row.isEmpty()) {
@@ -461,7 +461,7 @@ public class ReducerPresenter implements ModelReplacedListener {
         });
     }
 
-    private void attachScriptParametersTableRowEventHandlers(TableRow<ScriptParameter> row, ContextMenu ctxMenu) {
+    private void registerScriptParametersTableRowEventHandlers(TableRow<ScriptParameter> row, ContextMenu ctxMenu) {
         row.setOnMouseClicked(e -> {
             // Вызов контекстного меню правой клавишей мыши
             if (e.getButton() == MouseButton.SECONDARY && !row.isEmpty()) {
@@ -470,7 +470,7 @@ public class ReducerPresenter implements ModelReplacedListener {
         });
     }
 
-    private void attachWindowsPaneEventHandlers() {
+    private void registerWindowsPaneEventHandlers() {
         WindowsNavigationPane navPane = reducer.getWindowsNavigationPane();
         dataServiceResourceWindowsManager.windowsProperty()
                 .addListener((MapChangeListener<DataServiceResource, DataServiceResourceWindow>) change -> {
@@ -485,7 +485,7 @@ public class ReducerPresenter implements ModelReplacedListener {
                 });
     }
 
-    private void attachOptionsFormEventHandlers() {
+    private void registerOptionsFormEventHandlers() {
         optionsWindow.getSaveButton().setOnAction(e -> {
             Map<String, String> paramsMap = optionsWindow.getApplicationParams();
             Properties props = new Properties();
@@ -531,7 +531,7 @@ public class ReducerPresenter implements ModelReplacedListener {
         ScriptTab tab = scriptWindowsManager.getWindow(script);
         if (tab == null) {
             tab = new ScriptTab(script, tabPane, outputArea, reducer.getExecutor());
-            attachScriptTabEventHandlers(tab);
+            registerScriptTabEventHandlers(tab);
         }
         scriptWindowsManager.showWindow(tab);
     }
@@ -556,7 +556,7 @@ public class ReducerPresenter implements ModelReplacedListener {
         if (window == null) {
             DataServiceResourceWindow newWindow = new DataServiceResourceWindow(dataServiceResource, reducer.getPrimaryStage());
             if (newWindow.isDataSetWindow()) {
-                attachDataServiceResourceWindowEventHandlers(newWindow, script);
+                registerDataServiceResourceWindowEventHandlers(newWindow, script);
                 newWindow.setParametersLookup(script.getDefaultParamsLookup());
             }
             dataServiceResourceWindowsManager.showWindow(newWindow);
