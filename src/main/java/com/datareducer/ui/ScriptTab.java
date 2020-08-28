@@ -43,6 +43,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.*;
 import javafx.scene.layout.Region;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -70,6 +71,8 @@ public class ScriptTab extends Tab implements Window<Script> {
     private final Tab webAccessTab;
     private final ScriptGeneralForm generalForm;
     private final ScriptWebAccessForm webAccessForm;
+
+    private final static KeyCodeCombination keyCtrlC = new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_DOWN);
 
     ScriptTab(Script script, TabPane reducerTabPane, TextArea outputArea, ExecutorService executor) {
         if (script ==  null) {
@@ -215,6 +218,13 @@ public class ScriptTab extends Tab implements Window<Script> {
         generalForm.scriptEditor.setOnKeyReleased(e -> {
             script.setScriptBody((String) we.executeScript("editor.getValue();"));
         });
+
+        // Обход ошибки, не позволяющей в редакторе скопировать текст с помощью Ctrl + C
+        generalForm.scriptEditor.addEventHandler(KeyEvent.ANY, e -> {
+            if (keyCtrlC.match(e)) {
+                putCopyTextToClipboard(we);
+            }
+        });
     }
 
     private void attachTemplateEditorEventHandlers() {
@@ -259,6 +269,21 @@ public class ScriptTab extends Tab implements Window<Script> {
                 script.setTemplate((String) we.executeScript("editor.getValue();"));
             }
         });
+
+        // Обход ошибки, не позволяющей в редакторе скопировать текст с помощью Ctrl + C
+        webAccessForm.templateEditor.addEventHandler(KeyEvent.ANY, e -> {
+            if (keyCtrlC.match(e)) {
+                putCopyTextToClipboard(we);
+            }
+        });
+    }
+
+    private static void putCopyTextToClipboard(WebEngine we) {
+        Clipboard clipboard = Clipboard.getSystemClipboard();
+        String selected = (String) we.executeScript("editor.getCopyText();");
+        ClipboardContent content = new ClipboardContent();
+        content.putString(selected);
+        clipboard.setContent(content);
     }
 
     @Override
