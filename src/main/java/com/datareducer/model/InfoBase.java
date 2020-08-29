@@ -1,37 +1,30 @@
 /*
- * Этот файл — часть программы DataReducer Console.
+ * Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
  *
- * DataReducer Console — R-консоль для "1С:Предприятия"
- * <http://datareducer.ru>
+ * Этот файл — часть программы DataReducer <http://datareducer.ru>.
  *
- * Copyright (c) 2017,2018 Kirill Mikhaylov
- * <admin@datareducer.ru>
- *
- * Программа DataReducer Console является свободным
- * программным обеспечением. Вы вправе распространять ее
- * и/или модифицировать в соответствии с условиями версии 2
+ * Программа DataReducer является свободным программным обеспечением.
+ * Вы вправе распространять ее и/или модифицировать в соответствии с условиями версии 2
  * либо, по вашему выбору, с условиями более поздней версии
- * Стандартной Общественной Лицензии GNU, опубликованной
- * Free Software Foundation.
+ * Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
  *
- * Программа DataReducer Console распространяется в надежде,
- * что она будет полезной, но БЕЗО ВСЯКИХ ГАРАНТИЙ,
- * в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
+ * Программа DataReducer распространяется в надежде, что она будет полезной,
+ * но БЕЗО ВСЯКИХ ГАРАНТИЙ, в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
  * и ПРИГОДНОСТИ ДЛЯ ИСПОЛЬЗОВАНИЯ В КОНКРЕТНЫХ ЦЕЛЯХ.
  * Подробнее см. в Стандартной Общественной Лицензии GNU.
  *
- * Вы должны были получить копию Стандартной Общественной
- * Лицензии GNU вместе с этой программой. Если это не так, см.
- * <https://www.gnu.org/licenses/>.
+ * Вы должны были получить копию Стандартной Общественной Лицензии GNU
+ * вместе с этой программой. Если это не так, см. <https://www.gnu.org/licenses/>.
  */
 package com.datareducer.model;
 
-import com.datareducer.dataservice.cache.Cache;
-import com.datareducer.dataservice.cache.OrientDBCache;
 import com.datareducer.dataservice.client.ClientException;
 import com.datareducer.dataservice.client.ConnectionParams;
 import com.datareducer.dataservice.client.DataServiceClient;
-import com.datareducer.dataservice.entity.*;
+import com.datareducer.dataservice.entity.DataServiceEntity;
+import com.datareducer.dataservice.entity.DataServiceRequest;
+import com.datareducer.dataservice.entity.Field;
+import com.datareducer.dataservice.entity.MetadataTree;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -63,7 +56,6 @@ public final class InfoBase implements DataServiceEntity {
     private MetadataTree metadataTree;
 
     private DataServiceClient dataServiceClient;
-    private Cache cacheDatabase;
 
     public InfoBase() {
         addListeners();
@@ -126,174 +118,22 @@ public final class InfoBase implements DataServiceEntity {
      * Выполняет GET-запрос к REST-сервису 1С и возвращает полученные данные.
      *
      * @param request     Параметры запроса
-     * @param cacheMaxAge Время с момента добавления в кэш, по прошествии которого данные в кэше
-     *                    считать просроченными (мс). При значении, равном нулю, кэш не используется.
-     * @return Результат выполнения запроса
-     * @throws ClientException
-     */
-    public List<Map<Field, Object>> get(DataServiceRequest request, long cacheMaxAge) throws ClientException {
-        if (request == null) {
-            throw new IllegalArgumentException("Значение параметра 'request': null");
-        }
-        if (cacheMaxAge < 0) {
-            throw new IllegalArgumentException("Значение параметра 'cacheMaxAge' отрицательное: " + cacheMaxAge);
-        }
-        return getDataServiceClient().get(request, cacheMaxAge);
-    }
-
-    /**
-     * Выполняет GET-запрос к REST-сервису 1С и возвращает полученные данные.
-     *
-     * @param request Параметры запроса
      * @return Результат выполнения запроса
      * @throws ClientException
      */
     public List<Map<Field, Object>> get(DataServiceRequest request) throws ClientException {
-        return get(request, request.getDefaultCacheMaxAge());
-    }
-
-    /**
-     * Получает записи виртуальной таблицы регистра накопления.
-     *
-     * @param virtualTable Параметры запроса
-     * @param cacheMaxAge  Время с момента добавления в кэш, по прошествии которого данные в кэше
-     *                     считать просроченными (мс). При значении, равном нулю, кэш не используется.
-     * @return Результат выполнения запроса
-     * @throws ClientException
-     */
-    public List<Map<Field, Object>> getAccumulationRegisterVirtualTable(AccumulationRegisterVirtualTable virtualTable,
-                                                                        long cacheMaxAge) throws ClientException {
-        if (virtualTable == null) {
-            throw new IllegalArgumentException("Значение параметра 'virtualTable': null");
+        if (request == null) {
+            throw new IllegalArgumentException("Значение параметра 'request': null");
         }
-        if (cacheMaxAge < 0) {
-            throw new IllegalArgumentException("Значение параметра 'cacheMaxAge' отрицательное: " + cacheMaxAge);
-        }
-        return getDataServiceClient().getAccumulationRegisterVirtualTable(virtualTable, cacheMaxAge);
-    }
-
-    /**
-     * Получает записи виртуальной таблицы регистра накопления.
-     *
-     * @param virtualTable Параметры запроса
-     * @return Результат выполнения запроса
-     * @throws ClientException
-     */
-    public List<Map<Field, Object>> getAccumulationRegisterVirtualTable(AccumulationRegisterVirtualTable virtualTable) throws ClientException {
-        return getAccumulationRegisterVirtualTable(virtualTable, virtualTable.getDefaultCacheMaxAge());
-    }
-
-    /**
-     * Получает записи виртуальной таблицы регистра бухгалтерии.
-     *
-     * @param virtualTable Параметры запроса
-     * @param cacheMaxAge  Время с момента добавления в кэш, по прошествии которого данные в кэше
-     *                     считать просроченными (мс). При значении, равном нулю, кэш не используется.
-     * @return Результат выполнения запроса
-     * @throws ClientException
-     */
-    public List<Map<Field, Object>> getAccountingRegisterVirtualTable(AccountingRegisterVirtualTable virtualTable,
-                                                                      long cacheMaxAge) throws ClientException {
-        if (virtualTable == null) {
-            throw new IllegalArgumentException("Значение параметра 'virtualTable': null");
-        }
-        if (cacheMaxAge < 0) {
-            throw new IllegalArgumentException("Значение параметра 'cacheMaxAge' отрицательное: " + cacheMaxAge);
-        }
-        return getDataServiceClient().getAccountingRegisterVirtualTable(virtualTable, cacheMaxAge);
-    }
-
-    /**
-     * Получает записи виртуальной таблицы регистра бухгалтерии.
-     *
-     * @param virtualTable Параметры запроса
-     * @return Результат выполнения запроса
-     * @throws ClientException
-     */
-    public List<Map<Field, Object>> getAccountingRegisterVirtualTable(AccountingRegisterVirtualTable virtualTable) throws ClientException {
-        return getAccountingRegisterVirtualTable(virtualTable, virtualTable.getDefaultCacheMaxAge());
-    }
-
-    /**
-     * Получает записи виртуальной таблицы регистра сведений.
-     *
-     * @param virtualTable Параметры запроса
-     * @param cacheMaxAge  Время с момента добавления в кэш, по прошествии которого данные в кэше
-     *                     считать просроченными (мс). При значении, равном нулю, кэш не используется.
-     * @return Результат выполнения запроса
-     * @throws ClientException
-     */
-    public List<Map<Field, Object>> getInformationRegisterVirtualTable(InformationRegisterVirtualTable virtualTable,
-                                                                      long cacheMaxAge) throws ClientException {
-        if (virtualTable == null) {
-            throw new IllegalArgumentException("Значение параметра 'virtualTable': null");
-        }
-        if (cacheMaxAge < 0) {
-            throw new IllegalArgumentException("Значение параметра 'cacheMaxAge' отрицательное: " + cacheMaxAge);
-        }
-        return getDataServiceClient().getInformationRegisterVirtualTable(virtualTable, cacheMaxAge);
-    }
-
-    /**
-     * Получает записи виртуальной таблицы регистра сведений.
-     *
-     * @param virtualTable Параметры запроса
-     * @return Результат выполнения запроса
-     * @throws ClientException
-     */
-    public List<Map<Field, Object>> getInformationRegisterVirtualTable(InformationRegisterVirtualTable virtualTable) throws ClientException {
-        return getInformationRegisterVirtualTable(virtualTable, virtualTable.getDefaultCacheMaxAge());
-    }
-
-    /**
-     * Получает записи виртуальной таблицы регистра расчета.
-     *
-     * @param virtualTable Параметры запроса
-     * @param cacheMaxAge  Время с момента добавления в кэш, по прошествии которого данные в кэше
-     *                     считать просроченными (мс). При значении, равном нулю, кэш не используется.
-     * @return Результат выполнения запроса
-     * @throws ClientException
-     */
-    public List<Map<Field, Object>> getCalculationRegisterVirtualTable(CalculationRegisterVirtualTable virtualTable,
-                                                                       long cacheMaxAge) throws ClientException {
-        if (virtualTable == null) {
-            throw new IllegalArgumentException("Значение параметра 'virtualTable': null");
-        }
-        if (cacheMaxAge < 0) {
-            throw new IllegalArgumentException("Значение параметра 'cacheMaxAge' отрицательное: " + cacheMaxAge);
-        }
-        return getDataServiceClient().getCalculationRegisterVirtualTable(virtualTable, cacheMaxAge);
-    }
-
-    /**
-     * Получает записи виртуальной таблицы регистра расчета.
-     *
-     * @param virtualTable Параметры запроса
-     * @return Результат выполнения запроса
-     * @throws ClientException
-     */
-    public List<Map<Field, Object>> getCalculationRegisterVirtualTable(CalculationRegisterVirtualTable virtualTable) throws ClientException {
-        return getCalculationRegisterVirtualTable(virtualTable, virtualTable.getDefaultCacheMaxAge());
+        return getDataServiceClient().get(request);
     }
 
     private synchronized DataServiceClient getDataServiceClient() {
         if (dataServiceClient == null) {
             ConnectionParams connectionParams = new ConnectionParams(getHost(), getBase(), getUser(), getPassword());
-            dataServiceClient = new DataServiceClient(connectionParams, createCacheDatabase());
+            dataServiceClient = new DataServiceClient(connectionParams);
         }
         return dataServiceClient;
-    }
-
-    /**
-     * Создает и возвращает кэш ресурсов информационной базы.
-     *
-     * @return Кэш ресурсов информационной базы.
-     */
-    public synchronized Cache createCacheDatabase() {
-        if (cacheDatabase == null) {
-            cacheDatabase = new OrientDBCache(getBase(), applicationParams);
-        }
-        return cacheDatabase;
     }
 
     public StringProperty idProperty() {
@@ -383,10 +223,6 @@ public final class InfoBase implements DataServiceEntity {
         if (dataServiceClient != null) {
             dataServiceClient.close();
             dataServiceClient = null;
-        }
-        if (cacheDatabase != null) {
-            cacheDatabase.close();
-            cacheDatabase = null;
         }
         metadataTree = null;
     }

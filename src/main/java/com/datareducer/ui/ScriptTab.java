@@ -406,7 +406,7 @@ public class ScriptTab extends Tab implements Window<Script> {
             dataSetNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
             dataSetInfoBaseCol.setCellValueFactory(new PropertyValueFactory<>("infoBase"));
             dataSetResourceCol.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getDataServiceEntity().getResourceName()));
-            dataSetCacheCol.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(param.getValue().getCacheMaxAge() / 60000)));
+            dataSetCacheCol.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(param.getValue().getCacheLifetime() / 60000)));
 
             // Панель параметров
             parametersTable.setItems(script.getDefaultParams());

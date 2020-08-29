@@ -40,10 +40,7 @@ public final class Reducer extends Application {
     public final static String RSERVE_HOST_PARAM_NAME = "rserve-host";
     public final static String RSERVE_USER_PARAM_NAME = "rserve-user";
     public final static String RSERVE_PASSWORD_PARAM_NAME = "rserve-password";
-    public final static String ORIENTDB_ENGINE_PARAM_NAME = "orientdb-engine";
-    public final static String ORIENTDB_USER_PARAM_NAME = "orientdb-user";
-    public final static String ORIENTDB_PASSWORD_PARAM_NAME = "orientdb-password";
-    public final static String ORIENTDB_HOST_PARAM_NAME = "orientdb-host";
+
     public final static String RAPPORT_WEBAPP_PARAM_NAME = "rapport-webappname";
     public final static String RAPPORT_HOST_PARAM_NAME = "rapport-host";
     public final static String RAPPORT_USER_PARAM_NAME = "rapport-user";

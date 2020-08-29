@@ -1,28 +1,20 @@
 /*
- * Этот файл — часть программы DataReducer Console.
+ * Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
  *
- * DataReducer Console — R-консоль для "1С:Предприятия"
- * <http://datareducer.ru>
+ * Этот файл — часть программы DataReducer <http://datareducer.ru>.
  *
- * Copyright (c) 2017,2018 Kirill Mikhaylov
- * <admin@datareducer.ru>
- *
- * Программа DataReducer Console является свободным
- * программным обеспечением. Вы вправе распространять ее
- * и/или модифицировать в соответствии с условиями версии 2
+ * Программа DataReducer является свободным программным обеспечением.
+ * Вы вправе распространять ее и/или модифицировать в соответствии с условиями версии 2
  * либо, по вашему выбору, с условиями более поздней версии
- * Стандартной Общественной Лицензии GNU, опубликованной
- * Free Software Foundation.
+ * Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
  *
- * Программа DataReducer Console распространяется в надежде,
- * что она будет полезной, но БЕЗО ВСЯКИХ ГАРАНТИЙ,
- * в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
+ * Программа DataReducer распространяется в надежде, что она будет полезной,
+ * но БЕЗО ВСЯКИХ ГАРАНТИЙ, в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
  * и ПРИГОДНОСТИ ДЛЯ ИСПОЛЬЗОВАНИЯ В КОНКРЕТНЫХ ЦЕЛЯХ.
  * Подробнее см. в Стандартной Общественной Лицензии GNU.
  *
- * Вы должны были получить копию Стандартной Общественной
- * Лицензии GNU вместе с этой программой. Если это не так, см.
- * <https://www.gnu.org/licenses/>.
+ * Вы должны были получить копию Стандартной Общественной Лицензии GNU
+ * вместе с этой программой. Если это не так, см. <https://www.gnu.org/licenses/>.
  */
 package com.datareducer.dataservice.client;
 
@@ -67,8 +59,6 @@ public final class DataServiceClient {
     private final Client rsClient;
     // URL REST-сервиса 1С
     private final String oDataUrl;
-    // Кэш ресурсов
-    private final Cache cacheDatabase;
 
     private static final Logger log = LogManager.getFormatterLogger(DataServiceClient.class);
 
@@ -80,42 +70,29 @@ public final class DataServiceClient {
      * Создаёт клиент REST-сервиса 1С
      *
      * @param connectionParams Параметры подключения к REST-сервису 1С
-     * @param cacheDatabase    Кэш ресурсов
      */
-    public DataServiceClient(ConnectionParams connectionParams, Cache cacheDatabase) {
+    public DataServiceClient(ConnectionParams connectionParams) {
         if (connectionParams == null) {
             throw new IllegalArgumentException("Значение параметра 'connectionParams': null");
         }
-        if (cacheDatabase == null) {
-            throw new IllegalArgumentException("Значение параметра 'cacheDatabase': null");
-        }
         this.connectionParams = connectionParams;
-        this.cacheDatabase = cacheDatabase;
         this.rsClient = RestClientBuilder.build();
         this.oDataUrl = String.format("http://%s/%s/odata/standard.odata", connectionParams.getHost(), connectionParams.getBase());
-
     }
 
     /**
      * Выполняет HTTP-запрос GET и возвращает полученные данные.
-     * Для обеспечения целостности данных в кэше поля запроса дополняются всеми полями других запросов к этому ресурсу,
-     * которые были выполнены ранее с использованием кэширования. Результат выполнения запроса включает добавленные поля.
      *
      * @param request     Параметры запроса
-     * @param cacheMaxAge Время с момента добавления в кэш, по прошествии которого данные в кэше
-     *                    считать просроченными (мс). При значении, равном нулю, кэш не используется.
      * @return Результат выполнения запроса
      * @throws ClientException
      */
-    public List<Map<Field, Object>> get(DataServiceRequest request, long cacheMaxAge) throws ClientException {
+    public List<Map<Field, Object>> get(DataServiceRequest request) throws ClientException {
         if (request == null) {
             throw new IllegalArgumentException("Значение параметра 'request': null");
         }
         if (request.isVirtual()) {
             throw new IllegalArgumentException("Не используется для виртуальных таблиц");
-        }
-        if (cacheMaxAge < 0) {
-            throw new IllegalArgumentException("Значение параметра 'cacheMaxAge' отрицательное: " + cacheMaxAge);
         }
         if (request.getFields().isEmpty()) {
             throw new IllegalStateException("Пустая коллекция полей запроса");
@@ -125,19 +102,9 @@ public final class DataServiceClient {
         final boolean allFields = request.isAllFields();
         final Condition condition = request.getCondition();
         final boolean allowedOnly = request.isAllowedOnly();
-        final boolean useCache = cacheMaxAge != Cache.NO_CACHE;
 
-        /* Дополняем поля запроса.*/
+        // Дополняем поля запроса
         LinkedHashSet<Field> extendedFields = new LinkedHashSet<>(request.getFields());
-        // Поля кэша
-        if (useCache) {
-            try {
-                extendedFields.addAll(cacheDatabase.getDeclaredProperties(request.getClassName()));
-            } catch (CacheException e) {
-                log.error("При получении метаданных кэша", e);
-                throw new ClientException(e);
-            }
-        }
         // Представления полей
         LinkedHashSet<Field> presentationFields = new LinkedHashSet<>();
         for (Field f : request.getFields()) {
@@ -181,24 +148,9 @@ public final class DataServiceClient {
                         extendedFields, allFields, condition, allowedOnly);
             }
         }
-        log.debug("[%s] Обрабатывается запрос на выборку данных '%s' [fields=%s, condition=%s, allowedOnly=%s, cacheMaxAge=%s]",
+        log.debug("[%s] Обрабатывается запрос на выборку данных '%s' [fields=%s, condition=%s, allowedOnly=%s]",
                 request.hashCode(), resourceName, fieldsSetAsString(request.getFields(), false),
-                condition, allowedOnly, cacheMaxAge);
-
-        // Выборка данных из кэша
-        if (useCache && cacheDatabase.hasCachedResult(request)) {
-            List<Map<Field, Object>> cachedData;
-            try {
-                cachedData = cacheDatabase.fetch(request, cacheMaxAge);
-            } catch (CacheException e) {
-                log.error("При получении данных из кэша", e);
-                throw new ClientException(e);
-            }
-            if (cachedData != null && !cachedData.isEmpty()) {
-                log.info("[%s] Из кэша получено %s записей '%s'", request.hashCode(), cachedData.size(), resourceName);
-                return cachedData;
-            }
-        }
+                condition, allowedOnly);
 
         // Запрос к REST-сервису 1С
         WebTarget wt = rsClient.target(oDataUrl).path(resourceName);
@@ -228,16 +180,6 @@ public final class DataServiceClient {
         }
         log.info("[%s] Запрос вернул %s '%s'", request.hashCode(), result.size(), resourceName);
 
-        // Кэширование
-        if (useCache) {
-            try {
-                cacheDatabase.store(result, request);
-            } catch (CacheException e) {
-                log.error("[%s] При кэшировании данных:", request.hashCode(), e);
-                throw new ClientException(e);
-            }
-        }
-
         return result;
     }
 
@@ -245,21 +187,15 @@ public final class DataServiceClient {
      * Получает записи виртуальной таблицы регистра накопления
      *
      * @param virtualTable Параметры запроса
-     * @param cacheMaxAge  Время с момента добавления в кэш, по прошествии которого данные в кэше
-     *                     считать просроченными (мс). При значении, равном нулю, кэш не используется.
      * @return записи виртуальной таблицы регистра бухгалтерии
      * @throws ClientException
      */
-    public List<Map<Field, Object>> getAccumulationRegisterVirtualTable(AccumulationRegisterVirtualTable virtualTable,
-                                                                        long cacheMaxAge) throws ClientException {
+    public List<Map<Field, Object>> getAccumulationRegisterVirtualTable(AccumulationRegisterVirtualTable virtualTable) throws ClientException {
         if (virtualTable == null) {
             throw new IllegalArgumentException("Значение параметра 'virtualTable': null");
         }
         if (virtualTable.getDimensionsParam().isEmpty()) {
             throw new IllegalStateException("Набор измерений пуст");
-        }
-        if (cacheMaxAge < 0) {
-            throw new IllegalArgumentException("Значение параметра 'cacheMaxAge' отрицательное: " + cacheMaxAge);
         }
 
         final int reqId = virtualTable.hashCode();
@@ -270,7 +206,6 @@ public final class DataServiceClient {
         final boolean allDimensions = virtualTable.isAllFields();
         final Condition condition = virtualTable.getCondition();
         final boolean allowedOnly = virtualTable.isAllowedOnly();
-        final boolean useCache = cacheMaxAge != Cache.NO_CACHE;
 
         if (virtualTable instanceof AccumulationRegisterBalance) {
             log.debug("[%s] Обрабатывается запрос на получения данных виртуальной таблицы остатков регистра накопления '%s' "
@@ -284,21 +219,6 @@ public final class DataServiceClient {
             log.debug("[%s] Обрабатывается запрос на получения данных виртуальной таблицы остатков и оборотов регистра накопления '%s' "
                             + "[dimensions=%s, startPeriod=%s, endPeriod=%s, condition=%s, allowedOnly=%s]", reqId,
                     name, dimensionsParam, virtualTable.getStartPeriod(), virtualTable.getEndPeriod(), condition, allowedOnly);
-        }
-
-        // Выборка данных из кэша
-        if (useCache && cacheDatabase.hasCachedResult(virtualTable)) {
-            List<Map<Field, Object>> cachedData;
-            try {
-                cachedData = cacheDatabase.fetch(virtualTable, cacheMaxAge);
-            } catch (CacheException e) {
-                log.error("При получении данных из кэша", e);
-                throw new ClientException(e);
-            }
-            if (cachedData != null && !cachedData.isEmpty()) {
-                log.info("[%s] Из кэша получено %s записей '%s'", reqId, cachedData.size(), resourceName);
-                return cachedData;
-            }
         }
 
         StringBuilder sb = new StringBuilder();
@@ -366,16 +286,6 @@ public final class DataServiceClient {
         log.info("[%s] Запрос вернул %s записей виртуальной таблицы регистра накопления '%s'",
                 reqId, result.size(), name);
 
-        // Кэширование
-        if (useCache) {
-            try {
-                cacheDatabase.store(result, virtualTable);
-            } catch (CacheException e) {
-                log.error("[%s] При кэшировании данных:", reqId, e);
-                throw new ClientException(e);
-            }
-        }
-
         return result;
     }
 
@@ -383,18 +293,12 @@ public final class DataServiceClient {
      * Получает записи виртуальной таблицы регистра бухгалтерии
      *
      * @param virtualTable Параметры запроса
-     * @param cacheMaxAge  Время с момента добавления в кэш, по прошествии которого данные в кэше
-     *                     считать просроченными (мс). При значении, равном нулю, кэш не используется.
      * @return записи виртуальной таблицы регистра бухгалтерии
      * @throws ClientException
      */
-    public List<Map<Field, Object>> getAccountingRegisterVirtualTable(AccountingRegisterVirtualTable virtualTable,
-                                                                      long cacheMaxAge) throws ClientException {
+    public List<Map<Field, Object>> getAccountingRegisterVirtualTable(AccountingRegisterVirtualTable virtualTable) throws ClientException {
         if (virtualTable == null) {
             throw new IllegalArgumentException("Значение параметра 'virtualTable': null");
-        }
-        if (cacheMaxAge < 0) {
-            throw new IllegalArgumentException("Значение параметра 'cacheMaxAge' отрицательное: " + cacheMaxAge);
         }
 
         final int reqId = virtualTable.hashCode();
@@ -403,7 +307,6 @@ public final class DataServiceClient {
         final LinkedHashSet<Field> presentationFields = virtualTable.getPresentationFields();
         final Condition condition = virtualTable.getCondition();
         final boolean allowedOnly = virtualTable.isAllowedOnly();
-        final boolean useCache = cacheMaxAge != Cache.NO_CACHE;
 
         if (virtualTable instanceof AccountingRegisterTurnovers) {
             log.debug("[%s] Обрабатывается запрос на получения данных виртуальной таблицы оборотов регистра бухгалтерии '%s' "
@@ -438,21 +341,6 @@ public final class DataServiceClient {
                     reqId, name, virtualTable.getDimensionsParam(), virtualTable.getStartPeriod(), virtualTable.getEndPeriod(),
                     condition, virtualTable.getAccountCondition(), virtualTable.getBalancedAccountCondition(),
                     virtualTable.getExtraDimensions(), virtualTable.getBalancedExtraDimensions(), allowedOnly);
-        }
-
-        // Выборка данных из кэша
-        if (useCache && cacheDatabase.hasCachedResult(virtualTable)) {
-            List<Map<Field, Object>> cachedData;
-            try {
-                cachedData = cacheDatabase.fetch(virtualTable, cacheMaxAge);
-            } catch (CacheException e) {
-                log.error("При получении данных из кэша", e);
-                throw new ClientException(e);
-            }
-            if (cachedData != null && !cachedData.isEmpty()) {
-                log.info("[%s] Из кэша получено %s записей '%s'", reqId, cachedData.size(), resourceName);
-                return cachedData;
-            }
         }
 
         List<String> params = new ArrayList<>();
@@ -599,16 +487,6 @@ public final class DataServiceClient {
         log.info("[%s] Запрос вернул %s записей виртуальной таблицы регистра бухгалтерии '%s'",
                 reqId, result.size(), name);
 
-        // Кэширование
-        if (useCache) {
-            try {
-                cacheDatabase.store(result, virtualTable);
-            } catch (CacheException e) {
-                log.error("[%s] При кэшировании данных:", reqId, e);
-                throw new ClientException(e);
-            }
-        }
-
         return result;
     }
 
@@ -616,18 +494,12 @@ public final class DataServiceClient {
      * Получает записи виртуальной таблицы регистра сведений
      *
      * @param virtualTable Параметры запроса
-     * @param cacheMaxAge  Время с момента добавления в кэш, по прошествии которого данные в кэше
-     *                     считать просроченными (мс). При значении, равном нулю, кэш не используется.
      * @return записи виртуальной таблицы регистра сведений
      * @throws ClientException
      */
-    public List<Map<Field, Object>> getInformationRegisterVirtualTable(InformationRegisterVirtualTable virtualTable,
-                                                                       long cacheMaxAge) throws ClientException {
+    public List<Map<Field, Object>> getInformationRegisterVirtualTable(InformationRegisterVirtualTable virtualTable) throws ClientException {
         if (virtualTable == null) {
             throw new IllegalArgumentException("Значение параметра 'virtualTable': null");
-        }
-        if (cacheMaxAge < 0) {
-            throw new IllegalArgumentException("Значение параметра 'cacheMaxAge' отрицательное: " + cacheMaxAge);
         }
 
         final int reqId = virtualTable.hashCode();
@@ -638,7 +510,6 @@ public final class DataServiceClient {
         final Instant period = virtualTable.getPeriod();
         final Condition condition = virtualTable.getCondition();
         final boolean allowedOnly = virtualTable.isAllowedOnly();
-        final boolean useCache = cacheMaxAge != Cache.NO_CACHE;
 
         final Set<Field> fields = new LinkedHashSet<>();
         fields.addAll(virtualTable.getFieldsParam());
@@ -648,21 +519,6 @@ public final class DataServiceClient {
                         + "[fields=%s, period=%s, condition=%s, allowedOnly=%s]",
                 reqId, virtualTable instanceof InformationRegisterSliceLast ? "последних" : "первых",
                 name, fields, period, condition, allowedOnly);
-
-        // Выборка данных из кэша
-        if (useCache && cacheDatabase.hasCachedResult(virtualTable)) {
-            List<Map<Field, Object>> cachedData;
-            try {
-                cachedData = cacheDatabase.fetch(virtualTable, cacheMaxAge);
-            } catch (CacheException e) {
-                log.error("При получении данных из кэша", e);
-                throw new ClientException(e);
-            }
-            if (cachedData != null && !cachedData.isEmpty()) {
-                log.info("[%s] Из кэша получено %s записей '%s'", reqId, cachedData.size(), resourceName);
-                return cachedData;
-            }
-        }
 
         StringBuilder sb = new StringBuilder();
         List<String> params = new ArrayList<>();
@@ -713,16 +569,6 @@ public final class DataServiceClient {
         log.info("[%s] Запрос вернул %s записей виртуальной таблицы регистра сведений '%s'",
                 reqId, result.size(), name);
 
-        // Кэширование
-        if (useCache) {
-            try {
-                cacheDatabase.store(result, virtualTable);
-            } catch (CacheException e) {
-                log.error("[%s] При кэшировании данных:", reqId, e);
-                throw new ClientException(e);
-            }
-        }
-
         return result;
     }
 
@@ -730,18 +576,12 @@ public final class DataServiceClient {
      * Получает записи виртуальной таблицы регистра расчета
      *
      * @param virtualTable Параметры запроса
-     * @param cacheMaxAge  Время с момента добавления в кэш, по прошествии которого данные в кэше
-     *                     считать просроченными (мс). При значении, равном нулю, кэш не используется.
      * @return записи виртуальной таблицы регистра расчета
      * @throws ClientException
      */
-    public List<Map<Field, Object>> getCalculationRegisterVirtualTable(CalculationRegisterVirtualTable virtualTable,
-                                                                       long cacheMaxAge) throws ClientException {
+    public List<Map<Field, Object>> getCalculationRegisterVirtualTable(CalculationRegisterVirtualTable virtualTable) throws ClientException {
         if (virtualTable == null) {
             throw new IllegalArgumentException("Значение параметра 'virtualTable': null");
-        }
-        if (cacheMaxAge < 0) {
-            throw new IllegalArgumentException("Значение параметра 'cacheMaxAge' отрицательное: " + cacheMaxAge);
         }
 
         if (virtualTable instanceof CalculationRegisterBaseRegister) {
@@ -759,7 +599,6 @@ public final class DataServiceClient {
         final LinkedHashSet<Field> presentationFields = virtualTable.getPresentationFields();
         final Condition condition = virtualTable.getCondition();
         final boolean allowedOnly = virtualTable.isAllowedOnly();
-        final boolean useCache = cacheMaxAge != Cache.NO_CACHE;
 
         if (virtualTable instanceof CalculationRegisterScheduleData) {
             log.debug("[%s] Обрабатывается запрос на получения данных виртуальной таблицы данных графика регистра расчета '%s' "
@@ -778,21 +617,6 @@ public final class DataServiceClient {
                             + "[fields=%s, condition=%s, mainRegisterDimensions=%s, baseRegisterDimensions=%s, viewPoints=%s, allowedOnly=%s]",
                     reqId, virtualTable.getBaseRegisterName(), name, virtualTable.getFieldsParam(), condition,
                     virtualTable.getMainRegisterDimensions(), virtualTable.getBaseRegisterDimensions(), virtualTable.getViewPoints(), allowedOnly);
-        }
-
-        // Выборка данных из кэша
-        if (useCache && cacheDatabase.hasCachedResult(virtualTable)) {
-            List<Map<Field, Object>> cachedData;
-            try {
-                cachedData = cacheDatabase.fetch(virtualTable, cacheMaxAge);
-            } catch (CacheException e) {
-                log.error("При получении данных из кэша", e);
-                throw new ClientException(e);
-            }
-            if (cachedData != null && !cachedData.isEmpty()) {
-                log.info("[%s] Из кэша получено %s записей '%s'", reqId, cachedData.size(), resourceName);
-                return cachedData;
-            }
         }
 
         List<String> params = new ArrayList<>();
@@ -876,16 +700,6 @@ public final class DataServiceClient {
 
         log.info("[%s] Запрос вернул %s записей виртуальной таблицы регистра расчета '%s'",
                 reqId, result.size(), name);
-
-        // Кэширование
-        if (useCache) {
-            try {
-                cacheDatabase.store(result, virtualTable);
-            } catch (CacheException e) {
-                log.error("[%s] При кэшировании данных:", reqId, e);
-                throw new ClientException(e);
-            }
-        }
 
         return result;
     }

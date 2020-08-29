@@ -1,31 +1,24 @@
 /*
- * Этот файл — часть программы DataReducer Console.
+ * Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
  *
- * DataReducer Console — R-консоль для "1С:Предприятия"
- * <http://datareducer.ru>
+ * Этот файл — часть программы DataReducer <http://datareducer.ru>.
  *
- * Copyright (c) 2017,2018 Kirill Mikhaylov
- * <admin@datareducer.ru>
- *
- * Программа DataReducer Console является свободным
- * программным обеспечением. Вы вправе распространять ее
- * и/или модифицировать в соответствии с условиями версии 2
+ * Программа DataReducer является свободным программным обеспечением.
+ * Вы вправе распространять ее и/или модифицировать в соответствии с условиями версии 2
  * либо, по вашему выбору, с условиями более поздней версии
- * Стандартной Общественной Лицензии GNU, опубликованной
- * Free Software Foundation.
+ * Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
  *
- * Программа DataReducer Console распространяется в надежде,
- * что она будет полезной, но БЕЗО ВСЯКИХ ГАРАНТИЙ,
- * в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
+ * Программа DataReducer распространяется в надежде, что она будет полезной,
+ * но БЕЗО ВСЯКИХ ГАРАНТИЙ, в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
  * и ПРИГОДНОСТИ ДЛЯ ИСПОЛЬЗОВАНИЯ В КОНКРЕТНЫХ ЦЕЛЯХ.
  * Подробнее см. в Стандартной Общественной Лицензии GNU.
  *
- * Вы должны были получить копию Стандартной Общественной
- * Лицензии GNU вместе с этой программой. Если это не так, см.
- * <https://www.gnu.org/licenses/>.
+ * Вы должны были получить копию Стандартной Общественной Лицензии GNU
+ * вместе с этой программой. Если это не так, см. <https://www.gnu.org/licenses/>.
  */
 package com.datareducer.dataservice.entity;
 
+import java.time.Duration;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -41,11 +34,6 @@ public final class CalculationRegisterRecalculation implements CalculationRegist
      * Префикс ресурса для обращения к REST-сервису 1С
      */
     public static final String RESOURCE_PREFIX = "CalculationRegister_";
-    /**
-     * Имя суперкласса для хранения результатов выполнения запросов
-     * к виртуальным таблицам записей перерасчета регистра расчета
-     */
-    public static final String SUPERCLASS_NAME = "CalculationRegisterRecalculation";
 
     private final String name;
     private final String recalculationName;
@@ -57,6 +45,8 @@ public final class CalculationRegisterRecalculation implements CalculationRegist
     private final boolean allowedOnly;
 
     private final Map<String, Field> fieldsLookup;
+
+    private Duration cacheLifetime;
 
     private int hashCode;
 
@@ -111,6 +101,8 @@ public final class CalculationRegisterRecalculation implements CalculationRegist
 
         this.presentationFields = new LinkedHashSet<>();
         initPresentationFields();
+
+        this.cacheLifetime = getDefaultCacheLifetime();
     }
 
     /**
@@ -173,16 +165,6 @@ public final class CalculationRegisterRecalculation implements CalculationRegist
     }
 
     @Override
-    public String getSuperclassName() {
-        return SUPERCLASS_NAME;
-    }
-
-    @Override
-    public String getClassName() {
-        return SUPERCLASS_NAME + "_" + name + "_" + recalculationName;
-    }
-
-    @Override
     public String getMetadataName() {
         return recalculationName;
     }
@@ -210,6 +192,16 @@ public final class CalculationRegisterRecalculation implements CalculationRegist
     @Override
     public boolean isAllowedOnly() {
         return allowedOnly;
+    }
+
+    @Override
+    public Duration getCacheLifetime() {
+        return cacheLifetime;
+    }
+
+    @Override
+    public void setCacheLifetime(Duration cacheLifetime) {
+        this.cacheLifetime = cacheLifetime;
     }
 
     @Override

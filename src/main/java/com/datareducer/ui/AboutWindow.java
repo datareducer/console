@@ -130,7 +130,6 @@ class AboutWindow {
                     "\n\nВ этот продукт включено следующее программное обеспечение:" +
                     "\nRserve by Simon Urbanek / LGPL v.2.1" +
                     "\nJersey by Oracle Corporation / CDDL v.1.1" +
-                    "\nOrientDB by OrientDB LTD / Apache License 2.0" +
                     "\nLog4j by Apache Software Foundation / Apache License 2.0" +
                     "\nAce by Ajax.org / BSD License 2.0" +
                     "\n\nИконки: <http://www.fatcow.com/free-icons> / CC BY 3.0"

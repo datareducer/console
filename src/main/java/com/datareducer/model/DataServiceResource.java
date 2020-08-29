@@ -1,28 +1,20 @@
 /*
- * Этот файл — часть программы DataReducer Console.
+ * Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
  *
- * DataReducer Console — R-консоль для "1С:Предприятия"
- * <http://datareducer.ru>
+ * Этот файл — часть программы DataReducer <http://datareducer.ru>.
  *
- * Copyright (c) 2017,2018 Kirill Mikhaylov
- * <admin@datareducer.ru>
- *
- * Программа DataReducer Console является свободным
- * программным обеспечением. Вы вправе распространять ее
- * и/или модифицировать в соответствии с условиями версии 2
+ * Программа DataReducer является свободным программным обеспечением.
+ * Вы вправе распространять ее и/или модифицировать в соответствии с условиями версии 2
  * либо, по вашему выбору, с условиями более поздней версии
- * Стандартной Общественной Лицензии GNU, опубликованной
- * Free Software Foundation.
+ * Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
  *
- * Программа DataReducer Console распространяется в надежде,
- * что она будет полезной, но БЕЗО ВСЯКИХ ГАРАНТИЙ,
- * в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
+ * Программа DataReducer распространяется в надежде, что она будет полезной,
+ * но БЕЗО ВСЯКИХ ГАРАНТИЙ, в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
  * и ПРИГОДНОСТИ ДЛЯ ИСПОЛЬЗОВАНИЯ В КОНКРЕТНЫХ ЦЕЛЯХ.
  * Подробнее см. в Стандартной Общественной Лицензии GNU.
  *
- * Вы должны были получить копию Стандартной Общественной
- * Лицензии GNU вместе с этой программой. Если это не так, см.
- * <https://www.gnu.org/licenses/>.
+ * Вы должны были получить копию Стандартной Общественной Лицензии GNU
+ * вместе с этой программой. Если это не так, см. <https://www.gnu.org/licenses/>.
  */
 package com.datareducer.model;
 
@@ -34,6 +26,7 @@ import javafx.collections.ObservableList;
 import org.rosuda.REngine.*;
 
 import javax.xml.bind.annotation.*;
+import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -50,11 +43,11 @@ import static com.datareducer.model.ScriptParameter.PARAM_PATTERN;
 @XmlType(name = "DataServiceResource", propOrder = {"infoBase", "dataServiceEntity", "presentedFields", "requestedFields",
         "condition", "accountCondition", "balanceAccountCondition", "extraDimensions", "balancedExtraDimensions",
         "orderByList", "top", "mainRegisterDimensionsList", "baseRegisterDimensionsList", "viewPointsList", "slicePeriod",
-        "balancePeriod", "turnoversStartPeriod", "turnoversEndPeriod", "allowedOnly", "cacheMaxAge"})
+        "balancePeriod", "turnoversStartPeriod", "turnoversEndPeriod", "allowedOnly", "cacheLifetime"})
 public class DataServiceResource {
     private final IntegerProperty id = new SimpleIntegerProperty();
     private final StringProperty name = new SimpleStringProperty("");
-    private final LongProperty cacheMaxAge = new SimpleLongProperty();
+    private final LongProperty cacheLifetime = new SimpleLongProperty(0L);
     private final BooleanProperty allowedOnly = new SimpleBooleanProperty();
 
     private InfoBase infoBase;
@@ -118,7 +111,7 @@ public class DataServiceResource {
         }
         setId(id);
         setName(name);
-        setCacheMaxAge(dataServiceEntity.getDefaultCacheMaxAge());
+        setCacheLifetime(dataServiceEntity.getDefaultCacheLifetime().toMillis());
         this.infoBase = infoBase;
         this.dataServiceEntity = dataServiceEntity;
 
@@ -184,8 +177,14 @@ public class DataServiceResource {
         return parameterSet;
     }
 
+    /**
+     * TODO
+     * @return
+     * @throws ClientException
+     * @throws UndefinedParameterException
+     */
     public List<Map<Field, Object>> getResourceData() throws ClientException, UndefinedParameterException {
-        DataServiceRequest request = null;
+        DataServiceRequest request;
 
         LinkedHashSet<Field> fields = new LinkedHashSet<>(requestedFields);
         String name = dataServiceEntity.getName();
@@ -307,20 +306,25 @@ public class DataServiceResource {
         } else if (dataServiceEntity instanceof TabularSection) {
             request = new TabularSection(((TabularSection) dataServiceEntity).getParent(), name, fields,
                     allFields, condition, isAllowedOnly());
+        } else {
+            throw new ReducerRuntimeException(); // Недостижимо
         }
 
-        // Запрос данных
-        if (request instanceof AccumulationRegisterVirtualTable) {
-            return infoBase.getAccumulationRegisterVirtualTable((AccumulationRegisterVirtualTable) request, getCacheMaxAge());
-        } else if (request instanceof AccountingRegisterVirtualTable) {
-            return infoBase.getAccountingRegisterVirtualTable((AccountingRegisterVirtualTable) request, getCacheMaxAge());
-        } else if (request instanceof InformationRegisterVirtualTable) {
-            return infoBase.getInformationRegisterVirtualTable((InformationRegisterVirtualTable) request, getCacheMaxAge());
-        } else if (request instanceof CalculationRegisterVirtualTable) {
-            return infoBase.getCalculationRegisterVirtualTable((CalculationRegisterVirtualTable) request, getCacheMaxAge());
-        } else {
-            return infoBase.get(request, getCacheMaxAge());
-        }
+        request.setCacheLifetime(Duration.ofMillis(getCacheLifetime())); //TODO
+
+//        // Запрос данных
+//        if (request instanceof AccumulationRegisterVirtualTable) {
+//            return infoBase.getAccumulationRegisterVirtualTable((AccumulationRegisterVirtualTable) request, getCacheLifetime());
+//        } else if (request instanceof AccountingRegisterVirtualTable) {
+//            return infoBase.getAccountingRegisterVirtualTable((AccountingRegisterVirtualTable) request, getCacheLifetime());
+//        } else if (request instanceof InformationRegisterVirtualTable) {
+//            return infoBase.getInformationRegisterVirtualTable((InformationRegisterVirtualTable) request, getCacheLifetime());
+//        } else if (request instanceof CalculationRegisterVirtualTable) {
+//            return infoBase.getCalculationRegisterVirtualTable((CalculationRegisterVirtualTable) request, getCacheLifetime());
+//        } else {
+//            return infoBase.get(request, getCacheLifetime());
+//        }
+        return infoBase.get(request);
     }
 
     private Instant getInstantParameterValue(String value) throws UndefinedParameterException {
@@ -377,7 +381,7 @@ public class DataServiceResource {
      * @return Таблица данных
      * @throws ClientException
      */
-    REXP getDataFrame() throws ClientException, UndefinedParameterException {
+    REXP getDataFrame() throws ClientException, UndefinedParameterException { ///TODO перенести в класс - обертку результата выполнения запроса
         List<Map<Field, Object>> resourceData = getResourceData();
         // Список имён столбцов
         List<String> colNames = new ArrayList<>();
@@ -623,17 +627,17 @@ public class DataServiceResource {
         nameProperty().set(name);
     }
 
-    public LongProperty cacheMaxAgeProperty() {
-        return cacheMaxAge;
+    public LongProperty cacheLifetimeProperty() {
+        return cacheLifetime;
     }
 
-    @XmlElement(name = "CacheMaxAge")
-    public long getCacheMaxAge() {
-        return cacheMaxAge.get();
+    @XmlElement(name = "CacheLifetime")
+    public long getCacheLifetime() {
+        return cacheLifetime.get();
     }
 
-    public void setCacheMaxAge(long cacheMaxAge) {
-        cacheMaxAgeProperty().set(cacheMaxAge);
+    public void setCacheLifetime(long cacheLifetime) {
+        cacheLifetimeProperty().set(cacheLifetime);
     }
 
     public BooleanProperty allowedOnlyProperty() {

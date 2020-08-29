@@ -80,12 +80,7 @@ public class OptionsWindow {
         rapportHost.setValue(applicationParams.get(Reducer.RAPPORT_HOST_PARAM_NAME));
         rapportUser.setValue(applicationParams.get(Reducer.RAPPORT_USER_PARAM_NAME));
         rapportPassword.setValue(applicationParams.get(Reducer.RAPPORT_PASSWORD_PARAM_NAME));
-
         // Не отображается на форме:
-        orientdbEngine.setValue(applicationParams.get(Reducer.ORIENTDB_ENGINE_PARAM_NAME));
-        orientdbUser.setValue(applicationParams.get(Reducer.ORIENTDB_USER_PARAM_NAME));
-        orientdbPassword.setValue(applicationParams.get(Reducer.ORIENTDB_PASSWORD_PARAM_NAME));
-        orientdbHost.setValue(applicationParams.get(Reducer.ORIENTDB_HOST_PARAM_NAME));
         rapportWebappName.setValue(applicationParams.get(Reducer.RAPPORT_WEBAPP_PARAM_NAME));
 
         stage.toFront();
@@ -148,11 +143,6 @@ public class OptionsWindow {
         params.put(Reducer.RSERVE_HOST_PARAM_NAME, rserveHost.get());
         params.put(Reducer.RSERVE_USER_PARAM_NAME, rserveUser.get());
         params.put(Reducer.RSERVE_PASSWORD_PARAM_NAME, rservePassword.get());
-
-        params.put(Reducer.ORIENTDB_ENGINE_PARAM_NAME, orientdbEngine.get());
-        params.put(Reducer.ORIENTDB_USER_PARAM_NAME, orientdbUser.get());
-        params.put(Reducer.ORIENTDB_PASSWORD_PARAM_NAME, orientdbPassword.get());
-        params.put(Reducer.ORIENTDB_HOST_PARAM_NAME, orientdbHost.get());
 
         params.put(Reducer.RAPPORT_WEBAPP_PARAM_NAME, rapportWebappName.get());
         params.put(Reducer.RAPPORT_HOST_PARAM_NAME, rapportHost.get());

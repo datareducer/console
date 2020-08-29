@@ -1,31 +1,24 @@
 /*
- * Этот файл — часть программы DataReducer Console.
+ * Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
  *
- * DataReducer Console — R-консоль для "1С:Предприятия"
- * <http://datareducer.ru>
+ * Этот файл — часть программы DataReducer <http://datareducer.ru>.
  *
- * Copyright (c) 2017,2018 Kirill Mikhaylov
- * <admin@datareducer.ru>
- *
- * Программа DataReducer Console является свободным
- * программным обеспечением. Вы вправе распространять ее
- * и/или модифицировать в соответствии с условиями версии 2
+ * Программа DataReducer является свободным программным обеспечением.
+ * Вы вправе распространять ее и/или модифицировать в соответствии с условиями версии 2
  * либо, по вашему выбору, с условиями более поздней версии
- * Стандартной Общественной Лицензии GNU, опубликованной
- * Free Software Foundation.
+ * Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
  *
- * Программа DataReducer Console распространяется в надежде,
- * что она будет полезной, но БЕЗО ВСЯКИХ ГАРАНТИЙ,
- * в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
+ * Программа DataReducer распространяется в надежде, что она будет полезной,
+ * но БЕЗО ВСЯКИХ ГАРАНТИЙ, в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
  * и ПРИГОДНОСТИ ДЛЯ ИСПОЛЬЗОВАНИЯ В КОНКРЕТНЫХ ЦЕЛЯХ.
  * Подробнее см. в Стандартной Общественной Лицензии GNU.
  *
- * Вы должны были получить копию Стандартной Общественной
- * Лицензии GNU вместе с этой программой. Если это не так, см.
- * <https://www.gnu.org/licenses/>.
+ * Вы должны были получить копию Стандартной Общественной Лицензии GNU
+ * вместе с этой программой. Если это не так, см. <https://www.gnu.org/licenses/>.
  */
 package com.datareducer.dataservice.entity;
 
+import java.time.Duration;
 import java.util.*;
 
 /**
@@ -39,12 +32,6 @@ public final class CalculationRegister implements DataServiceRequest {
      * Префикс ресурса для обращения к REST-сервису 1С
      */
     public static final String RESOURCE_PREFIX = "CalculationRegister_";
-    /**
-     * Имя суперкласса для классов всех Регистров расчета в кэше
-     */
-    public static final String SUPERCLASS_NAME = "CalculationRegister";
-
-    public static final Set<Field> KEY_FIELDS;
 
     private final String name;
     private final Set<Field> fields;
@@ -53,6 +40,8 @@ public final class CalculationRegister implements DataServiceRequest {
     private final boolean allowedOnly;
 
     private final Map<String, Field> fieldsLookup;
+
+    private Duration cacheLifetime;
 
     private int hashCode;
 
@@ -64,10 +53,6 @@ public final class CalculationRegister implements DataServiceRequest {
     private final Set<CalculationRegisterRecalculation> recalculations;
     // Виртуальные таблицы базовых данных.
     private final Set<CalculationRegisterBaseRegister> baseRegisters;
-
-    static {
-        KEY_FIELDS = Collections.unmodifiableSet(new HashSet<>());
-    }
 
     /**
      * Создаёт описание запроса к ресурсу Регистра расчета.
@@ -100,14 +85,12 @@ public final class CalculationRegister implements DataServiceRequest {
         this.recalculations = new HashSet<>();
         this.baseRegisters = new HashSet<>();
 
-        // Дополняем поля запроса.
-        if (!allFields) {
-            this.fields.addAll(condition.getFilterFields());
-        }
         this.fieldsLookup = new HashMap<>();
         for (Field field : this.fields) {
             fieldsLookup.put(field.getName(), field);
         }
+
+        this.cacheLifetime = getDefaultCacheLifetime();
     }
 
     /**
@@ -141,21 +124,6 @@ public final class CalculationRegister implements DataServiceRequest {
     }
 
     @Override
-    public Set<Field> getKeyFields() {
-        return KEY_FIELDS;
-    }
-
-    @Override
-    public String getSuperclassName() {
-        return SUPERCLASS_NAME;
-    }
-
-    @Override
-    public String getClassName() {
-        return SUPERCLASS_NAME + "_" + name;
-    }
-
-    @Override
     public String getMnemonicName() {
         return String.format("Регистр расчета \"%s\"", name);
     }
@@ -173,6 +141,16 @@ public final class CalculationRegister implements DataServiceRequest {
     @Override
     public boolean isAllowedOnly() {
         return allowedOnly;
+    }
+
+    @Override
+    public Duration getCacheLifetime() {
+        return cacheLifetime;
+    }
+
+    @Override
+    public void setCacheLifetime(Duration cacheLifetime) {
+        this.cacheLifetime = cacheLifetime;
     }
 
     public CalculationRegisterScheduleData getScheduleData() {

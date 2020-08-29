@@ -1,28 +1,20 @@
 /*
- * Этот файл — часть программы DataReducer Console.
+ * Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
  *
- * DataReducer Console — R-консоль для "1С:Предприятия"
- * <http://datareducer.ru>
+ * Этот файл — часть программы DataReducer <http://datareducer.ru>.
  *
- * Copyright (c) 2017,2018 Kirill Mikhaylov
- * <admin@datareducer.ru>
- *
- * Программа DataReducer Console является свободным
- * программным обеспечением. Вы вправе распространять ее
- * и/или модифицировать в соответствии с условиями версии 2
+ * Программа DataReducer является свободным программным обеспечением.
+ * Вы вправе распространять ее и/или модифицировать в соответствии с условиями версии 2
  * либо, по вашему выбору, с условиями более поздней версии
- * Стандартной Общественной Лицензии GNU, опубликованной
- * Free Software Foundation.
+ * Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
  *
- * Программа DataReducer Console распространяется в надежде,
- * что она будет полезной, но БЕЗО ВСЯКИХ ГАРАНТИЙ,
- * в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
+ * Программа DataReducer распространяется в надежде, что она будет полезной,
+ * но БЕЗО ВСЯКИХ ГАРАНТИЙ, в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
  * и ПРИГОДНОСТИ ДЛЯ ИСПОЛЬЗОВАНИЯ В КОНКРЕТНЫХ ЦЕЛЯХ.
  * Подробнее см. в Стандартной Общественной Лицензии GNU.
  *
- * Вы должны были получить копию Стандартной Общественной
- * Лицензии GNU вместе с этой программой. Если это не так, см.
- * <https://www.gnu.org/licenses/>.
+ * Вы должны были получить копию Стандартной Общественной Лицензии GNU
+ * вместе с этой программой. Если это не так, см. <https://www.gnu.org/licenses/>.
  */
 package com.datareducer.dataservice.test;
 
@@ -122,67 +114,67 @@ public class DataServiceClientTest {
         }
     }
 
-    @Test
-    public void accumulationRegisterBalanceTest() throws ClientException {
-        AccumulationRegisterBalance ent = infoBase.getMetadataTree().getAccumulationRegisterByName("ТоварыКОтгрузке").getBalance();
+//    @Test
+//    public void accumulationRegisterBalanceTest() throws ClientException {
+//        AccumulationRegisterBalance ent = infoBase.getMetadataTree().getAccumulationRegisterByName("ТоварыКОтгрузке").getBalance();
+//
+//        LinkedHashSet<Field> dimensionsParam = new LinkedHashSet<>();
+//        dimensionsParam.add(ent.getFieldByName("Номенклатура_Key"));
+//        dimensionsParam.add(ent.getFieldByName("Склад_Key"));
+//
+//        ent.getFieldByName("Номенклатура_Key").setPresentation(true);
+//
+//        Condition cnd = new Condition(new RelationalExpression(ent.getFieldByName("Назначение_Key"), EQUAL, UUID.fromString("00000000-0000-0000-0000-000000000000"), null));
+//
+//        LocalDateTime ldt = LocalDateTime.parse("2016-12-22T00:00:00", DATE_TIME_FORMATTER);
+//        Instant period = ldt.atZone(DATE_TIME_FORMATTER.getZone()).toInstant();
+//
+//        AccumulationRegisterBalance req = new AccumulationRegisterBalance("ТоварыКОтгрузке", ent.getDimensions(), ent.getResources(), dimensionsParam, false, cnd, period, false);
+//
+//        List<Map<Field, Object>> result = infoBase.getAccumulationRegisterVirtualTable(req);
+//        assertTrue(result.size() == 14);
+//        assertTrue(result.get(2).get(ent.getFieldByName("Номенклатура_Key")).equals(UUID.fromString("e8a71fec-55bc-11d9-848a-00112f43529a")));
+//        assertTrue(result.get(2).get(ent.getFieldByName("Номенклатура____Presentation")).equals("Мясорубка MOULINEX  A 15"));
+//    }
 
-        LinkedHashSet<Field> dimensionsParam = new LinkedHashSet<>();
-        dimensionsParam.add(ent.getFieldByName("Номенклатура_Key"));
-        dimensionsParam.add(ent.getFieldByName("Склад_Key"));
+//    @Test
+//    public void accumulationRegisterTurnoversTest() throws ClientException {
+//        AccumulationRegisterTurnovers ent = infoBase.getMetadataTree().getAccumulationRegisterByName("ДенежныеСредстваБезналичные").getTurnovers();
+//
+//        LinkedHashSet<Field> dimensionsParam = new LinkedHashSet<>();
+//        dimensionsParam.add(ent.getFieldByName("Организация_Key"));
+//
+//        ent.getFieldByName("Организация_Key").setPresentation(true);
+//
+//        LocalDateTime startPeriodLdt = LocalDateTime.parse("2015-01-01T00:00:00", DATE_TIME_FORMATTER);
+//        Instant startPeriod = startPeriodLdt.atZone(DATE_TIME_FORMATTER.getZone()).toInstant();
+//
+//        LocalDateTime endPeriodLdt = LocalDateTime.parse("2017-01-01T00:00:00", DATE_TIME_FORMATTER);
+//        Instant endPeriod = endPeriodLdt.atZone(DATE_TIME_FORMATTER.getZone()).toInstant();
+//
+//        AccumulationRegisterTurnovers req = new AccumulationRegisterTurnovers("ДенежныеСредстваБезналичные", ent.getDimensions(), ent.getResources(),
+//                dimensionsParam, false, new Condition(), startPeriod, endPeriod, false);
+//
+//        List<Map<Field, Object>> result = infoBase.getAccumulationRegisterVirtualTable(req);
+//        assertTrue(result.size() == 5);
+//        assertTrue(result.get(0).get(ent.getFieldByName("Организация_Key")).equals(UUID.fromString("51ed67a3-7220-11df-b336-0011955cba6b")));
+//        assertTrue(result.get(0).get(ent.getFieldByName("Организация____Presentation")).equals("Торговый дом \"Комплексный\""));
+//    }
 
-        ent.getFieldByName("Номенклатура_Key").setPresentation(true);
-
-        Condition cnd = new Condition(new RelationalExpression(ent.getFieldByName("Назначение_Key"), EQUAL, UUID.fromString("00000000-0000-0000-0000-000000000000"), null));
-
-        LocalDateTime ldt = LocalDateTime.parse("2016-12-22T00:00:00", DATE_TIME_FORMATTER);
-        Instant period = ldt.atZone(DATE_TIME_FORMATTER.getZone()).toInstant();
-
-        AccumulationRegisterBalance req = new AccumulationRegisterBalance("ТоварыКОтгрузке", ent.getDimensions(), ent.getResources(), dimensionsParam, false, cnd, period, false);
-
-        List<Map<Field, Object>> result = infoBase.getAccumulationRegisterVirtualTable(req);
-        assertTrue(result.size() == 14);
-        assertTrue(result.get(2).get(ent.getFieldByName("Номенклатура_Key")).equals(UUID.fromString("e8a71fec-55bc-11d9-848a-00112f43529a")));
-        assertTrue(result.get(2).get(ent.getFieldByName("Номенклатура____Presentation")).equals("Мясорубка MOULINEX  A 15"));
-    }
-
-    @Test
-    public void accumulationRegisterTurnoversTest() throws ClientException {
-        AccumulationRegisterTurnovers ent = infoBase.getMetadataTree().getAccumulationRegisterByName("ДенежныеСредстваБезналичные").getTurnovers();
-
-        LinkedHashSet<Field> dimensionsParam = new LinkedHashSet<>();
-        dimensionsParam.add(ent.getFieldByName("Организация_Key"));
-
-        ent.getFieldByName("Организация_Key").setPresentation(true);
-
-        LocalDateTime startPeriodLdt = LocalDateTime.parse("2015-01-01T00:00:00", DATE_TIME_FORMATTER);
-        Instant startPeriod = startPeriodLdt.atZone(DATE_TIME_FORMATTER.getZone()).toInstant();
-
-        LocalDateTime endPeriodLdt = LocalDateTime.parse("2017-01-01T00:00:00", DATE_TIME_FORMATTER);
-        Instant endPeriod = endPeriodLdt.atZone(DATE_TIME_FORMATTER.getZone()).toInstant();
-
-        AccumulationRegisterTurnovers req = new AccumulationRegisterTurnovers("ДенежныеСредстваБезналичные", ent.getDimensions(), ent.getResources(),
-                dimensionsParam, false, new Condition(), startPeriod, endPeriod, false);
-
-        List<Map<Field, Object>> result = infoBase.getAccumulationRegisterVirtualTable(req);
-        assertTrue(result.size() == 5);
-        assertTrue(result.get(0).get(ent.getFieldByName("Организация_Key")).equals(UUID.fromString("51ed67a3-7220-11df-b336-0011955cba6b")));
-        assertTrue(result.get(0).get(ent.getFieldByName("Организация____Presentation")).equals("Торговый дом \"Комплексный\""));
-    }
-
-    @Test
-    public void chartOfCharacteristicTypesTest() throws ClientException {
-        ChartOfCharacteristicTypes ent = infoBase.getMetadataTree().getChartOfCharacteristicTypesByName("ДополнительныеРеквизитыИСведения");
-        Condition cnd = new Condition(new RelationalExpression(ent.getFieldByName("DeletionMark"), EQUAL, false, null));
-        DataServiceRequest req = new ChartOfCharacteristicTypes("ДополнительныеРеквизитыИСведения", ent.getFields(), true, cnd, false);
-
-        // Выполняем запрос 2 раза для тестирования кэша ресурсов
-        for (int i = 0; i < 2; i++) {
-            // При втором запросе кэш окажется просроченным
-            List<Map<Field, Object>> result = infoBase.get(req, 1);
-            assertTrue(result.size() == 3);
-            assertTrue((Boolean) result.get(2).get(ent.getFieldByName("Доступен")));
-        }
-    }
+//    @Test
+//    public void chartOfCharacteristicTypesTest() throws ClientException {
+//        ChartOfCharacteristicTypes ent = infoBase.getMetadataTree().getChartOfCharacteristicTypesByName("ДополнительныеРеквизитыИСведения");
+//        Condition cnd = new Condition(new RelationalExpression(ent.getFieldByName("DeletionMark"), EQUAL, false, null));
+//        DataServiceRequest req = new ChartOfCharacteristicTypes("ДополнительныеРеквизитыИСведения", ent.getFields(), true, cnd, false);
+//
+//        // Выполняем запрос 2 раза для тестирования кэша ресурсов
+//        for (int i = 0; i < 2; i++) {
+//            // При втором запросе кэш окажется просроченным
+//            List<Map<Field, Object>> result = infoBase.get(req, 1);
+//            assertTrue(result.size() == 3);
+//            assertTrue((Boolean) result.get(2).get(ent.getFieldByName("Доступен")));
+//        }
+//    }
 
     @Test
     public void tabularSectionTest() throws ClientException {
