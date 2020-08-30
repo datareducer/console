@@ -54,7 +54,6 @@ public final class AccountingRegisterBalance implements AccountingRegisterVirtua
 
     /**
      * Создаёт описание запроса к виртуальной таблице остатков регистра бухгалтерии.
-     * Если allDimensions == true, набор dimensionsParam должен содержать все имеющиеся измерения объекта.
      *
      * @param name                     Имя Регистра бухгалтерии, как оно задано в конфигураторе.
      * @param properties               Набор всех измерений, субконто и полей счетов виртуальной таблицы остатков.
@@ -125,8 +124,9 @@ public final class AccountingRegisterBalance implements AccountingRegisterVirtua
             fieldsLookup.put(field.getName(), field);
         }
 
-        this.presentationFields = new LinkedHashSet<>();
-        initPresentationFields();
+        this.presentationFields = Field.presentations(getDimensionsParam());
+        presentationFields.add(new Field(getAccountField().getPresentationName(), FieldType.STRING));
+        presentationFields.addAll(Field.presentations(getExtDimensions()));
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -192,18 +192,6 @@ public final class AccountingRegisterBalance implements AccountingRegisterVirtua
     @Override
     public LinkedHashSet<Field> getPresentationFields() {
         return new LinkedHashSet<>(presentationFields);
-    }
-
-    private void initPresentationFields() {
-        for (Field f : getDimensionsParam()) {
-            if (f.isPresentation()) {
-                presentationFields .add(new Field(f.getPresentationName(), FieldType.STRING));
-            }
-        }
-        presentationFields.add(new Field(getAccountField().getPresentationName(), FieldType.STRING));
-        for (Field f : getExtDimensions()) {
-            presentationFields .add(new Field(f.getPresentationName(), FieldType.STRING));
-        }
     }
 
     @Override

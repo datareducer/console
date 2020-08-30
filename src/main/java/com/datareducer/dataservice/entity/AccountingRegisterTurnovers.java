@@ -59,7 +59,6 @@ public final class AccountingRegisterTurnovers implements AccountingRegisterVirt
 
     /**
      * Создаёт описание запроса к виртуальной таблице оборотов регистра бухгалтерии.
-     * Если allDimensions == true, набор dimensionsParam должен содержать все имеющиеся измерения объекта.
      *
      * @param name                     Имя Регистра бухгалтерии, как оно задано в конфигураторе.
      * @param properties               Набор всех измерений, субконто и полей счетов виртуальной таблицы оборотов.
@@ -150,8 +149,10 @@ public final class AccountingRegisterTurnovers implements AccountingRegisterVirt
             fieldsLookup.put(field.getName(), field);
         }
 
-        this.presentationFields = new LinkedHashSet<>();
-        initPresentationFields();
+        this.presentationFields = Field.presentations(getDimensionsParam());
+        presentationFields.add(new Field(getAccountField().getPresentationName(), FieldType.STRING));
+        presentationFields.add(new Field(getBalancedAccountField().getPresentationName(), FieldType.STRING));
+        presentationFields.addAll(Field.presentations(getExtDimensions()));
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -228,19 +229,6 @@ public final class AccountingRegisterTurnovers implements AccountingRegisterVirt
     @Override
     public LinkedHashSet<Field> getPresentationFields() {
         return new LinkedHashSet<>(presentationFields);
-    }
-
-    private void initPresentationFields() {
-        for (Field f : getDimensionsParam()) {
-            if (f.isPresentation()) {
-                presentationFields .add(new Field(f.getPresentationName(), FieldType.STRING));
-            }
-        }
-        presentationFields.add(new Field(getAccountField().getPresentationName(), FieldType.STRING));
-        presentationFields.add(new Field(getBalancedAccountField().getPresentationName(), FieldType.STRING));
-        for (Field f : getExtDimensions()) {
-            presentationFields .add(new Field(f.getPresentationName(), FieldType.STRING));
-        }
     }
 
     @Override
@@ -341,8 +329,8 @@ public final class AccountingRegisterTurnovers implements AccountingRegisterVirt
                 && that.dimensionsParam.equals(dimensionsParam)
                 && that.presentationFields.equals(presentationFields)
                 && that.condition.equals(condition)
-                && (that.startPeriod != null ? that.startPeriod.equals(startPeriod) : startPeriod == null)
-                && (that.endPeriod != null ? that.endPeriod.equals(endPeriod) : endPeriod == null)
+                && (Objects.equals(that.startPeriod, startPeriod))
+                && (Objects.equals(that.endPeriod, endPeriod))
                 && that.accountCondition.equals(accountCondition)
                 && that.balancedAccountCondition.equals(balancedAccountCondition)
                 && that.extraDimensions.equals(extraDimensions)

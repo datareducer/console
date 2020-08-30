@@ -35,6 +35,7 @@ public final class Constant implements DataServiceRequest {
 
     private final String name;
     private final Set<Field> fields;
+    private final LinkedHashSet<Field> presentationFields;
     private final boolean allFields;
     private final Condition condition;
     private final boolean allowedOnly;
@@ -47,7 +48,6 @@ public final class Constant implements DataServiceRequest {
 
     /**
      * Создаёт описание запроса к ресурсу Константы.
-     * Если allFields == true, набор полей fields должен содержать все имеющиеся поля объекта.
      *
      * @param name        Имя Справочника, как оно задано в конфигураторе.
      * @param fields      Набор полей, которые необходимо получить.
@@ -77,6 +77,8 @@ public final class Constant implements DataServiceRequest {
         for (Field field : this.fields) {
             fieldsLookup.put(field.getName(), field);
         }
+
+        this.presentationFields = Field.presentations(getFields());
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -122,6 +124,11 @@ public final class Constant implements DataServiceRequest {
     }
 
     @Override
+    public LinkedHashSet<Field> getPresentationFields() {
+        return new LinkedHashSet<>(presentationFields);
+    }
+
+    @Override
     public Condition getCondition() {
         return condition.clone();
     }
@@ -157,6 +164,7 @@ public final class Constant implements DataServiceRequest {
         Constant that = (Constant) o;
         return that.name.equals(name)
                 && that.fields.equals(fields)
+                && that.presentationFields.equals(presentationFields)
                 && that.allFields == allFields
                 && that.allowedOnly == allowedOnly;
     }
@@ -167,6 +175,7 @@ public final class Constant implements DataServiceRequest {
         if (result == 0) {
             result = 31 * result + name.hashCode();
             result = 31 * result + fields.hashCode();
+            result = 31 * result + presentationFields.hashCode();
             result = 31 * result + (allFields ? 1 : 0);
             result = 31 * result + (allowedOnly ? 1 : 0);
             hashCode = result;

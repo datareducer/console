@@ -35,6 +35,7 @@ public final class ChartOfCharacteristicTypes implements DataServiceRequest {
 
     private final String name;
     private final Set<Field> fields;
+    private final LinkedHashSet<Field> presentationFields;
     private final Set<TabularSection> tabularSections;
     private final boolean allFields;
     private final Condition condition;
@@ -48,8 +49,6 @@ public final class ChartOfCharacteristicTypes implements DataServiceRequest {
 
     /**
      * Создаёт описание запроса к ресурсу Плана видов характеристик.
-     * Набор полей дополняется ключевыми полями объекта конфигурации и полями отбора.
-     * Если allFields == true, набор полей fields должен содержать все имеющиеся поля объекта
      *
      * @param name        Имя Плана видов характеристик, как оно задано в конфигураторе.
      * @param fields      Набор полей, которые необходимо получить.
@@ -80,6 +79,8 @@ public final class ChartOfCharacteristicTypes implements DataServiceRequest {
         for (Field field : this.fields) {
             fieldsLookup.put(field.getName(), field);
         }
+
+        this.presentationFields = Field.presentations(getFields());
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -135,6 +136,11 @@ public final class ChartOfCharacteristicTypes implements DataServiceRequest {
     }
 
     @Override
+    public LinkedHashSet<Field> getPresentationFields() {
+        return new LinkedHashSet<>(presentationFields);
+    }
+
+    @Override
     public Field getFieldByName(String name) {
         return fieldsLookup.get(name);
     }
@@ -170,6 +176,7 @@ public final class ChartOfCharacteristicTypes implements DataServiceRequest {
         ChartOfCharacteristicTypes that = (ChartOfCharacteristicTypes) o;
         return that.name.equals(name)
                 && that.fields.equals(fields)
+                && that.presentationFields.equals(presentationFields)
                 && that.allFields == allFields
                 && that.condition.equals(condition)
                 && that.allowedOnly == allowedOnly;
@@ -181,6 +188,7 @@ public final class ChartOfCharacteristicTypes implements DataServiceRequest {
         if (result == 0) {
             result = 31 * result + name.hashCode();
             result = 31 * result + fields.hashCode();
+            result = 31 * result + presentationFields.hashCode();
             result = 31 * result + (allFields ? 1 : 0);
             result = 31 * result + condition.hashCode();
             result = 31 * result + (allowedOnly ? 1 : 0);

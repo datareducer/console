@@ -20,10 +20,7 @@ package com.datareducer.dataservice.entity;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Описание виртуальной таблицы остатков и оборотов регистра бухгалтерии 1С
@@ -121,8 +118,9 @@ public final class AccountingRegisterBalanceAndTurnovers implements AccountingRe
             fieldsLookup.put(field.getName(), field);
         }
 
-        this.presentationFields = new LinkedHashSet<>();
-        initPresentationFields();
+        this.presentationFields = Field.presentations(getFieldsParam());
+        presentationFields.add(new Field(getAccountField().getPresentationName(), FieldType.STRING));
+        presentationFields.addAll(Field.presentations(getExtDimensions()));
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -182,18 +180,6 @@ public final class AccountingRegisterBalanceAndTurnovers implements AccountingRe
     @Override
     public LinkedHashSet<Field> getPresentationFields() {
         return new LinkedHashSet<>(presentationFields);
-    }
-
-    private void initPresentationFields() {
-        for (Field f : getFieldsParam()) {
-            if (f.isPresentation()) {
-                presentationFields.add(new Field(f.getPresentationName(), FieldType.STRING));
-            }
-        }
-        presentationFields.add(new Field(getAccountField().getPresentationName(), FieldType.STRING));
-        for (Field f : getExtDimensions()) {
-            presentationFields.add(new Field(f.getPresentationName(), FieldType.STRING));
-        }
     }
 
     @Override
@@ -279,8 +265,8 @@ public final class AccountingRegisterBalanceAndTurnovers implements AccountingRe
                 && that.fieldsParam.equals(fieldsParam)
                 && that.presentationFields.equals(presentationFields)
                 && that.condition.equals(condition)
-                && (that.startPeriod != null ? that.startPeriod.equals(startPeriod) : startPeriod == null)
-                && (that.endPeriod != null ? that.endPeriod.equals(endPeriod) : endPeriod == null)
+                && (Objects.equals(that.startPeriod, startPeriod))
+                && (Objects.equals(that.endPeriod, endPeriod))
                 && that.allowedOnly == allowedOnly;
     }
 

@@ -36,6 +36,7 @@ public final class TabularSection implements DataServiceRequest {
     private final DataServiceEntity parent;
     private final String name;
     private final Set<Field> fields;
+    private final LinkedHashSet<Field> presentationFields;
     private final boolean allFields;
     private final Condition condition;
     private final boolean allowedOnly;
@@ -55,8 +56,6 @@ public final class TabularSection implements DataServiceRequest {
 
     /**
      * Создаёт описание запроса к Табличной части.
-     * Коллекция полей дополняется ключевыми полями объекта конфигурации и полями отбора.
-     * Если allFields == true, набор полей fields должен содержать все имеющиеся поля объекта.
      *
      * @param parent      Владелец табличной части
      * @param name        Имя Табличной части, как оно задано в конфигураторе.
@@ -91,6 +90,8 @@ public final class TabularSection implements DataServiceRequest {
         for (Field field : this.fields) {
             fieldsLookup.put(field.getName(), field);
         }
+
+        this.presentationFields = Field.presentations(getFields());
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -151,6 +152,11 @@ public final class TabularSection implements DataServiceRequest {
     }
 
     @Override
+    public LinkedHashSet<Field> getPresentationFields() {
+        return new LinkedHashSet<>(presentationFields);
+    }
+
+    @Override
     public Field getFieldByName(String name) {
         return fieldsLookup.get(name);
     }
@@ -186,6 +192,7 @@ public final class TabularSection implements DataServiceRequest {
         TabularSection that = (TabularSection) o;
         return that.getResourceName().equals(getResourceName())
                 && that.fields.equals(fields)
+                && that.presentationFields.equals(presentationFields)
                 && that.allFields == allFields
                 && that.condition.equals(condition)
                 && that.allowedOnly == allowedOnly;
@@ -197,6 +204,7 @@ public final class TabularSection implements DataServiceRequest {
         if (result == 0) {
             result = 31 * result + getResourceName().hashCode();
             result = 31 * result + fields.hashCode();
+            result = 31 * result + presentationFields.hashCode();
             result = 31 * result + (allFields ? 1 : 0);
             result = 31 * result + condition.hashCode();
             result = 31 * result + (allowedOnly ? 1 : 0);

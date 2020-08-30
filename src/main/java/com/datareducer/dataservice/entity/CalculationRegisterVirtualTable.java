@@ -37,13 +37,6 @@ import java.util.List;
  */
 public interface CalculationRegisterVirtualTable extends DataServiceRequest {
     /**
-     * Возвращает набор представлений полей.
-     *
-     * @return Набор представлений полей.
-     */
-    LinkedHashSet<Field> getPresentationFields();
-
-    /**
      * Возвращает набор полей ресурса, которые необходимо получить.
      *
      * @return Набор полей ресурса, которые необходимо получить.

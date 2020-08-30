@@ -19,6 +19,8 @@
 package com.datareducer.dataservice.entity;
 
 import java.time.Duration;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * Описание запроса к ресурсу REST-сервиса 1С.
@@ -33,6 +35,13 @@ public interface DataServiceRequest extends DataServiceEntity {
      * @return Значение признака.
      */
     boolean isAllFields();
+
+    /**
+     * Возвращает набор представлений полей.
+     *
+     * @return Набор представлений полей.
+     */
+    LinkedHashSet<Field> getPresentationFields();
 
     /**
      * Возвращает копию отбора, применяемого при запросе к ресурсу.

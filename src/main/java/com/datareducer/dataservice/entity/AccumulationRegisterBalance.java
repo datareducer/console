@@ -20,10 +20,7 @@ package com.datareducer.dataservice.entity;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Описание виртуальной таблицы остатков регистра накопления 1С
@@ -55,7 +52,6 @@ public final class AccumulationRegisterBalance implements AccumulationRegisterVi
 
     /**
      * Создаёт описание запроса к виртуальной таблице остатков регистра накопления.
-     * Если allDimensions == true, набор dimensionsParam должен содержать все имеющиеся измерения объекта.
      *
      * @param name            Имя Регистра накопления, как оно задано в конфигураторе.
      * @param dimensions      Набор всех измерений виртуальной таблицы остатков.
@@ -113,8 +109,7 @@ public final class AccumulationRegisterBalance implements AccumulationRegisterVi
             fieldsLookup.put(field.getName(), field);
         }
 
-        this.presentationFields = new LinkedHashSet<>();
-        initPresentationFields();
+        this.presentationFields = Field.presentations(getDimensionsParam());
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -153,14 +148,6 @@ public final class AccumulationRegisterBalance implements AccumulationRegisterVi
     @Override
     public LinkedHashSet<Field> getPresentationFields() {
         return new LinkedHashSet<>(presentationFields);
-    }
-
-    private void initPresentationFields() {
-        for (Field f : getDimensionsParam()) {
-            if (f.isPresentation()) {
-                presentationFields.add(new Field(f.getPresentationName(), FieldType.STRING));
-            }
-        }
     }
 
     @Override
@@ -238,7 +225,7 @@ public final class AccumulationRegisterBalance implements AccumulationRegisterVi
                 && that.dimensionsParam.equals(dimensionsParam)
                 && that.presentationFields.equals(presentationFields)
                 && that.condition.equals(condition)
-                && (that.period != null ? that.period.equals(period) : period == null)
+                && (Objects.equals(that.period, period))
                 && that.allowedOnly == allowedOnly;
     }
 

@@ -99,8 +99,7 @@ public final class CalculationRegisterRecalculation implements CalculationRegist
             fieldsLookup.put(presentationName, new Field(presentationName, FieldType.STRING));
         }
 
-        this.presentationFields = new LinkedHashSet<>();
-        initPresentationFields();
+        this.presentationFields = Field.presentations(getFieldsParam());
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -144,14 +143,6 @@ public final class CalculationRegisterRecalculation implements CalculationRegist
     @Override
     public LinkedHashSet<Field> getPresentationFields() {
         return new LinkedHashSet<>(presentationFields);
-    }
-
-    private void initPresentationFields() {
-        for (Field f : getFieldsParam()) {
-            if (f.isPresentation()) {
-                presentationFields.add(new Field(f.getPresentationName(), FieldType.STRING));
-            }
-        }
     }
 
     @Override

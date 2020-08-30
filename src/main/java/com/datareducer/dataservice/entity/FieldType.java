@@ -1,32 +1,22 @@
 /*
- * Этот файл — часть программы DataReducer Console.
+ * Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
  *
- * DataReducer Console — R-консоль для "1С:Предприятия"
- * <http://datareducer.ru>
+ * Этот файл — часть программы DataReducer <http://datareducer.ru>.
  *
- * Copyright (c) 2017,2018 Kirill Mikhaylov
- * <admin@datareducer.ru>
- *
- * Программа DataReducer Console является свободным
- * программным обеспечением. Вы вправе распространять ее
- * и/или модифицировать в соответствии с условиями версии 2
+ * Программа DataReducer является свободным программным обеспечением.
+ * Вы вправе распространять ее и/или модифицировать в соответствии с условиями версии 2
  * либо, по вашему выбору, с условиями более поздней версии
- * Стандартной Общественной Лицензии GNU, опубликованной
- * Free Software Foundation.
+ * Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
  *
- * Программа DataReducer Console распространяется в надежде,
- * что она будет полезной, но БЕЗО ВСЯКИХ ГАРАНТИЙ,
- * в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
+ * Программа DataReducer распространяется в надежде, что она будет полезной,
+ * но БЕЗО ВСЯКИХ ГАРАНТИЙ, в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
  * и ПРИГОДНОСТИ ДЛЯ ИСПОЛЬЗОВАНИЯ В КОНКРЕТНЫХ ЦЕЛЯХ.
  * Подробнее см. в Стандартной Общественной Лицензии GNU.
  *
- * Вы должны были получить копию Стандартной Общественной
- * Лицензии GNU вместе с этой программой. Если это не так, см.
- * <https://www.gnu.org/licenses/>.
+ * Вы должны были получить копию Стандартной Общественной Лицензии GNU
+ * вместе с этой программой. Если это не так, см. <https://www.gnu.org/licenses/>.
  */
 package com.datareducer.dataservice.entity;
-
-import com.orientechnologies.orient.core.metadata.schema.OType;
 
 import javax.xml.bind.annotation.XmlEnum;
 import java.time.LocalDateTime;
@@ -43,35 +33,29 @@ import static com.datareducer.dataservice.client.DataServiceClient.DATE_TIME_FOR
  */
 @XmlEnum
 public enum FieldType {
-    STRING("Edm.String", OType.STRING),
-    DATETIME("Edm.DateTime", OType.DATETIME),
-    SHORT("Edm.Int16", OType.SHORT),
-    INTEGER("Edm.Int32", OType.INTEGER),
-    LONG("Edm.Int64", OType.LONG),
-    DOUBLE("Edm.Double", OType.DOUBLE),
-    BOOLEAN("Edm.Boolean", OType.BOOLEAN),
-    GUID("Edm.Guid", OType.STRING),
-    BINARY("Edm.Binary", OType.STRING),
-    STREAM("Edm.Stream", OType.STRING);
+    STRING("Edm.String"),
+    DATETIME("Edm.DateTime"),
+    SHORT("Edm.Int16"),
+    INTEGER("Edm.Int32"),
+    LONG("Edm.Int64"),
+    DOUBLE("Edm.Double"),
+    BOOLEAN("Edm.Boolean"),
+    GUID("Edm.Guid"),
+    BINARY("Edm.Binary"),
+    STREAM("Edm.Stream");
 
     private final String edmType;
-    private final OType orientType;
 
     private static final Map<String, FieldType> edmTypeLookup = new HashMap<>();
-    private static final Map<OType, FieldType> orientTypeLookup = new HashMap<>();
 
     static {
         for (FieldType type : FieldType.values()) {
             edmTypeLookup.put(type.getEdmType(), type);
-            if (!type.equals(GUID)) {
-                orientTypeLookup.put(type.getOrientType(), type);
-            }
         }
     }
 
-    FieldType(String edmType, OType orientType) {
+    FieldType(String edmType) {
         this.edmType = edmType;
-        this.orientType = orientType;
     }
 
     public static FieldType getByEdmType(String edmType) {
@@ -79,22 +63,6 @@ public enum FieldType {
             return edmTypeLookup.get(edmType);
         } else {
             throw new IllegalArgumentException("Неизвестный тип данных: " + edmType);
-        }
-    }
-
-    /**
-     * OrientDB не содержит специального типа данных для GUID,
-     * поэтому эти объекты сохраняются с типом данных "Строка".
-     * Перед вызовом этого метода нужно проверить, что имя поля не заканчивается на "_Key".
-     * Это будет указывать на то, что тип поля - FieldType.GUID.
-     * <p>
-     * Аналогично для полей BINARY, имена которых заканчиваются на "_Base64Data"
-     */
-    public static FieldType getByOrientType(OType orientType) {
-        if (orientTypeLookup.containsKey(orientType)) {
-            return orientTypeLookup.get(orientType);
-        } else {
-            throw new IllegalArgumentException("Неизвестный тип данных: " + orientType);
         }
     }
 
@@ -132,10 +100,6 @@ public enum FieldType {
 
     public String getEdmType() {
         return edmType;
-    }
-
-    public OType getOrientType() {
-        return orientType;
     }
 
 }

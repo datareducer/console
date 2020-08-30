@@ -30,6 +30,8 @@ import com.datareducer.dataservice.client.ClientRuntimeException;
 import com.datareducer.dataservice.jaxb.FieldAdapter;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * Поле ресурса REST-сервиса 1С.
@@ -86,6 +88,22 @@ public class Field implements DataServiceEntity, Comparable<Field> {
 
     public Field(String name, FieldType fieldType) {
         this(name, fieldType, 0);
+    }
+
+    /**
+     * Формирует и возвращает набор полей-представлений на основе основного набора полей.
+     *
+     * @param fields Основной набор полей.
+     * @return Набор полей-представлений.
+     */
+    static LinkedHashSet<Field> presentations(Set<Field> fields) {
+        LinkedHashSet<Field> result = new LinkedHashSet<>();
+        for (Field f : fields) {
+            if (f.isPresentation()) {
+                result.add(new Field(f.getPresentationName(), FieldType.STRING));
+            }
+        }
+        return result;
     }
 
     @Override

@@ -18,8 +18,6 @@
  */
 package com.datareducer.dataservice.client;
 
-import com.datareducer.dataservice.cache.Cache;
-import com.datareducer.dataservice.cache.CacheException;
 import com.datareducer.dataservice.entity.*;
 import com.datareducer.dataservice.jaxb.JaxbUtil;
 import com.datareducer.dataservice.jaxb.RestClientBuilder;
@@ -91,74 +89,19 @@ public final class DataServiceClient {
         if (request == null) {
             throw new IllegalArgumentException("Значение параметра 'request': null");
         }
-        if (request.isVirtual()) {
-            throw new IllegalArgumentException("Не используется для виртуальных таблиц");
-        }
-        if (request.getFields().isEmpty()) {
-            throw new IllegalStateException("Пустая коллекция полей запроса");
-        }
 
+        final int reqId = request.hashCode();
         final String resourceName = request.getResourceName();
-        final boolean allFields = request.isAllFields();
         final Condition condition = request.getCondition();
-        final boolean allowedOnly = request.isAllowedOnly();
-
-        // Дополняем поля запроса
-        LinkedHashSet<Field> extendedFields = new LinkedHashSet<>(request.getFields());
-        // Представления полей
-        LinkedHashSet<Field> presentationFields = new LinkedHashSet<>();
-        for (Field f : request.getFields()) {
-            if (f.isPresentation()) {
-                presentationFields.add(new Field(f.getPresentationName(), FieldType.STRING));
-            }
-        }
-        extendedFields.addAll(presentationFields);
-
-        if (!request.getFields().equals(extendedFields)) {
-            if (request instanceof Constant) {
-                request = new Constant(request.getName(), extendedFields, allFields, condition, allowedOnly);
-            } else if (request instanceof Catalog) {
-                request = new Catalog(request.getName(), extendedFields, allFields, condition, allowedOnly);
-            } else if (request instanceof Document) {
-                request = new Document(request.getName(), extendedFields, allFields, condition, allowedOnly);
-            } else if (request instanceof DocumentJournal) {
-                request = new DocumentJournal(request.getName(), extendedFields, allFields, condition, allowedOnly);
-            } else if (request instanceof ChartOfCharacteristicTypes) {
-                request = new ChartOfCharacteristicTypes(request.getName(), extendedFields, allFields, condition, allowedOnly);
-            } else if (request instanceof ChartOfAccounts) {
-                request = new ChartOfAccounts(request.getName(), extendedFields, allFields, condition, allowedOnly);
-            } else if (request instanceof ChartOfCalculationTypes) {
-                request = new ChartOfCalculationTypes(request.getName(), extendedFields, allFields, condition, allowedOnly);
-            } else if (request instanceof AccumulationRegister) {
-                request = new AccumulationRegister(request.getName(), extendedFields, allFields, condition, allowedOnly);
-            } else if (request instanceof InformationRegister) {
-                request = new InformationRegister(request.getName(), extendedFields, allFields, condition, allowedOnly);
-            } else if (request instanceof AccountingRegister) {
-                request = new AccountingRegister(request.getName(), extendedFields, allFields, condition, allowedOnly);
-            } else if (request instanceof CalculationRegister) {
-                request = new CalculationRegister(request.getName(), extendedFields, allFields, condition, allowedOnly);
-            } else if (request instanceof ExchangePlan) {
-                request = new ExchangePlan(request.getName(), extendedFields, allFields, condition, allowedOnly);
-            } else if (request instanceof BusinessProcess) {
-                request = new BusinessProcess(request.getName(), extendedFields, allFields, condition, allowedOnly);
-            } else if (request instanceof Task) {
-                request = new Task(request.getName(), extendedFields, allFields, condition, allowedOnly);
-            } else if (request instanceof TabularSection) {
-                request = new TabularSection(((TabularSection) request).getParent(), request.getName(),
-                        extendedFields, allFields, condition, allowedOnly);
-            }
-        }
-        log.debug("[%s] Обрабатывается запрос на выборку данных '%s' [fields=%s, condition=%s, allowedOnly=%s]",
-                request.hashCode(), resourceName, fieldsSetAsString(request.getFields(), false),
-                condition, allowedOnly);
+        final Set<Field> presentationFields = request.getPresentationFields();
 
         // Запрос к REST-сервису 1С
         WebTarget wt = rsClient.target(oDataUrl).path(resourceName);
-        if (allowedOnly) {
+        if (request.isAllowedOnly()) {
             wt = wt.queryParam("allowedOnly", "true");
         }
-        if (!allFields) {
-            wt = wt.queryParam("$select", fieldsSetAsString(request.getFields(), false));
+        if (!request.isAllFields()) {
+            wt = wt.queryParam("$select", fieldsSetAsString(request.getFields(), false)); //TODO нет полей-представлений
         } else if (!presentationFields.isEmpty()) {
             wt = wt.queryParam("$select", "*,".concat(fieldsSetAsString(presentationFields, false)));
         }
@@ -169,16 +112,16 @@ public final class DataServiceClient {
                 .property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_USERNAME, connectionParams.getUser())
                 .property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_PASSWORD, connectionParams.getPassword());
 
-        log.info("[%s] Сформирован запрос: %s", request.hashCode(), UriComponent.decode(wt.getUri().toString(), QUERY_PARAM));
+        log.info("[%s] Сформирован запрос: %s", reqId, UriComponent.decode(wt.getUri().toString(), QUERY_PARAM));
 
         List<Map<Field, Object>> result;
         try {
             result = JaxbUtil.parseFeed(ib.get(Feed.class), request);
         } catch (ProcessingException | WebApplicationException e) {
-            log.error("[%s] При выполнении запроса к REST-сервису 1C:", request.hashCode(), e);
+            log.error("[%s] При выполнении запроса к REST-сервису 1C:", reqId, e);
             throw new ClientException(e);
         }
-        log.info("[%s] Запрос вернул %s '%s'", request.hashCode(), result.size(), resourceName);
+        log.info("[%s] Запрос вернул %s '%s'", reqId, result.size(), resourceName);
 
         return result;
     }
@@ -190,36 +133,10 @@ public final class DataServiceClient {
      * @return записи виртуальной таблицы регистра бухгалтерии
      * @throws ClientException
      */
-    public List<Map<Field, Object>> getAccumulationRegisterVirtualTable(AccumulationRegisterVirtualTable virtualTable) throws ClientException {
-        if (virtualTable == null) {
-            throw new IllegalArgumentException("Значение параметра 'virtualTable': null");
-        }
-        if (virtualTable.getDimensionsParam().isEmpty()) {
-            throw new IllegalStateException("Набор измерений пуст");
-        }
-
+    private List<Map<Field, Object>> getAccumulationRegisterVirtualTable(AccumulationRegisterVirtualTable virtualTable) throws ClientException {
         final int reqId = virtualTable.hashCode();
-        final String name = virtualTable.getName();
-        final String resourceName = virtualTable.getResourceName();
-        final Set<Field> dimensionsParam = virtualTable.getDimensionsParam();
         final LinkedHashSet<Field> presentationFields = virtualTable.getPresentationFields();
-        final boolean allDimensions = virtualTable.isAllFields();
         final Condition condition = virtualTable.getCondition();
-        final boolean allowedOnly = virtualTable.isAllowedOnly();
-
-        if (virtualTable instanceof AccumulationRegisterBalance) {
-            log.debug("[%s] Обрабатывается запрос на получения данных виртуальной таблицы остатков регистра накопления '%s' "
-                            + "[dimensions=%s, period=%s, condition=%s, allowedOnly=%s]", reqId,
-                    name, dimensionsParam, virtualTable.getPeriod(), condition, allowedOnly);
-        } else if (virtualTable instanceof AccumulationRegisterTurnovers) {
-            log.debug("[%s] Обрабатывается запрос на получения данных виртуальной таблицы оборотов регистра накопления '%s' "
-                            + "[dimensions=%s, startPeriod=%s, endPeriod=%s, condition=%s, allowedOnly=%s]", reqId,
-                    name, dimensionsParam, virtualTable.getStartPeriod(), virtualTable.getEndPeriod(), condition, allowedOnly);
-        } else if (virtualTable instanceof AccumulationRegisterBalanceAndTurnovers) {
-            log.debug("[%s] Обрабатывается запрос на получения данных виртуальной таблицы остатков и оборотов регистра накопления '%s' "
-                            + "[dimensions=%s, startPeriod=%s, endPeriod=%s, condition=%s, allowedOnly=%s]", reqId,
-                    name, dimensionsParam, virtualTable.getStartPeriod(), virtualTable.getEndPeriod(), condition, allowedOnly);
-        }
 
         StringBuilder sb = new StringBuilder();
         List<String> params = new ArrayList<>();
@@ -240,8 +157,8 @@ public final class DataServiceClient {
         if (!condition.isEmpty()) {
             params.add(String.format("Condition='%s'", UriComponent.encode(condition.getHttpForm(), QUERY_PARAM_SPACE_ENCODED)));
         }
-        if (!allDimensions) {
-            params.add(String.format("Dimensions='%s'", fieldsSetAsString(dimensionsParam, true)));
+        if (!virtualTable.isAllFields()) {
+            params.add(String.format("Dimensions='%s'", fieldsSetAsString(virtualTable.getDimensionsParam(), true)));
         }
 
         Iterator<String> it = params.iterator();
@@ -261,8 +178,8 @@ public final class DataServiceClient {
             path = String.format("BalanceAndTurnovers(%s)", sb.toString());
         }
 
-        WebTarget wt = rsClient.target(oDataUrl).path(resourceName).path(path);
-        if (allowedOnly) {
+        WebTarget wt = rsClient.target(oDataUrl).path(virtualTable.getResourceName()).path(path);
+        if (virtualTable.isAllowedOnly()) {
             wt = wt.queryParam("allowedOnly", "true");
         }
         if (!presentationFields.isEmpty()) {
@@ -284,7 +201,7 @@ public final class DataServiceClient {
         }
 
         log.info("[%s] Запрос вернул %s записей виртуальной таблицы регистра накопления '%s'",
-                reqId, result.size(), name);
+                reqId, result.size(), virtualTable.getName());
 
         return result;
     }
@@ -296,52 +213,10 @@ public final class DataServiceClient {
      * @return записи виртуальной таблицы регистра бухгалтерии
      * @throws ClientException
      */
-    public List<Map<Field, Object>> getAccountingRegisterVirtualTable(AccountingRegisterVirtualTable virtualTable) throws ClientException {
-        if (virtualTable == null) {
-            throw new IllegalArgumentException("Значение параметра 'virtualTable': null");
-        }
-
+    private List<Map<Field, Object>> getAccountingRegisterVirtualTable(AccountingRegisterVirtualTable virtualTable) throws ClientException {
         final int reqId = virtualTable.hashCode();
-        final String name = virtualTable.getName();
-        final String resourceName = virtualTable.getResourceName();
         final LinkedHashSet<Field> presentationFields = virtualTable.getPresentationFields();
         final Condition condition = virtualTable.getCondition();
-        final boolean allowedOnly = virtualTable.isAllowedOnly();
-
-        if (virtualTable instanceof AccountingRegisterTurnovers) {
-            log.debug("[%s] Обрабатывается запрос на получения данных виртуальной таблицы оборотов регистра бухгалтерии '%s' "
-                            + "[dimensions=%s, startPeriod=%s, endPeriod=%s, condition=%s, accountCondition=%s, balancedAccountCondition=%s," +
-                            " extraDimensions=%s, balancedExtraDimensions=%s, allowedOnly=%s]",
-                    reqId, name, virtualTable.getDimensionsParam(), virtualTable.getStartPeriod(), virtualTable.getEndPeriod(),
-                    condition, virtualTable.getAccountCondition(), virtualTable.getBalancedAccountCondition(),
-                    virtualTable.getExtraDimensions(), virtualTable.getBalancedExtraDimensions(), allowedOnly);
-        } else if (virtualTable instanceof AccountingRegisterBalance) {
-            log.debug("[%s] Обрабатывается запрос на получения данных виртуальной таблицы остатков регистра бухгалтерии '%s' "
-                            + "[dimensions=%s, period=%s, condition=%s, accountCondition=%s, extraDimensions=%s, allowedOnly=%s]",
-                    reqId, name, virtualTable.getDimensionsParam(), virtualTable.getPeriod(), condition,
-                    virtualTable.getAccountCondition(), virtualTable.getExtraDimensions(), allowedOnly);
-        } else if (virtualTable instanceof AccountingRegisterBalanceAndTurnovers) {
-            log.debug("[%s] Обрабатывается запрос на получения данных виртуальной таблицы остатков и оборотов регистра бухгалтерии '%s' "
-                            + "[fields=%s, startPeriod=%s, endPeriod=%s, condition=%s, allowedOnly=%s]",
-                    reqId, name, virtualTable.getFieldsParam(), virtualTable.getStartPeriod(), virtualTable.getEndPeriod(),
-                    condition, allowedOnly);
-        } else if (virtualTable instanceof AccountingRegisterExtDimensions) {
-            log.debug("[%s] Обрабатывается запрос на получения данных виртуальной таблицы субконто регистра бухгалтерии '%s' "
-                            + "[fields=%s, condition=%s, allowedOnly=%s]",
-                    reqId, name, virtualTable.getFieldsParam(), condition, allowedOnly);
-        } else if (virtualTable instanceof AccountingRegisterRecordsWithExtDimensions) {
-            log.debug("[%s] Обрабатывается запрос на получения данных виртуальной таблицы движений с субконто регистра бухгалтерии '%s' "
-                            + "[fields=%s, startPeriod=%s, endPeriod=%s, condition=%s, top=%s, orderBy=%s, allowedOnly=%s]",
-                    reqId, name, virtualTable.getFieldsParam(), virtualTable.getStartPeriod(), virtualTable.getEndPeriod(),
-                    condition, virtualTable.getTop(), virtualTable.getOrderBy(), allowedOnly);
-        } else if (virtualTable instanceof AccountingRegisterDrCrTurnovers) {
-            log.debug("[%s] Обрабатывается запрос на получения данных виртуальной таблицы оборотов ДтКт регистра бухгалтерии '%s' "
-                            + "[dimensions=%s, startPeriod=%s, endPeriod=%s, condition=%s, accountCondition=%s, balancedAccountCondition=%s," +
-                            " extraDimensions=%s, balancedExtraDimensions=%s, allowedOnly=%s]",
-                    reqId, name, virtualTable.getDimensionsParam(), virtualTable.getStartPeriod(), virtualTable.getEndPeriod(),
-                    condition, virtualTable.getAccountCondition(), virtualTable.getBalancedAccountCondition(),
-                    virtualTable.getExtraDimensions(), virtualTable.getBalancedExtraDimensions(), allowedOnly);
-        }
 
         List<String> params = new ArrayList<>();
 
@@ -438,18 +313,18 @@ public final class DataServiceClient {
             path = String.format("DrCrTurnovers(%s)", sb.toString());
         }
 
-        WebTarget wt = rsClient.target(oDataUrl).path(resourceName).path(path);
-        if (allowedOnly) {
+        WebTarget wt = rsClient.target(oDataUrl).path(virtualTable.getResourceName()).path(path);
+        if (virtualTable.isAllowedOnly()) {
             wt = wt.queryParam("allowedOnly", "true");
         }
 
         if (virtualTable instanceof AccountingRegisterExtDimensions) {
-            if (!virtualTable.isAllFields()) {
+            if (!virtualTable.isAllFields()) { //TODO XXX
                 Set<Field> fields = new LinkedHashSet<>();
                 fields.addAll(virtualTable.getFieldsParam());
                 fields.addAll(presentationFields);
                 wt = wt.queryParam("$select", fieldsSetAsString(fields, false));
-            } else if (!presentationFields.isEmpty()) {
+            } else if (!presentationFields.isEmpty()) { //TODO XXX
                 wt = wt.queryParam("$select", "*,".concat(fieldsSetAsString(presentationFields, false)));
             }
             if (!condition.isEmpty()) {
@@ -485,7 +360,7 @@ public final class DataServiceClient {
         }
 
         log.info("[%s] Запрос вернул %s записей виртуальной таблицы регистра бухгалтерии '%s'",
-                reqId, result.size(), name);
+                reqId, result.size(), virtualTable.getName());
 
         return result;
     }
@@ -497,28 +372,15 @@ public final class DataServiceClient {
      * @return записи виртуальной таблицы регистра сведений
      * @throws ClientException
      */
-    public List<Map<Field, Object>> getInformationRegisterVirtualTable(InformationRegisterVirtualTable virtualTable) throws ClientException {
-        if (virtualTable == null) {
-            throw new IllegalArgumentException("Значение параметра 'virtualTable': null");
-        }
-
+    private List<Map<Field, Object>> getInformationRegisterVirtualTable(InformationRegisterVirtualTable virtualTable) throws ClientException {
         final int reqId = virtualTable.hashCode();
-        final String name = virtualTable.getName();
-        final String resourceName = virtualTable.getResourceName();
         final LinkedHashSet<Field> presentationFields = virtualTable.getPresentationFields();
-        final boolean allFields = virtualTable.isAllFields();
         final Instant period = virtualTable.getPeriod();
         final Condition condition = virtualTable.getCondition();
-        final boolean allowedOnly = virtualTable.isAllowedOnly();
 
         final Set<Field> fields = new LinkedHashSet<>();
         fields.addAll(virtualTable.getFieldsParam());
         fields.addAll(presentationFields);
-
-        log.debug("[%s] Обрабатывается запрос на получения cреза %s регистра сведений '%s' "
-                        + "[fields=%s, period=%s, condition=%s, allowedOnly=%s]",
-                reqId, virtualTable instanceof InformationRegisterSliceLast ? "последних" : "первых",
-                name, fields, period, condition, allowedOnly);
 
         StringBuilder sb = new StringBuilder();
         List<String> params = new ArrayList<>();
@@ -541,12 +403,12 @@ public final class DataServiceClient {
         String path = String.format(
                 virtualTable instanceof InformationRegisterSliceLast ? "SliceLast(%s)" : "SliceFirst(%s)", sb.toString());
 
-        WebTarget wt = rsClient.target(oDataUrl).path(resourceName).path(path);
-        if (allowedOnly) {
+        WebTarget wt = rsClient.target(oDataUrl).path(virtualTable.getResourceName()).path(path);
+        if (virtualTable.isAllowedOnly()) {
             wt = wt.queryParam("allowedOnly", "true");
         }
 
-        if (!allFields) {
+        if (!virtualTable.isAllFields()) {
             wt = wt.queryParam("$select", fieldsSetAsString(fields, false));
         } else if (!presentationFields.isEmpty()) {
             wt = wt.queryParam("$select", "*,".concat(fieldsSetAsString(presentationFields, false)));
@@ -567,7 +429,7 @@ public final class DataServiceClient {
         }
 
         log.info("[%s] Запрос вернул %s записей виртуальной таблицы регистра сведений '%s'",
-                reqId, result.size(), name);
+                reqId, result.size(), virtualTable.getName());
 
         return result;
     }
@@ -579,45 +441,10 @@ public final class DataServiceClient {
      * @return записи виртуальной таблицы регистра расчета
      * @throws ClientException
      */
-    public List<Map<Field, Object>> getCalculationRegisterVirtualTable(CalculationRegisterVirtualTable virtualTable) throws ClientException {
-        if (virtualTable == null) {
-            throw new IllegalArgumentException("Значение параметра 'virtualTable': null");
-        }
-
-        if (virtualTable instanceof CalculationRegisterBaseRegister) {
-            if (virtualTable.getMainRegisterDimensions().isEmpty()) {
-                throw new IllegalArgumentException("Список имён измерений основного регистра расчета пуст");
-            }
-            if (virtualTable.getBaseRegisterDimensions().isEmpty()) {
-                throw new IllegalArgumentException("Список измерений базового регистра расчета пуст");
-            }
-        }
-
+    private List<Map<Field, Object>> getCalculationRegisterVirtualTable(CalculationRegisterVirtualTable virtualTable) throws ClientException {
         final int reqId = virtualTable.hashCode();
-        final String name = virtualTable.getName();
-        final String resourceName = virtualTable.getResourceName();
         final LinkedHashSet<Field> presentationFields = virtualTable.getPresentationFields();
         final Condition condition = virtualTable.getCondition();
-        final boolean allowedOnly = virtualTable.isAllowedOnly();
-
-        if (virtualTable instanceof CalculationRegisterScheduleData) {
-            log.debug("[%s] Обрабатывается запрос на получения данных виртуальной таблицы данных графика регистра расчета '%s' "
-                            + "[fields=%s, condition=%s, allowedOnly=%s]",
-                    reqId, name, virtualTable.getFieldsParam(), condition, allowedOnly);
-        } else if (virtualTable instanceof CalculationRegisterActualActionPeriod) {
-            log.debug("[%s] Обрабатывается запрос на получения данных виртуальной таблицы фактического периода действия регистра расчета '%s' "
-                            + "[fields=%s, condition=%s, allowedOnly=%s]",
-                    reqId, name, virtualTable.getFieldsParam(), condition, allowedOnly);
-        } else if (virtualTable instanceof CalculationRegisterRecalculation) {
-            log.debug("[%s] Обрабатывается запрос на получения данных виртуальной таблицы записей перерасчета '%s' регистра расчета '%s' "
-                            + "[fields=%s, condition=%s, allowedOnly=%s]",
-                    reqId, virtualTable.getRecalculationName(), name, virtualTable.getFieldsParam(), condition, allowedOnly);
-        } else if (virtualTable instanceof CalculationRegisterBaseRegister) {
-            log.debug("[%s] Обрабатывается запрос на получения данных базового регистра '%s' регистра расчета '%s' "
-                            + "[fields=%s, condition=%s, mainRegisterDimensions=%s, baseRegisterDimensions=%s, viewPoints=%s, allowedOnly=%s]",
-                    reqId, virtualTable.getBaseRegisterName(), name, virtualTable.getFieldsParam(), condition,
-                    virtualTable.getMainRegisterDimensions(), virtualTable.getBaseRegisterDimensions(), virtualTable.getViewPoints(), allowedOnly);
-        }
 
         List<String> params = new ArrayList<>();
 
@@ -657,8 +484,8 @@ public final class DataServiceClient {
             path = String.format("Base".concat(virtualTable.getBaseRegisterName()).concat("(%s)"), sb.toString());
         }
 
-        WebTarget wt = rsClient.target(oDataUrl).path(resourceName).path(path);
-        if (allowedOnly) {
+        WebTarget wt = rsClient.target(oDataUrl).path(virtualTable.getResourceName()).path(path);
+        if (virtualTable.isAllowedOnly()) {
             wt = wt.queryParam("allowedOnly", "true");
         }
 
@@ -699,7 +526,7 @@ public final class DataServiceClient {
         }
 
         log.info("[%s] Запрос вернул %s записей виртуальной таблицы регистра расчета '%s'",
-                reqId, result.size(), name);
+                reqId, result.size(), virtualTable.getName());
 
         return result;
     }

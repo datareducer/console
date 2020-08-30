@@ -112,8 +112,7 @@ public final class AccountingRegisterRecordsWithExtDimensions implements Account
             fieldsLookup.put(presentationName, new Field(presentationName, FieldType.STRING));
         }
 
-        this.presentationFields = new LinkedHashSet<>();
-        initPresentationFields();
+        this.presentationFields = Field.presentations(getFieldsParam());
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -203,14 +202,6 @@ public final class AccountingRegisterRecordsWithExtDimensions implements Account
         return new LinkedHashSet<>(presentationFields);
     }
 
-    private void initPresentationFields() {
-        for (Field f : getFieldsParam()) {
-            if (f.isPresentation()) {
-                presentationFields.add(new Field(f.getPresentationName(), FieldType.STRING));
-            }
-        }
-    }
-
     @Override
     public String getType() {
         return getResourceName() + "_RecordsWithExtDimensions";
@@ -245,8 +236,8 @@ public final class AccountingRegisterRecordsWithExtDimensions implements Account
                 && that.presentationFields.equals(presentationFields)
                 && that.allFields == allFields
                 && that.condition.equals(condition)
-                && (that.startPeriod != null ? that.startPeriod.equals(startPeriod) : startPeriod == null)
-                && (that.endPeriod != null ? that.endPeriod.equals(endPeriod) : endPeriod == null)
+                && (Objects.equals(that.startPeriod, startPeriod))
+                && (Objects.equals(that.endPeriod, endPeriod))
                 && that.orderBy.equals(orderBy)
                 && that.top == top
                 && that.allowedOnly == allowedOnly;

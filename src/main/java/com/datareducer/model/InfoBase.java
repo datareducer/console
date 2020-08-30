@@ -122,9 +122,11 @@ public final class InfoBase implements DataServiceEntity {
      * @throws ClientException
      */
     public List<Map<Field, Object>> get(DataServiceRequest request) throws ClientException {
+        //TODO проверяем наличие объекта в кэше
         if (request == null) {
             throw new IllegalArgumentException("Значение параметра 'request': null");
         }
+        //TODO кэшируем объект
         return getDataServiceClient().get(request);
     }
 

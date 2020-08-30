@@ -28,13 +28,12 @@ import java.util.*;
  * @author Kirill Mikhaylov
  */
 public final class InformationRegister implements DataServiceRequest {
-    /**
-     * Префикс ресурса для обращения к REST-сервису 1С
-     */
+    //Префикс ресурса для обращения к REST-сервису 1С
     public static final String RESOURCE_PREFIX = "InformationRegister_";
 
     private final String name;
     private final LinkedHashSet<Field> fields;
+    private final LinkedHashSet<Field> presentationFields;
     private final boolean allFields;
     private final Condition condition;
     private final boolean allowedOnly;
@@ -52,8 +51,6 @@ public final class InformationRegister implements DataServiceRequest {
 
     /**
      * Создаёт описание запроса к ресурсу Регистра сведений.
-     * Коллекция полей дополняется полями отбора.
-     * Если allFields == true, коллекция полей fields должна содержать все имеющиеся поля объекта.
      *
      * @param name        Имя Регистра сведений, как оно задано в конфигураторе.
      * @param fields      Коллекция полей, которые необходимо получить.
@@ -96,6 +93,8 @@ public final class InformationRegister implements DataServiceRequest {
             sliceLast = null;
             sliceFirst = null;
         }
+
+        this.presentationFields = Field.presentations(getFields());
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -160,6 +159,11 @@ public final class InformationRegister implements DataServiceRequest {
     }
 
     @Override
+    public LinkedHashSet<Field> getPresentationFields() {
+        return new LinkedHashSet<>(presentationFields);
+    }
+
+    @Override
     public Condition getCondition() {
         return condition.clone();
     }
@@ -208,6 +212,7 @@ public final class InformationRegister implements DataServiceRequest {
         InformationRegister that = (InformationRegister) o;
         return that.name.equals(name)
                 && that.fields.equals(fields)
+                && that.presentationFields.equals(presentationFields)
                 && that.allFields == allFields
                 && that.condition.equals(condition)
                 && that.allowedOnly == allowedOnly;
@@ -219,6 +224,7 @@ public final class InformationRegister implements DataServiceRequest {
         if (result == 0) {
             result = 31 * result + name.hashCode();
             result = 31 * result + fields.hashCode();
+            result = 31 * result + presentationFields.hashCode();
             result = 31 * result + (allFields ? 1 : 0);
             result = 31 * result + condition.hashCode();
             result = 31 * result + (allowedOnly ? 1 : 0);

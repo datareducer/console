@@ -23,6 +23,7 @@ import java.time.Instant;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Описание виртуальной таблицы Среза последних периодического регистра сведений 1С
@@ -97,8 +98,7 @@ public final class InformationRegisterSliceLast implements InformationRegisterVi
             fieldsLookup.put(presentationName, new Field(presentationName, FieldType.STRING));
         }
 
-        this.presentationFields = new LinkedHashSet<>();
-        initPresentationFields();
+        this.presentationFields = Field.presentations(getFieldsParam());
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -136,14 +136,6 @@ public final class InformationRegisterSliceLast implements InformationRegisterVi
     @Override
     public LinkedHashSet<Field> getPresentationFields() {
         return new LinkedHashSet<>(presentationFields);
-    }
-
-    private void initPresentationFields() {
-        for (Field f : getFieldsParam()) {
-            if (f.isPresentation()) {
-                presentationFields.add(new Field(f.getPresentationName(), FieldType.STRING));
-            }
-        }
     }
 
     @Override
@@ -225,7 +217,7 @@ public final class InformationRegisterSliceLast implements InformationRegisterVi
                 && that.presentationFields.equals(presentationFields)
                 && that.allFields == allFields
                 && that.condition.equals(condition)
-                && (that.period != null ? that.period.equals(period) : period == null)
+                && (Objects.equals(that.period, period))
                 && that.allowedOnly == allowedOnly;
     }
 

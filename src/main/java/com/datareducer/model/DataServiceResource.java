@@ -310,20 +310,8 @@ public class DataServiceResource {
             throw new ReducerRuntimeException(); // Недостижимо
         }
 
-        request.setCacheLifetime(Duration.ofMillis(getCacheLifetime())); //TODO
+        request.setCacheLifetime(Duration.ofMillis(getCacheLifetime()));
 
-//        // Запрос данных
-//        if (request instanceof AccumulationRegisterVirtualTable) {
-//            return infoBase.getAccumulationRegisterVirtualTable((AccumulationRegisterVirtualTable) request, getCacheLifetime());
-//        } else if (request instanceof AccountingRegisterVirtualTable) {
-//            return infoBase.getAccountingRegisterVirtualTable((AccountingRegisterVirtualTable) request, getCacheLifetime());
-//        } else if (request instanceof InformationRegisterVirtualTable) {
-//            return infoBase.getInformationRegisterVirtualTable((InformationRegisterVirtualTable) request, getCacheLifetime());
-//        } else if (request instanceof CalculationRegisterVirtualTable) {
-//            return infoBase.getCalculationRegisterVirtualTable((CalculationRegisterVirtualTable) request, getCacheLifetime());
-//        } else {
-//            return infoBase.get(request, getCacheLifetime());
-//        }
         return infoBase.get(request);
     }
 
@@ -381,7 +369,7 @@ public class DataServiceResource {
      * @return Таблица данных
      * @throws ClientException
      */
-    REXP getDataFrame() throws ClientException, UndefinedParameterException { ///TODO перенести в класс - обертку результата выполнения запроса
+    REXP getDataFrame() throws ClientException, UndefinedParameterException { ///TODO перенести в класс - обертку результата выполнения запроса?
         List<Map<Field, Object>> resourceData = getResourceData();
         // Список имён столбцов
         List<String> colNames = new ArrayList<>();

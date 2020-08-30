@@ -20,10 +20,7 @@ package com.datareducer.dataservice.entity;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Описание виртуальной таблицы оборотов регистра накопления 1С
@@ -58,7 +55,6 @@ public final class AccumulationRegisterTurnovers implements AccumulationRegister
 
     /**
      * Создаёт описание запроса к виртуальной таблице оборотов регистра накопления.
-     * Если allDimensions == true, набор dimensionsParam должен содержать все имеющиеся измерения объекта.
      *
      * @param name            Имя Регистра накопления, как оно задано в конфигураторе.
      * @param dimensions      Набор всех измерений виртуальной таблицы оборотов.
@@ -124,8 +120,7 @@ public final class AccumulationRegisterTurnovers implements AccumulationRegister
             fieldsLookup.put(field.getName(), field);
         }
 
-        this.presentationFields = new LinkedHashSet<>();
-        initPresentationFields();
+        this.presentationFields = Field.presentations(getDimensionsParam());
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -164,14 +159,6 @@ public final class AccumulationRegisterTurnovers implements AccumulationRegister
     @Override
     public LinkedHashSet<Field> getPresentationFields() {
         return new LinkedHashSet<>(presentationFields);
-    }
-
-    private void initPresentationFields() {
-        for (Field f : getDimensionsParam()) {
-            if (f.isPresentation()) {
-                presentationFields.add(new Field(f.getPresentationName(), FieldType.STRING));
-            }
-        }
     }
 
     @Override
@@ -254,8 +241,8 @@ public final class AccumulationRegisterTurnovers implements AccumulationRegister
                 && that.dimensionsParam.equals(dimensionsParam)
                 && that.presentationFields.equals(presentationFields)
                 && that.condition.equals(condition)
-                && (that.startPeriod != null ? that.startPeriod.equals(startPeriod) : startPeriod == null)
-                && (that.endPeriod != null ? that.endPeriod.equals(endPeriod) : endPeriod == null)
+                && (Objects.equals(that.startPeriod, startPeriod))
+                && (Objects.equals(that.endPeriod, endPeriod))
                 && that.allowedOnly == allowedOnly;
     }
 
