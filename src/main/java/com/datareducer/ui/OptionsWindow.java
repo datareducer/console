@@ -45,10 +45,6 @@ public class OptionsWindow {
     private StringProperty rapportPassword = new SimpleStringProperty();
 
     // Не отображается на форме:
-    private StringProperty orientdbEngine = new SimpleStringProperty();
-    private StringProperty orientdbUser = new SimpleStringProperty();
-    private StringProperty orientdbPassword = new SimpleStringProperty();
-    private StringProperty orientdbHost = new SimpleStringProperty();
     private StringProperty rapportWebappName = new SimpleStringProperty();
 
     private final Stage stage;

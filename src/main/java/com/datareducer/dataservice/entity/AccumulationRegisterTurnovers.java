@@ -31,9 +31,7 @@ import java.util.*;
  * @author Kirill Mikhaylov
  */
 public final class AccumulationRegisterTurnovers implements AccumulationRegisterVirtualTable {
-    /**
-     * Префикс ресурса для обращения к REST-сервису 1С
-     */
+    /** Префикс ресурса для обращения к REST-сервису 1С */
     public static final String RESOURCE_PREFIX = "AccumulationRegister_";
 
     private final String name;

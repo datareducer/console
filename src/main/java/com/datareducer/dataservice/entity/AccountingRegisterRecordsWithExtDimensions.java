@@ -29,9 +29,7 @@ import java.util.*;
  * @author Kirill Mikhaylov
  */
 public final class AccountingRegisterRecordsWithExtDimensions implements AccountingRegisterVirtualTable {
-    /**
-     * Префикс ресурса для обращения к REST-сервису 1С
-     */
+    /** Префикс ресурса для обращения к REST-сервису 1С */
     public static final String RESOURCE_PREFIX = "AccountingRegister_";
 
     private final String name;
@@ -124,7 +122,8 @@ public final class AccountingRegisterRecordsWithExtDimensions implements Account
      * @param virtualTableFields Поля виртуальной таблицы движений с субконто регистра бухгалтерии.
      */
     public AccountingRegisterRecordsWithExtDimensions(String name, LinkedHashSet<Field> virtualTableFields) {
-        this(name, virtualTableFields, new LinkedHashSet<>(), false, new Condition(), null, null, 0, new ArrayList<>(), false);
+        this(name, virtualTableFields, new LinkedHashSet<>(), false, new Condition(), null,
+                null, 0, new ArrayList<>(), false);
     }
 
     @Override

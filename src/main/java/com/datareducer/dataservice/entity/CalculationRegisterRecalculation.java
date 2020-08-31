@@ -30,9 +30,7 @@ import java.util.Map;
  * @author Kirill Mikhaylov
  */
 public final class CalculationRegisterRecalculation implements CalculationRegisterVirtualTable {
-    /**
-     * Префикс ресурса для обращения к REST-сервису 1С
-     */
+    /** Префикс ресурса для обращения к REST-сервису 1С */
     public static final String RESOURCE_PREFIX = "CalculationRegister_";
 
     private final String name;

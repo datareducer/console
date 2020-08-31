@@ -31,9 +31,7 @@ import java.util.Set;
  * @author Kirill Mikhaylov
  */
 public final class AccountingRegisterExtDimensions implements AccountingRegisterVirtualTable {
-    /**
-     * Префикс ресурса для обращения к REST-сервису 1С
-     */
+    /** Префикс ресурса для обращения к REST-сервису 1С */
     public static final String RESOURCE_PREFIX = "AccountingRegister_";
 
     private final String name;

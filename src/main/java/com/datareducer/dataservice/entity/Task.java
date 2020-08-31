@@ -28,9 +28,7 @@ import java.util.*;
  * @author Kirill Mikhaylov
  */
 public final class Task implements DataServiceRequest {
-    /**
-     * Префикс ресурса для обращения к REST-сервису 1С
-     */
+    /** Префикс ресурса для обращения к REST-сервису 1С */
     public static final String RESOURCE_PREFIX = "Task_";
 
     private final String name;

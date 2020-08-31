@@ -28,7 +28,7 @@ import java.util.*;
  * @author Kirill Mikhaylov
  */
 public final class InformationRegister implements DataServiceRequest {
-    //Префикс ресурса для обращения к REST-сервису 1С
+    /** Префикс ресурса для обращения к REST-сервису 1С */
     public static final String RESOURCE_PREFIX = "InformationRegister_";
 
     private final String name;

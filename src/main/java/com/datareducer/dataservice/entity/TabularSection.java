@@ -28,9 +28,7 @@ import java.util.*;
  * @author Kirill Mikhaylov
  */
 public final class TabularSection implements DataServiceRequest {
-    /**
-     * Ключевые поля
-     */
+    /** Ключевые поля */
     public static final Set<Field> KEY_FIELDS;
 
     private final DataServiceEntity parent;

@@ -32,9 +32,7 @@ import java.util.Objects;
  * @author Kirill Mikhaylov
  */
 public final class InformationRegisterSliceFirst implements InformationRegisterVirtualTable {
-    /**
-     * Префикс ресурса для обращения к REST-сервису 1С
-     */
+    /** Префикс ресурса для обращения к REST-сервису 1С */
     public static final String RESOURCE_PREFIX = "InformationRegister_";
 
     private final String name;
