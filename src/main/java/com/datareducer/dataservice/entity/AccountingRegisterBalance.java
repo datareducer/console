@@ -126,7 +126,9 @@ public final class AccountingRegisterBalance implements AccountingRegisterVirtua
 
         this.presentationFields = Field.presentations(getDimensionsParam());
         presentationFields.add(new Field(getAccountField().getPresentationName(), FieldType.STRING));
-        presentationFields.addAll(Field.presentations(getExtDimensions()));
+        for (Field f : getExtDimensions()) {
+            presentationFields.add(new Field(f.getPresentationName(), FieldType.STRING));
+        }
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -277,7 +279,7 @@ public final class AccountingRegisterBalance implements AccountingRegisterVirtua
                 && that.dimensionsParam.equals(dimensionsParam)
                 && that.presentationFields.equals(presentationFields)
                 && that.condition.equals(condition)
-                && (that.period != null ? that.period.equals(period) : period == null)
+                && (Objects.equals(that.period, period))
                 && that.accountCondition.equals(accountCondition)
                 && that.extraDimensions.equals(extraDimensions)
                 && that.allowedOnly == allowedOnly;

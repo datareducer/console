@@ -152,7 +152,9 @@ public final class AccountingRegisterTurnovers implements AccountingRegisterVirt
         this.presentationFields = Field.presentations(getDimensionsParam());
         presentationFields.add(new Field(getAccountField().getPresentationName(), FieldType.STRING));
         presentationFields.add(new Field(getBalancedAccountField().getPresentationName(), FieldType.STRING));
-        presentationFields.addAll(Field.presentations(getExtDimensions()));
+        for (Field f : getExtDimensions()) {
+            presentationFields .add(new Field(f.getPresentationName(), FieldType.STRING));
+        }
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -167,6 +169,19 @@ public final class AccountingRegisterTurnovers implements AccountingRegisterVirt
     public AccountingRegisterTurnovers(String name, LinkedHashSet<Field> properties, LinkedHashSet<Field> resources) {
         this(name, properties, resources, new LinkedHashSet<>(), false, new Condition(), null, null,
                 new Condition(), new Condition(), new ArrayList<>(), new ArrayList<>(), false);
+    }
+
+    private void initPresentationFields() {
+        for (Field f : getDimensionsParam()) {
+            if (f.isPresentation()) {
+                presentationFields .add(new Field(f.getPresentationName(), FieldType.STRING));
+            }
+        }
+        presentationFields.add(new Field(getAccountField().getPresentationName(), FieldType.STRING));
+        presentationFields.add(new Field(getBalancedAccountField().getPresentationName(), FieldType.STRING));
+        for (Field f : getExtDimensions()) {
+            presentationFields .add(new Field(f.getPresentationName(), FieldType.STRING));
+        }
     }
 
     @Override

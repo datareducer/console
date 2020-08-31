@@ -71,12 +71,16 @@ public final class InformationRegister implements DataServiceRequest {
         }
         this.name = name;
         this.fields = new LinkedHashSet<>(fields);
+        this.presentationFields = Field.presentations(getFields());
         this.allFields = allFields;
         this.condition = condition.clone();
         this.allowedOnly = allowedOnly;
 
         this.fieldsLookup = new HashMap<>();
         for (Field field : this.fields) {
+            fieldsLookup.put(field.getName(), field);
+        }
+        for (Field field : this.presentationFields) {
             fieldsLookup.put(field.getName(), field);
         }
 
@@ -93,8 +97,6 @@ public final class InformationRegister implements DataServiceRequest {
             sliceLast = null;
             sliceFirst = null;
         }
-
-        this.presentationFields = Field.presentations(getFields());
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }

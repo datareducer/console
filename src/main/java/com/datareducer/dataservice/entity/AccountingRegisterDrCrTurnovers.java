@@ -152,7 +152,9 @@ public final class AccountingRegisterDrCrTurnovers implements AccountingRegister
         this.presentationFields = Field.presentations(getDimensionsParam());
         presentationFields.add(new Field(getAccountField().getPresentationName(), FieldType.STRING));
         presentationFields.add(new Field(getBalancedAccountField().getPresentationName(), FieldType.STRING));
-        presentationFields.addAll(Field.presentations(getExtDimensions()));
+        for (Field f : getExtDimensions()) {
+            presentationFields.add(new Field(f.getPresentationName(), FieldType.STRING));
+        }
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }

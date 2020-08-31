@@ -120,7 +120,9 @@ public final class AccountingRegisterBalanceAndTurnovers implements AccountingRe
 
         this.presentationFields = Field.presentations(getFieldsParam());
         presentationFields.add(new Field(getAccountField().getPresentationName(), FieldType.STRING));
-        presentationFields.addAll(Field.presentations(getExtDimensions()));
+        for (Field f : getExtDimensions()) {
+            presentationFields.add(new Field(f.getPresentationName(), FieldType.STRING));
+        }
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }

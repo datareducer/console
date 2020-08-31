@@ -160,7 +160,7 @@ public final class Script {
 
         Map<String, ScriptParameter> paramsLookup = new HashMap<>();
         paramsLookup.putAll(defaultParamsMap); // Последовательность важна
-        paramsLookup.putAll(clientParamsMap); // Последовательность важна
+        paramsLookup.putAll(clientParamsMap);  // Последовательность важна
         paramsLookup.put(REQUEST_ID_PARAM, new ScriptParameter(REQUEST_ID_PARAM, requestId, false));
         paramsLookup.put(NAME_PARAM, new ScriptParameter(NAME_PARAM, getName(), false));
         paramsLookup.put(DESCRIPTION_PARAM, new ScriptParameter(DESCRIPTION_PARAM, getDescription(), false));

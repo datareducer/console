@@ -81,6 +81,7 @@ public final class AccountingRegister implements DataServiceRequest {
         }
         this.name = name;
         this.fields = new LinkedHashSet<>(fields);
+        this.presentationFields = Field.presentations(getFields());
         this.allFields = allFields;
         this.condition = condition.clone();
         this.allowedOnly = allowedOnly;
@@ -89,8 +90,9 @@ public final class AccountingRegister implements DataServiceRequest {
         for (Field field : this.fields) {
             fieldsLookup.put(field.getName(), field);
         }
-
-        this.presentationFields = Field.presentations(getFields());
+        for (Field field : this.presentationFields) {
+            fieldsLookup.put(field.getName(), field);
+        }
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }

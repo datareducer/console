@@ -90,24 +90,21 @@ public final class DataServiceClient {
             throw new IllegalArgumentException("Значение параметра 'request': null");
         }
 
-        final int reqId = request.hashCode();
-        final String resourceName = request.getResourceName();
-        final Condition condition = request.getCondition();
-        final Set<Field> presentationFields = request.getPresentationFields();
+        WebTarget wt;
+        if (request instanceof AccumulationRegisterVirtualTable) {
+            wt = getAccumulationRegisterVirtualTableWebTarget((AccumulationRegisterVirtualTable) request);
+        } else if (request instanceof AccountingRegisterVirtualTable) {
+            wt = getAccountingRegisterVirtualTableWebTarget((AccountingRegisterVirtualTable) request);
+        } else if (request instanceof InformationRegisterVirtualTable) {
+            wt = getInformationRegisterVirtualTableWebTarget((InformationRegisterVirtualTable) request);
+        } else if (request instanceof CalculationRegisterVirtualTable) {
+            wt = getCalculationRegisterVirtualTableWebTarget((CalculationRegisterVirtualTable) request);
+        } else {
+            wt = getWebTarget(request);
+        }
 
-        // Запрос к REST-сервису 1С
-        WebTarget wt = rsClient.target(oDataUrl).path(resourceName);
-        if (request.isAllowedOnly()) {
-            wt = wt.queryParam("allowedOnly", "true");
-        }
-        if (!request.isAllFields()) {
-            wt = wt.queryParam("$select", fieldsSetAsString(request.getFields(), false)); //TODO нет полей-представлений
-        } else if (!presentationFields.isEmpty()) {
-            wt = wt.queryParam("$select", "*,".concat(fieldsSetAsString(presentationFields, false)));
-        }
-        if (!condition.isEmpty()) {
-            wt = wt.queryParam("$filter", UriComponent.encode(condition.getHttpForm(), QUERY_PARAM_SPACE_ENCODED));
-        }
+        final int reqId = request.hashCode();
+
         Invocation.Builder ib = wt.request(MediaType.APPLICATION_ATOM_XML)
                 .property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_USERNAME, connectionParams.getUser())
                 .property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_PASSWORD, connectionParams.getPassword());
@@ -115,26 +112,47 @@ public final class DataServiceClient {
         log.info("[%s] Сформирован запрос: %s", reqId, UriComponent.decode(wt.getUri().toString(), QUERY_PARAM));
 
         List<Map<Field, Object>> result;
+
         try {
-            result = JaxbUtil.parseFeed(ib.get(Feed.class), request);
+            if (request.isVirtual()) {
+                result = JaxbUtil.parseResult(ib.get(Result.class), request);
+            } else {
+                result = JaxbUtil.parseFeed(ib.get(Feed.class), request);
+            }
         } catch (ProcessingException | WebApplicationException e) {
             log.error("[%s] При выполнении запроса к REST-сервису 1C:", reqId, e);
             throw new ClientException(e);
         }
-        log.info("[%s] Запрос вернул %s '%s'", reqId, result.size(), resourceName);
+        log.info("[%s] Запрос вернул %s записей '%s'", reqId, result.size(), request.getResourceName());
 
         return result;
     }
 
-    /**
-     * Получает записи виртуальной таблицы регистра накопления
-     *
-     * @param virtualTable Параметры запроса
-     * @return записи виртуальной таблицы регистра бухгалтерии
-     * @throws ClientException
-     */
-    private List<Map<Field, Object>> getAccumulationRegisterVirtualTable(AccumulationRegisterVirtualTable virtualTable) throws ClientException {
-        final int reqId = virtualTable.hashCode();
+    private WebTarget getWebTarget(DataServiceRequest request) {
+        final Condition condition = request.getCondition();
+        final Set<Field> presentationFields = request.getPresentationFields();
+
+        final Set<Field> fields = new LinkedHashSet<>();
+        fields.addAll(request.getFields());
+        fields.addAll(presentationFields);
+
+        WebTarget wt = rsClient.target(oDataUrl).path(request.getResourceName());
+        if (request.isAllowedOnly()) {
+            wt = wt.queryParam("allowedOnly", "true");
+        }
+        if (!request.isAllFields()) {
+            wt = wt.queryParam("$select", fieldsSetAsString(fields, false));
+        } else if (!presentationFields.isEmpty()) {
+            wt = wt.queryParam("$select", "*,".concat(fieldsSetAsString(presentationFields, false)));
+        }
+        if (!condition.isEmpty()) {
+            wt = wt.queryParam("$filter", UriComponent.encode(condition.getHttpForm(), QUERY_PARAM_SPACE_ENCODED));
+        }
+
+        return wt;
+    }
+
+    private WebTarget getAccumulationRegisterVirtualTableWebTarget(AccumulationRegisterVirtualTable virtualTable) {
         final LinkedHashSet<Field> presentationFields = virtualTable.getPresentationFields();
         final Condition condition = virtualTable.getCondition();
 
@@ -186,35 +204,10 @@ public final class DataServiceClient {
             wt = wt.queryParam("$select", "*,".concat(fieldsSetAsString(presentationFields, false)));
         }
 
-        log.info("[%s] Сформирован запрос: %s", reqId, UriComponent.decode(wt.getUri().toString(), QUERY_PARAM));
-
-        Invocation.Builder ib = wt.request(MediaType.APPLICATION_XML)
-                .property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_USERNAME, connectionParams.getUser())
-                .property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_PASSWORD, connectionParams.getPassword());
-
-        List<Map<Field, Object>> result;
-        try {
-            result = JaxbUtil.parseResult(ib.get(Result.class), virtualTable);
-        } catch (ProcessingException | WebApplicationException e) {
-            log.error("[%s] При выполнении запроса к REST-сервису 1C:", reqId, e);
-            throw new ClientException(e);
-        }
-
-        log.info("[%s] Запрос вернул %s записей виртуальной таблицы регистра накопления '%s'",
-                reqId, result.size(), virtualTable.getName());
-
-        return result;
+        return wt;
     }
 
-    /**
-     * Получает записи виртуальной таблицы регистра бухгалтерии
-     *
-     * @param virtualTable Параметры запроса
-     * @return записи виртуальной таблицы регистра бухгалтерии
-     * @throws ClientException
-     */
-    private List<Map<Field, Object>> getAccountingRegisterVirtualTable(AccountingRegisterVirtualTable virtualTable) throws ClientException {
-        final int reqId = virtualTable.hashCode();
+    private WebTarget getAccountingRegisterVirtualTableWebTarget(AccountingRegisterVirtualTable virtualTable) {
         final LinkedHashSet<Field> presentationFields = virtualTable.getPresentationFields();
         final Condition condition = virtualTable.getCondition();
 
@@ -319,12 +312,12 @@ public final class DataServiceClient {
         }
 
         if (virtualTable instanceof AccountingRegisterExtDimensions) {
-            if (!virtualTable.isAllFields()) { //TODO XXX
+            if (!virtualTable.isAllFields()) {
                 Set<Field> fields = new LinkedHashSet<>();
                 fields.addAll(virtualTable.getFieldsParam());
                 fields.addAll(presentationFields);
                 wt = wt.queryParam("$select", fieldsSetAsString(fields, false));
-            } else if (!presentationFields.isEmpty()) { //TODO XXX
+            } else if (!presentationFields.isEmpty()) {
                 wt = wt.queryParam("$select", "*,".concat(fieldsSetAsString(presentationFields, false)));
             }
             if (!condition.isEmpty()) {
@@ -345,35 +338,10 @@ public final class DataServiceClient {
             }
         }
 
-        log.info("[%s] Сформирован запрос: %s", reqId, UriComponent.decode(wt.getUri().toString(), QUERY_PARAM));
-
-        Invocation.Builder ib = wt.request(MediaType.APPLICATION_XML)
-                .property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_USERNAME, connectionParams.getUser())
-                .property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_PASSWORD, connectionParams.getPassword());
-
-        List<Map<Field, Object>> result;
-        try {
-            result = JaxbUtil.parseResult(ib.get(Result.class), virtualTable);
-        } catch (ProcessingException | WebApplicationException e) {
-            log.error("[%s] При выполнении запроса к REST-сервису 1C:", virtualTable.hashCode(), e);
-            throw new ClientException(e);
-        }
-
-        log.info("[%s] Запрос вернул %s записей виртуальной таблицы регистра бухгалтерии '%s'",
-                reqId, result.size(), virtualTable.getName());
-
-        return result;
+        return wt;
     }
 
-    /**
-     * Получает записи виртуальной таблицы регистра сведений
-     *
-     * @param virtualTable Параметры запроса
-     * @return записи виртуальной таблицы регистра сведений
-     * @throws ClientException
-     */
-    private List<Map<Field, Object>> getInformationRegisterVirtualTable(InformationRegisterVirtualTable virtualTable) throws ClientException {
-        final int reqId = virtualTable.hashCode();
+    private WebTarget getInformationRegisterVirtualTableWebTarget(InformationRegisterVirtualTable virtualTable) {
         final LinkedHashSet<Field> presentationFields = virtualTable.getPresentationFields();
         final Instant period = virtualTable.getPeriod();
         final Condition condition = virtualTable.getCondition();
@@ -407,42 +375,16 @@ public final class DataServiceClient {
         if (virtualTable.isAllowedOnly()) {
             wt = wt.queryParam("allowedOnly", "true");
         }
-
         if (!virtualTable.isAllFields()) {
             wt = wt.queryParam("$select", fieldsSetAsString(fields, false));
         } else if (!presentationFields.isEmpty()) {
             wt = wt.queryParam("$select", "*,".concat(fieldsSetAsString(presentationFields, false)));
         }
 
-        log.info("[%s] Сформирован запрос: %s", reqId, UriComponent.decode(wt.getUri().toString(), QUERY_PARAM));
-
-        Invocation.Builder ib = wt.request(MediaType.APPLICATION_XML)
-                .property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_USERNAME, connectionParams.getUser())
-                .property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_PASSWORD, connectionParams.getPassword());
-
-        List<Map<Field, Object>> result;
-        try {
-            result = JaxbUtil.parseFeed(ib.get(Feed.class), virtualTable);
-        } catch (ProcessingException | WebApplicationException e) {
-            log.error("[%s] При выполнении запроса к REST-сервису 1C:", virtualTable.hashCode(), e);
-            throw new ClientException(e);
-        }
-
-        log.info("[%s] Запрос вернул %s записей виртуальной таблицы регистра сведений '%s'",
-                reqId, result.size(), virtualTable.getName());
-
-        return result;
+        return wt;
     }
 
-    /**
-     * Получает записи виртуальной таблицы регистра расчета
-     *
-     * @param virtualTable Параметры запроса
-     * @return записи виртуальной таблицы регистра расчета
-     * @throws ClientException
-     */
-    private List<Map<Field, Object>> getCalculationRegisterVirtualTable(CalculationRegisterVirtualTable virtualTable) throws ClientException {
-        final int reqId = virtualTable.hashCode();
+    private WebTarget getCalculationRegisterVirtualTableWebTarget(CalculationRegisterVirtualTable virtualTable) {
         final LinkedHashSet<Field> presentationFields = virtualTable.getPresentationFields();
         final Condition condition = virtualTable.getCondition();
 
@@ -511,24 +453,7 @@ public final class DataServiceClient {
             }
         }
 
-        log.info("[%s] Сформирован запрос: %s", reqId, UriComponent.decode(wt.getUri().toString(), QUERY_PARAM));
-
-        Invocation.Builder ib = wt.request(MediaType.APPLICATION_XML)
-                .property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_USERNAME, connectionParams.getUser())
-                .property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_PASSWORD, connectionParams.getPassword());
-
-        List<Map<Field, Object>> result;
-        try {
-            result = JaxbUtil.parseResult(ib.get(Result.class), virtualTable);
-        } catch (ProcessingException | WebApplicationException e) {
-            log.error("[%s] При выполнении запроса к REST-сервису 1C:", virtualTable.hashCode(), e);
-            throw new ClientException(e);
-        }
-
-        log.info("[%s] Запрос вернул %s записей виртуальной таблицы регистра расчета '%s'",
-                reqId, result.size(), virtualTable.getName());
-
-        return result;
+        return wt;
     }
 
     /**
