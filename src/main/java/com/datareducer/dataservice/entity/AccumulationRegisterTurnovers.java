@@ -37,7 +37,7 @@ public final class AccumulationRegisterTurnovers implements AccumulationRegister
     private final String name;
     private final Set<Field> dimensions;
     private final Set<Field> resources;
-    private final Set<Field> dimensionsParam;
+    private final Set<Field> requestedDimensions;
     private final LinkedHashSet<Field> presentationFields;
     private final boolean allDimensions;
     private final Condition condition;
@@ -54,23 +54,23 @@ public final class AccumulationRegisterTurnovers implements AccumulationRegister
     /**
      * Создаёт описание запроса к виртуальной таблице оборотов регистра накопления.
      *
-     * @param name            Имя Регистра накопления, как оно задано в конфигураторе.
-     * @param dimensions      Набор всех измерений виртуальной таблицы оборотов.
-     * @param resources       Набор всех ресурсов виртуальной таблицы оборотов.
-     * @param dimensionsParam Набор измерений, в разрезе которых будут получены обороты.
-     * @param allDimensions   Обороты по всем измерениям. Используется для оптимизации запроса.
-     * @param condition       Условие ограничения состава исходных записей,
-     *                        по которым при построении виртуальной таблицы оборотов будут собираться обороты.
-     *                        Строится по полям измерений регистра накопления.
-     *                        Если ограничение не устанавливается, передаётся пустой Condition.
-     * @param startPeriod     Начало периода, за который требуется получить обороты.
-     *                        Если null, обороты рассчитываются с самой первой записи.
-     * @param endPeriod       Конец периода, за который требуется получить обороты.
-     *                        Если null, обороты рассчитываются по самую последнюю запись.
-     * @param allowedOnly     Выбрать элементы, которые не попадают под ограничения доступа к данным.
+     * @param name                Имя Регистра накопления, как оно задано в конфигураторе.
+     * @param dimensions          Набор всех измерений виртуальной таблицы оборотов.
+     * @param resources           Набор всех ресурсов виртуальной таблицы оборотов.
+     * @param requestedDimensions Набор измерений, в разрезе которых будут получены обороты.
+     * @param allDimensions       Обороты по всем измерениям. Используется для оптимизации запроса.
+     * @param condition           Условие ограничения состава исходных записей,
+     *                              по которым при построении виртуальной таблицы оборотов будут собираться обороты.
+     *                              Строится по полям измерений регистра накопления.
+     *                              Если ограничение не устанавливается, передаётся пустой Condition.
+     * @param startPeriod         Начало периода, за который требуется получить обороты.
+     *                              Если null, обороты рассчитываются с самой первой записи.
+     * @param endPeriod           Конец периода, за который требуется получить обороты.
+     *                              Если null, обороты рассчитываются по самую последнюю запись.
+     * @param allowedOnly         Выбрать элементы, которые не попадают под ограничения доступа к данным.
      */
     public AccumulationRegisterTurnovers(String name, LinkedHashSet<Field> dimensions, LinkedHashSet<Field> resources,
-                                         LinkedHashSet<Field> dimensionsParam, boolean allDimensions, Condition condition,
+                                         LinkedHashSet<Field> requestedDimensions, boolean allDimensions, Condition condition,
                                          Instant startPeriod, Instant endPeriod, boolean allowedOnly) {
         if (name == null) {
             throw new IllegalArgumentException("Значение параметра 'name': null");
@@ -87,7 +87,7 @@ public final class AccumulationRegisterTurnovers implements AccumulationRegister
         if (resources.isEmpty()) {
             throw new IllegalArgumentException("Набор ресурсов пуст");
         }
-        if (dimensionsParam == null) {
+        if (requestedDimensions == null) {
             throw new IllegalArgumentException("Значение параметра 'dimensionsParam': null");
         }
         if (condition == null) {
@@ -100,7 +100,7 @@ public final class AccumulationRegisterTurnovers implements AccumulationRegister
         this.name = name;
         this.dimensions = new LinkedHashSet<>(dimensions);
         this.resources = new LinkedHashSet<>(resources);
-        this.dimensionsParam = new LinkedHashSet<>(dimensionsParam);
+        this.requestedDimensions = new LinkedHashSet<>(requestedDimensions);
         this.allDimensions = allDimensions;
         this.condition = condition.clone();
         this.startPeriod = startPeriod;
@@ -118,7 +118,7 @@ public final class AccumulationRegisterTurnovers implements AccumulationRegister
             fieldsLookup.put(field.getName(), field);
         }
 
-        this.presentationFields = Field.presentations(getDimensionsParam());
+        this.presentationFields = Field.presentations(getRequestedDimensions());
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -150,13 +150,18 @@ public final class AccumulationRegisterTurnovers implements AccumulationRegister
     }
 
     @Override
-    public LinkedHashSet<Field> getDimensionsParam() {
-        return new LinkedHashSet<>(dimensionsParam);
+    public LinkedHashSet<Field> getRequestedDimensions() {
+        return new LinkedHashSet<>(requestedDimensions);
     }
 
     @Override
     public LinkedHashSet<Field> getPresentationFields() {
         return new LinkedHashSet<>(presentationFields);
+    }
+
+    @Override
+    public LinkedHashSet<Field> getRequestedFields() {
+        return getRequestedDimensions();
     }
 
     @Override
@@ -236,7 +241,7 @@ public final class AccumulationRegisterTurnovers implements AccumulationRegister
         return that.name.equals(name)
                 // Запрос к виртуальной таблице оборотов не включает перечисления ресурсов,
                 // поэтому для сравнения этих запросов значим только набор измерений.
-                && that.dimensionsParam.equals(dimensionsParam)
+                && that.requestedDimensions.equals(requestedDimensions)
                 && that.presentationFields.equals(presentationFields)
                 && that.condition.equals(condition)
                 && (Objects.equals(that.startPeriod, startPeriod))
@@ -249,7 +254,7 @@ public final class AccumulationRegisterTurnovers implements AccumulationRegister
         int result = hashCode;
         if (result == 0) {
             result = 31 * result + name.hashCode();
-            result = 31 * result + dimensionsParam.hashCode();
+            result = 31 * result + requestedDimensions.hashCode();
             result = 31 * result + presentationFields.hashCode();
             result = 31 * result + condition.hashCode();
             result = 31 * result + (startPeriod != null ? startPeriod.hashCode() : 0);

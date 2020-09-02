@@ -36,7 +36,7 @@ public final class AccountingRegisterExtDimensions implements AccountingRegister
 
     private final String name;
     private final Set<Field> virtualTableFields;
-    private final Set<Field> fieldsParam;
+    private final Set<Field> requestedFields;
     private final boolean allFields;
     private final LinkedHashSet<Field> presentationFields;
     private final Condition condition;
@@ -53,14 +53,15 @@ public final class AccountingRegisterExtDimensions implements AccountingRegister
      *
      * @param name               Имя Регистра бухгалтерии, как оно задано в конфигураторе.
      * @param virtualTableFields Набор всех полей виртуальной таблицы субконто регистра бухгалтерии.
-     * @param fieldsParam        Набор полей, которые необходимо получить.
+     * @param requestedFields    Набор полей, которые необходимо получить.
      * @param allFields          Получить значения всех полей. Используется для оптимизации запроса.
      * @param condition          Отбор, применяемый при запросе к ресурсу.
      *                           Если отбор не устанавливается, передаётся пустой Condition.
      * @param allowedOnly        Выбрать элементы, которые не попадают под ограничения доступа к данным.
      */
-    public AccountingRegisterExtDimensions(String name, LinkedHashSet<Field> virtualTableFields, LinkedHashSet<Field> fieldsParam,
-                                           boolean allFields, Condition condition, boolean allowedOnly) {
+    public AccountingRegisterExtDimensions(String name, LinkedHashSet<Field> virtualTableFields,
+                                           LinkedHashSet<Field> requestedFields, boolean allFields,
+                                           Condition condition, boolean allowedOnly) {
         if (name == null) {
             throw new IllegalArgumentException("Значение параметра 'name': null");
         }
@@ -70,15 +71,15 @@ public final class AccountingRegisterExtDimensions implements AccountingRegister
         if (virtualTableFields.isEmpty()) {
             throw new IllegalArgumentException("Набор 'virtualTableFields' пуст");
         }
-        if (fieldsParam == null) {
-            throw new IllegalArgumentException("Значение параметра 'fieldsParam': null");
+        if (requestedFields == null) {
+            throw new IllegalArgumentException("Значение параметра 'requestedFields': null");
         }
         if (condition == null) {
             throw new IllegalArgumentException("Значение параметра 'condition': null");
         }
         this.name = name;
         this.virtualTableFields = new LinkedHashSet<>(virtualTableFields);
-        this.fieldsParam = new LinkedHashSet<>(fieldsParam);
+        this.requestedFields = new LinkedHashSet<>(requestedFields);
         this.allFields = allFields;
         this.condition = condition.clone();
         this.allowedOnly = allowedOnly;
@@ -90,7 +91,7 @@ public final class AccountingRegisterExtDimensions implements AccountingRegister
             fieldsLookup.put(presentationName, new Field(presentationName, FieldType.STRING));
         }
 
-        this.presentationFields = Field.presentations(getFieldsParam());
+        this.presentationFields = Field.presentations(getRequestedFields());
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -141,8 +142,8 @@ public final class AccountingRegisterExtDimensions implements AccountingRegister
     }
 
     @Override
-    public LinkedHashSet<Field> getFieldsParam() {
-        return new LinkedHashSet<>(fieldsParam);
+    public LinkedHashSet<Field> getRequestedFields() {
+        return new LinkedHashSet<>(requestedFields);
     }
 
     @Override
@@ -190,7 +191,7 @@ public final class AccountingRegisterExtDimensions implements AccountingRegister
         }
         AccountingRegisterExtDimensions that = (AccountingRegisterExtDimensions) o;
         return that.name.equals(name)
-                && that.fieldsParam.equals(fieldsParam)
+                && that.requestedFields.equals(requestedFields)
                 && that.presentationFields.equals(presentationFields)
                 && that.allFields == allFields
                 && that.condition.equals(condition)
@@ -202,7 +203,7 @@ public final class AccountingRegisterExtDimensions implements AccountingRegister
         int result = hashCode;
         if (result == 0) {
             result = 31 * result + name.hashCode();
-            result = 31 * result + fieldsParam.hashCode();
+            result = 31 * result + requestedFields.hashCode();
             result = 31 * result + presentationFields.hashCode();
             result = 31 * result + (allFields ? 1 : 0);
             result = 31 * result + condition.hashCode();

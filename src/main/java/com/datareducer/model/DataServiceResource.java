@@ -183,7 +183,7 @@ public class DataServiceResource {
      * @throws ClientException
      * @throws UndefinedParameterException
      */
-    public List<Map<Field, Object>> getResourceData() throws ClientException, UndefinedParameterException {
+    public DataServiceResponse getResourceData() throws ClientException, UndefinedParameterException {
         DataServiceRequest request;
 
         LinkedHashSet<Field> fields = new LinkedHashSet<>(requestedFields);
@@ -364,106 +364,6 @@ public class DataServiceResource {
     }
 
     /**
-     * Возвращает таблицу данных для передачи RServe
-     *
-     * @return Таблица данных
-     * @throws ClientException
-     */
-    REXP getDataFrame() throws ClientException, UndefinedParameterException { ///TODO перенести в класс - обертку результата выполнения запроса?
-        List<Map<Field, Object>> resourceData = getResourceData();
-        // Список имён столбцов
-        List<String> colNames = new ArrayList<>();
-        // Столбцы таблицы
-        Map<Field, Object> cols = new LinkedHashMap<>();
-        Set<Field> fields = getResultTableFields();
-        for (Field field : fields) {
-            colNames.add(field.getName());
-            int l = resourceData.size();
-            switch (field.getFieldType()) {
-                case LONG:
-                    cols.put(field, new double[l]);
-                    break;
-                case SHORT:
-                    cols.put(field, new int[l]);
-                    break;
-                case DOUBLE:
-                    cols.put(field, new double[l]);
-                    break;
-                case BOOLEAN:
-                    cols.put(field, new boolean[l]);
-                    break;
-                default:
-                    cols.put(field, new String[l]);
-            }
-        }
-        // Строки таблицы
-        for (int rowNum = 0; rowNum < resourceData.size(); rowNum++) {
-            Map<Field, Object> row = resourceData.get(rowNum);
-            for (Map.Entry<Field, Object> entry : row.entrySet()) {
-                Field field = entry.getKey();
-                // Набор полей фактического запроса к ресурсу может отличаться от исходного набора.
-                if (!fields.contains(field)) {
-                    continue;
-                }
-                Object value = entry.getValue();
-                switch (field.getFieldType()) {
-                    case GUID:
-                        ((String[]) cols.get(field))[rowNum] = value == null ? null : value.toString();
-                        break;
-                    case LONG:
-                        ((double[]) cols.get(field))[rowNum] = (long) value;
-                        break;
-                    case SHORT:
-                        ((int[]) cols.get(field))[rowNum] = (short) value;
-                        break;
-                    case DOUBLE:
-                        ((double[]) cols.get(field))[rowNum] = (double) value;
-                        break;
-                    case BOOLEAN:
-                        ((boolean[]) cols.get(field))[rowNum] = (boolean) value;
-                        break;
-                    case DATETIME:
-                        ((String[]) cols.get(field))[rowNum] = value == null ? null : String.valueOf(value);
-                        break;
-                    default:
-                        ((String[]) cols.get(field))[rowNum] = value == null ? null : (String) value;
-                }
-            }
-        }
-        // Столбцы типа REXP
-        List<REXP> rCols = new ArrayList<>();
-        for (Map.Entry<Field, Object> entry : cols.entrySet()) {
-            Field field = entry.getKey();
-            Object value = entry.getValue();
-            switch (field.getFieldType()) {
-                case LONG:
-                    rCols.add(new REXPDouble((double[]) value));
-                    break;
-                case SHORT:
-                    rCols.add(new REXPInteger((int[]) value));
-                    break;
-                case DOUBLE:
-                    rCols.add(new REXPDouble((double[]) value));
-                    break;
-                case BOOLEAN:
-                    rCols.add(new REXPLogical((boolean[]) value));
-                    break;
-                default:
-                    rCols.add(new REXPString((String[]) value));
-            }
-        }
-        RList data = new RList(rCols, colNames);
-        REXP dataFrame;
-        try {
-            dataFrame = REXP.createDataFrame(data);
-        } catch (REXPMismatchException e) {
-            throw new ReducerRuntimeException(e);
-        }
-
-        return dataFrame;
-    }
-
-    /**
      * Поместить поле ресурса в список запрашиваемых полей.
      *
      * @param presentedField Поле ресурса.
@@ -528,64 +428,6 @@ public class DataServiceResource {
         result.addAll(presentedFields);
         result.addAll(requestedFields);
         Collections.sort(result);
-        return result;
-    }
-
-    /**
-     * Возвращает поля таблицы результата запроса к ресурсу REST-сервиса 1С.
-     *
-     * @return Поля таблицы результата запроса к ресурсу REST-сервиса 1С.
-     */
-    public LinkedHashSet<Field> getResultTableFields() {
-        LinkedHashSet<Field> result = new LinkedHashSet<>();
-        for (Field f : getRequestedFields()) {
-            result.add(f);
-            if (f.isPresentation()) {
-                result.add(new Field(f.getPresentationName(), FieldType.STRING));
-            }
-        }
-        if (dataServiceEntity instanceof AccumulationRegisterVirtualTable) {
-            result.addAll(((AccumulationRegisterVirtualTable) dataServiceEntity).getResources());
-        } else if (dataServiceEntity instanceof AccountingRegisterVirtualTable
-                && !(dataServiceEntity instanceof AccountingRegisterExtDimensions)
-                && !(dataServiceEntity instanceof AccountingRegisterRecordsWithExtDimensions)) {
-
-            AccountingRegisterVirtualTable virtualTable = (AccountingRegisterVirtualTable) dataServiceEntity;
-            result.addAll(virtualTable.getResources());
-            if (dataServiceEntity instanceof AccountingRegisterTurnovers
-                    || dataServiceEntity instanceof AccountingRegisterDrCrTurnovers) {
-                Field accountField = virtualTable.getAccountField();
-                result.add(accountField);
-                result.add(new Field(accountField.getPresentationName(), FieldType.STRING));
-
-                Field balancedAccountField = virtualTable.getBalancedAccountField();
-                result.add(balancedAccountField);
-                result.add(new Field(balancedAccountField.getPresentationName(), FieldType.STRING));
-
-                for (Field f : virtualTable.getExtDimensions()) {
-                    result.add(f);
-                    result.add(new Field(f.getPresentationName(), FieldType.STRING));
-                }
-            } else if (dataServiceEntity instanceof AccountingRegisterBalance) {
-                Field accountField = virtualTable.getAccountField();
-                result.add(accountField);
-                result.add(new Field(accountField.getPresentationName(), FieldType.STRING));
-
-                for (Field f : virtualTable.getExtDimensions()) {
-                    result.add(f);
-                    result.add(new Field(f.getPresentationName(), FieldType.STRING));
-                }
-            } else if (dataServiceEntity instanceof AccountingRegisterBalanceAndTurnovers) {
-                Field accountField = virtualTable.getAccountField();
-                result.add(accountField);
-                result.add(new Field(accountField.getPresentationName(), FieldType.STRING));
-
-                for (Field f : virtualTable.getExtDimensions()) {
-                    result.add(f);
-                    result.add(new Field(f.getPresentationName(), FieldType.STRING));
-                }
-            }
-        }
         return result;
     }
 

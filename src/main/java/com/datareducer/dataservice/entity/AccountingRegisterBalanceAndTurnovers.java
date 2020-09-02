@@ -37,7 +37,7 @@ public final class AccountingRegisterBalanceAndTurnovers implements AccountingRe
     private final String name;
     private final Set<Field> properties;
     private final Set<Field> resources;
-    private final LinkedHashSet<Field> fieldsParam;
+    private final LinkedHashSet<Field> requestedFields;
     private final boolean allFields;
     private final LinkedHashSet<Field> presentationFields;
     private final Condition condition;
@@ -54,21 +54,21 @@ public final class AccountingRegisterBalanceAndTurnovers implements AccountingRe
     /**
      * Создаёт описание запроса к виртуальной таблице остатков и оборотов регистра бухгалтерии.
      *
-     * @param name        Имя Регистра бухгалтерии, как оно задано в конфигураторе.
-     * @param properties  Набор всех измерений, субконто и полей счетов виртуальной таблицы остатков и оборотов.
-     * @param resources   Набор всех ресурсов виртуальной таблицы остатков и оборотов.
-     * @param fieldsParam Коллекция полей, которые необходимо получить.
-     * @param allFields   Получить значения всех полей. Используется для оптимизации запроса.
-     * @param condition   Отбор данных виртуальной таблицей по значениям субконто и измерений
-     *                    регистра бухгалтерии. Если отбор не устанавливается, передаётся пустой Condition.
-     * @param startPeriod Начало периода времени, за который будут получены обороты.
-     *                    Если null, обороты рассчитываются с самой первой записи.
-     * @param endPeriod   Конец периода времени, за который будут получены обороты.
-     *                    Если null, обороты рассчитываются по самую последнюю запись.
-     * @param allowedOnly Выбрать элементы, которые не попадают под ограничения доступа к данным.
+     * @param name            Имя Регистра бухгалтерии, как оно задано в конфигураторе.
+     * @param properties      Набор всех измерений, субконто и полей счетов виртуальной таблицы остатков и оборотов.
+     * @param resources       Набор всех ресурсов виртуальной таблицы остатков и оборотов.
+     * @param requestedFields Коллекция полей, которые необходимо получить.
+     * @param allFields       Получить значения всех полей. Используется для оптимизации запроса.
+     * @param condition       Отбор данных виртуальной таблицей по значениям субконто и измерений
+     *                          регистра бухгалтерии. Если отбор не устанавливается, передаётся пустой Condition.
+     * @param startPeriod     Начало периода времени, за который будут получены обороты.
+     *                          Если null, обороты рассчитываются с самой первой записи.
+     * @param endPeriod       Конец периода времени, за который будут получены обороты.
+     *                          Если null, обороты рассчитываются по самую последнюю запись.
+     * @param allowedOnly     Выбрать элементы, которые не попадают под ограничения доступа к данным.
      */
     public AccountingRegisterBalanceAndTurnovers(String name, LinkedHashSet<Field> properties,
-                                                 LinkedHashSet<Field> resources, LinkedHashSet<Field> fieldsParam, boolean allFields,
+                                                 LinkedHashSet<Field> resources, LinkedHashSet<Field> requestedFields, boolean allFields,
                                                  Condition condition, Instant startPeriod, Instant endPeriod, boolean allowedOnly) {
         if (name == null) {
             throw new IllegalArgumentException("Значение параметра 'name': null");
@@ -85,8 +85,8 @@ public final class AccountingRegisterBalanceAndTurnovers implements AccountingRe
         if (resources.isEmpty()) {
             throw new IllegalArgumentException("Набор 'resources' пуст");
         }
-        if (fieldsParam == null) {
-            throw new IllegalArgumentException("Значение параметра 'fieldsParam': null");
+        if (requestedFields == null) {
+            throw new IllegalArgumentException("Значение параметра 'requestedFields': null");
         }
         if (condition == null) {
             throw new IllegalArgumentException("Значение параметра 'condition': null");
@@ -98,7 +98,7 @@ public final class AccountingRegisterBalanceAndTurnovers implements AccountingRe
         this.name = name;
         this.properties = new LinkedHashSet<>(properties);
         this.resources = new LinkedHashSet<>(resources);
-        this.fieldsParam = new LinkedHashSet<>(fieldsParam);
+        this.requestedFields = new LinkedHashSet<>(requestedFields);
         this.allFields = allFields;
         this.condition = condition.clone();
         this.startPeriod = startPeriod;
@@ -116,7 +116,7 @@ public final class AccountingRegisterBalanceAndTurnovers implements AccountingRe
             fieldsLookup.put(field.getName(), field);
         }
 
-        this.presentationFields = Field.presentations(getFieldsParam());
+        this.presentationFields = Field.presentations(getRequestedFields());
         presentationFields.add(new Field(getAccountField().getPresentationName(), FieldType.STRING));
         for (Field f : getExtDimensions()) {
             presentationFields.add(new Field(f.getPresentationName(), FieldType.STRING));
@@ -218,8 +218,8 @@ public final class AccountingRegisterBalanceAndTurnovers implements AccountingRe
     }
 
     @Override
-    public LinkedHashSet<Field> getFieldsParam() {
-        return fieldsParam;
+    public LinkedHashSet<Field> getRequestedFields() {
+        return requestedFields;
     }
 
     @Override
@@ -262,7 +262,7 @@ public final class AccountingRegisterBalanceAndTurnovers implements AccountingRe
         }
         AccountingRegisterBalanceAndTurnovers that = (AccountingRegisterBalanceAndTurnovers) o;
         return that.name.equals(name)
-                && that.fieldsParam.equals(fieldsParam)
+                && that.requestedFields.equals(requestedFields)
                 && that.presentationFields.equals(presentationFields)
                 && that.condition.equals(condition)
                 && (Objects.equals(that.startPeriod, startPeriod))
@@ -275,7 +275,7 @@ public final class AccountingRegisterBalanceAndTurnovers implements AccountingRe
         int result = hashCode;
         if (result == 0) {
             result = 31 * result + name.hashCode();
-            result = 31 * result + fieldsParam.hashCode();
+            result = 31 * result + requestedFields.hashCode();
             result = 31 * result + presentationFields.hashCode();
             result = 31 * result + condition.hashCode();
             result = 31 * result + (startPeriod != null ? startPeriod.hashCode() : 0);

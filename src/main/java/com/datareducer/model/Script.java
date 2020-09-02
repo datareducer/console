@@ -179,7 +179,7 @@ public final class Script {
         Map<String, Future<REXP>> futures = new HashMap<>();
         for (DataServiceResource resource : dataServiceResources) {
             resource.setParametersLookup(paramsLookup);
-            futures.put(resource.getName(), executor.submit(resource::getDataFrame));
+            futures.put(resource.getName(), executor.submit(() -> resource.getResourceData().asDataFrame()));
         }
 
         String host = applicationParams.get(Reducer.RSERVE_HOST_PARAM_NAME);

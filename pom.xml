@@ -156,18 +156,6 @@ Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
             <artifactId>log4j-core</artifactId>
             <version>2.13.3</version>
         </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.containers</groupId>
-            <artifactId>jersey-container-grizzly2-http</artifactId>
-            <version>${jersey.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <properties>

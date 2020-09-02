@@ -35,7 +35,7 @@ public final class AccumulationRegisterBalance implements AccumulationRegisterVi
     private final String name;
     private final Set<Field> dimensions;
     private final Set<Field> resources;
-    private final Set<Field> dimensionsParam;
+    private final Set<Field> requestedDimensions;
     private final LinkedHashSet<Field> presentationFields;
     private final boolean allDimensions;
     private final Condition condition;
@@ -51,20 +51,20 @@ public final class AccumulationRegisterBalance implements AccumulationRegisterVi
     /**
      * Создаёт описание запроса к виртуальной таблице остатков регистра накопления.
      *
-     * @param name            Имя Регистра накопления, как оно задано в конфигураторе.
-     * @param dimensions      Набор всех измерений виртуальной таблицы остатков.
-     * @param resources       Набор всех ресурсов виртуальной таблицы остатков.
-     * @param dimensionsParam Набор измерений, в разрезе которых будут получены остатки.
-     * @param allDimensions   Остатки по всем измерениям. Используется для оптимизации запроса.
-     * @param condition       Условие ограничения состава исходных записей,
-     *                        по которым при построении виртуальной таблицы будут собираться итоги.
-     *                        Если ограничение не устанавливается, передаётся пустой Condition.
-     * @param period          Дата, на которую необходимо получить остатки регистра накопления.
-     *                        Если null, остатки рассчитываются по самую последнюю запись.
-     * @param allowedOnly     Выбрать элементы, которые не попадают под ограничения доступа к данным.
+     * @param name                Имя Регистра накопления, как оно задано в конфигураторе.
+     * @param dimensions          Набор всех измерений виртуальной таблицы остатков.
+     * @param resources           Набор всех ресурсов виртуальной таблицы остатков.
+     * @param requestedDimensions Набор измерений, в разрезе которых будут получены остатки.
+     * @param allDimensions       Остатки по всем измерениям. Используется для оптимизации запроса.
+     * @param condition           Условие ограничения состава исходных записей,
+     *                              по которым при построении виртуальной таблицы будут собираться итоги.
+     *                              Если ограничение не устанавливается, передаётся пустой Condition.
+     * @param period              Дата, на которую необходимо получить остатки регистра накопления.
+     *                            Если null, остатки рассчитываются по самую последнюю запись.
+     * @param allowedOnly         Выбрать элементы, которые не попадают под ограничения доступа к данным.
      */
     public AccumulationRegisterBalance(String name, LinkedHashSet<Field> dimensions, LinkedHashSet<Field> resources,
-                                       LinkedHashSet<Field> dimensionsParam, boolean allDimensions, Condition condition,
+                                       LinkedHashSet<Field> requestedDimensions, boolean allDimensions, Condition condition,
                                        Instant period, boolean allowedOnly) {
         if (name == null) {
             throw new IllegalArgumentException("Значение параметра 'name': null");
@@ -81,8 +81,8 @@ public final class AccumulationRegisterBalance implements AccumulationRegisterVi
         if (resources.isEmpty()) {
             throw new IllegalArgumentException("Набор ресурсов пуст");
         }
-        if (dimensionsParam == null) {
-            throw new IllegalArgumentException("Значение параметра 'dimensionsParam': null");
+        if (requestedDimensions == null) {
+            throw new IllegalArgumentException("Значение параметра 'requestedDimensions': null");
         }
         if (condition == null) {
             throw new IllegalArgumentException("Значение параметра 'condition': null");
@@ -90,7 +90,7 @@ public final class AccumulationRegisterBalance implements AccumulationRegisterVi
         this.name = name;
         this.dimensions = new LinkedHashSet<>(dimensions);
         this.resources = new LinkedHashSet<>(resources);
-        this.dimensionsParam = new LinkedHashSet<>(dimensionsParam);
+        this.requestedDimensions = new LinkedHashSet<>(requestedDimensions);
         this.allDimensions = allDimensions;
         this.condition = condition.clone();
         this.period = period;
@@ -107,7 +107,7 @@ public final class AccumulationRegisterBalance implements AccumulationRegisterVi
             fieldsLookup.put(field.getName(), field);
         }
 
-        this.presentationFields = Field.presentations(getDimensionsParam());
+        this.presentationFields = Field.presentations(getRequestedDimensions());
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -139,13 +139,18 @@ public final class AccumulationRegisterBalance implements AccumulationRegisterVi
     }
 
     @Override
-    public LinkedHashSet<Field> getDimensionsParam() {
-        return new LinkedHashSet<>(dimensionsParam);
+    public LinkedHashSet<Field> getRequestedDimensions() {
+        return new LinkedHashSet<>(requestedDimensions);
     }
 
     @Override
     public LinkedHashSet<Field> getPresentationFields() {
         return new LinkedHashSet<>(presentationFields);
+    }
+
+    @Override
+    public LinkedHashSet<Field> getRequestedFields() {
+        return getRequestedDimensions();
     }
 
     @Override
@@ -220,7 +225,7 @@ public final class AccumulationRegisterBalance implements AccumulationRegisterVi
         return that.name.equals(name)
                 // Запрос к виртуальной таблице остатков не включает перечисления ресурсов,
                 // поэтому для сравнения этих запросов значим только набор измерений.
-                && that.dimensionsParam.equals(dimensionsParam)
+                && that.requestedDimensions.equals(requestedDimensions)
                 && that.presentationFields.equals(presentationFields)
                 && that.condition.equals(condition)
                 && (Objects.equals(that.period, period))
@@ -232,7 +237,7 @@ public final class AccumulationRegisterBalance implements AccumulationRegisterVi
         int result = hashCode;
         if (result == 0) {
             result = 31 * result + name.hashCode();
-            result = 31 * result + dimensionsParam.hashCode();
+            result = 31 * result + requestedDimensions.hashCode();
             result = 31 * result + presentationFields.hashCode();
             result = 31 * result + condition.hashCode();
             result = 31 * result + (period != null ? period.hashCode() : 0);

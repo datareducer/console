@@ -21,10 +21,7 @@ package com.datareducer.model;
 import com.datareducer.dataservice.client.ClientException;
 import com.datareducer.dataservice.client.ConnectionParams;
 import com.datareducer.dataservice.client.DataServiceClient;
-import com.datareducer.dataservice.entity.DataServiceEntity;
-import com.datareducer.dataservice.entity.DataServiceRequest;
-import com.datareducer.dataservice.entity.Field;
-import com.datareducer.dataservice.entity.MetadataTree;
+import com.datareducer.dataservice.entity.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -121,7 +118,7 @@ public final class InfoBase implements DataServiceEntity {
      * @return Результат выполнения запроса
      * @throws ClientException
      */
-    public List<Map<Field, Object>> get(DataServiceRequest request) throws ClientException {
+    public DataServiceResponse get(DataServiceRequest request) throws ClientException {
         //TODO проверяем наличие объекта в кэше
         if (request == null) {
             throw new IllegalArgumentException("Значение параметра 'request': null");

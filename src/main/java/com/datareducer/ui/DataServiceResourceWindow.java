@@ -47,7 +47,6 @@ import javafx.util.converter.IntegerStringConverter;
 
 import java.io.IOException;
 import java.time.Instant;
-import java.util.List;
 import java.util.Map;
 
 import static com.datareducer.dataservice.client.DataServiceClient.DATE_TIME_FORMATTER;
@@ -287,7 +286,9 @@ public class DataServiceResourceWindow implements Window<DataServiceResource> {
             TableView<Map> resourceDataTable = form.resourceDataTable;
             resourceDataTable.getColumns().clear();
 
-            for (Field field : dataServiceResource.getResultTableFields()) {
+            DataServiceResponse response = loadResourceService.getValue();
+
+            for (Field field : response.getDataTableFields()) {
                 TableColumn<Map, Object> column = new TableColumn<>();
                 column.setText(field.getName());
                 column.setCellValueFactory(new MapValueFactory<>(field));
@@ -315,8 +316,7 @@ public class DataServiceResourceWindow implements Window<DataServiceResource> {
 
                 resourceDataTable.getColumns().add(column);
             }
-            List<Map<Field, Object>> recourseData = loadResourceService.getValue();
-            resourceDataTable.setItems(FXCollections.observableArrayList(recourseData));
+            resourceDataTable.setItems(FXCollections.observableArrayList(response.asDataTable()));
         });
 
         loadResourceService.setOnFailed(e -> {
@@ -776,12 +776,12 @@ public class DataServiceResourceWindow implements Window<DataServiceResource> {
 
     }
 
-    private class LoadResourceService extends Service<List<Map<Field, Object>>> {
+    private class LoadResourceService extends Service<DataServiceResponse> {
         @Override
-        protected Task<List<Map<Field, Object>>> createTask() {
-            return new Task<List<Map<Field, Object>>>() {
+        protected Task<DataServiceResponse> createTask() {
+            return new Task<DataServiceResponse>() {
                 @Override
-                protected List<Map<Field, Object>> call() throws Exception {
+                protected DataServiceResponse call() throws Exception {
                     return dataServiceResource.getResourceData();
                 }
             };

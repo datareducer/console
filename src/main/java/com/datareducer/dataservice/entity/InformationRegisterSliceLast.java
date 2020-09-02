@@ -37,7 +37,7 @@ public final class InformationRegisterSliceLast implements InformationRegisterVi
 
     private final String name;
     private final LinkedHashSet<Field> registerFields;
-    private final LinkedHashSet<Field> fieldsParam;
+    private final LinkedHashSet<Field> requestedFields;
     private final LinkedHashSet<Field> presentationFields;
     private final boolean allFields;
     private final Condition condition;
@@ -53,16 +53,16 @@ public final class InformationRegisterSliceLast implements InformationRegisterVi
     /**
      * Создаёт описание запроса к виртуальной таблице Среза последних периодического регистра сведений.
      *
-     * @param name           Имя Регистра сведений, как оно задано в конфигураторе.
-     * @param registerFields Все поля Регистра сведений.
-     * @param fieldsParam    Коллекция полей, которые необходимо получить.
-     * @param allFields      Получить значения всех полей. Используется для оптимизации запроса.
-     * @param condition      Отбор, применяемый при запросе к ресурсу.
-     *                       Если отбор не устанавливается, передаётся пустой Condition.
-     * @param period         Период получения среза. Если null, получаем срез наиболее поздних значений.
-     * @param allowedOnly    Выбрать элементы, которые не попадают под ограничения доступа к данным.
+     * @param name            Имя Регистра сведений, как оно задано в конфигураторе.
+     * @param registerFields  Все поля Регистра сведений.
+     * @param requestedFields Коллекция полей, которые необходимо получить.
+     * @param allFields       Получить значения всех полей. Используется для оптимизации запроса.
+     * @param condition       Отбор, применяемый при запросе к ресурсу.
+     *                        Если отбор не устанавливается, передаётся пустой Condition.
+     * @param period          Период получения среза. Если null, получаем срез наиболее поздних значений.
+     * @param allowedOnly     Выбрать элементы, которые не попадают под ограничения доступа к данным.
      */
-    public InformationRegisterSliceLast(String name, LinkedHashSet<Field> registerFields, LinkedHashSet<Field> fieldsParam,
+    public InformationRegisterSliceLast(String name, LinkedHashSet<Field> registerFields, LinkedHashSet<Field> requestedFields,
                                         boolean allFields, Condition condition, Instant period, boolean allowedOnly) {
         if (name == null) {
             throw new IllegalArgumentException("Значение параметра 'name': null");
@@ -73,8 +73,8 @@ public final class InformationRegisterSliceLast implements InformationRegisterVi
         if (registerFields.isEmpty()) {
             throw new IllegalArgumentException("Набор полей пуст");
         }
-        if (fieldsParam == null) {
-            throw new IllegalArgumentException("Значение параметра 'fieldsParam': null");
+        if (requestedFields == null) {
+            throw new IllegalArgumentException("Значение параметра 'requestedFields': null");
         }
         if (condition == null) {
             throw new IllegalArgumentException("Значение параметра 'condition': null");
@@ -82,7 +82,7 @@ public final class InformationRegisterSliceLast implements InformationRegisterVi
 
         this.name = name;
         this.registerFields = new LinkedHashSet<>(registerFields);
-        this.fieldsParam = new LinkedHashSet<>(fieldsParam);
+        this.requestedFields = new LinkedHashSet<>(requestedFields);
         this.allFields = allFields;
         this.condition = condition.clone();
         this.period = period;
@@ -96,7 +96,7 @@ public final class InformationRegisterSliceLast implements InformationRegisterVi
             fieldsLookup.put(presentationName, new Field(presentationName, FieldType.STRING));
         }
 
-        this.presentationFields = Field.presentations(getFieldsParam());
+        this.presentationFields = Field.presentations(getRequestedFields());
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -127,8 +127,8 @@ public final class InformationRegisterSliceLast implements InformationRegisterVi
     }
 
     @Override
-    public LinkedHashSet<Field> getFieldsParam() {
-        return new LinkedHashSet<>(fieldsParam);
+    public LinkedHashSet<Field> getRequestedFields() {
+        return new LinkedHashSet<>(requestedFields);
     }
 
     @Override
@@ -211,7 +211,7 @@ public final class InformationRegisterSliceLast implements InformationRegisterVi
         }
         InformationRegisterSliceLast that = (InformationRegisterSliceLast) o;
         return that.name.equals(name)
-                && that.fieldsParam.equals(fieldsParam)
+                && that.requestedFields.equals(requestedFields)
                 && that.presentationFields.equals(presentationFields)
                 && that.allFields == allFields
                 && that.condition.equals(condition)
@@ -224,7 +224,7 @@ public final class InformationRegisterSliceLast implements InformationRegisterVi
         int result = hashCode;
         if (result == 0) {
             result = 31 * result + name.hashCode();
-            result = 31 * result + fieldsParam.hashCode();
+            result = 31 * result + requestedFields.hashCode();
             result = 31 * result + presentationFields.hashCode();
             result = 31 * result + (allFields ? 1 : 0);
             result = 31 * result + condition.hashCode();

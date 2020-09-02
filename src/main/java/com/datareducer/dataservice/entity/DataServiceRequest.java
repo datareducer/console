@@ -29,6 +29,13 @@ import java.util.Set;
  */
 public interface DataServiceRequest extends DataServiceEntity {
     /**
+     * Возвращает набор полей ресурса, которые необходимо получить.
+     *
+     * @return Набор полей ресурса, которые необходимо получить.
+     */
+    LinkedHashSet<Field> getRequestedFields();
+
+    /**
      * Возвращает признак запроса всех полей объекта.
      * Используется для оптимизации запроса.
      *

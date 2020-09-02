@@ -136,6 +136,11 @@ public final class ChartOfAccounts implements DataServiceRequest {
     }
 
     @Override
+    public LinkedHashSet<Field> getRequestedFields() {
+        return getFields();
+    }
+
+    @Override
     public boolean isAllFields() {
         return allFields;
     }

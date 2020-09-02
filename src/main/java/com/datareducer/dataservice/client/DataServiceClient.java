@@ -85,7 +85,7 @@ public final class DataServiceClient {
      * @return Результат выполнения запроса
      * @throws ClientException
      */
-    public List<Map<Field, Object>> get(DataServiceRequest request) throws ClientException {
+    public DataServiceResponse get(DataServiceRequest request) throws ClientException {
         if (request == null) {
             throw new IllegalArgumentException("Значение параметра 'request': null");
         }
@@ -125,7 +125,7 @@ public final class DataServiceClient {
         }
         log.info("[%s] Запрос вернул %s записей '%s'", reqId, result.size(), request.getResourceName());
 
-        return result;
+        return new DataServiceResponse(request, result);
     }
 
     private WebTarget getWebTarget(DataServiceRequest request) {
@@ -176,7 +176,7 @@ public final class DataServiceClient {
             params.add(String.format("Condition='%s'", UriComponent.encode(condition.getHttpForm(), QUERY_PARAM_SPACE_ENCODED)));
         }
         if (!virtualTable.isAllFields()) {
-            params.add(String.format("Dimensions='%s'", fieldsSetAsString(virtualTable.getDimensionsParam(), true)));
+            params.add(String.format("Dimensions='%s'", fieldsSetAsString(virtualTable.getRequestedDimensions(), true)));
         }
 
         Iterator<String> it = params.iterator();
@@ -218,7 +218,7 @@ public final class DataServiceClient {
                 params.add(String.format("Condition='%s'", UriComponent.encode(condition.getHttpForm(), QUERY_PARAM_SPACE_ENCODED)));
             }
             if (!virtualTable.isAllFields()) {
-                params.add(String.format("Dimensions='%s'", fieldsSetAsString(virtualTable.getDimensionsParam(), true)));
+                params.add(String.format("Dimensions='%s'", fieldsSetAsString(virtualTable.getRequestedDimensions(), true)));
             }
             if (!virtualTable.getAccountCondition().isEmpty()) {
                 params.add(String.format("AccountCondition='%s'", UriComponent.encode(virtualTable.getAccountCondition().getHttpForm(), QUERY_PARAM_SPACE_ENCODED)));
@@ -243,7 +243,7 @@ public final class DataServiceClient {
                 params.add(String.format("Condition='%s'", UriComponent.encode(condition.getHttpForm(), QUERY_PARAM_SPACE_ENCODED)));
             }
             if (!virtualTable.isAllFields()) {
-                params.add(String.format("Dimensions='%s'", fieldsSetAsString(virtualTable.getDimensionsParam(), true)));
+                params.add(String.format("Dimensions='%s'", fieldsSetAsString(virtualTable.getRequestedDimensions(), true)));
             }
             if (!virtualTable.getAccountCondition().isEmpty()) {
                 params.add(String.format("AccountCondition='%s'", UriComponent.encode(virtualTable.getAccountCondition().getHttpForm(), QUERY_PARAM_SPACE_ENCODED)));
@@ -314,7 +314,7 @@ public final class DataServiceClient {
         if (virtualTable instanceof AccountingRegisterExtDimensions) {
             if (!virtualTable.isAllFields()) {
                 Set<Field> fields = new LinkedHashSet<>();
-                fields.addAll(virtualTable.getFieldsParam());
+                fields.addAll(virtualTable.getRequestedFields());
                 fields.addAll(presentationFields);
                 wt = wt.queryParam("$select", fieldsSetAsString(fields, false));
             } else if (!presentationFields.isEmpty()) {
@@ -326,7 +326,7 @@ public final class DataServiceClient {
         } else if (virtualTable instanceof AccountingRegisterRecordsWithExtDimensions) {
             if (!virtualTable.isAllFields()) {
                 Set<Field> fields = new LinkedHashSet<>();
-                fields.addAll(virtualTable.getFieldsParam());
+                fields.addAll(virtualTable.getRequestedFields());
                 fields.addAll(presentationFields);
                 wt = wt.queryParam("$select", fieldsSetAsString(fields, false));
             } else if (!presentationFields.isEmpty()) {
@@ -347,7 +347,7 @@ public final class DataServiceClient {
         final Condition condition = virtualTable.getCondition();
 
         final Set<Field> fields = new LinkedHashSet<>();
-        fields.addAll(virtualTable.getFieldsParam());
+        fields.addAll(virtualTable.getRequestedFields());
         fields.addAll(presentationFields);
 
         StringBuilder sb = new StringBuilder();
@@ -436,7 +436,7 @@ public final class DataServiceClient {
                 || virtualTable instanceof CalculationRegisterBaseRegister) {
             if (!virtualTable.isAllFields()) {
                 Set<Field> fields = new LinkedHashSet<>();
-                fields.addAll(virtualTable.getFieldsParam());
+                fields.addAll(virtualTable.getRequestedFields());
                 fields.addAll(presentationFields);
                 wt = wt.queryParam("$select", fieldsSetAsString(fields, false));
             } else if (!presentationFields.isEmpty()) {

@@ -36,12 +36,12 @@ import java.util.List;
  * @see CalculationRegisterScheduleData
  */
 public interface CalculationRegisterVirtualTable extends DataServiceRequest {
-    /**
-     * Возвращает набор полей ресурса, которые необходимо получить.
-     *
-     * @return Набор полей ресурса, которые необходимо получить.
-     */
-    LinkedHashSet<Field> getFieldsParam();
+//    /**
+//     * Возвращает набор полей ресурса, которые необходимо получить.
+//     *
+//     * @return Набор полей ресурса, которые необходимо получить.
+//     */
+//    LinkedHashSet<Field> getFieldsParam();
 
     /**
      * Возвращает набор всех полей виртуальной таблицы.

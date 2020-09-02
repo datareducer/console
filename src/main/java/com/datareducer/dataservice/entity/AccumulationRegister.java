@@ -125,6 +125,11 @@ public final class AccumulationRegister implements DataServiceRequest {
     }
 
     @Override
+    public LinkedHashSet<Field> getRequestedFields() {
+        return getFields();
+    }
+
+    @Override
     public boolean isAllFields() {
         return allFields;
     }

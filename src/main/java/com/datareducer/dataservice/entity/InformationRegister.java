@@ -156,6 +156,11 @@ public final class InformationRegister implements DataServiceRequest {
     }
 
     @Override
+    public LinkedHashSet<Field> getRequestedFields() {
+        return getFields();
+    }
+
+    @Override
     public boolean isAllFields() {
         return allFields;
     }

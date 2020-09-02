@@ -37,7 +37,7 @@ public final class AccountingRegisterDrCrTurnovers implements AccountingRegister
     private final String name;
     private final Set<Field> properties;
     private final Set<Field> resources;
-    private final Set<Field> dimensionsParam;
+    private final Set<Field> requestedDimensions;
     private final LinkedHashSet<Field> presentationFields;
     private final boolean allDimensions;
     private final Condition condition;
@@ -61,7 +61,7 @@ public final class AccountingRegisterDrCrTurnovers implements AccountingRegister
      * @param name                     Имя Регистра бухгалтерии, как оно задано в конфигураторе.
      * @param properties               Набор всех измерений, субконто и полей счетов виртуальной таблицы оборотов.
      * @param resources                Набор всех ресурсов виртуальной таблицы оборотов.
-     * @param dimensionsParam          Набор измерений, в разрезе которых будут получены обороты.
+     * @param requestedDimensions      Набор измерений, в разрезе которых будут получены обороты.
      * @param allDimensions            Обороты по всем измерениям. Используется для оптимизации запроса.
      * @param condition                Отбор данных виртуальной таблицей по значениям субконто и измерений
      *                                 регистра бухгалтерии. Если отбор не устанавливается, передаётся пустой Condition.
@@ -80,7 +80,7 @@ public final class AccountingRegisterDrCrTurnovers implements AccountingRegister
      * @param allowedOnly              Выбрать элементы, которые не попадают под ограничения доступа к данным.
      */
     public AccountingRegisterDrCrTurnovers(String name, LinkedHashSet<Field> properties, LinkedHashSet<Field> resources,
-                                           LinkedHashSet<Field> dimensionsParam, boolean allDimensions,
+                                           LinkedHashSet<Field> requestedDimensions, boolean allDimensions,
                                            Condition condition, Instant startPeriod, Instant endPeriod,
                                            Condition accountCondition, Condition balancedAccountCondition,
                                            List<UUID> extraDimensions, List<UUID> balancedExtraDimensions,
@@ -100,8 +100,8 @@ public final class AccountingRegisterDrCrTurnovers implements AccountingRegister
         if (resources.isEmpty()) {
             throw new IllegalArgumentException("Набор 'resources' пуст");
         }
-        if (dimensionsParam == null) {
-            throw new IllegalArgumentException("Значение параметра 'dimensionsParam': null");
+        if (requestedDimensions == null) {
+            throw new IllegalArgumentException("Значение параметра 'requestedDimensions': null");
         }
         if (condition == null) {
             throw new IllegalArgumentException("Значение параметра 'condition': null");
@@ -125,7 +125,7 @@ public final class AccountingRegisterDrCrTurnovers implements AccountingRegister
         this.name = name;
         this.properties = new LinkedHashSet<>(properties);
         this.resources = new LinkedHashSet<>(resources);
-        this.dimensionsParam = new LinkedHashSet<>(dimensionsParam);
+        this.requestedDimensions = new LinkedHashSet<>(requestedDimensions);
         this.allDimensions = allDimensions;
         this.condition = condition.clone();
         this.startPeriod = startPeriod;
@@ -147,7 +147,7 @@ public final class AccountingRegisterDrCrTurnovers implements AccountingRegister
             fieldsLookup.put(field.getName(), field);
         }
 
-        this.presentationFields = Field.presentations(getDimensionsParam());
+        this.presentationFields = Field.presentations(getRequestedDimensions());
         presentationFields.add(new Field(getAccountField().getPresentationName(), FieldType.STRING));
         presentationFields.add(new Field(getBalancedAccountField().getPresentationName(), FieldType.STRING));
         for (Field f : getExtDimensions()) {
@@ -222,13 +222,18 @@ public final class AccountingRegisterDrCrTurnovers implements AccountingRegister
     }
 
     @Override
-    public LinkedHashSet<Field> getDimensionsParam() {
-        return new LinkedHashSet<>(dimensionsParam);
+    public LinkedHashSet<Field> getRequestedDimensions() {
+        return new LinkedHashSet<>(requestedDimensions);
     }
 
     @Override
     public LinkedHashSet<Field> getPresentationFields() {
         return new LinkedHashSet<>(presentationFields);
+    }
+
+    @Override
+    public LinkedHashSet<Field> getRequestedFields() {
+        return getRequestedDimensions();
     }
 
     @Override
@@ -326,7 +331,7 @@ public final class AccountingRegisterDrCrTurnovers implements AccountingRegister
         }
         AccountingRegisterDrCrTurnovers that = (AccountingRegisterDrCrTurnovers) o;
         return that.name.equals(name)
-                && that.dimensionsParam.equals(dimensionsParam)
+                && that.requestedDimensions.equals(requestedDimensions)
                 && that.presentationFields.equals(presentationFields)
                 && that.condition.equals(condition)
                 && (Objects.equals(that.startPeriod, startPeriod))
@@ -343,7 +348,7 @@ public final class AccountingRegisterDrCrTurnovers implements AccountingRegister
         int result = hashCode;
         if (result == 0) {
             result = 31 * result + name.hashCode();
-            result = 31 * result + dimensionsParam.hashCode();
+            result = 31 * result + requestedDimensions.hashCode();
             result = 31 * result + presentationFields.hashCode();
             result = 31 * result + condition.hashCode();
             result = 31 * result + (startPeriod != null ? startPeriod.hashCode() : 0);

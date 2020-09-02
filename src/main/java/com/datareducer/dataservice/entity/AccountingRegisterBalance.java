@@ -35,7 +35,7 @@ public final class AccountingRegisterBalance implements AccountingRegisterVirtua
     private final String name;
     private final Set<Field> properties;
     private final Set<Field> resources;
-    private final Set<Field> dimensionsParam;
+    private final Set<Field> requestedDimensions;
     private final LinkedHashSet<Field> presentationFields;
     private final boolean allDimensions;
     private final Condition condition;
@@ -56,7 +56,7 @@ public final class AccountingRegisterBalance implements AccountingRegisterVirtua
      * @param name                     Имя Регистра бухгалтерии, как оно задано в конфигураторе.
      * @param properties               Набор всех измерений, субконто и полей счетов виртуальной таблицы остатков.
      * @param resources                Набор всех ресурсов виртуальной таблицы остатков.
-     * @param dimensionsParam          Набор измерений, в разрезе которых будут получены остатки.
+     * @param requestedDimensions      Набор измерений, в разрезе которых будут получены остатки.
      * @param allDimensions            Остатки по всем измерениям. Используется для оптимизации запроса.
      * @param condition                Отбор данных виртуальной таблицей по значениям субконто и измерений
      *                                 регистра бухгалтерии. Если отбор не устанавливается, передаётся пустой Condition.
@@ -69,9 +69,9 @@ public final class AccountingRegisterBalance implements AccountingRegisterVirtua
      * @param allowedOnly              Выбрать элементы, которые не попадают под ограничения доступа к данным.
      */
     public AccountingRegisterBalance(String name, LinkedHashSet<Field> properties, LinkedHashSet<Field> resources,
-                                       LinkedHashSet<Field> dimensionsParam, boolean allDimensions,
-                                       Condition condition, Instant period, Condition accountCondition,
-                                       List<UUID> extraDimensions, boolean allowedOnly) {
+                                     LinkedHashSet<Field> requestedDimensions, boolean allDimensions,
+                                     Condition condition, Instant period, Condition accountCondition,
+                                     List<UUID> extraDimensions, boolean allowedOnly) {
         if (name == null) {
             throw new IllegalArgumentException("Значение параметра 'name': null");
         }
@@ -87,8 +87,8 @@ public final class AccountingRegisterBalance implements AccountingRegisterVirtua
         if (resources.isEmpty()) {
             throw new IllegalArgumentException("Набор 'resources' пуст");
         }
-        if (dimensionsParam == null) {
-            throw new IllegalArgumentException("Значение параметра 'dimensionsParam': null");
+        if (requestedDimensions == null) {
+            throw new IllegalArgumentException("Значение параметра 'requestedDimensions': null");
         }
         if (condition == null) {
             throw new IllegalArgumentException("Значение параметра 'condition': null");
@@ -103,7 +103,7 @@ public final class AccountingRegisterBalance implements AccountingRegisterVirtua
         this.name = name;
         this.properties = new LinkedHashSet<>(properties);
         this.resources = new LinkedHashSet<>(resources);
-        this.dimensionsParam = new LinkedHashSet<>(dimensionsParam);
+        this.requestedDimensions = new LinkedHashSet<>(requestedDimensions);
         this.allDimensions = allDimensions;
         this.condition = condition.clone();
         this.period = period;
@@ -122,7 +122,7 @@ public final class AccountingRegisterBalance implements AccountingRegisterVirtua
             fieldsLookup.put(field.getName(), field);
         }
 
-        this.presentationFields = Field.presentations(getDimensionsParam());
+        this.presentationFields = Field.presentations(getRequestedDimensions());
         presentationFields.add(new Field(getAccountField().getPresentationName(), FieldType.STRING));
         for (Field f : getExtDimensions()) {
             presentationFields.add(new Field(f.getPresentationName(), FieldType.STRING));
@@ -185,13 +185,18 @@ public final class AccountingRegisterBalance implements AccountingRegisterVirtua
     }
 
     @Override
-    public LinkedHashSet<Field> getDimensionsParam() {
-        return new LinkedHashSet<>(dimensionsParam);
+    public LinkedHashSet<Field> getRequestedDimensions() {
+        return new LinkedHashSet<>(requestedDimensions);
     }
 
     @Override
     public LinkedHashSet<Field> getPresentationFields() {
         return new LinkedHashSet<>(presentationFields);
+    }
+
+    @Override
+    public LinkedHashSet<Field> getRequestedFields() {
+        return getRequestedDimensions();
     }
 
     @Override
@@ -274,7 +279,7 @@ public final class AccountingRegisterBalance implements AccountingRegisterVirtua
         }
         AccountingRegisterBalance that = (AccountingRegisterBalance) o;
         return that.name.equals(name)
-                && that.dimensionsParam.equals(dimensionsParam)
+                && that.requestedDimensions.equals(requestedDimensions)
                 && that.presentationFields.equals(presentationFields)
                 && that.condition.equals(condition)
                 && (Objects.equals(that.period, period))
@@ -288,7 +293,7 @@ public final class AccountingRegisterBalance implements AccountingRegisterVirtua
         int result = hashCode;
         if (result == 0) {
             result = 31 * result + name.hashCode();
-            result = 31 * result + dimensionsParam.hashCode();
+            result = 31 * result + requestedDimensions.hashCode();
             result = 31 * result + presentationFields.hashCode();
             result = 31 * result + condition.hashCode();
             result = 31 * result + (period != null ? period.hashCode() : 0);

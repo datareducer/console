@@ -100,7 +100,7 @@ public interface AccountingRegisterVirtualTable extends DataServiceRequest {
      *
      * @return Набор измерений, в разрезе которых будут получены остатки или обороты.
      */
-    default LinkedHashSet<Field> getDimensionsParam() {
+    default LinkedHashSet<Field> getRequestedDimensions() {
         throw new UnsupportedOperationException();
     }
 
@@ -174,14 +174,14 @@ public interface AccountingRegisterVirtualTable extends DataServiceRequest {
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * Возвращает набор полей ресурса, которые необходимо получить.
-     *
-     * @return Набор полей ресурса, которые необходимо получить.
-     */
-    default LinkedHashSet<Field> getFieldsParam() {
-        throw new UnsupportedOperationException();
-    }
+//    /**
+//     * Возвращает набор полей ресурса, которые необходимо получить.
+//     *
+//     * @return Набор полей ресурса, которые необходимо получить.
+//     */
+//    default LinkedHashSet<Field> getFieldsParam() {
+//        throw new UnsupportedOperationException();
+//    }
 
     /**
      * Возвращает набор всех полей виртуальной таблицы.

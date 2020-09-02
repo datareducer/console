@@ -36,7 +36,7 @@ public final class CalculationRegisterRecalculation implements CalculationRegist
     private final String name;
     private final String recalculationName;
     private final LinkedHashSet<Field> virtualTableFields;
-    private final LinkedHashSet<Field> fieldsParam;
+    private final LinkedHashSet<Field> requestedFields;
     private final LinkedHashSet<Field> presentationFields;
     private final boolean allFields;
     private final Condition condition;
@@ -54,14 +54,14 @@ public final class CalculationRegisterRecalculation implements CalculationRegist
      * @param name               Имя регистра расчета, как оно задано в конфигураторе.
      * @param recalculationName  Имя перерасчета регистра расчета, как оно задано в конфигураторе.
      * @param virtualTableFields Все поля виртуальной таблицы.
-     * @param fieldsParam        Коллекция полей, которые необходимо получить.
+     * @param requestedFields    Коллекция полей, которые необходимо получить.
      * @param allFields          Получить значения всех полей. Используется для оптимизации запроса.
      * @param condition          Отбор, применяемый при запросе к ресурсу.
      *                           Если отбор не устанавливается, передаётся пустой Condition.
      * @param allowedOnly        Выбрать элементы, которые не попадают под ограничения доступа к данным.
      */
     public CalculationRegisterRecalculation(String name, String recalculationName, LinkedHashSet<Field> virtualTableFields,
-                                            LinkedHashSet<Field> fieldsParam, boolean allFields, Condition condition, boolean allowedOnly) {
+                                            LinkedHashSet<Field> requestedFields, boolean allFields, Condition condition, boolean allowedOnly) {
         if (name == null) {
             throw new IllegalArgumentException("Значение параметра 'name': null");
         }
@@ -74,8 +74,8 @@ public final class CalculationRegisterRecalculation implements CalculationRegist
         if (virtualTableFields.isEmpty()) {
             throw new IllegalArgumentException("Набор полей пуст");
         }
-        if (fieldsParam == null) {
-            throw new IllegalArgumentException("Значение параметра 'fieldsParam': null");
+        if (requestedFields == null) {
+            throw new IllegalArgumentException("Значение параметра 'requestedFields': null");
         }
         if (condition == null) {
             throw new IllegalArgumentException("Значение параметра 'condition': null");
@@ -84,7 +84,7 @@ public final class CalculationRegisterRecalculation implements CalculationRegist
         this.name = name;
         this.recalculationName = recalculationName;
         this.virtualTableFields = new LinkedHashSet<>(virtualTableFields);
-        this.fieldsParam = new LinkedHashSet<>(fieldsParam);
+        this.requestedFields = new LinkedHashSet<>(requestedFields);
         this.allFields = allFields;
         this.condition = condition.clone();
         this.allowedOnly = allowedOnly;
@@ -97,7 +97,7 @@ public final class CalculationRegisterRecalculation implements CalculationRegist
             fieldsLookup.put(presentationName, new Field(presentationName, FieldType.STRING));
         }
 
-        this.presentationFields = Field.presentations(getFieldsParam());
+        this.presentationFields = Field.presentations(getRequestedFields());
 
         this.cacheLifetime = getDefaultCacheLifetime();
     }
@@ -134,8 +134,8 @@ public final class CalculationRegisterRecalculation implements CalculationRegist
     }
 
     @Override
-    public LinkedHashSet<Field> getFieldsParam() {
-        return new LinkedHashSet<>(fieldsParam);
+    public LinkedHashSet<Field> getRequestedFields() {
+        return new LinkedHashSet<>(requestedFields);
     }
 
     @Override
@@ -204,7 +204,7 @@ public final class CalculationRegisterRecalculation implements CalculationRegist
         CalculationRegisterRecalculation that = (CalculationRegisterRecalculation) o;
         return that.name.equals(name)
                 && that.recalculationName.equals(recalculationName)
-                && that.fieldsParam.equals(fieldsParam)
+                && that.requestedFields.equals(requestedFields)
                 && that.presentationFields.equals(presentationFields)
                 && that.allFields == allFields
                 && that.condition.equals(condition)
@@ -217,7 +217,7 @@ public final class CalculationRegisterRecalculation implements CalculationRegist
         if (result == 0) {
             result = 31 * result + name.hashCode();
             result = 31 * result + recalculationName.hashCode();
-            result = 31 * result + fieldsParam.hashCode();
+            result = 31 * result + requestedFields.hashCode();
             result = 31 * result + presentationFields.hashCode();
             result = 31 * result + (allFields ? 1 : 0);
             result = 31 * result + condition.hashCode();

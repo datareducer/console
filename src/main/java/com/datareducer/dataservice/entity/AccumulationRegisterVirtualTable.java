@@ -57,7 +57,7 @@ public interface AccumulationRegisterVirtualTable extends DataServiceRequest {
      *
      * @return Набор измерений, в разрезе которых будут получены остатки или обороты.
      */
-    LinkedHashSet<Field> getDimensionsParam();
+    LinkedHashSet<Field> getRequestedDimensions();
 
     /**
      * Возвращает набор представлений полей.
