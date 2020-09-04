@@ -179,9 +179,9 @@ public final class Script {
             futures.put(resource.getName(), executor.submit(() -> resource.getResourceData().asDataFrame()));
         }
 
-        String host = applicationParams.get(Reducer.RSERVE_HOST_PARAM_NAME);
+        String host = applicationParams.get(Reducer.RSERVE_HOST_PARAM);
         if (host == null || host.isEmpty()) {
-            RuntimeException ex = new ReducerRuntimeException("Не задано значение параметра " + Reducer.RSERVE_HOST_PARAM_NAME);
+            RuntimeException ex = new ReducerRuntimeException("Не задано значение параметра " + Reducer.RSERVE_HOST_PARAM);
             log.error("При установке соединения с Rserve:", ex);
             throw ex;
         }
@@ -191,15 +191,15 @@ public final class Script {
             conn = new RConnection(host);
 
             if (conn.needLogin()) {
-                String user = applicationParams.get(Reducer.RSERVE_USER_PARAM_NAME);
+                String user = applicationParams.get(Reducer.RSERVE_USER_PARAM);
                 if (user == null || user.isEmpty()) {
-                    RuntimeException ex = new ReducerRuntimeException("Не задано значение параметра " + Reducer.RSERVE_USER_PARAM_NAME);
+                    RuntimeException ex = new ReducerRuntimeException("Не задано значение параметра " + Reducer.RSERVE_USER_PARAM);
                     log.error("[%s] При установке соединения с Rserve:", hashCode(), ex);
                     throw ex;
                 }
-                String pwd = applicationParams.get(Reducer.RSERVE_PASSWORD_PARAM_NAME);
+                String pwd = applicationParams.get(Reducer.RSERVE_PASSWORD_PARAM);
                 if (pwd == null || pwd.isEmpty()) {
-                    RuntimeException ex = new ReducerRuntimeException("Не задано значение параметра" + Reducer.RSERVE_PASSWORD_PARAM_NAME);
+                    RuntimeException ex = new ReducerRuntimeException("Не задано значение параметра" + Reducer.RSERVE_PASSWORD_PARAM);
                     log.error("[%s] При установке соединения с Rserve:", hashCode(), ex);
                     throw ex;
                 }

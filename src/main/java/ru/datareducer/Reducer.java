@@ -36,14 +36,14 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public final class Reducer extends Application {
-    public final static String RSERVE_HOST_PARAM_NAME = "rserve-host";
-    public final static String RSERVE_USER_PARAM_NAME = "rserve-user";
-    public final static String RSERVE_PASSWORD_PARAM_NAME = "rserve-password";
+    public final static String RSERVE_HOST_PARAM = "rserve-host";
+    public final static String RSERVE_USER_PARAM = "rserve-user";
+    public final static String RSERVE_PASSWORD_PARAM = "rserve-password";
 
-    public final static String RAPPORT_WEBAPP_PARAM_NAME = "rapport-webappname";
-    public final static String RAPPORT_HOST_PARAM_NAME = "rapport-host";
-    public final static String RAPPORT_USER_PARAM_NAME = "rapport-user";
-    public final static String RAPPORT_PASSWORD_PARAM_NAME = "rapport-password";
+    public final static String RAPPORT_WEBAPP_PARAM = "rapport-webappname";
+    public final static String RAPPORT_HOST_PARAM = "rapport-host";
+    public final static String RAPPORT_USER_PARAM = "rapport-user";
+    public final static String RAPPORT_PASSWORD_PARAM = "rapport-password";
 
     private final Set<ModelReplacedListener> modelReplacedListeners;
 

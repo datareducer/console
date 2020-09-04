@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ReducerConfiguration>
-    <InfoBaseSequenceValue>1</InfoBaseSequenceValue>
-    <ScriptSequenceValue>4</ScriptSequenceValue>
-    <DataServiceResourceSequenceValue>67</DataServiceResourceSequenceValue>
+    <SeqInfoBase>1</SeqInfoBase>
+    <SeqScript>1</SeqScript>
+    <SeqDataServiceResource>67</SeqDataServiceResource>
     <InfoBase id="1" name="ПАО &quot;Астросбыт&quot;">
         <Host>localhost:8080</Host>
         <Base>datareducer_porto</Base>

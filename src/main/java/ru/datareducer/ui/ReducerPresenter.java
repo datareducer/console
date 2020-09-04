@@ -255,7 +255,7 @@ public class ReducerPresenter implements ModelReplacedListener {
             DataServiceEntity entity = metadataForm.getSelectedItem();
             Script script = getActiveScript();
             InfoBase infoBase = metadataForm.getInfoBase();
-            int resourceId = reducer.getModel().getDataServiceResourceSequence().incrementAndGet();
+            int resourceId = reducer.getModel().getSeqDataServiceResourceProperty().incrementAndGet();
             String name = entity.getType();
             // Проверяем, что имя набора данных уникально в пределах скрипта
             Set<String> names = new HashSet<>();
@@ -537,7 +537,7 @@ public class ReducerPresenter implements ModelReplacedListener {
      * Создает новый скрипт и открывает его вкладку.
      */
     private void openNewScriptTab() {
-        Script script = new Script(reducer.getModel().getScriptSequence().incrementAndGet());
+        Script script = new Script(reducer.getModel().getSeqScriptProperty().incrementAndGet());
         reducer.getModel().addScript(script);
         openScriptTab(script, view.getCentralPane(), view.getOutputPane().getOutputArea());
     }
@@ -635,10 +635,10 @@ public class ReducerPresenter implements ModelReplacedListener {
     private void webGetConfiguration() {
         if (confirmationWindow("Загрузка модели", "Модель будет получена с сервера", "Продолжить?")) {
             Map<String, String> params = reducer.getApplicationParams();
-            String host = params.get(Reducer.RAPPORT_HOST_PARAM_NAME);
-            String user = params.get(Reducer.RAPPORT_USER_PARAM_NAME);
-            String pswd = params.get(Reducer.RAPPORT_PASSWORD_PARAM_NAME);
-            String name = params.get(Reducer.RAPPORT_WEBAPP_PARAM_NAME);
+            String host = params.get(Reducer.RAPPORT_HOST_PARAM);
+            String user = params.get(Reducer.RAPPORT_USER_PARAM);
+            String pswd = params.get(Reducer.RAPPORT_PASSWORD_PARAM);
+            String name = params.get(Reducer.RAPPORT_WEBAPP_PARAM);
             if (host == null || user == null || pswd == null || name == null) {
                 RuntimeException ex = new LoadConfigurationException("Не установлены параметры подключения");
                 log.error("Не удалось получить модель:", ex);
@@ -680,10 +680,10 @@ public class ReducerPresenter implements ModelReplacedListener {
     private void webPutConfiguration() {
         if (confirmationWindow("Загрузка модели", "Модель будет загружена на сервер", "Продолжить?")) {
             Map<String, String> params = reducer.getApplicationParams();
-            String host = params.get(Reducer.RAPPORT_HOST_PARAM_NAME);
-            String user = params.get(Reducer.RAPPORT_USER_PARAM_NAME);
-            String pswd = params.get(Reducer.RAPPORT_PASSWORD_PARAM_NAME);
-            String name = params.get(Reducer.RAPPORT_WEBAPP_PARAM_NAME);
+            String host = params.get(Reducer.RAPPORT_HOST_PARAM);
+            String user = params.get(Reducer.RAPPORT_USER_PARAM);
+            String pswd = params.get(Reducer.RAPPORT_PASSWORD_PARAM);
+            String name = params.get(Reducer.RAPPORT_WEBAPP_PARAM);
             if (host == null || user == null || pswd == null || name == null) {
                 RuntimeException ex = new LoadConfigurationException("Не установлены параметры подключения");
                 log.error("Не удалось загрузить модель:", ex);

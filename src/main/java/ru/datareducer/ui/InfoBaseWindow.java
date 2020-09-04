@@ -181,7 +181,7 @@ public class InfoBaseWindow implements Window<InfoBase> {
         form.closeBtn.setOnAction(event -> {
             if (form.validate()) {
                 if (isCreation) {
-                    infoBase.setId(String.valueOf(model.getInfoBaseSequence().incrementAndGet()));
+                    infoBase.setId(String.valueOf(model.getSeqInfoBaseProperty().incrementAndGet()));
                     model.addInfoBase(infoBase);
                 }
                 close();

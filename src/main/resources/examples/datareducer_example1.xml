@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ReducerConfiguration>
-    <InfoBaseSequenceValue>2</InfoBaseSequenceValue>
-    <ScriptSequenceValue>2</ScriptSequenceValue>
-    <DataServiceResourceSequenceValue>3</DataServiceResourceSequenceValue>
+    <SeqInfoBase>2</SeqInfoBase>
+    <SeqScript>1</SeqScript>
+    <SeqDataServiceResource>2</SeqDataServiceResource>
     <InfoBase id="1" name="ООО &quot;УноФарма&quot;">
         <Host>localhost:8080</Host>
         <Base>datareducer_uno</Base>

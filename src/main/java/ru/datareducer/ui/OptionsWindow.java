@@ -69,14 +69,14 @@ public class OptionsWindow {
     }
 
     public void show(Map<String, String> applicationParams) {
-        rserveHost.setValue(applicationParams.get(Reducer.RSERVE_HOST_PARAM_NAME));
-        rserveUser.setValue(applicationParams.get(Reducer.RSERVE_USER_PARAM_NAME));
-        rservePassword.setValue(applicationParams.get(Reducer.RSERVE_PASSWORD_PARAM_NAME));
-        rapportHost.setValue(applicationParams.get(Reducer.RAPPORT_HOST_PARAM_NAME));
-        rapportUser.setValue(applicationParams.get(Reducer.RAPPORT_USER_PARAM_NAME));
-        rapportPassword.setValue(applicationParams.get(Reducer.RAPPORT_PASSWORD_PARAM_NAME));
+        rserveHost.setValue(applicationParams.get(Reducer.RSERVE_HOST_PARAM));
+        rserveUser.setValue(applicationParams.get(Reducer.RSERVE_USER_PARAM));
+        rservePassword.setValue(applicationParams.get(Reducer.RSERVE_PASSWORD_PARAM));
+        rapportHost.setValue(applicationParams.get(Reducer.RAPPORT_HOST_PARAM));
+        rapportUser.setValue(applicationParams.get(Reducer.RAPPORT_USER_PARAM));
+        rapportPassword.setValue(applicationParams.get(Reducer.RAPPORT_PASSWORD_PARAM));
         // Не отображается на форме:
-        rapportWebappName.setValue(applicationParams.get(Reducer.RAPPORT_WEBAPP_PARAM_NAME));
+        rapportWebappName.setValue(applicationParams.get(Reducer.RAPPORT_WEBAPP_PARAM));
 
         stage.toFront();
         stage.show();
@@ -135,14 +135,14 @@ public class OptionsWindow {
     Map<String, String> getApplicationParams() {
         Map<String, String> params = new LinkedHashMap<>();
 
-        params.put(Reducer.RSERVE_HOST_PARAM_NAME, rserveHost.get());
-        params.put(Reducer.RSERVE_USER_PARAM_NAME, rserveUser.get());
-        params.put(Reducer.RSERVE_PASSWORD_PARAM_NAME, rservePassword.get());
+        params.put(Reducer.RSERVE_HOST_PARAM, rserveHost.get());
+        params.put(Reducer.RSERVE_USER_PARAM, rserveUser.get());
+        params.put(Reducer.RSERVE_PASSWORD_PARAM, rservePassword.get());
 
-        params.put(Reducer.RAPPORT_WEBAPP_PARAM_NAME, rapportWebappName.get());
-        params.put(Reducer.RAPPORT_HOST_PARAM_NAME, rapportHost.get());
-        params.put(Reducer.RAPPORT_USER_PARAM_NAME, rapportUser.get());
-        params.put(Reducer.RAPPORT_PASSWORD_PARAM_NAME, rapportPassword.get());
+        params.put(Reducer.RAPPORT_WEBAPP_PARAM, rapportWebappName.get());
+        params.put(Reducer.RAPPORT_HOST_PARAM, rapportHost.get());
+        params.put(Reducer.RAPPORT_USER_PARAM, rapportUser.get());
+        params.put(Reducer.RAPPORT_PASSWORD_PARAM, rapportPassword.get());
 
         return params;
     }

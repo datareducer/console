@@ -51,15 +51,14 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author Kirill Mikhaylov
  */
 @XmlRootElement(name = "ReducerConfiguration")
-@XmlType(name = "ReducerConfiguration", propOrder = {"infoBaseSequenceValue", "scriptSequenceValue",
-        "dataServiceResourceSequenceValue", "infoBases", "scripts"})
+@XmlType(name = "ReducerConfiguration", propOrder = {"seqInfoBase", "seqScript", "seqDataServiceResource", "infoBases", "scripts"})
 public final class ReducerConfiguration {
     private final ObservableList<InfoBase> infoBases = FXCollections.observableArrayList();
     private final ObservableList<Script> scripts = FXCollections.observableArrayList();
 
-    private final AtomicInteger infoBaseSequence = new AtomicInteger(0);
-    private final AtomicInteger scriptSequence = new AtomicInteger(0);
-    private final AtomicInteger dataServiceResourceSequence = new AtomicInteger(0);
+    private final AtomicInteger seqInfoBase = new AtomicInteger(0);
+    private final AtomicInteger seqScript = new AtomicInteger(0);
+    private final AtomicInteger seqDataServiceResource = new AtomicInteger(0);
 
     private Map<String, String> applicationParams;
 
@@ -77,43 +76,43 @@ public final class ReducerConfiguration {
         return scripts;
     }
 
-    @XmlElement(name = "InfoBaseSequenceValue")
-    public int getInfoBaseSequenceValue() {
-        return infoBaseSequence.get();
+    @XmlElement(name = "SeqInfoBase")
+    public int getSeqInfoBase() {
+        return seqInfoBase.get();
     }
 
-    public void setInfoBaseSequenceValue(int value) {
-        infoBaseSequence.set(value);
+    public void setSeqInfoBase(int value) {
+        seqInfoBase.set(value);
     }
 
-    public AtomicInteger getInfoBaseSequence() {
-        return infoBaseSequence;
+    public AtomicInteger getSeqInfoBaseProperty() {
+        return seqInfoBase;
     }
 
-    @XmlElement(name = "ScriptSequenceValue")
-    public int getScriptSequenceValue() {
-        return scriptSequence.get();
+    @XmlElement(name = "SeqScript")
+    public int getSeqScript() {
+        return seqScript.get();
     }
 
-    public void setScriptSequenceValue(int value) {
-        scriptSequence.set(value);
+    public void setSeqScript(int value) {
+        seqScript.set(value);
     }
 
-    public AtomicInteger getScriptSequence() {
-        return scriptSequence;
+    public AtomicInteger getSeqScriptProperty() {
+        return seqScript;
     }
 
-    @XmlElement(name = "DataServiceResourceSequenceValue")
-    public int getDataServiceResourceSequenceValue() {
-        return dataServiceResourceSequence.get();
+    @XmlElement(name = "SeqDataServiceResource")
+    public int getSeqDataServiceResource() {
+        return seqDataServiceResource.get();
     }
 
-    public void setDataServiceResourceSequenceValue(int value) {
-        dataServiceResourceSequence.set(value);
+    public void setSeqDataServiceResource(int value) {
+        seqDataServiceResource.set(value);
     }
 
-    public AtomicInteger getDataServiceResourceSequence() {
-        return dataServiceResourceSequence;
+    public AtomicInteger getSeqDataServiceResourceProperty() {
+        return seqDataServiceResource;
     }
 
     /**
