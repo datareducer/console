@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Copyright (c) 2017,2018 Kirill Mikhaylov <admin@datareducer.ru>-->
+<!--Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>-->
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
@@ -8,32 +8,32 @@
 <fx:root type="StackPane" xmlns="http://javafx.com/javafx/8.0.102-ea" xmlns:fx="http://javafx.com/fxml/1">
     <TreeTableView fx:id="metadataTreeTable">
         <columns>
-          <TreeTableColumn fx:id="nameCol" minWidth="120" prefWidth="75" />
-          <TreeTableColumn fx:id="typeCol" prefWidth="75" text="Тип" />
-          <TreeTableColumn fx:id="refCol" prefWidth="75" text="Связь" />
+            <TreeTableColumn fx:id="nameCol" minWidth="120" prefWidth="75"/>
+            <TreeTableColumn fx:id="typeCol" prefWidth="75" text="Тип"/>
+            <TreeTableColumn fx:id="refCol" prefWidth="75" text="Связь"/>
         </columns>
         <columnResizePolicy>
-            <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
         </columnResizePolicy>
         <placeholder>
             <Label fx:id="placeholderLbl" textFill="darkgray">Дерево метаданных</Label>
         </placeholder>
     </TreeTableView>
-    <Region fx:id="veil" styleClass="veil" />
-    <ProgressIndicator fx:id="progressIndicator" maxHeight="80" minWidth="80" />
+    <Region fx:id="veil" styleClass="veil"/>
+    <ProgressIndicator fx:id="progressIndicator" maxHeight="80" minWidth="80"/>
     <padding>
-        <Insets left="5.0" />
+        <Insets left="5.0"/>
     </padding>
     <fx:define>
         <ContextMenu fx:id="entityCtxMenu">
             <items>
-                <MenuItem fx:id="showDataItem" mnemonicParsing="false" text="Просмотр данных" />
-                <MenuItem fx:id="addToScriptItem" mnemonicParsing="false" text="Добавить в скрипт" />
+                <MenuItem fx:id="showDataItem" mnemonicParsing="false" text="Просмотр данных"/>
+                <MenuItem fx:id="addToScriptItem" mnemonicParsing="false" text="Добавить в скрипт"/>
             </items>
         </ContextMenu>
         <ContextMenu fx:id="fieldCtxMenu">
             <items>
-                <MenuItem fx:id="copyNameItem" mnemonicParsing="false" text="Копировать имя" />
+                <MenuItem fx:id="copyNameItem" mnemonicParsing="false" text="Копировать имя"/>
             </items>
         </ContextMenu>
     </fx:define>

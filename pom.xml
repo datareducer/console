@@ -3,13 +3,13 @@
 <!--
 Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
 
-Этот файл — часть программы DataReducer <http://datareducer.ru>.
+Этот файл — часть программы DataReducer Console <http://datareducer.ru>.
 
-Программа DataReducer является свободным программным обеспечением.
-Вы вправе распространять ее и/или модифицировать только в соответствии с условиями версии 2
-Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
+Программа DataReducer Console является свободным программным обеспечением.
+Вы вправе распространять ее и/или модифицировать только в соответствии с условиями
+версии 2 Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
 
-Программа DataReducer распространяется в надежде, что она будет полезной,
+Программа DataReducer Console распространяется в надежде, что она будет полезной,
 но БЕЗО ВСЯКИХ ГАРАНТИЙ, в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
 и ПРИГОДНОСТИ ДЛЯ ИСПОЛЬЗОВАНИЯ В КОНКРЕТНЫХ ЦЕЛЯХ.
 Подробнее см. в Стандартной Общественной Лицензии GNU.
@@ -23,9 +23,9 @@ Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.datareducer</groupId>
+    <groupId>ru.datareducer</groupId>
     <artifactId>DataReducerConsole</artifactId>
-    <version>1.1.16</version>
+    <version>1.2.0</version>
 
     <build>
         <plugins>
@@ -72,15 +72,15 @@ Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
                             <xsdOptions>
                                 <xsdOption>
                                     <xsd>${basedir}/src/main/resources/build/xsd/atom.xsd</xsd>
-                                    <packagename>com.datareducer.dataservice.jaxb.atom</packagename>
+                                    <packagename>ru.datareducer.dataservice.jaxb.atom</packagename>
                                 </xsdOption>
                                 <xsdOption>
                                     <xsd>${basedir}/src/main/resources/build/xsd/dataservices.xsd</xsd>
-                                    <packagename>com.datareducer.dataservice.jaxb.register</packagename>
+                                    <packagename>ru.datareducer.dataservice.jaxb.register</packagename>
                                 </xsdOption>
                                 <xsdOption>
                                     <xsd>${basedir}/src/main/resources/build/xsd/edmx.xsd</xsd>
-                                    <packagename>com.datareducer.dataservice.jaxb.csdl</packagename>
+                                    <packagename>ru.datareducer.dataservice.jaxb.csdl</packagename>
                                 </xsdOption>
                             </xsdOptions>
                         </configuration>
@@ -103,11 +103,14 @@ Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
                         </goals>
                         <configuration>
                             <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer" />
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer"/>
                                 <!--http://stackoverflow.com/questions/34945438/log4j2-configuration-not-found-when-running-standalone-application-builded-by-sh-->
                                 <!--https://issues.apache.org/jira/browse/LOG4J2-673-->
-                                <transformer implementation="com.github.edwgiz.mavenShadePlugin.log4j2CacheTransformer.PluginsCacheFileTransformer" />
+                                <transformer
+                                        implementation="com.github.edwgiz.mavenShadePlugin.log4j2CacheTransformer.PluginsCacheFileTransformer"/>
                             </transformers>
                         </configuration>
                     </execution>

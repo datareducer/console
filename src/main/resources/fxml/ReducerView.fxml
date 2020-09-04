@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Copyright (c) 2017,2018 Kirill Mikhaylov <admin@datareducer.ru>-->
+<!--Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>-->
 
 <?import javafx.scene.control.SplitPane?>
 <fx:root type="SplitPane" dividerPositions="0.85" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8.0.102-ea"
          xmlns:fx="http://javafx.com/fxml/1">
     <SplitPane dividerPositions="0.2">
-        <com.datareducer.ui.NavigationPanel fx:id="navigationPanel" SplitPane.resizableWithParent="false"/>
-        <com.datareducer.ui.CentralPane fx:id="centralPane"/>
+        <ru.datareducer.ui.NavigationPanel fx:id="navigationPanel" SplitPane.resizableWithParent="false"/>
+        <ru.datareducer.ui.CentralPane fx:id="centralPane"/>
     </SplitPane>
-    <com.datareducer.ui.OutputPane fx:id="outputPane" SplitPane.resizableWithParent="false"/>
+    <ru.datareducer.ui.OutputPane fx:id="outputPane" SplitPane.resizableWithParent="false"/>
 </fx:root>

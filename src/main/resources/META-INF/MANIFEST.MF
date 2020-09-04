@@ -1,4 +1,4 @@
 Permissions: all-permissions
 Codebase: *
 Application-Name: DataReducer Console
-Main-Class: com.datareducer.Reducer
+Main-Class: ru.datareducer.Reducer

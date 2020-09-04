@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Copyright (c) 2017,2018 Kirill Mikhaylov <admin@datareducer.ru>-->
+<!--Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>-->
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
@@ -10,11 +10,11 @@
         <Button fx:id="addBtn" text="Добавить">
             <graphic>
                 <ImageView>
-                    <Image url="@/image/plus.png" />
+                    <Image url="@/image/plus.png"/>
                 </ImageView>
             </graphic>
         </Button>
-        <Separator />
+        <Separator/>
         <Button fx:id="upBtn">
             <graphic>
                 <ImageView>
@@ -33,7 +33,7 @@
         <Button fx:id="delBtn">
             <graphic>
                 <ImageView>
-                    <Image url="@/image/cross.png" />
+                    <Image url="@/image/cross.png"/>
                 </ImageView>
             </graphic>
         </Button>

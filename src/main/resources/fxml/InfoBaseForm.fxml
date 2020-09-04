@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Copyright (c) 2017,2018 Kirill Mikhaylov <admin@datareducer.ru>-->
+<!--Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>-->
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<fx:root hgap="7.0" type="GridPane" vgap="4.0" xmlns="http://javafx.com/javafx/8.0.102-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <Label text="Наименование подключения:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-    <Label text="Сервер:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-    <Label text="Имя информационной базы:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-    <Label text="Пользователь:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-    <Label text="Пароль:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-    <TextField fx:id="nameFld" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-    <TextField fx:id="hostFld" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-    <TextField fx:id="baseFld" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-    <TextField fx:id="userFld" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-    <PasswordField fx:id="passFld" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
-    <Button fx:id="cancelBtn" cancelButton="true" maxWidth="1.7976931348623157E308" text="Отмена" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-    <Button fx:id="closeBtn" defaultButton="true" maxWidth="1.7976931348623157E308" text="Закрыть" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+<fx:root hgap="7.0" type="GridPane" vgap="4.0" xmlns="http://javafx.com/javafx/8.0.102-ea"
+         xmlns:fx="http://javafx.com/fxml/1">
+    <Label text="Наименование подключения:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <Label text="Сервер:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <Label text="Имя информационной базы:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <Label text="Пользователь:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <Label text="Пароль:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+    <TextField fx:id="nameFld" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="0"/>
+    <TextField fx:id="hostFld" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1"/>
+    <TextField fx:id="baseFld" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2"/>
+    <TextField fx:id="userFld" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3"/>
+    <PasswordField fx:id="passFld" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4"/>
+    <Button fx:id="cancelBtn" cancelButton="true" maxWidth="1.7976931348623157E308" text="Отмена"
+            GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+    <Button fx:id="closeBtn" defaultButton="true" maxWidth="1.7976931348623157E308" text="Закрыть"
+            GridPane.columnIndex="2" GridPane.rowIndex="5"/>
     <columnConstraints>
-        <ColumnConstraints />
-        <ColumnConstraints minWidth="100.0" />
-        <ColumnConstraints minWidth="100.0" />
+        <ColumnConstraints/>
+        <ColumnConstraints minWidth="100.0"/>
+        <ColumnConstraints minWidth="100.0"/>
     </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints minHeight="33.0" valignment="BOTTOM" />
-   </rowConstraints>
-   <padding>
-      <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
-   </padding>
+    <rowConstraints>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints minHeight="33.0" valignment="BOTTOM"/>
+    </rowConstraints>
+    <padding>
+        <Insets bottom="8.0" left="12.0" right="12.0" top="8.0"/>
+    </padding>
 </fx:root>
