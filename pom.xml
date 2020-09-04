@@ -6,8 +6,7 @@ Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
 Этот файл — часть программы DataReducer <http://datareducer.ru>.
 
 Программа DataReducer является свободным программным обеспечением.
-Вы вправе распространять ее и/или модифицировать в соответствии с условиями версии 2
-либо, по вашему выбору, с условиями более поздней версии
+Вы вправе распространять ее и/или модифицировать только в соответствии с условиями версии 2
 Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
 
 Программа DataReducer распространяется в надежде, что она будет полезной,
@@ -155,6 +154,11 @@ Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>2.13.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>3.8.1</version>
         </dependency>
     </dependencies>
 

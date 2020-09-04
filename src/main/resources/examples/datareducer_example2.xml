@@ -112,7 +112,7 @@
             <StartPeriod>${Q1_2014_begin}</StartPeriod>
             <EndPeriod>${Q1_2014_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="2" name="Q1_2014_ПрочиеРасходы">
             <InfoBase>1</InfoBase>
@@ -168,7 +168,7 @@
             <StartPeriod>${Q1_2014_begin}</StartPeriod>
             <EndPeriod>${Q1_2014_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="4" name="Q1_2014_РасчетыСКлиентами">
             <InfoBase>1</InfoBase>
@@ -219,7 +219,7 @@
             <ViewPointsList/>
             <Period>${Q1_2014_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="3" name="Q1_2014_РасчетыСПоставщиками">
             <InfoBase>1</InfoBase>
@@ -270,7 +270,7 @@
             <ViewPointsList/>
             <Period>${Q1_2014_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="19" name="Q1_2015_ВыручкаИСебестоимость">
             <InfoBase>1</InfoBase>
@@ -374,7 +374,7 @@
             <StartPeriod>${Q1_2015_begin}</StartPeriod>
             <EndPeriod>${Q1_2015_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="22" name="Q1_2015_ПрочиеРасходы">
             <InfoBase>1</InfoBase>
@@ -430,7 +430,7 @@
             <StartPeriod>${Q1_2015_begin}</StartPeriod>
             <EndPeriod>${Q1_2015_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="21" name="Q1_2015_РасчетыСКлиентами">
             <InfoBase>1</InfoBase>
@@ -481,7 +481,7 @@
             <ViewPointsList/>
             <Period>${Q1_2015_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="20" name="Q1_2015_РасчетыСПоставщиками">
             <InfoBase>1</InfoBase>
@@ -532,7 +532,7 @@
             <ViewPointsList/>
             <Period>${Q1_2015_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="36" name="Q1_2016_ВыручкаИСебестоимость">
             <InfoBase>1</InfoBase>
@@ -636,7 +636,7 @@
             <StartPeriod>${Q1_2016_begin}</StartPeriod>
             <EndPeriod>${Q1_2016_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="39" name="Q1_2016_ПрочиеРасходы">
             <InfoBase>1</InfoBase>
@@ -692,7 +692,7 @@
             <StartPeriod>${Q1_2016_begin}</StartPeriod>
             <EndPeriod>${Q1_2016_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="38" name="Q1_2016_РасчетыСКлиентами">
             <InfoBase>1</InfoBase>
@@ -743,7 +743,7 @@
             <ViewPointsList/>
             <Period>${Q1_2016_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="37" name="Q1_2016_РасчетыСПоставщиками">
             <InfoBase>1</InfoBase>
@@ -794,7 +794,7 @@
             <ViewPointsList/>
             <Period>${Q1_2016_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="52" name="Q1_2017_ВыручкаИСебестоимость">
             <InfoBase>1</InfoBase>
@@ -898,7 +898,7 @@
             <StartPeriod>${Q1_2017_begin}</StartPeriod>
             <EndPeriod>${Q1_2017_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="55" name="Q1_2017_ПрочиеРасходы">
             <InfoBase>1</InfoBase>
@@ -954,7 +954,7 @@
             <StartPeriod>${Q1_2017_begin}</StartPeriod>
             <EndPeriod>${Q1_2017_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="54" name="Q1_2017_РасчетыСКлиентами">
             <InfoBase>1</InfoBase>
@@ -1005,7 +1005,7 @@
             <ViewPointsList/>
             <Period>${Q1_2017_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="53" name="Q1_2017_РасчетыСПоставщиками">
             <InfoBase>1</InfoBase>
@@ -1056,7 +1056,7 @@
             <ViewPointsList/>
             <Period>${Q1_2017_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="6" name="Q2_2014_ВыручкаИСебестоимость">
             <InfoBase>1</InfoBase>
@@ -1160,7 +1160,7 @@
             <StartPeriod>${Q2_2014_begin}</StartPeriod>
             <EndPeriod>${Q2_2014_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="7" name="Q2_2014_ПрочиеРасходы">
             <InfoBase>1</InfoBase>
@@ -1216,7 +1216,7 @@
             <StartPeriod>${Q2_2014_begin}</StartPeriod>
             <EndPeriod>${Q2_2014_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="8" name="Q2_2014_РасчетыСКлиентами">
             <InfoBase>1</InfoBase>
@@ -1266,7 +1266,7 @@
             <ViewPointsList/>
             <Period>${Q2_2014_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="9" name="Q2_2014_РасчетыСПоставщиками">
             <InfoBase>1</InfoBase>
@@ -1317,7 +1317,7 @@
             <ViewPointsList/>
             <Period>${Q2_2014_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="23" name="Q2_2015_ВыручкаИСебестоимость">
             <InfoBase>1</InfoBase>
@@ -1421,7 +1421,7 @@
             <StartPeriod>${Q2_2015_begin}</StartPeriod>
             <EndPeriod>${Q2_2015_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="26" name="Q2_2015_ПрочиеРасходы">
             <InfoBase>1</InfoBase>
@@ -1477,7 +1477,7 @@
             <StartPeriod>${Q2_2015_begin}</StartPeriod>
             <EndPeriod>${Q2_2015_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="24" name="Q2_2015_РасчетыСКлиентами">
             <InfoBase>1</InfoBase>
@@ -1527,7 +1527,7 @@
             <ViewPointsList/>
             <Period>${Q2_2015_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="25" name="Q2_2015_РасчетыСПоставщиками">
             <InfoBase>1</InfoBase>
@@ -1578,7 +1578,7 @@
             <ViewPointsList/>
             <Period>${Q2_2015_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="40" name="Q2_2016_ВыручкаИСебестоимость">
             <InfoBase>1</InfoBase>
@@ -1682,7 +1682,7 @@
             <StartPeriod>${Q2_2016_begin}</StartPeriod>
             <EndPeriod>${Q2_2016_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="43" name="Q2_2016_ПрочиеРасходы">
             <InfoBase>1</InfoBase>
@@ -1738,7 +1738,7 @@
             <StartPeriod>${Q2_2016_begin}</StartPeriod>
             <EndPeriod>${Q2_2016_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="42" name="Q2_2016_РасчетыСКлиентами">
             <InfoBase>1</InfoBase>
@@ -1789,7 +1789,7 @@
             <ViewPointsList/>
             <Period>${Q2_2016_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="41" name="Q2_2016_РасчетыСПоставщиками">
             <InfoBase>1</InfoBase>
@@ -1840,7 +1840,7 @@
             <ViewPointsList/>
             <Period>${Q2_2016_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="56" name="Q2_2017_ВыручкаИСебестоимость">
             <InfoBase>1</InfoBase>
@@ -1944,7 +1944,7 @@
             <StartPeriod>${Q2_2017_begin}</StartPeriod>
             <EndPeriod>${Q2_2017_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="59" name="Q2_2017_ПрочиеРасходы">
             <InfoBase>1</InfoBase>
@@ -2000,7 +2000,7 @@
             <StartPeriod>${Q2_2017_begin}</StartPeriod>
             <EndPeriod>${Q2_2017_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="58" name="Q2_2017_РасчетыСКлиентами">
             <InfoBase>1</InfoBase>
@@ -2051,7 +2051,7 @@
             <ViewPointsList/>
             <Period>${Q2_2017_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="57" name="Q2_2017_РасчетыСПоставщиками">
             <InfoBase>1</InfoBase>
@@ -2102,7 +2102,7 @@
             <ViewPointsList/>
             <Period>${Q2_2017_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="10" name="Q3_2014_ВыручкаИСебестоимость">
             <InfoBase>1</InfoBase>
@@ -2206,7 +2206,7 @@
             <StartPeriod>${Q3_2014_begin}</StartPeriod>
             <EndPeriod>${Q3_2014_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="11" name="Q3_2014_ПрочиеРасходы">
             <InfoBase>1</InfoBase>
@@ -2262,7 +2262,7 @@
             <StartPeriod>${Q3_2014_begin}</StartPeriod>
             <EndPeriod>${Q3_2014_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="12" name="Q3_2014_РасчетыСКлиентами">
             <InfoBase>1</InfoBase>
@@ -2313,7 +2313,7 @@
             <ViewPointsList/>
             <Period>${Q3_2014_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="13" name="Q3_2014_РасчетыСПоставщиками">
             <InfoBase>1</InfoBase>
@@ -2364,7 +2364,7 @@
             <ViewPointsList/>
             <Period>${Q3_2014_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="27" name="Q3_2015_ВыручкаИСебестоимость">
             <InfoBase>1</InfoBase>
@@ -2468,7 +2468,7 @@
             <StartPeriod>${Q3_2015_begin}</StartPeriod>
             <EndPeriod>${Q3_2015_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="30" name="Q3_2015_ПрочиеРасходы">
             <InfoBase>1</InfoBase>
@@ -2524,7 +2524,7 @@
             <StartPeriod>${Q3_2015_begin}</StartPeriod>
             <EndPeriod>${Q3_2015_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="29" name="Q3_2015_РасчетыСКлиентами">
             <InfoBase>1</InfoBase>
@@ -2575,7 +2575,7 @@
             <ViewPointsList/>
             <Period>${Q3_2015_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="28" name="Q3_2015_РасчетыСПоставщиками">
             <InfoBase>1</InfoBase>
@@ -2626,7 +2626,7 @@
             <ViewPointsList/>
             <Period>${Q3_2015_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="44" name="Q3_2016_ВыручкаИСебестоимость">
             <InfoBase>1</InfoBase>
@@ -2730,7 +2730,7 @@
             <StartPeriod>${Q3_2016_begin}</StartPeriod>
             <EndPeriod>${Q3_2016_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="47" name="Q3_2016_ПрочиеРасходы">
             <InfoBase>1</InfoBase>
@@ -2786,7 +2786,7 @@
             <StartPeriod>${Q3_2016_begin}</StartPeriod>
             <EndPeriod>${Q3_2016_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="46" name="Q3_2016_РасчетыСКлиентами">
             <InfoBase>1</InfoBase>
@@ -2837,7 +2837,7 @@
             <ViewPointsList/>
             <Period>${Q3_2016_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="45" name="Q3_2016_РасчетыСПоставщиками">
             <InfoBase>1</InfoBase>
@@ -2888,7 +2888,7 @@
             <ViewPointsList/>
             <Period>${Q3_2016_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="60" name="Q3_2017_ВыручкаИСебестоимость">
             <InfoBase>1</InfoBase>
@@ -2992,7 +2992,7 @@
             <StartPeriod>${Q3_2017_begin}</StartPeriod>
             <EndPeriod>${Q3_2017_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="63" name="Q3_2017_ПрочиеРасходы">
             <InfoBase>1</InfoBase>
@@ -3048,7 +3048,7 @@
             <StartPeriod>${Q3_2017_begin}</StartPeriod>
             <EndPeriod>${Q3_2017_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="62" name="Q3_2017_РасчетыСКлиентами">
             <InfoBase>1</InfoBase>
@@ -3099,7 +3099,7 @@
             <ViewPointsList/>
             <Period>${Q3_2017_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="61" name="Q3_2017_РасчетыСПоставщиками">
             <InfoBase>1</InfoBase>
@@ -3150,7 +3150,7 @@
             <ViewPointsList/>
             <Period>${Q3_2017_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="14" name="Q4_2014_ВыручкаИСебестоимость">
             <InfoBase>1</InfoBase>
@@ -3254,7 +3254,7 @@
             <StartPeriod>${Q4_2014_begin}</StartPeriod>
             <EndPeriod>${Q4_2014_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="16" name="Q4_2014_ПрочиеРасходы">
             <InfoBase>1</InfoBase>
@@ -3310,7 +3310,7 @@
             <StartPeriod>${Q4_2014_begin}</StartPeriod>
             <EndPeriod>${Q4_2014_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="17" name="Q4_2014_РасчетыСКлиентами">
             <InfoBase>1</InfoBase>
@@ -3361,7 +3361,7 @@
             <ViewPointsList/>
             <Period>${Q4_2014_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="18" name="Q4_2014_РасчетыСПоставщиками">
             <InfoBase>1</InfoBase>
@@ -3412,7 +3412,7 @@
             <ViewPointsList/>
             <Period>${Q4_2014_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="31" name="Q4_2015_ВыручкаИСебестоимость">
             <InfoBase>1</InfoBase>
@@ -3516,7 +3516,7 @@
             <StartPeriod>${Q4_2015_begin}</StartPeriod>
             <EndPeriod>${Q4_2015_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="35" name="Q4_2015_ПрочиеРасходы">
             <InfoBase>1</InfoBase>
@@ -3572,7 +3572,7 @@
             <StartPeriod>${Q4_2015_begin}</StartPeriod>
             <EndPeriod>${Q4_2015_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="34" name="Q4_2015_РасчетыСКлиентами">
             <InfoBase>1</InfoBase>
@@ -3623,7 +3623,7 @@
             <ViewPointsList/>
             <Period>${Q4_2015_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="32" name="Q4_2015_РасчетыСПоставщиками">
             <InfoBase>1</InfoBase>
@@ -3674,7 +3674,7 @@
             <ViewPointsList/>
             <Period>${Q4_2015_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="48" name="Q4_2016_ВыручкаИСебестоимость">
             <InfoBase>1</InfoBase>
@@ -3778,7 +3778,7 @@
             <StartPeriod>${Q4_2016_begin}</StartPeriod>
             <EndPeriod>${Q4_2016_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="51" name="Q4_2016_ПрочиеРасходы">
             <InfoBase>1</InfoBase>
@@ -3834,7 +3834,7 @@
             <StartPeriod>${Q4_2016_begin}</StartPeriod>
             <EndPeriod>${Q4_2016_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="50" name="Q4_2016_РасчетыСКлиентами">
             <InfoBase>1</InfoBase>
@@ -3885,7 +3885,7 @@
             <ViewPointsList/>
             <Period>${Q4_2016_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="49" name="Q4_2016_РасчетыСПоставщиками">
             <InfoBase>1</InfoBase>
@@ -3936,7 +3936,7 @@
             <ViewPointsList/>
             <Period>${Q4_2016_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="64" name="Q4_2017_ВыручкаИСебестоимость">
             <InfoBase>1</InfoBase>
@@ -4040,7 +4040,7 @@
             <StartPeriod>${Q4_2017_begin}</StartPeriod>
             <EndPeriod>${Q4_2017_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="67" name="Q4_2017_ПрочиеРасходы">
             <InfoBase>1</InfoBase>
@@ -4096,7 +4096,7 @@
             <StartPeriod>${Q4_2017_begin}</StartPeriod>
             <EndPeriod>${Q4_2017_end}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="66" name="Q4_2017_РасчетыСКлиентами">
             <InfoBase>1</InfoBase>
@@ -4147,7 +4147,7 @@
             <ViewPointsList/>
             <Period>${Q4_2017_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="65" name="Q4_2017_РасчетыСПоставщиками">
             <InfoBase>1</InfoBase>
@@ -4198,7 +4198,7 @@
             <ViewPointsList/>
             <Period>${Q4_2017_end}</Period>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DefaultParameters>
             <Parameter paramName="Q1_2014_begin" paramValue="2014-01-01T00:00:00" isHttpParameter="false"/>

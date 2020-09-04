@@ -26,8 +26,8 @@
                         <Label fx:id="mnemonicNameLbl" style="-fx-font-weight: bold; -fx-text-fill: darkgray" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="4" />
                         <Label text="Информационная база:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                         <Label text="Наименование набора данных:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                        <Label text="Время кэширования (минут):" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                        <Label text="Учитывать ограничения доступа:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                        <Label text="Время кэширования (секунд):" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <Label text="Только разрешенные:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
                         <Label fx:id="infoBaseLbl" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField fx:id="nameFld" prefWidth="300" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextField fx:id="cacheFld" maxWidth="80" minWidth="80" GridPane.columnIndex="1" GridPane.rowIndex="3" />

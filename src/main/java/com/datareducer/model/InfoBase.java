@@ -4,9 +4,8 @@
  * Этот файл — часть программы DataReducer <http://datareducer.ru>.
  *
  * Программа DataReducer является свободным программным обеспечением.
- * Вы вправе распространять ее и/или модифицировать в соответствии с условиями версии 2
- * либо, по вашему выбору, с условиями более поздней версии
- * Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
+ * Вы вправе распространять ее и/или модифицировать только в соответствии с условиями
+ * версии 2 Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
  *
  * Программа DataReducer распространяется в надежде, что она будет полезной,
  * но БЕЗО ВСЯКИХ ГАРАНТИЙ, в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
@@ -18,12 +17,20 @@
  */
 package com.datareducer.model;
 
+import com.datareducer.dataservice.cache.CacheExpiryPolicy;
 import com.datareducer.dataservice.client.ClientException;
 import com.datareducer.dataservice.client.ConnectionParams;
 import com.datareducer.dataservice.client.DataServiceClient;
 import com.datareducer.dataservice.entity.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.ehcache.Cache;
+import org.ehcache.CacheManager;
+import org.ehcache.config.builders.CacheConfigurationBuilder;
+import org.ehcache.config.builders.CacheManagerBuilder;
+import org.ehcache.config.builders.ResourcePoolsBuilder;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;
@@ -53,6 +60,11 @@ public final class InfoBase implements DataServiceEntity {
     private MetadataTree metadataTree;
 
     private DataServiceClient dataServiceClient;
+
+    private CacheManager cacheManager;
+    private Cache<DataServiceRequest, DataServiceResponse> cache;
+
+    private static final Logger log = LogManager.getFormatterLogger(InfoBase.class);
 
     public InfoBase() {
         addListeners();
@@ -119,12 +131,28 @@ public final class InfoBase implements DataServiceEntity {
      * @throws ClientException
      */
     public DataServiceResponse get(DataServiceRequest request) throws ClientException {
-        //TODO проверяем наличие объекта в кэше
         if (request == null) {
             throw new IllegalArgumentException("Значение параметра 'request': null");
         }
-        //TODO кэшируем объект
-        return getDataServiceClient().get(request);
+        DataServiceResponse response = getCache().get(request);
+        if (response == null) {
+            response = getDataServiceClient().get(request);
+            getCache().put(request, response);
+        } else {
+            log.info("[%s] Из кэша получено %s записей '%s'", request.hashCode(), response.size(), request.getResourceName());
+        }
+        return response;
+    }
+
+    private synchronized Cache<DataServiceRequest, DataServiceResponse> getCache() {
+        if (cache == null) {
+            cacheManager = CacheManagerBuilder.newCacheManagerBuilder().build();
+            cacheManager.init();
+            cache = cacheManager.createCache(getId(), CacheConfigurationBuilder
+                    .newCacheConfigurationBuilder(DataServiceRequest.class, DataServiceResponse.class, ResourcePoolsBuilder.heap(10))
+                    .withExpiry(new CacheExpiryPolicy()));
+        }
+        return cache;
     }
 
     private synchronized DataServiceClient getDataServiceClient() {
@@ -222,6 +250,10 @@ public final class InfoBase implements DataServiceEntity {
         if (dataServiceClient != null) {
             dataServiceClient.close();
             dataServiceClient = null;
+        }
+        if (cacheManager != null) {
+            cacheManager.close();
+            cacheManager = null;
         }
         metadataTree = null;
     }

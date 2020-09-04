@@ -4,9 +4,8 @@
  * Этот файл — часть программы DataReducer <http://datareducer.ru>.
  *
  * Программа DataReducer является свободным программным обеспечением.
- * Вы вправе распространять ее и/или модифицировать в соответствии с условиями версии 2
- * либо, по вашему выбору, с условиями более поздней версии
- * Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
+ * Вы вправе распространять ее и/или модифицировать только в соответствии с условиями
+ * версии 2 Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
  *
  * Программа DataReducer распространяется в надежде, что она будет полезной,
  * но БЕЗО ВСЯКИХ ГАРАНТИЙ, в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
@@ -112,8 +111,7 @@ class AboutWindow {
                     "\nadmin@datareducer.ru" +
                     "\n\nПрограмма DataReducer Console является свободным " +
                     "программным обеспечением. Вы вправе распространять ее " +
-                    "и/или модифицировать в соответствии с условиями версии 2 " +
-                    "либо, по вашему выбору, с условиями более поздней версии " +
+                    "и/или модифицировать только в соответствии с условиями версии 2 " +
                     "Стандартной Общественной Лицензии GNU, опубликованной " +
                     "Free Software Foundation. " +
                     "\n\n" +
@@ -130,9 +128,10 @@ class AboutWindow {
                     "\n\nВ этот продукт включено следующее программное обеспечение:" +
                     "\nRserve by Simon Urbanek / LGPL v.2.1" +
                     "\nJersey by Oracle Corporation / CDDL v.1.1" +
+                    "\nEhcache by Terracotta, Inc. / Apache License 2.0" +
                     "\nLog4j by Apache Software Foundation / Apache License 2.0" +
                     "\nAce by Ajax.org / BSD License 2.0" +
-                    "\n\nИконки: <http://www.fatcow.com/free-icons> / CC BY 3.0"
+                    "\n\nИконки: <https://www.fatcow.com/free-icons> / CC BY 3.0"
             );
 
             ButtonBar buttonBar = new ButtonBar();

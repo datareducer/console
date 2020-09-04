@@ -163,7 +163,7 @@
             <StartPeriod>${periodBegin}</StartPeriod>
             <EndPeriod>${periodEnd}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DataServiceResource id="3" name="AccountingRegister_Хозрасчетный_Turnover2">
             <InfoBase>2</InfoBase>
@@ -298,7 +298,7 @@
             <StartPeriod>${periodBegin}</StartPeriod>
             <EndPeriod>${periodEnd}</EndPeriod>
             <AllowedOnly>false</AllowedOnly>
-            <CacheLifetime>3600000</CacheLifetime>
+            <CacheLifetime>3600</CacheLifetime>
         </DataServiceResource>
         <DefaultParameters>
             <Parameter paramName="periodBegin" paramValue="2013-01-01T00:00:00" isHttpParameter="false"/>

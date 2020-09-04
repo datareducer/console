@@ -47,8 +47,9 @@ import static com.datareducer.model.ScriptParameter.PARAM_PATTERN;
 public class DataServiceResource {
     private final IntegerProperty id = new SimpleIntegerProperty();
     private final StringProperty name = new SimpleStringProperty("");
-    private final LongProperty cacheLifetime = new SimpleLongProperty(0L);
     private final BooleanProperty allowedOnly = new SimpleBooleanProperty();
+    // Время кэширования в секундах
+    private final LongProperty cacheLifetime = new SimpleLongProperty(0L);
 
     private InfoBase infoBase;
     private DataServiceEntity dataServiceEntity;
@@ -111,7 +112,7 @@ public class DataServiceResource {
         }
         setId(id);
         setName(name);
-        setCacheLifetime(dataServiceEntity.getDefaultCacheLifetime().toMillis());
+        setCacheLifetime(dataServiceEntity.getDefaultCacheLifetime().getSeconds());
         this.infoBase = infoBase;
         this.dataServiceEntity = dataServiceEntity;
 
@@ -310,7 +311,7 @@ public class DataServiceResource {
             throw new ReducerRuntimeException(); // Недостижимо
         }
 
-        request.setCacheLifetime(Duration.ofMillis(getCacheLifetime()));
+        request.setCacheLifetime(Duration.ofSeconds(getCacheLifetime()));
 
         return infoBase.get(request);
     }

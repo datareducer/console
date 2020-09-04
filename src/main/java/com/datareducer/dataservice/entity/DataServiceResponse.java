@@ -189,4 +189,8 @@ public final class DataServiceResponse {
         return new LinkedHashSet<>(dataTableFields);
     }
 
+    public int size() {
+        return dataTable.size();
+    }
+
 }

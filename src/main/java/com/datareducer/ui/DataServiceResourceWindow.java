@@ -134,7 +134,7 @@ public class DataServiceResourceWindow implements Window<DataServiceResource> {
         }
 
         // Устанавливаем время кэширования
-        dataServiceResource.setCacheLifetime(Long.parseLong(form.cacheFld.getText()) * 60000);
+        dataServiceResource.setCacheLifetime(Long.parseLong(form.cacheFld.getText()));
 
         // Валидируем и устанавливаем отборы данных.
         TreeItem<BooleanExpressionToken> conditionRoot = form.conditionView.getFilterTreeTableRoot();
@@ -737,7 +737,7 @@ public class DataServiceResourceWindow implements Window<DataServiceResource> {
             if (!isDataSetWindow) {
                 cacheFld.setDisable(true);
             } else {
-                cacheFld.setText(String.valueOf(dataServiceResource.getCacheLifetime() / 60000));
+                cacheFld.setText(String.valueOf(dataServiceResource.getCacheLifetime()));
             }
             if (entity instanceof InformationRegisterVirtualTable) {
                 slicePeriodDtPkr.setStringValue(dataServiceResource.getSlicePeriod());

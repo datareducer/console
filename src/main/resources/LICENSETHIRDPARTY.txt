@@ -835,6 +835,8 @@ state courts of the State of California, with venue lying in Santa Clara
 County, California.
 
 -------------------------------------------------------------------------
+Ehcache by Terracotta, Inc. / Apache License 2.0
+-------------------------------------------------------------------------
 Log4j by Apache Software Foundation / Apache License 2.0
 -------------------------------------------------------------------------
 
