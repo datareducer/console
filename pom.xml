@@ -32,7 +32,7 @@ Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>3.8.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -42,7 +42,7 @@ Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.2</version>
+                <version>3.2.0</version>
                 <configuration>
                     <archive>
                         <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
@@ -54,10 +54,10 @@ Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
             <plugin>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-xjc-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.3.1</version>
                 <configuration>
                     <extensions>
-                        <extension>org.apache.cxf.xjcplugins:cxf-xjc-dv:3.2.0</extension>
+                        <extension>org.apache.cxf.xjcplugins:cxf-xjc-dv:3.3.1</extension>
                     </extensions>
                 </configuration>
                 <executions>
@@ -91,7 +91,7 @@ Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.2.4</version>
                 <configuration>
                     <createDependencyReducedPom>false</createDependencyReducedPom>
                 </configuration>
@@ -116,7 +116,7 @@ Copyright (c) 2017-2020 Kirill Mikhaylov <admin@datareducer.ru>
                     <dependency>
                         <groupId>com.github.edwgiz</groupId>
                         <artifactId>maven-shade-plugin.log4j2-cachefile-transformer</artifactId>
-                        <version>2.1</version>
+                        <version>2.13.3</version>
                     </dependency>
                 </dependencies>
             </plugin>
