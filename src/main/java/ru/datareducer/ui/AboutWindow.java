@@ -127,7 +127,7 @@ class AboutWindow {
                     "\n\nИсходный код программы: https://github.com/datareducer/console" +
                     "\n\nВ этот продукт включено следующее программное обеспечение:" +
                     "\nRserve by Simon Urbanek / LGPL v.2.1" +
-                    "\nJersey by Oracle Corporation / CDDL v.1.1" +
+                    "\nJersey by Oracle Corporation / GPL v.2.0 with Class-path Exception" +
                     "\nEhcache by Terracotta, Inc. / Apache License 2.0" +
                     "\nLog4j by Apache Software Foundation / Apache License 2.0" +
                     "\nAce by Ajax.org / BSD License 2.0" +
