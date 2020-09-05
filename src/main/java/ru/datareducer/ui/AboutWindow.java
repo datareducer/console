@@ -4,8 +4,9 @@
  * Этот файл — часть программы DataReducer Console <http://datareducer.ru>.
  *
  * Программа DataReducer Console является свободным программным обеспечением.
- * Вы вправе распространять ее и/или модифицировать только в соответствии с условиями
- * версии 2 Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
+ * Вы вправе распространять ее и/или модифицировать в соответствии с условиями
+ * версии 3 либо, по вашему выбору, с условиями более поздней версии
+ * Стандартной Общественной Лицензии GNU, опубликованной Free Software Foundation.
  *
  * Программа DataReducer Console распространяется в надежде, что она будет полезной,
  * но БЕЗО ВСЯКИХ ГАРАНТИЙ, в том числе ГАРАНТИИ ТОВАРНОГО СОСТОЯНИЯ ПРИ ПРОДАЖЕ
@@ -15,6 +16,7 @@
  * Вы должны были получить копию Стандартной Общественной Лицензии GNU
  * вместе с этой программой. Если это не так, см. <https://www.gnu.org/licenses/>.
  */
+
 package ru.datareducer.ui;
 
 import javafx.geometry.HPos;
@@ -107,11 +109,12 @@ class AboutWindow {
             aboutArea.setEditable(false);
 
             aboutArea.setText("Версия: 1.2.0" +
-                    "\n\nCopyright © Кирилл Михайлов, 2017-2020" +
-                    "\nadmin@datareducer.ru" +
+                    "\n\nCopyright © Кирилл Михайлов, 2017-2020 " +
+                    "<admin@datareducer.ru>" +
                     "\n\nПрограмма DataReducer Console является свободным " +
                     "программным обеспечением. Вы вправе распространять ее " +
-                    "и/или модифицировать только в соответствии с условиями версии 2 " +
+                    "и/или модифицировать в соответствии с условиями версии 3 " +
+                    "либо, по вашему выбору, с условиями более поздней версии " +
                     "Стандартной Общественной Лицензии GNU, опубликованной " +
                     "Free Software Foundation. " +
                     "\n\n" +
@@ -127,7 +130,7 @@ class AboutWindow {
                     "\n\nИсходный код программы: https://github.com/datareducer/console" +
                     "\n\nВ этот продукт включено следующее программное обеспечение:" +
                     "\nRserve by Simon Urbanek / LGPL v.2.1" +
-                    "\nJersey by Oracle Corporation / GPL v.2.0 with Class-path Exception" +
+                    "\nJersey by Oracle Corporation / GPL v.2.0 with Classpath Exception" +
                     "\nEhcache by Terracotta, Inc. / Apache License 2.0" +
                     "\nLog4j by Apache Software Foundation / Apache License 2.0" +
                     "\nAce by Ajax.org / BSD License 2.0" +
